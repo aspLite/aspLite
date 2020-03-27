@@ -1,0 +1,22 @@
+<%
+dim timerObj
+set timerObj=new cls_timer
+
+class cls_timer
+
+	private startTime,stopTime
+
+	Private Sub Class_Initialize()
+		startTime=Timer()
+	End Sub	
+
+	Public Function printTimer() 	  
+	   
+		stopTime=Timer()
+		
+		PrintTimer = vbcrlf & vbcrlf & "<!-- time to execute asp code: " & round((stopTime - startTime) * 1000,0) & " milliseconds -->" & vbcrlf
+	
+	End Function   
+	
+end class
+%>
