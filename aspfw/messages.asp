@@ -1,7 +1,4 @@
 <%
-dim message
-set message=new cls_message
-
 class cls_message
 
 	private p_ASPError		
@@ -31,8 +28,7 @@ class cls_message
 	
 	public function ASPError
 		
-		if err.number=0 then exit function
-	
+		if err.number=0 then exit function	
 		
 		ASPError="<div style=""padding:15px 25px;background-color:Red;font-color:White"">"
 		ASPError=ASPError & "ASP Error occurred:<br>"
