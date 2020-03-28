@@ -5,13 +5,12 @@ set asp=new cls_aspfw
 
 asp.ASP_executeGlobal("code/default.asp") 'codebehind file
 
-'resx files are never served to browsers, so they are safer to use
-dim html
-html=asp.ASP_loadfile("html/default.resx") 'html file (template)
-
 'head
 html=replace (html,"[TITLETAG]",titletag,1,-1,1)
 html=replace (html,"[HEADJS]",asp.js.flushHEAD,1,-1,1)
+
+'title
+html=replace (html,"[PAGETITLE]",titletag,1,-1,1) 'i reuse the titlag here
 
 'body
 html=replace (html,"[BODYJS]",asp.js.flushBODY,1,-1,1)

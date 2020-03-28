@@ -2,7 +2,9 @@
 option explicit  'include this line in all your code files - it ensures that you declare all variables you'll use.
 asp.codebehind() 'include this line in all your code files - it ensures that this page does not load when called directly.
 
-dim titletag,body
+dim html,titletag,body
+'resx files are never served to browsers, so they are safer to use
+html=asp.ASP_loadfile("html/default.resx") 'html file (template)
 
 titletag="Sample page"
 
@@ -12,7 +14,7 @@ select case lcase(asp.getRequest("action"))
 		
 	case "clicklink"
 		body="<p>Link was clicked</p>"
-		'just for the fun of it... add some JavaScript in the header
+		'just for the fun of it... some stupid JavaScript in the header
 		asp.js.addHEAD "window.onload=function(e){document.body.style.backgroundColor='#FAA'}"
 		
 		
@@ -21,7 +23,7 @@ select case lcase(asp.getRequest("action"))
 		asp.js.addHEAD "window.onload=function(e){document.body.style.backgroundColor='#FF0'}"
 
 		
-		'in this case, add some javascript at the bottom too
+		'in this case, some javascript at the bottom too
 		asp.js.addBODY "document.write ('JavaScript added right before the closing body-tag.')"
 		
 		
@@ -36,6 +38,18 @@ select case lcase(asp.getRequest("action"))
 		set testObj=new cls_test
 		body="<p>" & testObj.hello & "</p>"
 		set testObj=nothing
+		
+	case "bootstrap"
+	
+		'override html file with a bootstrap starter template
+		html=asp.ASP_loadfile("html/default_bootstrap.resx")
+		
+		dim i
+		body=""
+		for i=1 to 100
+			'generate some random words with random lengths
+			body=body & asp.randomtext(asp.randomnumber(5,20)) & " "
+		next
 		
 	case else
 	

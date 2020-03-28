@@ -8,6 +8,7 @@
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+<h1>[PAGETITLE]</h1>
 [BODY]
 
 <ul>
@@ -19,6 +20,7 @@
 		</form>	
 	</li>	
 	<li><a href="default.asp?action=loadclass">conditionally load asp file/class</a></li>
+	<li><a href="default.asp?action=bootstrap">prefer bootstrap?</a></li>
 </ul>
 
 [BODYJS]

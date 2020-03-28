@@ -241,6 +241,8 @@ class cls_aspfw
 	end function
 
 	public function randomText(nmbrChars)
+	
+		randomize()
 
 		dim i
 		for i=1 to nmbrChars	
@@ -250,6 +252,8 @@ class cls_aspfw
 	End Function
 
 	public function randomNumber(startnr,stopnr)
+	
+		randomize()
 
 		randomNumber=Int((stopnr-startnr+1)*Rnd+startnr)
 		
