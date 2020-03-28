@@ -5,13 +5,15 @@ Option Explicit 'include this line in all your code files - it ensures that you 
 'this class is the heart of the framework
 class cls_aspfw	
 
-	private startTime,stopTime,p_js,p_message
+	private startTime,stopTime,p_js,p_message,p_randomize
 
 	Private Sub Class_Initialize()
 	
 		startTime=Timer()
+		
 		set p_js=nothing
 		set p_message=nothing
+		p_randomize=false
 	
 		'this is how ASP applications start. 
 		'These lines deal with buffering, charset UTF-8, prevent caching, and set the correct contenttype 
@@ -57,6 +59,17 @@ class cls_aspfw
 		set objStream=nothing
 
 	end function
+	
+	private sub randomizer()
+	
+		'the function randomize() should only be called once/pageload
+		
+		if not p_randomize then 
+			randomize()
+			p_randomize=true
+		end if	
+	
+	end sub
 	
 	public function getRequest(value)
 	
@@ -238,11 +251,11 @@ class cls_aspfw
 			if convertGetal(selected)=convertGetal(i) then numberList=numberList & " selected"
 			numberList=numberList& ">" & i & "</option>"
 		next
-	end function
+	end function	
 
-	public function randomText(nmbrChars)
+	public function randomText(nmbrChars)	
 	
-		randomize()
+		randomizer()
 
 		dim i
 		for i=1 to nmbrChars	
@@ -251,9 +264,9 @@ class cls_aspfw
 	   
 	End Function
 
-	public function randomNumber(startnr,stopnr)
+	public function randomNumber(startnr,stopnr)	
 	
-		randomize()
+		randomizer()
 
 		randomNumber=Int((stopnr-startnr+1)*Rnd+startnr)
 		
