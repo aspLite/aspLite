@@ -12,3 +12,6 @@ Highlights:
 * charset utf-8 is used
 * .net-alike codebehind approach
 * light-weight and fast scripts
+
+This ASP/VBScript framework does not include frontend CSS/JavaScript libraries. But just for the fun of it, 
+I added a Bootstrap sample. 
