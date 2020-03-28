@@ -4,7 +4,7 @@ This framework can help to develop better ASP/VBScript applications. Check it ou
 
 Install as a website or virtual directory in IIS.
 
-Preview: http://www.pietercooreman.somee.com/aspfw/
+Preview: https://aspfw.quickersite.com
 
 Highlights:
 * split html/css/javascript and asp
