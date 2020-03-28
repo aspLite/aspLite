@@ -75,11 +75,12 @@ class cls_aspfw
 	end function
 	
 	public sub codebehind
-		'this function is doing nothing	but leave it
+		'this function is doing nothing but leave it intact
 	end sub
 	
 	public function js
 	
+		'only include file once
 		if p_js is nothing then
 		
 			ASP_executeGlobal("aspfw/javascript.asp")		
@@ -94,6 +95,7 @@ class cls_aspfw
 	
 	public function message
 	
+		'only include file once	
 		if p_message is nothing then
 		
 			ASP_executeGlobal("aspfw/messages.asp")		
