@@ -11,3 +11,4 @@ Highlights:
 * conditionally load asp files (rather than include them 'all')
 * charset utf-8 is used
 * .net-alike codebehind approach
+* light-weight and fast scripts
