@@ -20,8 +20,44 @@
 		</form>	
 	</li>	
 	<li><a href="default.asp?action=loadclass">conditionally load asp file/class</a></li>
-	<li><a href="default.asp?action=bootstrap">prefer bootstrap?</a></li>
+	<li>
+		<form id="theForm" name="theForm" action="default.asp">
+			<input type="hidden" name="action" value="sendhelloAJAX" />
+			Your name: 
+			<input id="yourname" name="yourname" type="text" />
+			<input type="submit" value="AJAX" />
+		</form>
+		<div id="server"></div>
+	
+	</li>	
+	
+	<li><a href="bootstrap.asp">prefer bootstrap?</a></li>
 </ul>
+
+<script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+
+<script>
+$("#theForm").submit(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var url = form.attr('action');
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: form.serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+              $("#server").html(data);
+           },
+		   		   
+         });
+});
+</script>
+
+
 
 [BODYJS]
 </body>

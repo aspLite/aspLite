@@ -1,4 +1,4 @@
-<!-- #include file="aspfw/aspfw.asp"-->
+<!-- #include file="aspfw/ASPFW_CORE.asp"-->
 <%
 dim asp
 set asp=new cls_aspfw
