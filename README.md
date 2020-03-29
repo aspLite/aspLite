@@ -14,5 +14,5 @@ Highlights:
 * light-weight and fast scripts
 * write your own plugins
 
-This ASP/VBScript framework does not include not favorize frontend CSS/JavaScript libraries. But just for the fun of it, 
+This ASP/VBScript framework does not include or favorize frontend CSS/JavaScript libraries. But just for the fun of it, 
 I added a Bootstrap sample and an AJAX form using jQuery. 
