@@ -1,23 +1,19 @@
 <%@LANGUAGE="VBSCRIPT" CODEPAGE="65001"%>
 <%
-Option Explicit 'include this line in all your code files - it ensures that you declare all variables you use.
+Option Explicit
 
-'this class is the heart of the framework
-class cls_aspfw	
+dim asp
+set asp=new cls_asp
 
-	private startTime,stopTime,p_js,p_message,p_randomize,p_ajax
+class cls_asp	
+
+	private startTime,stopTime,p_randomize,plugins	
 
 	Private Sub Class_Initialize()
 	
 		startTime=Timer()
 		
-		set p_js=nothing
-		set p_message=nothing
-		set p_ajax=nothing
 		p_randomize=false		
-	
-		'this is how ASP applications start. 
-		'These lines deal with buffering, charset UTF-8, prevent caching, and set the correct contenttype 
 	
 		Response.Buffer				= true
 		session.Timeout				= 180 '3 hours
@@ -27,15 +23,27 @@ class cls_aspfw
 		Response.CacheControl		= "no-cache"
 		Response.AddHeader "pragma", "no-cache"
 		Response.Expires			= -1
-		Response.ExpiresAbsolute	= Now()-1		
+		Response.ExpiresAbsolute	= Now()-1	
+
+		set plugins=server.createobject("scripting.dictionary")
+		
 		
 	End Sub	
 	
-
-	public sub ASP_executeGlobal(path)		
+	Private Sub Class_Terminate()
 	
-		'this is identical to #include directives.
-		'however, you can CONDITIONALLY include. that is how you can keep RAM usage low(er)		
+		'destroy all plugins
+		dim p
+		for each p in plugins
+			set plugins(p)=nothing			
+		next
+	
+		set plugins=nothing
+		
+	End sub
+	
+
+	public sub ASP_executeGlobal(path)
 
 		path=lcase(path)
 		
@@ -50,6 +58,8 @@ class cls_aspfw
 	end sub	
 	
 	public function ASP_loadfile(path)
+		
+		on error resume next
 
 		Dim objStream
 		Set objStream = server.CreateObject("ADODB.Stream")
@@ -58,17 +68,29 @@ class cls_aspfw
 		objStream.LoadFromFile(server.mappath(path))
 		ASP_loadfile = objStream.ReadText()	
 		set objStream=nothing
+		
+		if err.number<>0 then	
+			asperror(path)
+		end if	
 
 	end function
 	
-	public function ajax
+	public function plugin(value)
 	
-		if p_ajax is nothing then
-			ASP_executeGlobal("aspfw/aspfw_ajax.asp")			
-			set p_ajax=new cls_aspfw_ajax
+		value=lcase(value)	
+	
+		if not plugins.exists(value) then
+			
+			ASP_executeGlobal("asp/plugins/" & value &".asp")	
+			
+			dim pluginCls
+			set pluginCls=eval("new cls_asp_" & value)
+			
+			plugins.add value,pluginCls
+		
 		end if
 		
-		set ajax=p_ajax
+		set plugin=plugins(value)
 	
 	end function
 	
@@ -103,37 +125,6 @@ class cls_aspfw
 		'this function is doing nothing, but leave it as it is
 	end sub
 	
-	public function js
-	
-		'only include file once
-		if p_js is nothing then
-		
-			ASP_executeGlobal("aspfw/ASPFW_javascript.asp")		
-
-			set p_js=new cls_javascript
-		
-		end if
-		
-		set js=p_js		
-	
-	end function
-	
-	public function message
-	
-		'only include file once	
-		if p_message is nothing then
-		
-			ASP_executeGlobal("aspfw/ASPFW_messages.asp")		
-
-			set p_message=new cls_message
-		
-		end if
-		
-		set message=p_message		
-	
-	end function
-	
-		
 	public function isNumber(byval value)
 
 		if isLeeg(value) then
@@ -328,6 +319,29 @@ class cls_aspfw
 		URLDecode = sOutput
 		
 	End Function	
+	
+	private function asperror(value)
+	
+		response.clear
+		
+		asperror="<h1>Error  details:</h1>"
+		asperror=asperror & value & "<br><br>"
+		asperror=asperror & "err.number: " &  err.number & "<br><br>"
+		asperror=asperror & "err.description: " &  err.description & "<br><br>"
+				
+		response.write asperror		
+		
+		response.end	
+	
+	end function
+	
+	public function responseServer (value)
+	
+		response.clear
+		response.write value
+		response.end	
+	
+	end function
 
 end class
 

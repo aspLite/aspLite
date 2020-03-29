@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" /> 
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-[HEADJS]
 <title>[TITLETAG]</title>
 <link href="css/style.css" rel="stylesheet" />
+<script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
 </head>
 <body>
 <h1>[PAGETITLE]</h1>
@@ -34,8 +34,6 @@
 	<li><a href="bootstrap.asp">prefer bootstrap?</a></li>
 </ul>
 
-<script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
-
 <script>
 $("#theForm").submit(function(e) {
 
@@ -57,8 +55,5 @@ $("#theForm").submit(function(e) {
 });
 </script>
 
-
-
-[BODYJS]
 </body>
 </html>
