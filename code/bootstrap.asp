@@ -11,6 +11,10 @@ dim html,titletag,body
 html=asp.ASP_loadfile("html/bootstrap.resx")
 
 'the title shows the result of a function of the plugin helloworld
+dim plugin
+set plugin=asp.plugin("helloworld")
+titletag=plugin.hw()
+'or shorter
 titletag=asp.plugin("helloworld").hw()
 
 dim i
