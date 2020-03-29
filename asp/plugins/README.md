@@ -4,6 +4,8 @@ Plugins are stored in the /asp/plugins folder.
 
 The filename of your plugin (eg "helloworld.asp") also names the plugin: "helloworld" (without .asp)
 
+Finally, make sure to name your class cls_asp_helloworld. 
+
 To create an instance of your plugin, use: 
 
 dim myplugin<br>
