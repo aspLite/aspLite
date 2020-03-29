@@ -8,8 +8,8 @@
 <script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>[PAGETITLE]</h1>
-[BODY]
+<h1 id="hello">[PAGETITLE]</h1>
+<div>[BODY]</div>
 
 <ul>
 	<li><a href="default.asp">no action</a></li>
@@ -26,8 +26,7 @@
 			Your name: 
 			<input id="yourname" name="yourname" type="text" />
 			<input type="submit" value="AJAX" />
-		</form>
-		<div id="server"></div>
+		</form>		
 	
 	</li>	
 	
@@ -48,7 +47,7 @@ $("#theForm").submit(function(e) {
            data: form.serialize(), // serializes the form's elements.
            success: function(data)
            {
-              $("#server").html(data);
+              $("#hello").html(data);
            },
 		   		   
          });
