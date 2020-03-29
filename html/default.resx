@@ -54,6 +54,6 @@ $("#theForm").submit(function(e) {
          });
 });
 </script>
-
+ [TIMER] 
 </body>
 </html>

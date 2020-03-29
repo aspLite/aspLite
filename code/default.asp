@@ -36,7 +36,7 @@ select case lcase(asp.getRequest("action"))
 		
 	case "sendhelloajax"		
 
-		asp.responseServer "<h3>Hello " & asp.sanitize(asp.URLDecode(asp.getRequest("yourname"))) & "</h3>"
+		asp.flush "<h3>Hello " & asp.sanitize(asp.URLDecode(asp.getRequest("yourname"))) & "</h3>"
 	
 		
 	case else

@@ -72,6 +72,8 @@ class cls_asp
 		if err.number<>0 then	
 			asperror(path)
 		end if	
+		
+		on error goto 0
 
 	end function
 	
@@ -81,7 +83,7 @@ class cls_asp
 	
 		if not plugins.exists(value) then
 			
-			ASP_executeGlobal("asp/plugins/" & value &".asp")	
+			ASP_executeGlobal("asp/plugins/" & value & ".asp")	
 			
 			dim pluginCls
 			set pluginCls=eval("new cls_asp_" & value)
@@ -320,25 +322,21 @@ class cls_asp
 		
 	End Function	
 	
-	private function asperror(value)
-	
-		response.clear
+	private function asperror(value)		
 		
 		asperror="<h1>Error  details:</h1>"
 		asperror=asperror & value & "<br><br>"
 		asperror=asperror & "err.number: " &  err.number & "<br><br>"
 		asperror=asperror & "err.description: " &  err.description & "<br><br>"
 				
-		response.write asperror		
-		
-		response.end	
+		flush asperror
 	
 	end function
 	
-	public function responseServer (value)
+	public function flush (value)
 	
 		response.clear
-		response.write value
+		response.write value		
 		response.end	
 	
 	end function
