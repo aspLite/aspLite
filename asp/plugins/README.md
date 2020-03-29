@@ -6,9 +6,9 @@ The filename of your plugin (eg "helloworld.asp") also names the plugin: "hellow
 
 To create an instance of your plugin, use: 
 
-dim myplugin
-set myplugin=asp.plugin("helloworld")
-response.write myplugin.hw()
+dim myplugin<br>
+set myplugin=asp.plugin("helloworld")<br>
+response.write myplugin.hw()<br>
 
 from there on you can use all public properties, subs and functions of your plugin
 
