@@ -5,37 +5,45 @@ select case lcase(asp.getrequest("myaction"))
 
 	case "onload"		
 	
-		asp.flush "<p>Hello world, Καλημέρα κόσμε (utf8-ready)</p>"
+		asp.flush "Hello world, Καλημέρα κόσμε (utf8-ready)"
 
 	case "submit1"
 	
-		asp.flush "<p>Form 1 save button was clicked</p>"
+		asp.flush "Form 1 save button was clicked"
+		
+	case "linksubmit"
+	
+		asp.flush "Form 1 submitted by link"
 	
 	case "delete1"
 	
-		asp.flush "<p>Form 1 delete button was clicked</p>"
+		asp.flush "Form 1 delete button was clicked"
 		
 	case "submit2"
 	
-		asp.flush "<p>Form 2 save button was clicked</p>"
+		asp.flush "Form 2 save button was clicked"
 	
 	case "delete2"
 	
-		asp.flush "<p>Form 2 delete button was clicked</p>"
+		asp.flush "Form 2 delete button was clicked"
 		
 	case "buttonclick"
 	
-		asp.flush "<p>Regular button was clicked</p>"
+		asp.flush "Regular button was clicked"
 		
 	case "clicklink1"
 
-		asp.flush "<p>First link clicked...</p>"
+		asp.flush "First link clicked..."
 	
 	case "clicklink2"
 
-		asp.flush "<p>Second link clicked...</p>"
+		asp.flush "Second link clicked..."	
+	
+	case "returnbool"
+	
+		'returns a random boolean to the browser		
+		asp.flush asp.plugin("randomizer").randomnumber(0,100)>49	
 		
-
 	case else 'initial pageload!
 	
 		asp.flush asp.ASP_loadfile("html/ajax.resx")

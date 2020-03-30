@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <link href="css/style.css" rel="stylesheet" />
 <title>AJAX Example</title>
-<script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
 </head>
 <body>
 <div style="background-color:LightYellow;padding:20px 30px" id="hello"></div>
@@ -13,88 +12,61 @@
 <div style="padding:20px 30px">
 
 	<p>Form 1</p>
-	<form class="ajaxForm" action="ajax.asp" method="post">
+	<form class="aspAjax" id="theForm" action="ajax.asp" method="post">
 	<input type="hidden" id="myaction" name="myaction" value="">
 	<input onclick="$('#myaction').val('submit1');" type="submit" value="Save">
 	<input onclick="$('#myaction').val('delete1');" type="submit" value="Delete">
+	<a href="#" onclick="$('#myaction').val('linksubmit');$('#theForm').submit();">Submit link</a>
 	</form>
 
 	<p>Form 2</p>
-	<form class="ajaxForm" action="ajax.asp" method="post">
+	<form class="aspAjax" action="ajax.asp" method="post">
 	<input type="hidden" id="myaction2" name="myaction" value="">
 	<input onclick="$('#myaction2').val('submit2');" type="submit" value="Save">
 	<input onclick="$('#myaction2').val('delete2');" type="submit" value="Delete">
 	</form>
 
 	<p>Button</p>
-	<button class="ajaxlink" href="ajax.asp?myaction=buttonclick" type="button">Click Me!</button>
+	<button class="aspAjax" href="ajax.asp?myaction=buttonclick" type="button">Click Me!</button>
 
 	<p>Links</p>
-
-	<p><a class="ajaxlink" href="ajax.asp?myaction=clicklink1">Click a first link</a></p>
-	<p><a class="ajaxlink" href="ajax.asp?myaction=clicklink2&someother=azerty">Click a second link</a></p>
-
-	<p><a onclick="onPageLoad()" href="#">Reset page</a></p>
+	<ul>
+		<li><a class="aspAjax" href="ajax.asp?myaction=clicklink1">Click a first link</a></li>
+		<li><a class="aspAjax" href="ajax.asp?myaction=clicklink2&someother=azerty">Click a second link</a></li>
+		<li><a class="aspAjax" href="ajax.asp?myaction=returnbool">Get random boolean from the server</a></li>
+		<li><a onclick="onPageLoad()" href="#">Reset page</a></li>
+	</ul>	
 	
 	<p><a href="default.asp">Home</a></p>
 
 </div>
 
-
+<script src="js/jquery.js"></script>
+<script src="js/aspAjax.js"></script>
 
 <script>
 
-$(document).ready(function() {
-	onPageLoad();  
-});
+	$(document).ready(function() {
+		onPageLoad();  
+	});
 
-function onPageLoad () { 
-    $.ajax({
-           type: "GET",
-           url: "ajax.asp?myaction=onload",     
-           success: function(data)
-           {
-              $("#hello").html(data);
-           },		   		   
-         });
-};
+	$('.aspAjax').click(function(e) {
+		aspAjax(e,this,aspAjaxSuccess);
+	});
 
-$(".ajaxlink").click(function(e) {
+	$('.aspAjax').submit(function(e) {
+		aspAjax(e,this,aspAjaxSuccess);
+	});
 
-    e.preventDefault(); // avoid to follow the link
+	function onPageLoad () { 
+		aspAjaxCall('GET','ajax.asp?myaction=onload','',aspAjaxSuccess);
+	};
 
-    var link = $(this);
-    var url = link.attr('href');
+	function aspAjaxSuccess(data) {
+		$('#hello').html(data);		
+	};	
 
-    $.ajax({
-           type: "GET",
-           url: url,     
-           success: function(data)
-           {
-              $("#hello").html(data);
-           },		   		   
-         });
-});
+</script>
 
-
-$(".ajaxForm").submit(function(e) {
-
-    e.preventDefault(); // avoid to execute the actual submit of the form.
-
-    var form = $(this);
-    var url = form.attr('action');
-
-    $.ajax({
-           type: "POST",
-           url: url,
-           data: form.serialize(), // serializes the form's elements.
-           success: function(data)
-           {
-              $("#hello").html(data);
-           },		   		   
-         });
-});
-
-</script> 
 </body>
 </html>
