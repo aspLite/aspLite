@@ -1,19 +1,19 @@
 <%@LANGUAGE="VBSCRIPT" CODEPAGE="65001"%>
 <%
 Option Explicit
-
+%>
+<!-- #include file="config.asp"-->
+<%
 dim asp
 set asp=new cls_asp
 
 class cls_asp	
 
-	private startTime,stopTime,p_randomize,plugins	
+	private startTime,stopTime,plugins	
 
 	Private Sub Class_Initialize()
 	
-		startTime=Timer()
-		
-		p_randomize=false		
+		startTime=Timer()			
 	
 		Response.Buffer				= true
 		session.Timeout				= 180 '3 hours
@@ -25,8 +25,7 @@ class cls_asp
 		Response.Expires			= -1
 		Response.ExpiresAbsolute	= Now()-1	
 
-		set plugins=server.createobject("scripting.dictionary")
-		
+		set plugins=server.createobject("scripting.dictionary")		
 		
 	End Sub	
 	
@@ -83,7 +82,7 @@ class cls_asp
 	
 		if not plugins.exists(value) then
 			
-			ASP_executeGlobal("asp/plugins/" & value & ".asp")	
+			ASP_executeGlobal(asp_path & "/plugins/" & value & ".asp")	
 			
 			dim pluginCls
 			set pluginCls=eval("new cls_asp_" & value)
@@ -96,16 +95,6 @@ class cls_asp
 	
 	end function
 	
-	private sub randomizer()
-	
-		'the function randomize() should only be called once/pageload
-		
-		if not p_randomize then 
-			randomize()
-			p_randomize=true
-		end if	
-	
-	end sub
 	
 	public function getRequest(value)
 	
@@ -126,6 +115,42 @@ class cls_asp
 	public sub codebehind
 		'this function is doing nothing, but leave it as it is
 	end sub
+	
+	Public function asperror(value)		
+		
+		asperror="<h1>Error  details:</h1>"
+		asperror=asperror & value & "<br><br>"
+		asperror=asperror & "err.number: " &  err.number & "<br><br>"
+		asperror=asperror & "err.description: " &  err.description & "<br><br>"
+				
+		flush asperror
+	
+	end function
+	
+	public function flush (value)
+	
+		response.clear
+		response.write value		
+		response.end	
+	
+	end function
+	
+	Public Function printTimer() 	  
+	   
+		stopTime=Timer()
+		
+		PrintTimer = round((stopTime - startTime) * 1000,0) 'milliseconds
+	
+	End Function 
+	
+	'#################################################################################################
+	'#################################################################################################
+	'###### This is it as far as the main framework is concerned. 
+	'###### Below you find some generic VBScript functions I often use in ASP projects
+	'###### DO NOT REMOVE or CHANGE them. I use some of these functions in the framework (above)
+	'###### and/or in some of the plugins I already developed
+	'#################################################################################################
+	'#################################################################################################
 	
 	public function isNumber(byval value)
 
@@ -256,26 +281,7 @@ class cls_asp
 			if convertGetal(selected)=convertGetal(i) then numberList=numberList & " selected"
 			numberList=numberList& ">" & i & "</option>"
 		next
-	end function	
-
-	public function randomText(nmbrChars)	
-	
-		randomizer()
-
-		dim i
-		for i=1 to nmbrChars	
-			randomText=randomText & CHR(Int((122-97+1)*Rnd+97))
-		next
-	   
-	End Function
-
-	public function randomNumber(startnr,stopnr)	
-	
-		randomizer()
-
-		randomNumber=Int((stopnr-startnr+1)*Rnd+startnr)
-		
-	end function
+	end function		
 
 	public function convert2 (byref getal)
 		if len(getal)=1 then 
@@ -284,14 +290,6 @@ class cls_asp
 			convert2=getal
 		end if
 	end function
-	
-	Public Function printTimer() 	  
-	   
-		stopTime=Timer()
-		
-		PrintTimer = round((stopTime - startTime) * 1000,0) 'milliseconds
-	
-	End Function 
 	
 
 	Public Function URLDecode(value)	
@@ -321,25 +319,7 @@ class cls_asp
 		URLDecode = sOutput
 		
 	End Function	
-	
-	private function asperror(value)		
-		
-		asperror="<h1>Error  details:</h1>"
-		asperror=asperror & value & "<br><br>"
-		asperror=asperror & "err.number: " &  err.number & "<br><br>"
-		asperror=asperror & "err.description: " &  err.description & "<br><br>"
-				
-		flush asperror
-	
-	end function
-	
-	public function flush (value)
-	
-		response.clear
-		response.write value		
-		response.end	
-	
-	end function
+
 
 end class
 

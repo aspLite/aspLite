@@ -12,8 +12,8 @@ dim myplugin<br>
 set myplugin=asp.plugin("helloworld")<br>
 response.write myplugin.hw()<br>
 
-from there on you can use all public properties, subs and functions of your plugin
-
 You could also just:
 
 response.write asp.plugin("helloworld").hw()
+
+(where hw() is a public function of the helloworld-class)
