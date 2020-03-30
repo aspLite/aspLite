@@ -25,8 +25,10 @@
 			<input type="hidden" name="action" value="sendhelloAJAX" />
 			Your name: 
 			<input id="yourname" name="yourname" type="text" />
-			<input type="submit" value="AJAX" />
+			<input type="submit" value="AJAX" />	 <a href="ajax.asp">more ajax examples</a>
+			
 		</form>		
+		
 	
 	</li>	
 	
