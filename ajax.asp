@@ -5,7 +5,7 @@ select case lcase(asp.getrequest("myaction"))
 
 	case "onload"		
 	
-		asp.flush "<p>" & asp.ASP_loadfile("html/utf8.resx") & "</p>"
+		asp.flush "<p>Hello world, Καλημέρα κόσμε (utf8-ready)</p>"
 
 	case "submit1"
 	
