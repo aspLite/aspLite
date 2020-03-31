@@ -1,6 +1,6 @@
 <!-- #include file="asp/ASP.asp"-->
 <%
-asp.ASP_executeGlobal("code/bootstrap.asp") 'codebehind file
+asp.exec("code/bootstrap.asp") 'codebehind file
 
 'head
 html=replace (html,"[TITLETAG]",titletag,1,-1,1)

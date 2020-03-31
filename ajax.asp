@@ -44,9 +44,41 @@ select case lcase(asp.getrequest("myaction"))
 		'returns a random boolean to the browser		
 		asp.flush asp.plugin("randomizer").randomnumber(0,100)>49	
 		
+	case "returnjsondata"
+		
+		dim db,rs,field,json,counter,fieldvalue
+		counter=0
+		set db=asp.plugin("accessdb")
+		db.path="db/sample.mdb"
+		
+		set rs=db.GetDynamicRS
+
+		rs.open ("select * from person")
+		
+		set json=asp.plugin("json")
+		json.data.Add "persons", json.Collection()	
+		
+		while not rs.eof
+
+			json.data("persons").Add counter,json.Collection()
+			
+			for each field in rs.fields	
+				fieldvalue=rs(field.name)
+				json.data("persons").item(counter).add asp.sanitize(field.name),asp.sanitize(fieldvalue)
+			next
+			
+			counter=counter+1
+			
+			rs.movenext
+		
+		wend
+		
+		asp.flush json.JSONoutput
+	
+		
 	case else 'initial pageload!
 	
-		asp.flush asp.ASP_loadfile("html/ajax.resx")
+		asp.flush asp.load("html/ajax.resx")
 
 end select
 

@@ -42,12 +42,12 @@ class cls_asp
 	End sub
 	
 
-	public sub ASP_executeGlobal(path)
+	public sub exec(path)
 
 		path=lcase(path)
 		
 		dim strData
-		strData=ASP_loadfile(path)
+		strData=load(path)
 		
 		strData=replace(strData,"<" & "%","",1,-1,1)
 		strData=replace(strData,"%" & ">","",1,-1,1)	
@@ -56,7 +56,7 @@ class cls_asp
 
 	end sub	
 	
-	public function ASP_loadfile(path)
+	public function load(path)
 		
 		on error resume next
 
@@ -65,7 +65,7 @@ class cls_asp
 		objStream.CharSet = "utf-8"
 		objStream.Open	
 		objStream.LoadFromFile(server.mappath(path))
-		ASP_loadfile = objStream.ReadText()	
+		load = objStream.ReadText()	
 		set objStream=nothing
 		
 		if err.number<>0 then	
@@ -82,7 +82,7 @@ class cls_asp
 	
 		if not plugins.exists(value) then
 			
-			ASP_executeGlobal(asp_path & "/plugins/" & value & ".asp")	
+			exec(asp_path & "/plugins/" & value & ".asp")	
 			
 			dim pluginCls
 			set pluginCls=eval("new cls_asp_" & value)
@@ -126,6 +126,7 @@ class cls_asp
 		flush asperror
 	
 	end function
+	
 	
 	public function flush (value)
 	

@@ -9,7 +9,7 @@ dim html,titletag,body
 
 'load the template
 'resx files are never served to browsers, so they are safer to use
-html=asp.ASP_loadfile("html/bootstrap.resx")
+html=asp.load("html/bootstrap.resx")
 
 'hello world plugin example
 dim plugin

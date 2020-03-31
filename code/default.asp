@@ -9,7 +9,7 @@ dim html,titletag,body
 
 'load the template file
 'resx files are never served to browsers, so they are safer to use
-html=asp.ASP_loadfile("html/default.resx")
+html=asp.load("html/default.resx")
 
 titletag="ASP Framework"
 
@@ -27,7 +27,7 @@ select case lcase(asp.getRequest("action"))
 	case "loadclass"
 	
 		'CONDITIONAL load of asp page = incude file
-		asp.ASP_executeGlobal("code/includes/class.asp")	
+		asp.exec("code/includes/class.asp")	
 		
 		dim testObj
 		set testObj=new cls_test
