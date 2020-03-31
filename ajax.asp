@@ -9,15 +9,15 @@ select case lcase(asp.getrequest("myaction"))
 
 	case "submit1"
 	
-		asp.flush "Form 1 save button was clicked"
+		asp.flush "Form 1 save button was clicked - " & asp.getrequest("yourname")
 		
 	case "linksubmit"
 	
-		asp.flush "Form 1 submitted by link"
+		asp.flush "Form 1 submitted by link - " & asp.getrequest("yourname")
 	
 	case "delete1"
 	
-		asp.flush "Form 1 delete button was clicked"
+		asp.flush "Form 1 delete button was clicked - " & asp.getrequest("yourname")
 		
 	case "submit2"
 	
