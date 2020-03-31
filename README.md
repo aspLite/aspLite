@@ -15,4 +15,4 @@ Highlights:
 * write your own plugins
 
 This ASP/VBScript framework does not include or favorize frontend CSS/JavaScript libraries. But just for the fun of it, 
-I added a Bootstrap sample and an AJAX form using jQuery. 
+I added a Bootstrap sample and some AJAX examples each using jQuery. 
