@@ -88,7 +88,8 @@ select case lcase(asp.getrequest("myaction"))
 		'mail.send() 'commented out for security reasons - make sure to uncomment when you're ready
 		set mail=nothing
 		
-		asp.flush "Mail sent."
+		asp.flush "Mail sent"		
+	
 		
 	case else 'initial pageload!
 	

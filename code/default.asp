@@ -38,6 +38,9 @@ select case lcase(asp.getRequest("action"))
 
 		asp.flush "Hello " & asp.sanitize(asp.URLDecode(asp.getRequest("yourname")))
 	
+	case "downloadfile"
+	
+		asp.download("html/download.jpg")
 		
 	case else
 	

@@ -9,7 +9,8 @@ set asp=new cls_asp
 
 class cls_asp	
 
-	private startTime,stopTime,plugins	
+	private startTime,stopTime,plugins
+	private isBinary
 
 	Private Sub Class_Initialize()
 	
@@ -25,7 +26,8 @@ class cls_asp
 		Response.Expires			= -1
 		Response.ExpiresAbsolute	= Now()-1	
 
-		set plugins=server.createobject("scripting.dictionary")		
+		set plugins=server.createobject("scripting.dictionary")	
+		isBinary=false
 		
 	End Sub	
 	
@@ -62,10 +64,23 @@ class cls_asp
 
 		Dim objStream
 		Set objStream = server.CreateObject("ADODB.Stream")
-		objStream.CharSet = "utf-8"
-		objStream.Open	
-		objStream.LoadFromFile(server.mappath(path))
-		load = objStream.ReadText()	
+		
+		if isBinary then
+			
+			objStream.Open	
+			objStream.type=1 'adTypeBinary
+			objStream.LoadFromFile(server.mappath(path))
+			load = objStream.Read()		
+		
+		else	
+		
+			objStream.CharSet = "utf-8"
+			objStream.Open	
+			objStream.LoadFromFile(server.mappath(path))
+			load = objStream.ReadText()	
+			
+		end if	
+		
 		set objStream=nothing
 		
 		if err.number<>0 then	
@@ -74,6 +89,25 @@ class cls_asp
 		
 		on error goto 0
 
+	end function
+	
+	public function download(path)
+	
+		isBinary=true
+	
+		download=load(path)
+	
+		'retrieve filename
+		path=replace(path,"\","/",1,-1,1)
+		dim filename	
+		filename=right(path,len(path)-InStrRev(path,"/",-1,1))
+			
+		response.clear
+		Response.ContentType = "application/octet-stream"
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename
+		response.binarywrite download
+		response.flush()		
+	
 	end function
 	
 	public function plugin(value)

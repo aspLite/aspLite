@@ -21,6 +21,7 @@
 		</form>	
 	</li>	
 	<li><a href="default.asp?action=loadclass">conditionally load asp file/class</a></li>
+	<li><a href="default.asp?action=downloadfile">download file</a></li>
 	<li>
 		<form class="aspAjax" action="default.asp">
 			<input type="hidden" name="action" value="sendhelloAJAX" />
