@@ -35,8 +35,11 @@
 
 <script>
 
+aspAjaxUrl="default.asp"
+
 $('.aspAjax').submit(function(e) {
-	aspAjax(e,this,aspAjaxSuccess);
+	e.preventDefault();
+	aspAjax('POST',aspAjaxUrl,$(this).serialize(),aspAjaxSuccess);
 });
 
 function aspAjaxSuccess(data) {
