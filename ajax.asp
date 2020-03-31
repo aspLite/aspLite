@@ -74,7 +74,21 @@ select case lcase(asp.getrequest("myaction"))
 		wend
 		
 		asp.flush json.JSONoutput
+		
+	case "sendmail"
 	
+		dim mail
+		set mail=asp.plugin("cdomessage")
+		mail.body="<pre>" & asp.load("html/utf8.txt") & "</pre>"
+		mail.subject="ABCDEFGHIJKLMNOPQRSTUVWXYZ /0123456789  abcdefghijklmnopqrstuvwxyz £©µÀÆÖÞßéöÿ  –—‘“”„†•…‰™œŠŸž€ ΑΒΓΔΩαβγδω АБВГДабвгд  ∀∂∈ℝ∧∪≡∞ ↑↗↨↻⇣ ┐┼╔╘░►☺♀ ﬁ�⑀₂ἠḂӥẄɐː⍎אԱა"
+		mail.receiverEmail="pietercooreman@gmail.com"
+		mail.receiverName="Pieter Cooreman"
+		mail.fromname="ASP"
+		mail.fromemail="info@quickersite.com"
+		mail.send()
+		set mail=nothing
+		
+		asp.flush "Mail sent."
 		
 	case else 'initial pageload!
 	

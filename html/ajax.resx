@@ -45,7 +45,8 @@
 			<div id="data"></div>
 			
 		</li>		
-	</ul>	
+	</ul>
+	<p><a class="aspAjax" href="#" name="sendmail">Send email</a></p>
 	<p><a onclick="$('#data').html('');onPageLoad()" href="#">Reset page</a></p>
 	<p><a href="default.asp">Home</a></p>
 
@@ -97,7 +98,7 @@
 			var person=persons[i]	
 		
 			for (var key in person) {
-				liPersons+='<th>' + encodeURI(key) + '</th>'
+				liPersons+='<th>' + key + '</th>'
 			}
 			
 			break	// stop after 1 loop just to get the table headers
@@ -113,7 +114,7 @@
 			var person=persons[i]
 			
 			for (var key in person) {
-				liPersons+='<td>' + encodeURI(person[key]) + '</td>'
+				liPersons+='<td>' + (person[key]) + '</td>'
 			}
 			
 			liPersons+='</tr>'

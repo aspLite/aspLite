@@ -52,7 +52,7 @@ class cls_asp
 		strData=replace(strData,"<" & "%","",1,-1,1)
 		strData=replace(strData,"%" & ">","",1,-1,1)	
 		
-		executeGlobal strData	
+		executeGlobal strData
 
 	end sub	
 	
