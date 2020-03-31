@@ -85,7 +85,7 @@ select case lcase(asp.getrequest("myaction"))
 		mail.receiverName="Pieter Cooreman"
 		mail.fromname="ASP"
 		mail.fromemail="info@quickersite.com"
-		mail.send()
+		'mail.send() 'commented out for security reasons - make sure to uncomment when you're ready
 		set mail=nothing
 		
 		asp.flush "Mail sent."
