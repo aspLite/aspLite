@@ -10,8 +10,7 @@ set asp=new cls_asp
 class cls_asp	
 
 	private startTime,stopTime,plugins
-	private isBinary
-
+	
 	Private Sub Class_Initialize()
 	
 		startTime=Timer()			
@@ -26,8 +25,7 @@ class cls_asp
 		Response.Expires			= -1
 		Response.ExpiresAbsolute	= Now()-1	
 
-		set plugins=server.createobject("scripting.dictionary")	
-		isBinary=false
+		set plugins=server.createobject("scripting.dictionary")			
 		
 	End Sub	
 	
@@ -49,7 +47,7 @@ class cls_asp
 		path=lcase(path)
 		
 		dim strData
-		strData=load(path)
+		strData=stream(path,false)
 		
 		strData=replace(strData,"<" & "%","",1,-1,1)
 		strData=replace(strData,"%" & ">","",1,-1,1)	
@@ -60,24 +58,45 @@ class cls_asp
 	
 	public function load(path)
 		
+		load=stream(path,false)
+
+	end function
+	
+	public function binaryload(path)	
+	
+		binaryload=stream(path,true)
+	
+		'retrieve filename
+		path=replace(path,"\","/",1,-1,1)
+		dim filename	
+		filename=right(path,len(path)-InStrRev(path,"/",-1,1))
+			
+		asp.flushBinary binaryload,filename
+	
+	end function
+	
+	
+	private function stream(path,binary)
+	
 		on error resume next
 
 		Dim objStream
 		Set objStream = server.CreateObject("ADODB.Stream")
 		
-		if isBinary then
+		if binary then
 			
 			objStream.Open	
 			objStream.type=1 'adTypeBinary
 			objStream.LoadFromFile(server.mappath(path))
-			load = objStream.Read()		
+			stream = objStream.Read()		
 		
 		else	
 		
 			objStream.CharSet = "utf-8"
 			objStream.Open	
+			objStream.type=2 'adTypeText
 			objStream.LoadFromFile(server.mappath(path))
-			load = objStream.ReadText()	
+			stream = objStream.ReadText()	
 			
 		end if	
 		
@@ -88,25 +107,7 @@ class cls_asp
 		end if	
 		
 		on error goto 0
-
-	end function
 	
-	public function download(path)
-	
-		isBinary=true
-	
-		download=load(path)
-	
-		'retrieve filename
-		path=replace(path,"\","/",1,-1,1)
-		dim filename	
-		filename=right(path,len(path)-InStrRev(path,"/",-1,1))
-			
-		response.clear
-		Response.ContentType = "application/octet-stream"
-		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename
-		response.binarywrite download
-		response.flush()		
 	
 	end function
 	
@@ -167,6 +168,65 @@ class cls_asp
 		response.clear
 		response.write value		
 		response.end	
+	
+	end function
+	
+	public function flushBinary (value,filename)
+	
+		response.clear
+		
+		dim filetype
+		filetype=right(filename,len(filename)-InStrRev(filename,".",-1,1))
+		
+		select case lcase(right(filename,4))
+		
+			case "jpeg","jpg"
+				response.ContentType="image/JPEG"
+			case "png"
+				response.ContentType="image/x-png"
+			case "htm","html"
+				response.ContentType="text/HTML"
+			case "js"
+				response.ContentType="text/HTML"
+			case "gif"
+				response.ContentType="image/GIF"
+			case "txt","css"
+				response.ContentType="text/plain"
+			case "zip"
+				response.ContentType="application/x-zip-compressed"
+			case "pdf"
+				response.ContentType="application/pdf"
+			case "doc","docx"
+				Response.ContentType = "application/msword"
+			case "xls","xlsx"
+				Response.ContentType = "application/x-msexcel"
+			case "mpeg"
+				Response.ContentType = "video/mpeg"	
+			case "mp3"
+				Response.ContentType = "audio/mpeg"
+			case "mp4"
+				Response.ContentType = "video/mp4"
+			case "avi"
+				Response.ContentType = "video/x-msvideo"
+			case "wmv"
+				Response.ContentType = "video/x-ms-wmv"
+			case "m4v"
+				Response.ContentType = "video/x-m4v"
+			case "mov"
+				Response.ContentType = "video/quicktime"
+			case "3gp"
+				Response.ContentType = "video/3gpp"
+			case "xml"
+				Response.ContentType = "application/xml"
+			case else
+				Response.ContentType = "application/octet-stream"
+		
+		end select
+		
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename
+		response.binarywrite value
+		response.flush()
+		response.end 
 	
 	end function
 	

@@ -40,7 +40,7 @@ select case lcase(asp.getRequest("action"))
 	
 	case "downloadfile"
 	
-		asp.download("html/download.jpg")
+		asp.binaryload("html/download.jpg")
 		
 	case else
 	

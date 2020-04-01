@@ -14,5 +14,5 @@ html=replace (html,"[BODY]",body,1,-1,1)
 'timer
 html=replace (html,"[TIMER]","<!--code took " & asp.printTimer & " ms to execute-->",1,-1,1)
 
-response.write html
+asp.flush html
 %>
