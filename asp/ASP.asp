@@ -47,7 +47,7 @@ class cls_asp
 		path=lcase(path)
 		
 		dim strData
-		strData=stream(path,false)
+		strData=stream(path,false,"")
 		
 		strData=replace(strData,"<" & "%","",1,-1,1)
 		strData=replace(strData,"%" & ">","",1,-1,1)	
@@ -58,25 +58,26 @@ class cls_asp
 	
 	public function load(path)
 		
-		load=stream(path,false)
+		load=stream(path,false,"")
 
 	end function
 	
 	public function binaryload(path)	
 	
-		binaryload=stream(path,true)
+		dim size
+		binaryload=stream(path,true,size)
 	
 		'retrieve filename
 		path=replace(path,"\","/",1,-1,1)
 		dim filename	
 		filename=right(path,len(path)-InStrRev(path,"/",-1,1))
 			
-		asp.flushBinary binaryload,filename
+		asp.flushBinary binaryload,filename,size
 	
 	end function
 	
 	
-	private function stream(path,binary)
+	private function stream(path,binary,byref size)
 	
 		on error resume next
 
@@ -88,7 +89,8 @@ class cls_asp
 			objStream.Open	
 			objStream.type=1 'adTypeBinary
 			objStream.LoadFromFile(server.mappath(path))
-			stream = objStream.Read()		
+			stream = objStream.Read()
+			size=objStream.size
 		
 		else	
 		
@@ -171,7 +173,7 @@ class cls_asp
 	
 	end function
 	
-	public function flushBinary (value,filename)
+	public function flushBinary (value,filename,size)
 	
 		response.clear
 		
@@ -223,9 +225,12 @@ class cls_asp
 		
 		end select
 		
+		
+		Response.AddHeader "Content-Length", size
 		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename
 		response.binarywrite value
 		response.flush()
+		response.clear
 		response.end 
 	
 	end function
