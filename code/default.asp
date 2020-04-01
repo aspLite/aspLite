@@ -38,9 +38,13 @@ select case lcase(asp.getRequest("action"))
 
 		asp.flush "Hello " & asp.sanitize(asp.URLDecode(asp.getRequest("yourname")))
 	
-	case "downloadfile"
+	case "downloadlargefile"
 	
-		asp.binaryload("html/download.jpg")
+		asp.flushBinary("html/largefile.jpg")
+	
+	case "downloadsmallfile"
+	
+		asp.flushBinary("html/smallfile.jpg")
 		
 	case else
 	

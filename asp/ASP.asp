@@ -47,7 +47,7 @@ class cls_asp
 		path=lcase(path)
 		
 		dim strData
-		strData=stream(path,false,"")
+		strData=stream(path)
 		
 		strData=replace(strData,"<" & "%","",1,-1,1)
 		strData=replace(strData,"%" & ">","",1,-1,1)	
@@ -58,58 +58,29 @@ class cls_asp
 	
 	public function load(path)
 		
-		load=stream(path,false,"")
+		load=stream(path)
 
 	end function
 	
-	public function binaryload(path)	
 	
-		dim size
-		binaryload=stream(path,true,size)
-	
-		'retrieve filename
-		path=replace(path,"\","/",1,-1,1)
-		dim filename	
-		filename=right(path,len(path)-InStrRev(path,"/",-1,1))
-			
-		asp.flushBinary binaryload,filename,size
-	
-	end function
-	
-	
-	private function stream(path,binary,byref size)
+	private function stream(path)
 	
 		on error resume next
 
 		Dim objStream
-		Set objStream = server.CreateObject("ADODB.Stream")
-		
-		if binary then
-			
-			objStream.Open	
-			objStream.type=1 'adTypeBinary
-			objStream.LoadFromFile(server.mappath(path))
-			stream = objStream.Read()
-			size=objStream.size
-		
-		else	
-		
+		Set objStream = server.CreateObject("ADODB.Stream")	
 			objStream.CharSet = "utf-8"
 			objStream.Open	
 			objStream.type=2 'adTypeText
 			objStream.LoadFromFile(server.mappath(path))
-			stream = objStream.ReadText()	
-			
-		end if	
-		
+			stream = objStream.ReadText()					
 		set objStream=nothing
 		
 		if err.number<>0 then	
 			asperror(path)
 		end if	
 		
-		on error goto 0
-	
+		on error goto 0	
 	
 	end function
 	
@@ -173,14 +144,40 @@ class cls_asp
 	
 	end function
 	
-	public function flushBinary (value,filename,size)
+	public function flushBinary (path)
 	
-		response.clear
+		on error resume next
+	
+		path=server.mappath(path)
+	
+		Dim objStream
+		Set objStream = server.CreateObject("ADODB.Stream")
 		
+		objStream.Open	
+		objStream.type=1 'adTypeBinary
+		objStream.LoadFromFile(path)
+
+		if err.number<>0 then	
+			asperror(path)
+		end if		
+		
+		'get filesize
+		dim size
+		size=objStream.size	
+
+		'set chunksize - files will be served by chunks of 500kb each
+		dim chunksize
+		chunksize=500000
+	
+		'retrieve filename
+		dim filename		
+		filename=right(path,len(path)-InStrRev(path,"\",-1,1))		
+		
+		'retrieve filetype		
 		dim filetype
-		filetype=right(filename,len(filename)-InStrRev(filename,".",-1,1))
+		filetype=right(filename,len(filename)-InStrRev(filename,".",-1,1))		
 		
-		select case lcase(right(filename,4))
+		select case lcase(filetype)
 		
 			case "jpeg","jpg"
 				response.ContentType="image/JPEG"
@@ -220,16 +217,33 @@ class cls_asp
 				Response.ContentType = "video/3gpp"
 			case "xml"
 				Response.ContentType = "application/xml"
+			case "wav"
+				Response.ContentType = "audio/wav"
 			case else
 				Response.ContentType = "application/octet-stream"
 		
 		end select
+				
+		response.clear	
 		
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename		
 		
-		Response.AddHeader "Content-Length", size
-		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename
-		response.binarywrite value
+		if size<chunksize then
+			response.AddHeader "Content-Length", size			
+			response.binarywrite objStream.Read()			
+		else
+		
+			dim i
+			for i=0 to size step chunksize
+				response.binarywrite objStream.Read(chunksize)
+				response.flush()
+			next
+			
+		end if	
+	
 		response.flush()
+		
+		set objStream=nothing
 		response.clear
 		response.end 
 	

@@ -74,7 +74,9 @@ class cls_asp_cdomessage
 	
 	function wrapInHTML(body,subject)
 	
-		if instr(1,body,"<!doctype html>",vbTextCompare)=0 then
+		if instr(1,body,"<body",vbTextCompare)=0 then
+			
+			'assuming no complete html document was used, so we complete it
 			
 			wrapInHTML="<!doctype html>" & vbcrlf
 			wrapInHTML=wrapInHTML & "<html>" & vbcrlf & "<head>" & vbcrlf 
