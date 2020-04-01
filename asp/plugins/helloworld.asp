@@ -1,4 +1,6 @@
 <%
+option explicit
+
 class cls_asp_helloworld
 
 	public function hw

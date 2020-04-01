@@ -1,4 +1,6 @@
 <%
+option explicit
+
 Class cls_asp_accessDB
 
 	public path

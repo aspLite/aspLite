@@ -88,9 +88,15 @@ select case lcase(asp.getrequest("myaction"))
 		'mail.send() 'commented out for security reasons - make sure to uncomment when you're ready
 		set mail=nothing
 		
-		asp.flush "Mail sent"		
+		asp.flush "Mail sent"
+
+	case "rssreader"
 	
+		dim rssreader
+		set rssreader=asp.plugin("rssreader")
+		asp.flush rssreader.load("http://rss.cnn.com/rss/cnn_topstories.rss")
 		
+			
 	case else 'initial pageload!
 	
 		asp.flush asp.load("html/ajax.resx")

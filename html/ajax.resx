@@ -38,6 +38,10 @@
 		<li><a class="aspAjax" href="#" name="clicklink2">Click a second link</a></li>
 		<li><a class="aspAjax" href="#" name="returnbool">Get random boolean from the server</a></li>
 	</ul>
+	
+	<p>Feed</p>
+	<button class="aspAjax" name="rssreader" type="button">Read the news (CNN RSS)</button>
+	
 	<p>JSON datatable</p>
 	<ul>
 		<li><a class="aspAjaxData" href="#" name="returnjsondata">Get some JSON data (stored in the database)</a>

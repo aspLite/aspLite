@@ -257,6 +257,70 @@ class cls_asp
 	
 	End Function 
 	
+	public function xmlhttp(url,binary)
+	
+		on error resume next
+		
+		dim oxmlhttp
+		Set oxmlhttp = server.createobject("MSXML2.ServerXMLHTTP")
+
+		oxmlhttp.open "GET", url
+		oxmlhttp.send
+		
+		if oXMLHTTP.status=200 then
+		
+			if binary then
+				xmlhttp=oxmlhttp.responseBody
+			else
+				xmlhttp=oxmlhttp.responseText
+			end if
+		
+		else
+		
+			xmlhttp=oXMLHTTP.status
+		
+		end if
+		
+		set oxmlhttp=nothing
+		
+		if err.number<>0 then	
+			asperror(url)
+		end if	
+		
+		on error goto 0
+
+	end function
+	
+	Public function xmldom(url)
+	
+		on error resume next
+	
+		Set xmlDOM = Server.CreateObject("MSXML2.DOMDocument")
+		xmlDOM.async = False
+		xmlDOM.setProperty "ServerHTTPRequest", True
+		xmlDOM.Load(url)
+		
+		If xmlDOM.parseError.errorCode <> 0 Then
+		
+			Set xmlDOM = Server.CreateObject("Msxml2.DOMDocument.6.0")
+			xmlDOM.async = false
+			xmlDOM.setProperty "ServerHTTPRequest", True
+			xmlDom.resolveExternals = False
+			
+			if xmlDOM.Load(url) then
+				err.clear
+			end if
+			
+		End If
+	
+		if err.number<>0 then	
+			asperror(url)
+		end if	
+		
+		on error goto 0
+	
+	end function
+	
 	'#################################################################################################
 	'#################################################################################################
 	'###### This is it as far as the main framework is concerned. 
@@ -319,7 +383,6 @@ class cls_asp
 		end if
 		
 	end function
-
 
 	public function sanitizeJS(sValue)
 

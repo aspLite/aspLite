@@ -48,10 +48,10 @@ select case lcase(asp.getRequest("action"))
 		
 	case else
 	
-		body="<p>No (known) action was detected. Initial load.</p>"	
-		
+		body="<p>No (known) action was detected. Initial load.</p>"		
 
 end select
+
 
 
 %>

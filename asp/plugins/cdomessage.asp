@@ -1,4 +1,5 @@
 <%
+option explicit
 
 class cls_asp_cdomessage
 
@@ -13,6 +14,10 @@ class cls_asp_cdomessage
 		smtpusessl=false
 		sendusing=1	
 		smtpserver="localhost"
+	end sub
+	
+	private sub class_terminate
+		set attachments=nothing
 	end sub
 	
 	Public function send
