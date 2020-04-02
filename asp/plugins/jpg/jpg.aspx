@@ -96,8 +96,8 @@
 			End If
 		End If
 	  
-		 createOutput(thumbNailImg,isPNG)
-	 
+		
+		createOutput(thumbNailImg,isPNG)	 
 		
 		'Clean up / Dispose...
 		thumbNailImg.Dispose()
@@ -123,15 +123,14 @@
 			case "3"
 				PixelLoopConvert (ImageObj)
 			
-		end select
-		
-		
+		end select	
 		
 		if isPNG then
 			ImageObj.Save(Response.OutputStream, ImageFormat.png)
 		else
 			ImageObj.Save(Response.OutputStream, ImageFormat.Jpeg)
 		end if
+		
         On Error GoTo 0
         
     End Sub   
@@ -229,4 +228,3 @@
   End Function
     
 </script>
-

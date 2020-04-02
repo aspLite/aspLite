@@ -1,14 +1,17 @@
 <%
+
+option explicit 
+
 class cls_asp_jpg
 
 	public maxsize,path,effect,fsr
+	
+	'fsr=0/1 - crop image to rectangle: 0:no / 1:yes
+	'effect=1/2/3 - 1:bw / 2:grayscale / 3:sepia
 
 	private sub class_initialize
 	
-		maxsize=1920 'max= 2560
-		
-		'fsr=0/1 - crop image to rectangle: 0:no / 1:yes
-		'effect=1/2/3 - 1:bw / 2:grayscale / 3:sepia
+		maxsize=1920 'max= 2560		
 		
 	end sub
 	

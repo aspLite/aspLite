@@ -1,0 +1,15 @@
+<div style="width:50%;float:left">
+
+	<div style="padding:10px 20px">
+	
+		<h3>[title]</h3>
+	
+		<div style="margin-bottom:10px;font-size:smaller"><i>[pubdate]</i></div>
+		
+		<div>[description]</div>
+		
+		<button type="button" onclick="window.open('[link]')" href="#">read more</button>
+		
+	</div>
+	
+</div>

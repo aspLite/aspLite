@@ -13,12 +13,7 @@ class cls_asp_rss
 		counter=1
 		cache=10 'number of minutes this feed will be stored in cache
 		
-		template="<div style=""width:50%;float:left"">"
-		template=template & "<div style=""padding:10px 20px""><h3>[title]</h3>"
-		template=template & "<div style=""margin-bottom:10px;font-size:smaller""><i>[pubdate]</i></div>"		
-		template=template & "<div>[description]</div>"
-		template=template & "<button type=""button"" onclick=""window.open('[link]')"" href=""#"">read more</a>"		
-		template=template & "</div></div>"
+		template=asp.load(asp_path & "/plugins/rss/template.txt")
 		
 		templateBreakPoint="<div style=""clear:both""></div>"
 	
@@ -28,11 +23,11 @@ class cls_asp_rss
 	
 		if asp.convertGetal(cache)<>0 then
 
-			if isArray(application("asprss" & url)) then
+			if isArray(asp.getcache("asprss" & url)) then
 			
 				'check if it's time to renew
-				if DateDiff("n",application("asprss" & url)(0),now())<=cache then
-					read=application("asprss" & url)(1)					
+				if DateDiff("n",asp.getcache("asprss" & url)(0),now())<=cache then
+					read=asp.getcache ("asprss" & url)(1)					
 					if not asp.isLeeg(read) then exit function
 				end if
 			
@@ -92,9 +87,9 @@ class cls_asp_rss
 		
 		'(re)fill cache
 		if asp.convertGetal(cache)<>0 then
-			application("asprss" & url)=array(now(),read)		
+			asp.setcache "asprss" & url, array(now(),read)
 		else
-			Application.Contents.Remove("asprss" & url)
+			asp.clearcache "asprss" & url, array(now(),read)
 		end if
 
 		Set xmlDOM = Nothing

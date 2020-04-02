@@ -24,9 +24,9 @@ dim i, randomizer
 set randomizer=asp.plugin("randomizer")
 
 body="<p>ASP randomizer-plugin: "
-for i=1 to 5
+for i=1 to 20
 	'generate some random words with random lengths
-	body=body & randomizer.randomtext(randomizer.randomnumber(10,50)) & " "
+	body=body & randomizer.randomtext(randomizer.randomnumber(5,10)) & " "
 next	
 body=body & "</p>"	
 
@@ -38,6 +38,7 @@ db.path="db/sample.mdb"
 body=body & "<p>Access database-plugin: " 
 
 set rs=db.execute("select * from person")
+
 while not rs.eof
 	body=body & rs("sName") & " "
 	rs.movenext

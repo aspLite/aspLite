@@ -24,20 +24,23 @@ class cls_asp
 		Response.AddHeader "pragma", "no-cache"
 		Response.Expires			= -1
 		Response.ExpiresAbsolute	= Now()-1	
-
-		set plugins=server.createobject("scripting.dictionary")			
+		
+		set plugins=nothing
 		
 	End Sub	
 	
 	Private Sub Class_Terminate()
 	
 		'destroy all plugins
-		dim p
-		for each p in plugins
-			set plugins(p)=nothing			
-		next
-	
-		set plugins=nothing
+		
+		if not plugins is nothing then
+			dim p
+			for each p in plugins
+				set plugins(p)=nothing			
+			next
+		
+			set plugins=nothing
+		end if
 		
 	End sub
 	
@@ -86,7 +89,11 @@ class cls_asp
 	
 	public function plugin(value)
 	
-		value=lcase(value)	
+		value=lcase(value)
+		
+		if plugins is nothing then
+			set plugins=server.createobject("scripting.dictionary")
+		end if
 	
 		if not plugins.exists(value) then
 			
@@ -326,6 +333,41 @@ class cls_asp
 		end if	
 		
 		on error goto 0
+	
+	end function
+	
+	'############################
+	'### some caching functions
+	'############################
+	
+	public function setcache(name,value)
+
+		'ASP Caching Object - ACO
+	
+		application("ACO_" & name)=value
+	
+	end function
+	
+	public function clearcache(name)
+	
+		application.contents.remove("ACO_" & name)
+	
+	end function
+	
+	public function getcache(name)
+	
+		getcache=application("ACO_" & name)
+		
+	end function
+	
+	public function clearAllCache
+	
+		dim el
+		for each el in application.contents		
+			if left(el,4)="ACO_" then
+				application.contents.remove(el)
+			end if
+		next
 	
 	end function
 	

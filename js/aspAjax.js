@@ -12,5 +12,5 @@ function aspAjax (type,url,dataType,data,success) {
 };
 
 function aspAjaxError(data) {
-	//console.log ($(data.responseText).text());
+	console.log ($(data.responseText).text());
 	};

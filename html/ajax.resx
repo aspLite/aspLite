@@ -41,7 +41,7 @@
 	</ul>
 	
 	<p>Feed</p>
-	<button class="aspAjax" name="rssreader" type="button">Read the news (CNN RSS)</button>
+	<button class="aspAjax" name="rss" type="button">Read the news (CNN RSS)</button>
 	
 	<p>JSON datatable</p>
 	<ul>

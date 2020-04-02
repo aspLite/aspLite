@@ -26,7 +26,7 @@ select case lcase(asp.getRequest("action"))
 		
 	case "loadclass"
 	
-		'CONDITIONAL load of asp page = incude file
+		'CONDITIONAL load of asp page = include file
 		asp.exec("code/includes/class.asp")	
 		
 		dim testObj

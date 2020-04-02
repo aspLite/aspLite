@@ -90,7 +90,7 @@ select case lcase(asp.getrequest("myaction"))
 		
 		asp.flush "Mail sent"
 
-	case "rssreader"
+	case "rss"
 	
 		dim rss
 		set rss=asp.plugin("rss")
