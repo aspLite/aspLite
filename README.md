@@ -23,7 +23,8 @@ The only thing this framework really does is wrap useful ASP components in reusa
 * file streaming (text + binary)
 * ServerXMLHTTP & DOMDocument
 * application caching
-* generic ASP/VBScript functions
+* some basic AJAX functionality
+* generic ASP/VBScript functions I often need
 
 ## Plugins
 
