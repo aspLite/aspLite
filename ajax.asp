@@ -92,11 +92,38 @@ select case lcase(asp.getrequest("myaction"))
 
 	case "rssreader"
 	
-		dim rssreader
-		set rssreader=asp.plugin("rssreader")
-		asp.flush rssreader.load("http://rss.cnn.com/rss/cnn_topstories.rss")
+		dim rss
+		set rss=asp.plugin("rss")
+		asp.flush rss.read("http://rss.cnn.com/rss/cnn_topstories.rss")
 		
-			
+	case "jpg"	
+
+		dim jpg
+		set jpg=asp.plugin("jpg")
+		jpg.maxsize=200 'px - max: 2560px
+		
+		'this looks more complex than it is, as this sample is supposed to work in various setups
+		'by default, this would rather look like jpg.path="/images/img.jpg" where this path is relative to your directory
+		jpg.path=replace(request.servervariables("path_info"),"ajax.asp","",1,-1,1) & asp_path & "/plugins/jpg/sample.jpg"
+		
+		dim specialeffects
+		specialeffects="normal resize:<br><img src=""" & jpg.src & """ /><br>"
+		
+		'color effects
+		jpg.effect=1 'b/w
+		specialeffects=specialeffects & "black/white<br><img src=""" & jpg.src & """ /><br>"
+		jpg.effect=2 'gray
+		specialeffects=specialeffects & "gray<br><img src=""" & jpg.src & """ /><br>"
+		jpg.effect=3 'sepia
+		specialeffects=specialeffects & "sepia<br><img src=""" & jpg.src & """ /><br>"
+		
+		'crop to rectangle
+		jpg.effect=0
+		jpg.fsr=1 
+		specialeffects=specialeffects & "rectangle:<br><img src=""" & jpg.src & """ />"	
+		
+		asp.flush specialeffects		
+		
 	case else 'initial pageload!
 	
 		asp.flush asp.load("html/ajax.resx")

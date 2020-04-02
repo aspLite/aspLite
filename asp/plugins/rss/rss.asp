@@ -1,7 +1,7 @@
 <%
 option explicit
 
-class cls_asp_rssreader
+class cls_asp_rss
 
 	public template,maxitems,templateBreakPoint,breakpoint,cache
 	private xmlDOM,feeditems,child,i,templateItem,item,counter,p_cache
@@ -24,7 +24,7 @@ class cls_asp_rssreader
 	
 	end sub
 
-	public function load(url)
+	public function read(url)
 	
 		if asp.convertGetal(cache)<>0 then
 
@@ -32,8 +32,8 @@ class cls_asp_rssreader
 			
 				'check if it's time to renew
 				if DateDiff("n",application("asprss" & url)(0),now())<=cache then
-					load=application("asprss" & url)(1)					
-					exit function
+					read=application("asprss" & url)(1)					
+					if not asp.isLeeg(read) then exit function
 				end if
 			
 			end if
@@ -73,11 +73,11 @@ class cls_asp_rssreader
 			'fix missing pubdate
 			templateItem=replace(templateItem,"[PUBDATE]","",1,-1,1)
 			
-			load=load & templateItem
+			read=read & templateItem
 			
 			if asp.convertGetal(breakpoint)<>0 then				
 				if counter=breakpoint then
-					load=load & templateBreakPoint
+					read=read & templateBreakPoint
 					counter=1
 				else
 					counter=counter+1
@@ -88,11 +88,11 @@ class cls_asp_rssreader
 			
 		next	
 
-		load=load & templateBreakPoint
+		read=read & templateBreakPoint
 		
 		'(re)fill cache
 		if asp.convertGetal(cache)<>0 then
-			application("asprss" & url)=array(now(),load)		
+			application("asprss" & url)=array(now(),read)		
 		else
 			Application.Contents.Remove("asprss" & url)
 		end if
@@ -100,6 +100,10 @@ class cls_asp_rssreader
 		Set xmlDOM = Nothing
 		Set feeditems = Nothing
 		
+	end function
+	
+	public function write
+		'tbd
 	end function
 
 end class

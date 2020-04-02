@@ -40,11 +40,11 @@ select case lcase(asp.getRequest("action"))
 	
 	case "downloadlargefile"
 	
-		asp.flushBinary("html/largefile.jpg")
+		asp.flushBinaryFile("html/largefile.jpg")
 	
 	case "downloadsmallfile"
 	
-		asp.flushBinary("html/smallfile.jpg")
+		asp.flushBinaryFile("html/smallfile.jpg")
 		
 	case else
 	

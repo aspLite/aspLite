@@ -90,7 +90,7 @@ class cls_asp
 	
 		if not plugins.exists(value) then
 			
-			exec(asp_path & "/plugins/" & value & ".asp")	
+			exec(asp_path & "/plugins/" & value & "/" & value & ".asp")	
 			
 			dim pluginCls
 			set pluginCls=eval("new cls_asp_" & value)
@@ -144,7 +144,15 @@ class cls_asp
 	
 	end function
 	
-	public function flushBinary (path)
+	public function flushbinary (value)
+	
+		response.clear
+		response.binarywrite value		
+		response.end	
+	
+	end function
+	
+	public function flushBinaryFile (path)
 	
 		on error resume next
 	

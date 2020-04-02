@@ -36,7 +36,8 @@
 	<ul>
 		<li><a class="aspAjax" href="#" name="clicklink1">Click a first link</a></li>
 		<li><a class="aspAjax" href="#" name="clicklink2">Click a second link</a></li>
-		<li><a class="aspAjax" href="#" name="returnbool">Get random boolean from the server</a></li>
+		<li><a class="aspAjax" href="#" name="jpg">Get images from server</a> (resized, recolored, cropped)</li>
+		<li><a class="aspAjax" href="#" name="returnbool">Get random boolean from server</a></li>
 	</ul>
 	
 	<p>Feed</p>
@@ -66,21 +67,21 @@
 
 	$('.aspAjax').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'myaction=' + this.name,aspAjaxSuccess)
+		aspAjax('GET',aspAjaxUrl,'text','myaction=' + this.name,aspAjaxSuccess)
 	})
 
 	$('.ajaxForm').submit(function(e) {
 		e.preventDefault()
-		aspAjax('POST',aspAjaxUrl,$(this).serialize(),aspAjaxSuccess)
+		aspAjax('POST',aspAjaxUrl,'text',$(this).serialize(),aspAjaxSuccess)
 	})
 	
 	$('.aspAjaxData').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'myaction=' + this.name,jsonToTable)
+		aspAjax('GET',aspAjaxUrl,'json','myaction=' + this.name,jsonToTable)
 	})
 
 	function onPageLoad () { 
-		aspAjax('GET',aspAjaxUrl,'myaction=onload',aspAjaxSuccess)	
+		aspAjax('GET',aspAjaxUrl,'text','myaction=onload',aspAjaxSuccess)	
 	}
 
 	function aspAjaxSuccess(data) {
@@ -89,7 +90,7 @@
 	
 	function jsonToTable(data) {
 	
-		var persons=JSON.parse(data).persons
+		var persons=data.persons //expects parsed json
 		var liPersons=''
 			
 		if (persons.length==0) {
