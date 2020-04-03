@@ -95,7 +95,7 @@
 					
 					<form class="ajaxForm" action="default.asp">
 						<div class="input-group mb-3">
-							<input type="hidden" name="myaction" value="ajaxhello" />							
+							<input type="hidden" name="ajaxaction" value="ajaxhello" />							
 							<input placeholder="Your name" id="yourname" class="form-control" name="yourname" type="text" />
 							<input type="submit" class="btn btn-primary" value="AJAX" />
 						</div>
@@ -113,24 +113,24 @@
 
 					<p>Form 1</p>
 					<form class="ajaxForm" id="form1" action="#" method="post">
-						<input type="hidden" id="myaction" name="myaction" value="">
+						<input type="hidden" id="ajaxaction" name="ajaxaction" value="">
 						
 						<div class="form-group">
 							<input type="text" class="form-control" name="yourname" placeholder="utf8" value="Hello world, Καλημέρα κόσμε, コンニチハ" />
 						</div>
 						
-						<input onclick="$('#myaction').val('submit1')" class="btn btn-success" type="submit" value="Save">
-						<input onclick="$('#myaction').val('delete1')" class="btn btn-info" type="submit" value="Delete">
-						<a class="btn btn-dark" href="#" onclick="$('#myaction').val('linksubmit');$('#form1').submit();return false">Submit link</a>
+						<input onclick="$('#ajaxaction').val('submit1')" class="btn btn-success" type="submit" value="Save">
+						<input onclick="$('#ajaxaction').val('delete1')" class="btn btn-info" type="submit" value="Delete">
+						<a class="btn btn-dark" href="#" onclick="$('#ajaxaction').val('linksubmit');$('#form1').submit();return false">Submit link</a>
 					</form>
 					
 					<hr>
 
 					<p>Form 2</p>
 					<form class="ajaxForm" action="#" method="post">
-						<input type="hidden" id="myaction2" name="myaction" value="">
-						<input onclick="$('#myaction2').val('submit2')" class="btn btn-secondary" type="submit" value="Save">
-						<input onclick="$('#myaction2').val('delete2')" class="btn btn-warning" type="submit" value="Delete">
+						<input type="hidden" id="ajaxaction2" name="ajaxaction" value="">
+						<input onclick="$('#ajaxaction2').val('submit2')" class="btn btn-secondary" type="submit" value="Save">
+						<input onclick="$('#ajaxaction2').val('delete2')" class="btn btn-warning" type="submit" value="Delete">
 					</form>
 					
 					<hr>
@@ -142,13 +142,12 @@
 					<hr>									
 					
 				</div>
-			</div>
-		  
+				
+			</div>  
 
 		</main>
 
 <!-- /.container --> 
- 
    
 <script>
 
@@ -160,7 +159,7 @@
 
 	$('.aspAjax').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'text','myaction=' + this.id,aspAjaxSuccess)
+		aspAjax('GET',aspAjaxUrl,'text','ajaxaction=' + this.id,aspAjaxSuccess)
 	})
 
 	$('.ajaxForm').submit(function(e) {
@@ -170,11 +169,11 @@
 	
 	$('.aspAjaxData').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'json','myaction=' + this.id,jsonToTable)
+		aspAjax('GET',aspAjaxUrl,'json','ajaxaction=' + this.id,jsonToTable)
 	})
 
 	function onPageLoad () { 
-		aspAjax('GET',aspAjaxUrl,'text','myaction=onload',aspAjaxSuccess)	
+		aspAjax('GET',aspAjaxUrl,'text','ajaxaction=onload',aspAjaxSuccess)	
 	}
 
 	function aspAjaxSuccess(data) {
@@ -224,7 +223,6 @@
 	}	
 
 </script>
-
 
  <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -93,7 +93,7 @@ end select
 
 'AJAX handlers
 
-select case lcase(asp.getrequest("myaction"))
+select case lcase(asp.getrequest("ajaxaction"))
 
 	case "onload"		
 	
