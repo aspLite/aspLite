@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- jQuery & generic AJAX functions -->
+	<script src="js/jquery.js"></script>
+	<script src="js/aspAjax.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>[TITLETAG]</title>
+	
+	<style type="text/css">
+		body {
+			padding-top: 5rem;
+			}
+		.starter-template {
+			padding: 3rem 1.5rem;
+			text-align: center;
+		}
+	</style>
+  </head>
+  <body>
+  
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+			
+			<a class="navbar-brand" href="default.asp">aspLite</a>
+			
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="default.asp">back</a>
+					</li>	
+					 <li class="nav-item active dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Basic Event Handler</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+						  <a class="dropdown-item" href="demo.asp">No action</a>
+						  <a class="dropdown-item" href="demo.asp?action=clicklink">Clink link</a>
+						  <a class="dropdown-item" href="demo.asp?action=loadclass">conditionally load asp file</a>
+						  
+						  <a class="dropdown-item" href="demo.asp?action=downloadsmallfile">download small file (<500kB)</a>
+						  
+						  <a class="dropdown-item" href="demo.asp?action=downloadlargefile">download large file (>500kB)</a>
+						  <a class="dropdown-item" href="demo.asp?action=helloworld">hello world plugin</a>
+						  <a class="dropdown-item" href="demo.asp?action=randomizer">randomizer plugin</a>
+						  <a class="dropdown-item" href="demo.asp?action=accessdb">Access DB plugin</a>
+						  
+						</div>
+					  </li>
+					  
+					  
+					  <li class="nav-item active dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">AJAX Event Handler</a>
+						<div class="dropdown-menu"  aria-labelledby="dropdown01">
+						  <a class="aspAjax dropdown-item" name="clicklink1" href="#">Click a first link</a>
+						  <a class="aspAjax dropdown-item" name="clicklink2" href="#">Click a second link</a>
+						  <a class="aspAjax dropdown-item" name="jpg" href="#">Get images from server</a>						  
+						  <a class="aspAjax dropdown-item" name="returnbool" href="#">Get random boolean from server</a>
+						  <a class="aspAjax dropdown-item" name="rss" href="#">Read the news</a>					  
+						</div>
+					  </li>
+				</ul>
+			</div>
+		</nav>
+
+		<main role="main" class="container">
+
+		  <div class="starter-template">
+			<h1>[PAGETITLE]</h1>
+			<p class="lead">Bootstrap can easily be included in your template file.</p>
+			
+		  </div>
+		  
+		  <div id="body" class="jumbotron">[BODY]</div>
+		  
+		 
+		<form action="demo.asp" method="post">
+			<button type="submit" value="clickbutton" name="action">click button</button>		
+		</form>	
+		
+		
+		<hr>
+		
+		<p class="lead">AJAX Events:</p>
+		
+		<form class="ajaxForm" action="default.asp">
+			<input type="hidden" name="myaction" value="ajaxhello" />
+			Your name: 
+			<input id="yourname" name="yourname" type="text" />
+			<input type="submit" value="AJAX" />
+			
+		</form>	
+		
+		<hr>
+		
+		<p>JSON datatable</p>
+		<ul>
+			<li><a class="aspAjaxData" href="#" name="returnjsondata">Get some JSON data (stored in the database)</a>
+			
+				<div id="data"></div>
+				
+			</li>		
+		</ul>
+		
+		<hr>
+
+		<p>Form 1</p>
+		<form class="ajaxForm" id="form1" action="#" method="post">
+			<input type="hidden" id="myaction" name="myaction" value="">
+			<input type="text" size=35 name="yourname" placeholder="utf8" value="Hello world, Καλημέρα κόσμε, コンニチハ">
+			<input onclick="$('#myaction').val('submit1')" type="submit" value="Save">
+			<input onclick="$('#myaction').val('delete1')" type="submit" value="Delete">
+			<a href="#" onclick="$('#myaction').val('linksubmit');$('#form1').submit();return false">Submit link</a>
+		</form>
+		
+		<hr>
+
+		<p>Form 2</p>
+		<form class="ajaxForm" action="#" method="post">
+			<input type="hidden" id="myaction2" name="myaction" value="">
+			<input onclick="$('#myaction2').val('submit2')" type="submit" value="Save">
+			<input onclick="$('#myaction2').val('delete2')" type="submit" value="Delete">
+		</form>
+		
+		<hr>
+
+		<p>Button</p>
+		<button class="aspAjax" name="buttonclick" type="button">Click Me!</button>
+			
+		<hr>
+		  
+
+		</main>
+
+<!-- /.container --> 
+ 
+   
+<script>
+
+	var aspAjaxUrl='demo.asp'
+
+	$(document).ready(function(e) {		
+		//onPageLoad()
+	})
+
+	$('.aspAjax').click(function(e) {
+		e.preventDefault()
+		aspAjax('GET',aspAjaxUrl,'text','myaction=' + this.name,aspAjaxSuccess)
+	})
+
+	$('.ajaxForm').submit(function(e) {
+		e.preventDefault()
+		aspAjax('POST',aspAjaxUrl,'text',$(this).serialize(),aspAjaxSuccess)
+	})
+	
+	$('.aspAjaxData').click(function(e) {
+		e.preventDefault()
+		aspAjax('GET',aspAjaxUrl,'json','myaction=' + this.name,jsonToTable)
+	})
+
+	function onPageLoad () { 
+		aspAjax('GET',aspAjaxUrl,'text','myaction=onload',aspAjaxSuccess)	
+	}
+
+	function aspAjaxSuccess(data) {
+		$('#body').html(data)	
+	}
+	
+	function jsonToTable(data) {
+	
+		var persons=data.persons //expects parsed json
+		var liPersons=''
+			
+		if (persons.length==0) {
+			$('#data').html('<p>no records found</p>')
+			return
+		}
+		
+		for (var i = 0; i < persons.length; i++) {
+		
+			var person=persons[i]	
+		
+			for (var key in person) {
+				liPersons+='<th>' + key + '</th>'
+			}
+			
+			break	// stop after 1 loop just to get the table headers
+		
+		}
+		
+		liPersons='<tr>' + liPersons + '</tr>'	
+			
+		for (var i = 0; i < persons.length; i++) {
+		
+			liPersons+='<tr>'
+		
+			var person=persons[i]
+			
+			for (var key in person) {
+				liPersons+='<td>' + (person[key]) + '</td>'
+			}
+			
+			liPersons+='</tr>'
+			
+		}
+		
+		$('#data').html('<br><table cellpadding=10 cellspacing=0 border=1>' + liPersons + '</table>')
+		
+	}
+	
+
+</script>
+
+
+ <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+ [TIMER] 
+  </body>
+</html>

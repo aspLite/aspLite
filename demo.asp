@@ -1,6 +1,6 @@
 <!-- #include file="asplite/asplite.asp"-->
 <%
-asp.exec("code/bootstrap.asp") 'codebehind file
+asp.exec("code/demo.asp") 'codebehind file
 
 'head
 html=replace (html,"[TITLETAG]",titletag,1,-1,1)

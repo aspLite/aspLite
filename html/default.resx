@@ -4,51 +4,14 @@
 <meta charset="utf-8" /> 
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <title>[TITLETAG]</title>
-<link href="css/style.css" rel="stylesheet" />
-<script src="js/jquery.js"></script>
-<script src="js/aspAjax.js"></script>
 </head>
 <body>
-<h1 id="hello">[PAGETITLE]</h1>
+
+<h3>[PAGETITLE]</h3>
+
 <div>[BODY]</div>
 
-<ul>
-	<li><a href="default.asp">no action</a></li>
-	<li><a href="default.asp?action=clicklink">link</a></li>
-	<li>
-		<form action="default.asp" method="post">
-			<button type="submit" value="clickbutton" name="action">click button</button>		
-		</form>	
-	</li>	
-	<li><a href="default.asp?action=loadclass">conditionally load asp file/class</a></li>
-	<li><a href="default.asp?action=downloadsmallfile">download small file (<500kB)</a></li>
-	<li><a href="default.asp?action=downloadlargefile">download large file (>500kB)</a></li>
-	<li>
-		<form class="aspAjax" action="default.asp">
-			<input type="hidden" name="action" value="sendhelloAJAX" />
-			Your name: 
-			<input id="yourname" name="yourname" type="text" />
-			<input type="submit" value="AJAX" />	 <a href="ajax.asp">more ajax examples</a>
-			
-		</form>	
-	</li>	
-	<li><a href="bootstrap.asp">prefer bootstrap?</a></li>
-</ul>
-
-<script>
-
-aspAjaxUrl="default.asp"
-
-$('.aspAjax').submit(function(e) {
-	e.preventDefault();
-	aspAjax('POST',aspAjaxUrl,'text',$(this).serialize(),aspAjaxSuccess);
-});
-
-function aspAjaxSuccess(data) {
-	$('#hello').html(data);		
-};	
-
-</script>
+<p><a href="demo.asp">Check demo?</a></p>
 
 [TIMER] 
 </body>

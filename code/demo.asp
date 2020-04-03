@@ -1,11 +1,107 @@
-<!-- #include file="asplite/asplite.asp"-->
 <%
+'###########################################################################
+'## include these 2 lines to start each codebehind file for security reasons
+option explicit  
+asp.codebehind() 
+'###########################################################################
+
+dim html,titletag,body
+dim db,rs,counter,json,field,fieldvalue
+
+titletag="aspLite demo"
+
+'load the template
+'resx files are never served to browsers, so they are safer to use
+html=asp.load("html/demo.resx")
+
+'here you can typically add some sort of eventhandler (what exactly was clicked on?)
+select case lcase(asp.getRequest("action"))
+		
+	case "clicklink"
+		
+		body="<p>Link was clicked</p>"		
+		
+	case "clickbutton"
+	
+		body="<p>Button was clicked</p>"		
+		
+	case "loadclass"
+	
+		'CONDITIONAL load of asp page = include file
+		asp.exec("code/includes/class.asp")	
+		
+		dim testObj
+		set testObj=new cls_test
+		body="<p>" & testObj.hello & "</p>"
+		set testObj=nothing	
+		
+	
+	case "downloadlargefile"
+	
+		asp.flushBinaryFile("html/largefile.jpg")
+	
+	case "downloadsmallfile"
+	
+		asp.flushBinaryFile("html/smallfile.jpg")
+	
+	case "helloworld"
+	
+		'hello world plugin example
+		dim helloworld
+		set helloworld=asp.plugin("helloworld")
+		body="<p>" & helloworld.hw() & "</p>"
+		'or shorter
+		titletag=asp.plugin("helloworld").hw()
+		set helloworld=nothing
+		
+	case "randomizer"
+	
+		'randomizer plugin example
+		dim i, randomizer
+		set randomizer=asp.plugin("randomizer")
+
+		body="<p>ASP randomizer-plugin: "
+		for i=1 to 20
+			'generate some random words with random lengths (5-10)
+			body=body & randomizer.randomtext(randomizer.randomnumber(5,10)) & " "
+		next	
+		body=body & "</p>"
+		
+	case "accessdb"
+	
+		'database plugin example
+		set db=asp.plugin("accessDB")
+		db.path="db/sample.mdb"
+
+		body=body & "<p>Access database-plugin: " 
+
+		set rs=db.execute("select * from person")
+
+		while not rs.eof
+			body=body & rs("sName") & " "
+			rs.movenext
+		wend 
+
+		body=body & "</p>"
+		
+	case else
+	
+		body="<p>No (known) action was detected. Initial load.</p>"	
+	
+
+end select
+
+'AJAX handler
 
 select case lcase(asp.getrequest("myaction"))
 
 	case "onload"		
 	
 		asp.flush "Hello world, Καλημέρα κόσμε (utf8-ready)"
+		
+	case "ajaxhello"
+		
+		asp.flush "<h1>Hello " & asp.sanitize(asp.URLDecode(asp.getRequest("yourname"))) & "</h1>"
 
 	case "submit1"
 	
@@ -45,9 +141,9 @@ select case lcase(asp.getrequest("myaction"))
 		asp.flush asp.plugin("randomizer").randomnumber(0,100)>49	
 		
 	case "returnjsondata"
-		
-		dim db,rs,field,json,counter,fieldvalue
+
 		counter=0
+		
 		set db=asp.plugin("accessdb")
 		db.path="db/sample.mdb"
 		
@@ -104,7 +200,7 @@ select case lcase(asp.getrequest("myaction"))
 		
 		'this looks more complex than it is, as this sample is supposed to work in various setups
 		'by default, this would rather look like jpg.path="/images/img.jpg" where this path is relative to your directory
-		jpg.path=replace(request.servervariables("path_info"),"ajax.asp","",1,-1,1) & asp_path & "/plugins/jpg/sample.jpg"
+		jpg.path=replace(request.servervariables("path_info"),"demo.asp","",1,-1,1) & asp_path & "/plugins/jpg/sample.jpg"
 		
 		dim specialeffects
 		specialeffects="normal resize:<br><img src=""" & jpg.src & """ /><br>"
@@ -124,10 +220,10 @@ select case lcase(asp.getrequest("myaction"))
 		
 		asp.flush specialeffects		
 		
-	case else 'initial pageload!
-	
-		asp.flush asp.load("html/ajax.resx")
 
 end select
+
+
+
 
 %>

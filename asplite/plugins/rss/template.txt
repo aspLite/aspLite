@@ -2,7 +2,7 @@
 
 	<div style="padding:10px 20px">
 	
-		<h3>[title]</h3>
+		<h4>[title]</h4>
 	
 		<div style="margin-bottom:10px;font-size:smaller"><i>[pubdate]</i></div>
 		
