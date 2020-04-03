@@ -1,15 +1,13 @@
 <div style="width:100%">
 
-	<div style="padding:10px 20px">
+	<h4>[title]</h4>
+
+	<div style="margin-bottom:10px;font-size:smaller"><i>[pubdate]</i></div>
 	
-		<h4>[title]</h4>
+	<div>[description]</div>
 	
-		<div style="margin-bottom:10px;font-size:smaller"><i>[pubdate]</i></div>
-		
-		<div>[description]</div>
-		
-		<button type="button" onclick="window.open('[link]')" href="#">read more</button>
-		
-	</div>
+	<p><button class="btn btn-warning" type="button" onclick="window.open('[link]')" href="#">read more</button></p>
+	
+	<hr>
 	
 </div>

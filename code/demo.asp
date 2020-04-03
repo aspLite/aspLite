@@ -23,7 +23,7 @@ select case lcase(asp.getRequest("action"))
 		
 	case "clickbutton"
 	
-		body="<p>Button was clicked</p>"		
+		body="<p>Regular form was submitted</p>"		
 		
 	case "loadclass"
 	
@@ -61,7 +61,7 @@ select case lcase(asp.getRequest("action"))
 		set randomizer=asp.plugin("randomizer")
 
 		body="<p>ASP randomizer-plugin: "
-		for i=1 to 20
+		for i=1 to 50
 			'generate some random words with random lengths (5-10)
 			body=body & randomizer.randomtext(randomizer.randomnumber(5,10)) & " "
 		next	
@@ -73,18 +73,18 @@ select case lcase(asp.getRequest("action"))
 		set db=asp.plugin("accessDB")
 		db.path="db/sample.mdb"
 
-		body=body & "<p>Access database-plugin: " 
+		body=body & "<p>Access database-plugin:</p><ul> " 
 
 		set rs=db.execute("select * from person")
 
 		while not rs.eof
-			body=body & rs("sName") & " "
+			body=body & "<li>" & rs("sName") & "</li>"
 			rs.movenext
 		wend 
 
-		body=body & "</p>"
+		body=body & "</ul>"
 		
-	case else
+	case else 'default content
 	
 		body="<p>No (known) action was detected. Initial load.</p>"	
 	
@@ -219,11 +219,7 @@ select case lcase(asp.getrequest("myaction"))
 		specialeffects=specialeffects & "rectangle:<br><img class=""img-fluid"" src=""" & jpg.src & """ />"	
 		
 		asp.flush specialeffects		
-		
 
 end select
-
-
-
 
 %>

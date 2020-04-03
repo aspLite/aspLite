@@ -14,15 +14,15 @@
 
     <title>[TITLETAG]</title>
 	
-	<style type="text/css">
-		body {
-			padding-top: 5rem;
-			}
-		.starter-template {
-			padding: 3rem 1.5rem;
-			text-align: center;
-		}
-	</style>
+<style>
+	body {
+		padding-top: 5rem
+	}
+	.starter-template {
+		padding: 3rem 1.5rem;
+		text-align: center
+	}
+</style>
   </head>
   <body>
   
@@ -72,8 +72,8 @@
 						<li><a href="demo.asp">No action</a></li>
 						<li><a href="demo.asp?action=clicklink">Clink link</a></li>
 						<li><a href="demo.asp?action=loadclass">conditionally load asp file</a></li>
-						<li><a href="demo.asp?action=downloadsmallfile">download small file (<500kB)</a></li>
-						<li><a href="demo.asp?action=downloadlargefile">download large file (>500kB)</a></li>
+						<li><a href="demo.asp?action=downloadsmallfile">download small file (&lt;500kB)</a></li>
+						<li><a href="demo.asp?action=downloadlargefile">download large file (&gt;500kB)</a></li>
 						<li><a href="demo.asp?action=helloworld">hello world plugin</a></li>
 						<li><a href="demo.asp?action=randomizer">randomizer plugin</a></li>
 						<li><a href="demo.asp?action=accessdb">Access DB plugin</a></li>
@@ -95,8 +95,7 @@
 					
 					<form class="ajaxForm" action="default.asp">
 						<div class="input-group mb-3">
-							<input type="hidden" name="myaction" value="ajaxhello" />
-							
+							<input type="hidden" name="myaction" value="ajaxhello" />							
 							<input placeholder="Your name" id="yourname" class="form-control" name="yourname" type="text" />
 							<input type="submit" class="btn btn-primary" value="AJAX" />
 						</div>
@@ -107,7 +106,7 @@
 					
 					<p>JSON datatable</p>
 					<ul>
-						<li><a class="aspAjaxData" href="#" name="returnjsondata">Get some JSON data (stored in the database)</a></li>		
+						<li><a class="aspAjaxData" href="#" name="returnjsondata">Get some JSON data (from database)</a></li>		
 					</ul>
 					
 					<hr>
@@ -115,7 +114,11 @@
 					<p>Form 1</p>
 					<form class="ajaxForm" id="form1" action="#" method="post">
 						<input type="hidden" id="myaction" name="myaction" value="">
-						<input type="text" size=35 class="form-control" name="yourname" placeholder="utf8" value="Hello world, Καλημέρα κόσμε, コンニチハ">
+						
+						<div class="form-group">
+							<input type="text" class="form-control" name="yourname" placeholder="utf8" value="Hello world, Καλημέρα κόσμε, コンニチハ" />
+						</div>
+						
 						<input onclick="$('#myaction').val('submit1')" class="btn btn-success" type="submit" value="Save">
 						<input onclick="$('#myaction').val('delete1')" class="btn btn-info" type="submit" value="Delete">
 						<a class="btn btn-dark" href="#" onclick="$('#myaction').val('linksubmit');$('#form1').submit();return false">Submit link</a>
