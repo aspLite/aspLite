@@ -107,7 +107,7 @@
 
     <div class="container">
         <div class="media-container-row">
-            <div class="mbr-text col-12 mbr-fonts-style display-7 col-md-8"><div><br></div><div><strong>aspLite</strong> is a lightweight framework for ASP/VBScript developers. It can help to develop better ASP/VBScript applications. 
+            <div class="mbr-text col-12 mbr-fonts-style display-7 col-md-10"><div><br></div><div><strong>aspLite</strong> is a lightweight framework for ASP/VBScript developers. It can help to develop better ASP/VBScript applications. 
 </div><div><br></div><div>
 </div><div><strong>Installation:</strong></div><div><strong><br></strong></div><div><strong>
 </strong></div><div>
@@ -123,7 +123,7 @@
 </div><div>
 </div><div><br></div><div><strong>Less is more</strong></div><div><strong><br></strong></div><div><strong>
 </strong></div><div>
-</div><div>aspLite consists out of 2 files only (asplite.asp &amp; config.asp file). The only thing this framework really does is wrap useful ASP components in reusable functions and classes:
+</div><div>aspLite consists out of 2 files only (asplite.asp &amp; config.asp file). The only thing this framework does is wrap useful ASP components into reusable functions:</div><div><br></div><div>
 </div><div>
 </div><div>* file streaming (text + binary)
 </div><div>* ServerXMLHTTP &amp; DOMDocument
@@ -140,7 +140,7 @@
 </div><div>* rss feed reader</div><div><br></div><div>
 </div><div>
 </div><div>aspLite does not include or favorize frontend CSS/JavaScript libraries. But just for the fun of it, 
-</div><div>I added a Bootstrap sample and some AJAX examples each using jQuery.</div><div><br></div><div> 
+</div><div>I added a Bootstrap demo and some AJAX examples each using jQuery in demo.asp.&nbsp;</div><div><br></div><div> 
 </div><div>
 </div><div><strong>Roadmap</strong></div><div><br></div><div>
 </div><div>* make file (and complete folder?) uploads in ASP classic easier (core)
@@ -176,7 +176,7 @@
                 <ol>
                     <li><span style="font-size: 1rem;">Plugins are stored in the /asplite/plugins folder.</span></li><li>Add a seperate folder for your plugin: eg: /asplite/plugins/myplugin/</li>
                     <li>Add an asp file with the SAME name: /asplite/plugins/myplugin/myplugin.asp</li><li>In myplugin.asp, create a class with this SAME name as follows:
-<br><br>class cls_asplite_myplugin <br>... <br>end class</li><li>To create an instance of your plugin, use:<br><br>dim myObj<br>set myObj=asp.plugin("myplugin")<br>response.write myObj.XX()<br>You could also just:<br>response.write asp.plugin("myplugin").XX()<br><br>(where XX() is a public function of your myplugin-class)</li>
+<br><br>class cls_asplite_myplugin <br>... <br>end class</li><li>To create an instance of your plugin, use:<br><br>dim myObj<br>set myObj=asp.plugin("myplugin")<br>myObj.XX()<br><br>You could also just:<br>asp.plugin("myplugin").XX()<br><br>(where XX() is a public sub/function of your myplugin-class)</li>
                 </ol>
             </div>
         </div>
