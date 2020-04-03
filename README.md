@@ -1,10 +1,12 @@
-# ASP-VBScript-Framework
+# aspLite
 
-This framework can help to develop better ASP/VBScript applications. 
+aspLite is a framework for ASP/VBScript developers. It can help to develop better ASP/VBScript applications. 
 
-Install as a website or virtual directory in IIS.
+More info: https://asplite.com
 
-Preview: https://aspfw.quickersite.com
+## Installation:
+
+Install as a website or virtual directory in IIS. The actual framework is located in /asplite/asplite.asp. The path /asplite can be changed in /asplite/config.asp. If you prefer to use aspLite in a subfolder /mypath/asplite, make sure to update config.asp correspondingly.
 
 ## Highlights:
 
@@ -17,19 +19,18 @@ Preview: https://aspfw.quickersite.com
 
 ## Less is more
 
-The framework itself is only 2 files (asp.asp and its corresponding config.asp file). 
-The only thing this framework really does is wrap useful ASP components in reusable functions and classes:
+aspLite consists out of 2 files only (asplite.asp & config.asp file). The only thing this framework really does is wrap useful ASP components in reusable functions and classes:
 
 * file streaming (text + binary)
 * ServerXMLHTTP & DOMDocument
 * application caching
 * some basic AJAX functionality
-* generic ASP/VBScript functions I often need
+* some generic ASP/VBScript functions
 
 ## Plugins
 
-The following plugins are included already. But they are not necessary to use the framework i.e. they can be ignored 
-and when not used, they will not affect the performance of your application in ANY way.
+The following plugins are included already - but they are not necessary to use the framework i.e. they can be ignored. 
+When no plugins are used, they will not affect the performance of your application in ANY way.
 
 * connector for Access databases (OLEDB)
 * mailer for CDO.Message
@@ -38,10 +39,10 @@ and when not used, they will not affect the performance of your application in A
 * text/number randomizing
 * rss feed reader
 
-This ASP/VBScript framework does not include or favorize frontend CSS/JavaScript libraries. But just for the fun of it, 
+aspLite does not include or favorize frontend CSS/JavaScript libraries. But just for the fun of it, 
 I added a Bootstrap sample and some AJAX examples each using jQuery. 
 
-## Roadmap
+## Roadmap for aspLite
 
 * make file (and complete folder?) uploads in ASP classic easier (core)
 * keep security high (protect against sqli, csrf, brute force attacks, cookie theft, etc) (core)

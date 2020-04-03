@@ -1,4 +1,4 @@
-<!-- #include file="asp/ASP.asp"-->
+<!-- #include file="asplite/asplite.asp"-->
 <%
 asp.exec("code/default.asp") 'codebehind file
 

@@ -1,7 +1,7 @@
 <%
 option explicit
 
-class cls_asp_randomizer
+class cls_asplite_randomizer
 
 	Private Sub Class_Initialize()
 	

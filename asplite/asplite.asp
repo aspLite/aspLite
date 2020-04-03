@@ -5,9 +5,9 @@ Option Explicit
 <!-- #include file="config.asp"-->
 <%
 dim asp
-set asp=new cls_asp
+set asp=new cls_asplite
 
-class cls_asp	
+class cls_asplite	
 
 	private startTime,stopTime,plugins
 	
@@ -100,7 +100,7 @@ class cls_asp
 			exec(asp_path & "/plugins/" & value & "/" & value & ".asp")	
 			
 			dim pluginCls
-			set pluginCls=eval("new cls_asp_" & value)
+			set pluginCls=eval("new cls_asplite_" & value)
 			
 			plugins.add value,pluginCls
 		
@@ -373,9 +373,9 @@ class cls_asp
 	
 	'#################################################################################################
 	'#################################################################################################
-	'###### This is it as far as the main framework is concerned. 
+	'###### This is it as far as aspLite is concerned. 
 	'###### Below you find some generic VBScript functions I often use in ASP projects
-	'###### DO NOT REMOVE or CHANGE them. I use some of these functions in the framework (above)
+	'###### DO NOT REMOVE or CHANGE them. I use some of these functions aspLite (above)
 	'###### and/or in some of the plugins I already developed
 	'#################################################################################################
 	'#################################################################################################

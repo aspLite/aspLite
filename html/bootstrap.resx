@@ -24,7 +24,7 @@
   
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 			
-			<a class="navbar-brand" href="default.asp">ASP Framework</a>
+			<a class="navbar-brand" href="default.asp">aspLite</a>
 			
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
 
 		  <div class="starter-template">
 			<h1>[PAGETITLE]</h1>
-			<p class="lead">Bootstrap is NOT part of this ASP framework, as it is a front-end CSS/JS framework.<br>
+			<p class="lead">Bootstrap is NOT part of aspLite, as it is a front-end CSS/JS framework.<br>
 			But it can easily be included in your template file.</p>
 			<p>[BODY]</p>
 		  </div>

@@ -1,4 +1,4 @@
-<!-- #include file="asp/ASP.asp"-->
+<!-- #include file="asplite/asplite.asp"-->
 <%
 
 select case lcase(asp.getrequest("myaction"))

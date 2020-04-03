@@ -11,7 +11,7 @@ dim html,titletag,body
 'resx files are never served to browsers, so they are safer to use
 html=asp.load("html/default.resx")
 
-titletag="ASP Framework"
+titletag="aspLite"
 
 'here you can typically add some sort of eventhandler (what exactly was clicked on?)
 select case lcase(asp.getRequest("action"))

@@ -2,7 +2,7 @@
 
 option explicit 
 
-class cls_asp_jpg
+class cls_asplite_jpg
 
 	public maxsize,path,effect,fsr
 	

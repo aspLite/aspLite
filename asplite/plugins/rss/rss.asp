@@ -1,7 +1,7 @@
 <%
 option explicit
 
-class cls_asp_rss
+class cls_asplite_rss
 
 	public template,maxitems,templateBreakPoint,breakpoint,cache
 	private xmlDOM,feeditems,child,i,templateItem,item,counter,p_cache

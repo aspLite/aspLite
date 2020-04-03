@@ -1,7 +1,7 @@
 <%
 option explicit
 
-Class cls_asp_accessDB
+Class cls_asplite_accessDB
 
 	public path
 

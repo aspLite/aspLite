@@ -1,6 +1,6 @@
 <%
 'Februari 2014 - Version 1.17 by Gerrit van Kuipers
-Class cls_asp_json
+Class cls_asplite_json
 	Public data
 	Private p_JSONstring
 	private aj_in_string, aj_in_escape, aj_i_tmp, aj_char_tmp, aj_s_tmp, aj_line_tmp, aj_line, aj_lines, aj_currentlevel, aj_currentkey, aj_currentvalue, aj_newlabel, aj_XmlHttp, aj_RegExp, aj_colonfound

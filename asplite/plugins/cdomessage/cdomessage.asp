@@ -1,7 +1,7 @@
 <%
 option explicit
 
-class cls_asp_cdomessage
+class cls_asplite_cdomessage
 
 	public smtpserver,smtpport,sendusing,pickupdir,smtpusername,smtpuserpw,smtpusessl
 	
