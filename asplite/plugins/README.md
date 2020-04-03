@@ -3,8 +3,8 @@
 Plugins are stored in the /asplite/plugins folder.
 
 1. Add a seperate folder for your plugin: /asplite/plugins/myplugin/
-2. Add an asp file with SAME name: /asplite/plugins/myplugin/myplugin.asp
-3. In myplugin.asp, create a class:
+2. Add an asp file with the SAME name: /asplite/plugins/myplugin/myplugin.asp
+3. In myplugin.asp, create a class with this SAME name as follows:
 
 	class cls_asplite_myplugin
 		...
