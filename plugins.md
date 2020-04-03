@@ -1,6 +1,3 @@
-layout: page
-title: "Plugins"
-permalink: /plugins/
 
 # How to write plugins?
 
