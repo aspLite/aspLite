@@ -1,3 +1,7 @@
+layout: page
+title: "Plugins"
+permalink: /plugins/
+
 # How to write plugins?
 
 Plugins are stored in the /asplite/plugins folder.
