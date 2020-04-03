@@ -219,7 +219,7 @@
 			
 		}
 		
-		$('#body').html('<br><table class="table table-striped" cellpadding=10 cellspacing=0 border=1>' + liPersons + '</table>')
+		$('#body').html('<br><table class="table table-striped">' + liPersons + '</table>')
 		
 	}	
 
