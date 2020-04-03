@@ -9,7 +9,7 @@ class cls_asplite_rss
 	private sub class_initialize
 		
 		maxitems=6	
-		breakpoint=2
+		breakpoint=0
 		counter=1
 		cache=10 'number of minutes this feed will be stored in cache
 		

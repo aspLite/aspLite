@@ -1,4 +1,4 @@
-<div style="width:50%;float:left">
+<div style="width:100%">
 
 	<div style="padding:10px 20px">
 	

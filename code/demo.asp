@@ -91,7 +91,7 @@ select case lcase(asp.getRequest("action"))
 
 end select
 
-'AJAX handler
+'AJAX handlers
 
 select case lcase(asp.getrequest("myaction"))
 
@@ -101,7 +101,7 @@ select case lcase(asp.getrequest("myaction"))
 		
 	case "ajaxhello"
 		
-		asp.flush "<h1>Hello " & asp.sanitize(asp.URLDecode(asp.getRequest("yourname"))) & "</h1>"
+		asp.flush "Hello " & asp.sanitize(asp.URLDecode(asp.getRequest("yourname")))
 
 	case "submit1"
 	
@@ -196,27 +196,27 @@ select case lcase(asp.getrequest("myaction"))
 
 		dim jpg
 		set jpg=asp.plugin("jpg")
-		jpg.maxsize=200 'px - max: 2560px
+		jpg.maxsize=500 'px - max: 2560px
 		
 		'this looks more complex than it is, as this sample is supposed to work in various setups
 		'by default, this would rather look like jpg.path="/images/img.jpg" where this path is relative to your directory
 		jpg.path=replace(request.servervariables("path_info"),"demo.asp","",1,-1,1) & asp_path & "/plugins/jpg/sample.jpg"
 		
 		dim specialeffects
-		specialeffects="normal resize:<br><img src=""" & jpg.src & """ /><br>"
+		specialeffects="normal resize:<br><img class=""img-fluid"" src=""" & jpg.src & """ /><br>"
 		
 		'color effects
 		jpg.effect=1 'b/w
-		specialeffects=specialeffects & "black/white<br><img src=""" & jpg.src & """ /><br>"
+		specialeffects=specialeffects & "black/white<br><img class=""img-fluid"" src=""" & jpg.src & """ /><br>"
 		jpg.effect=2 'gray
-		specialeffects=specialeffects & "gray<br><img src=""" & jpg.src & """ /><br>"
+		specialeffects=specialeffects & "gray<br><img class=""img-fluid"" src=""" & jpg.src & """ /><br>"
 		jpg.effect=3 'sepia
-		specialeffects=specialeffects & "sepia<br><img src=""" & jpg.src & """ /><br>"
+		specialeffects=specialeffects & "sepia<br><img class=""img-fluid"" src=""" & jpg.src & """ /><br>"
 		
 		'crop to rectangle
 		jpg.effect=0
 		jpg.fsr=1 
-		specialeffects=specialeffects & "rectangle:<br><img src=""" & jpg.src & """ />"	
+		specialeffects=specialeffects & "rectangle:<br><img class=""img-fluid"" src=""" & jpg.src & """ />"	
 		
 		asp.flush specialeffects		
 		

@@ -38,24 +38,7 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
 						<a class="nav-link" href="default.asp">back</a>
-					</li>	
-					 <li class="nav-item active dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Basic Event Handler</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown01">
-						  <a class="dropdown-item" href="demo.asp">No action</a>
-						  <a class="dropdown-item" href="demo.asp?action=clicklink">Clink link</a>
-						  <a class="dropdown-item" href="demo.asp?action=loadclass">conditionally load asp file</a>
-						  
-						  <a class="dropdown-item" href="demo.asp?action=downloadsmallfile">download small file (<500kB)</a>
-						  
-						  <a class="dropdown-item" href="demo.asp?action=downloadlargefile">download large file (>500kB)</a>
-						  <a class="dropdown-item" href="demo.asp?action=helloworld">hello world plugin</a>
-						  <a class="dropdown-item" href="demo.asp?action=randomizer">randomizer plugin</a>
-						  <a class="dropdown-item" href="demo.asp?action=accessdb">Access DB plugin</a>
-						  
-						</div>
-					  </li>
-					  
+					</li>			
 					  
 					  <li class="nav-item active dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">AJAX Event Handler</a>
@@ -75,67 +58,88 @@
 
 		  <div class="starter-template">
 			<h1>[PAGETITLE]</h1>
-			<p class="lead">Bootstrap can easily be included in your template file.</p>
-			
+			<p class="lead">Bootstrap can easily be included in your template file.</p>			
 		  </div>
 		  
-		  <div id="body" class="jumbotron">[BODY]</div>
-		  
-		 
-		<form action="demo.asp" method="post">
-			<button type="submit" value="clickbutton" name="action">click button</button>		
-		</form>	
-		
-		
-		<hr>
-		
-		<p class="lead">AJAX Events:</p>
-		
-		<form class="ajaxForm" action="default.asp">
-			<input type="hidden" name="myaction" value="ajaxhello" />
-			Your name: 
-			<input id="yourname" name="yourname" type="text" />
-			<input type="submit" value="AJAX" />
-			
-		</form>	
-		
-		<hr>
-		
-		<p>JSON datatable</p>
-		<ul>
-			<li><a class="aspAjaxData" href="#" name="returnjsondata">Get some JSON data (stored in the database)</a>
-			
-				<div id="data"></div>
-				
-			</li>		
-		</ul>
-		
-		<hr>
+		   <div class="row">
+				<div class="col-sm">
+				   <div class="jumbotron">
+						<h3>Output regular handler:</h3>
+						[BODY]
+					</div>
+				   
+					<ul>
+						<li><a href="demo.asp">No action</a></li>
+						<li><a href="demo.asp?action=clicklink">Clink link</a></li>
+						<li><a href="demo.asp?action=loadclass">conditionally load asp file</a></li>
+						<li><a href="demo.asp?action=downloadsmallfile">download small file (<500kB)</a></li>
+						<li><a href="demo.asp?action=downloadlargefile">download large file (>500kB)</a></li>
+						<li><a href="demo.asp?action=helloworld">hello world plugin</a></li>
+						<li><a href="demo.asp?action=randomizer">randomizer plugin</a></li>
+						<li><a href="demo.asp?action=accessdb">Access DB plugin</a></li>
+					</ul>
+				   
+				   
+				   <form action="demo.asp" method="post">
+						<button class="btn btn-danger" type="submit" value="clickbutton" name="action">click button</button>		
+					</form>	
+				   
+				   
+				</div>
+				<div class="col-sm">
+				   <div class="jumbotron"><h3>Output AJAX handler:</h3>
+						<div id="body">[BODY]</div>						
+					</div>
+						
+					<p class="lead">AJAX Events:</p>
+					
+					<form class="ajaxForm" action="default.asp">
+						<div class="input-group mb-3">
+							<input type="hidden" name="myaction" value="ajaxhello" />
+							
+							<input placeholder="Your name" id="yourname" class="form-control" name="yourname" type="text" />
+							<input type="submit" class="btn btn-primary" value="AJAX" />
+						</div>
+							
+					</form>	
+					
+					<hr>
+					
+					<p>JSON datatable</p>
+					<ul>
+						<li><a class="aspAjaxData" href="#" name="returnjsondata">Get some JSON data (stored in the database)</a></li>		
+					</ul>
+					
+					<hr>
 
-		<p>Form 1</p>
-		<form class="ajaxForm" id="form1" action="#" method="post">
-			<input type="hidden" id="myaction" name="myaction" value="">
-			<input type="text" size=35 name="yourname" placeholder="utf8" value="Hello world, Καλημέρα κόσμε, コンニチハ">
-			<input onclick="$('#myaction').val('submit1')" type="submit" value="Save">
-			<input onclick="$('#myaction').val('delete1')" type="submit" value="Delete">
-			<a href="#" onclick="$('#myaction').val('linksubmit');$('#form1').submit();return false">Submit link</a>
-		</form>
-		
-		<hr>
+					<p>Form 1</p>
+					<form class="ajaxForm" id="form1" action="#" method="post">
+						<input type="hidden" id="myaction" name="myaction" value="">
+						<input type="text" size=35 class="form-control" name="yourname" placeholder="utf8" value="Hello world, Καλημέρα κόσμε, コンニチハ">
+						<input onclick="$('#myaction').val('submit1')" class="btn btn-success" type="submit" value="Save">
+						<input onclick="$('#myaction').val('delete1')" class="btn btn-info" type="submit" value="Delete">
+						<a class="btn btn-dark" href="#" onclick="$('#myaction').val('linksubmit');$('#form1').submit();return false">Submit link</a>
+					</form>
+					
+					<hr>
 
-		<p>Form 2</p>
-		<form class="ajaxForm" action="#" method="post">
-			<input type="hidden" id="myaction2" name="myaction" value="">
-			<input onclick="$('#myaction2').val('submit2')" type="submit" value="Save">
-			<input onclick="$('#myaction2').val('delete2')" type="submit" value="Delete">
-		</form>
-		
-		<hr>
+					<p>Form 2</p>
+					<form class="ajaxForm" action="#" method="post">
+						<input type="hidden" id="myaction2" name="myaction" value="">
+						<input onclick="$('#myaction2').val('submit2')" class="btn btn-secondary" type="submit" value="Save">
+						<input onclick="$('#myaction2').val('delete2')" class="btn btn-warning" type="submit" value="Delete">
+					</form>
+					
+					<hr>
 
-		<p>Button</p>
-		<button class="aspAjax" name="buttonclick" type="button">Click Me!</button>
-			
-		<hr>
+					<p>Button</p>
+					<button class="aspAjax btn btn-primary" name="buttonclick" type="button">Click Me!</button>
+						
+					
+					<hr>									
+					
+				</div>
+			</div>
 		  
 
 		</main>
@@ -148,7 +152,7 @@
 	var aspAjaxUrl='demo.asp'
 
 	$(document).ready(function(e) {		
-		//onPageLoad()
+		onPageLoad()
 	})
 
 	$('.aspAjax').click(function(e) {
@@ -180,7 +184,7 @@
 		var liPersons=''
 			
 		if (persons.length==0) {
-			$('#data').html('<p>no records found</p>')
+			$('#body').html('<p>no records found</p>')
 			return
 		}
 		
@@ -189,7 +193,7 @@
 			var person=persons[i]	
 		
 			for (var key in person) {
-				liPersons+='<th>' + key + '</th>'
+				liPersons+='<th scope="col">' + key + '</th>'
 			}
 			
 			break	// stop after 1 loop just to get the table headers
@@ -212,10 +216,9 @@
 			
 		}
 		
-		$('#data').html('<br><table cellpadding=10 cellspacing=0 border=1>' + liPersons + '</table>')
+		$('#body').html('<br><table class="table table-striped" cellpadding=10 cellspacing=0 border=1>' + liPersons + '</table>')
 		
-	}
-	
+	}	
 
 </script>
 
