@@ -43,11 +43,11 @@
 					  <li class="nav-item active dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">AJAX Event Handler</a>
 						<div class="dropdown-menu"  aria-labelledby="dropdown01">
-						  <a class="aspAjax dropdown-item" name="clicklink1" href="#">Click a first link</a>
-						  <a class="aspAjax dropdown-item" name="clicklink2" href="#">Click a second link</a>
-						  <a class="aspAjax dropdown-item" name="jpg" href="#">Get images from server</a>						  
-						  <a class="aspAjax dropdown-item" name="returnbool" href="#">Get random boolean from server</a>
-						  <a class="aspAjax dropdown-item" name="rss" href="#">Read the news</a>					  
+						  <a class="aspAjax dropdown-item" id="clicklink1" href="#">Click a first link</a>
+						  <a class="aspAjax dropdown-item" id="clicklink2" href="#">Click a second link</a>
+						  <a class="aspAjax dropdown-item" id="jpg" href="#">Get images from server</a>						  
+						  <a class="aspAjax dropdown-item" id="returnbool" href="#">Get random boolean from server</a>
+						  <a class="aspAjax dropdown-item" id="rss" href="#">Read the news</a>					  
 						</div>
 					  </li>
 				</ul>
@@ -81,7 +81,7 @@
 				   
 				   
 				   <form action="demo.asp" method="post">
-						<button class="btn btn-danger" type="submit" value="clickbutton" name="action">click button</button>		
+						<button class="btn btn-danger" type="submit" value="clickbutton" id="action">click button</button>		
 					</form>	
 				   
 				   
@@ -106,7 +106,7 @@
 					
 					<p>JSON datatable</p>
 					<ul>
-						<li><a class="aspAjaxData" href="#" name="returnjsondata">Get some JSON data (from database)</a></li>		
+						<li><a class="aspAjaxData" href="#" id="returnjsondata">Get some JSON data (from database)</a></li>		
 					</ul>
 					
 					<hr>
@@ -136,7 +136,7 @@
 					<hr>
 
 					<p>Button</p>
-					<button class="aspAjax btn btn-primary" name="buttonclick" type="button">Click Me!</button>
+					<button class="aspAjax btn btn-primary" id="buttonclick" type="button">Click Me!</button>
 						
 					
 					<hr>									
@@ -160,7 +160,7 @@
 
 	$('.aspAjax').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'text','myaction=' + this.name,aspAjaxSuccess)
+		aspAjax('GET',aspAjaxUrl,'text','myaction=' + this.id,aspAjaxSuccess)
 	})
 
 	$('.ajaxForm').submit(function(e) {
@@ -170,7 +170,7 @@
 	
 	$('.aspAjaxData').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'json','myaction=' + this.name,jsonToTable)
+		aspAjax('GET',aspAjaxUrl,'json','myaction=' + this.id,jsonToTable)
 	})
 
 	function onPageLoad () { 
