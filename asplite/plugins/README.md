@@ -10,13 +10,10 @@ Plugins are stored in the /asplite/plugins folder.
 		...
 	end class
 
-4. To create an instance of your plugin, use: 
+4. To create an instance of your plugin, use:<br>
   dim myObj<br>
   set myObj=asp.plugin("myplugin")<br>
-  response.write myObj.XX()<br>
-
-  You could also just:
-
-  response.write asp.plugin("myplugin").XX()
-
+  response.write myObj.XX()<br><br>
+  You could also just:<br><br>
+  response.write asp.plugin("myplugin").XX()<br>
   (where XX() is a public function of your myplugin-class)
