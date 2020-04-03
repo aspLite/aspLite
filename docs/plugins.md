@@ -1,3 +1,4 @@
+
 # How to write plugins?
 
 Plugins are stored in the /asplite/plugins folder.
