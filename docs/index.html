@@ -130,9 +130,9 @@
 </div><div>* ServerXMLHTTP &amp; DOMDocument
 </div><div>* application caching
 </div><div>* some basic AJAX functionality
-</div><div>* some generic ASP/VBScript functions
+</div><div>* some generic ASP/VBScript functions</div><div><br></div><div>
 </div><div>
-</div><div><br></div><div><strong>Plugins</strong></div><div><strong><br></strong></div><div><a href="index.html#content4-6"><em>How to add plugins?</em></a></div><div><strong><br></strong></div><div>The following plugins are included already - but they are not necessary to use the framework i.e. they can be ignored.&nbsp;<span style="font-size: 1rem;">When no plugins are used, they will not affect the performance of your application in ANY way.</span></div><div><span style="font-size: 1rem;"><br></span></div><div>
+</div><div><strong>Get started</strong></div><div><strong><br></strong></div><div>You may want to check <strong>demo.asp</strong>&nbsp;that comes with the framework. It sure will help to understand how aspLite works.</div><div><br></div><div>To start using aspLite, include it <strong><u>at very the top</u></strong>&nbsp;of your asp-page:<br>&lt;!-- #include file="asplite/asplite.asp"--&gt;</div><div><br></div><div>From then on, you can use an object of the aspLite class: <strong>aspL (it's already created)</strong>. The word "<strong>aspL</strong>" becomes therefore a <strong>reserved word</strong>. Do not re-declare, re-set or even destroy it. This would break aspLite.</div><div><br></div><div>Check out <strong>demo.asp</strong> and its corresponding <strong>/code/demo.resx</strong> file on how the aspLite event handler can be used.</div><div><br></div><div><strong>Plugins</strong></div><div><strong><br></strong></div><div><a href="index.html#content4-6"><em>How to add plugins?</em></a></div><div><strong><br></strong></div><div>The following plugins are included already - but they are not necessary to use the framework i.e. they can be ignored.&nbsp;<span style="font-size: 1rem;">When no plugins are used, they will not affect the performance of your application in ANY way.</span></div><div><span style="font-size: 1rem;"><br></span></div><div>
 </div><div>* connector for Access databases (OLEDB)
 </div><div>* mailer for CDO.Message
 </div><div>* jpg resize/recolor (.net required)
@@ -176,8 +176,8 @@
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
                     <li><span style="font-size: 1rem;">Plugins are stored in the /asplite/plugins folder.</span></li><li>Add a seperate folder for your plugin: eg: /asplite/plugins/myplugin/</li>
-                    <li>Add an asp file with the SAME name: /asplite/plugins/myplugin/myplugin.asp</li><li>In myplugin.asp, create a class with this SAME name as follows:
-<br><br>class cls_asplite_myplugin <br>... <br>end class</li><li>To create an instance of your plugin, use:<br><br>dim myObj<br>set myObj=asp.plugin("myplugin")<br>myObj.XX()<br><br>You could also just:<br>asp.plugin("myplugin").XX()<br><br>(where XX() is a public sub/function of your myplugin-class)</li>
+                    <li>Add a resx file with the SAME name: /asplite/plugins/myplugin/myplugin.resx<br><em>Why resx-files? For security reasons! Resx files are never served nor executed by IIS. It's impossible to inject or even open resx files in the browser.</em></li><li>In myplugin.resx, create a class with this SAME name as follows:
+<br><br>class cls_asplite_myplugin <br>... <br>end class</li><li>To create an instance of your plugin, use:<br><br>dim myObj<br>set myObj=aspL.plugin("myplugin")<br>myObj.XX()<br><br>You could also just:<br>aspL.plugin("myplugin").XX()<br><br>(where XX() is a public sub/function of your myplugin-class)</li>
                 </ol>
             </div>
         </div>
