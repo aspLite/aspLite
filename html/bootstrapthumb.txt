@@ -1,0 +1,10 @@
+<div class="col-md-4">
+<div class="thumbnail">
+  <a href="[src]" target="_blank">
+	<img src="[src]" alt="" style="width:100%">
+	<div class="caption">
+	  <p>[caption]</p>
+	</div>
+  </a>
+</div>
+</div>

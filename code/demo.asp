@@ -193,6 +193,10 @@ select case lcase(asp.getrequest("ajaxaction"))
 		asp.flush rss.read("http://rss.cnn.com/rss/cnn_topstories.rss")
 		
 	case "jpg"	
+	
+		'get the bootstrap thumbnail template
+		dim bsTemplate
+		bsTemplate=asp.load("html/bootstrapthumb.txt")
 
 		dim jpg
 		set jpg=asp.plugin("jpg")
@@ -203,22 +207,27 @@ select case lcase(asp.getrequest("ajaxaction"))
 		jpg.path=replace(request.servervariables("path_info"),"demo.asp","",1,-1,1) & asp_path & "/plugins/jpg/sample.jpg"
 		
 		dim specialeffects
-		specialeffects="normal resize:<br><img class=""img-fluid"" src=""" & jpg.src & """ /><br>"
+		specialeffects=replace(bsTemplate,"[src]",jpg.src,1,-1,1)
+		specialeffects=replace(specialeffects,"[caption]","Resizing",1,-1,1)
 		
 		'color effects
 		jpg.effect=1 'b/w
-		specialeffects=specialeffects & "black/white<br><img class=""img-fluid"" src=""" & jpg.src & """ /><br>"
+			specialeffects=specialeffects & replace(bsTemplate,"[src]",jpg.src,1,-1,1)
+			specialeffects=replace(specialeffects,"[caption]","black/white",1,-1,1)
 		jpg.effect=2 'gray
-		specialeffects=specialeffects & "gray<br><img class=""img-fluid"" src=""" & jpg.src & """ /><br>"
+			specialeffects=specialeffects & replace(bsTemplate,"[src]",jpg.src,1,-1,1)
+			specialeffects=replace(specialeffects,"[caption]","gray",1,-1,1)
 		jpg.effect=3 'sepia
-		specialeffects=specialeffects & "sepia<br><img class=""img-fluid"" src=""" & jpg.src & """ /><br>"
+			specialeffects=specialeffects & replace(bsTemplate,"[src]",jpg.src,1,-1,1)
+			specialeffects=replace(specialeffects,"[caption]","sepia",1,-1,1)
 		
 		'crop to rectangle
 		jpg.effect=0
 		jpg.fsr=1 
-		specialeffects=specialeffects & "rectangle:<br><img class=""img-fluid"" src=""" & jpg.src & """ />"	
+			specialeffects=specialeffects & replace(bsTemplate,"[src]",jpg.src,1,-1,1)
+			specialeffects=replace(specialeffects,"[caption]","rectangle",1,-1,1)
 		
-		asp.flush specialeffects		
+		asp.flush "<div class=""row"">" & specialeffects & "</div>"	
 
 end select
 
