@@ -23,7 +23,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "loadclass"
 	
 		'CONDITIONAL load of asp page = include file
-		aspL.exec("code/includes/class.resx")	
+		aspL.exec("code/demo.asp/class.resx")	
 		
 		dim testObj
 		set testObj=new cls_test
