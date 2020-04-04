@@ -19,11 +19,11 @@ select case lcase(asp.getRequest("action"))
 		
 	case "clicklink"
 		
-		body="<p>Link was clicked</p>"		
+		body="Link was clicked"		
 		
 	case "clickbutton"
 	
-		body="<p>Regular form was submitted</p>"		
+		body="Regular form was submitted"		
 		
 	case "loadclass"
 	
@@ -32,7 +32,7 @@ select case lcase(asp.getRequest("action"))
 		
 		dim testObj
 		set testObj=new cls_test
-		body="<p>" & testObj.hello & "</p>"
+		body=testObj.hello
 		set testObj=nothing	
 		
 	
@@ -49,7 +49,7 @@ select case lcase(asp.getRequest("action"))
 		'hello world plugin example
 		dim helloworld
 		set helloworld=asp.plugin("helloworld")
-		body="<p>" & helloworld.hw() & "</p>"
+		body=helloworld.hw()
 		'or shorter
 		titletag=asp.plugin("helloworld").hw()
 		set helloworld=nothing
@@ -60,12 +60,12 @@ select case lcase(asp.getRequest("action"))
 		dim i, randomizer
 		set randomizer=asp.plugin("randomizer")
 
-		body="<p>ASP randomizer-plugin: "
-		for i=1 to 50
+		body="ASP randomizer-plugin: "
+		for i=1 to 25
 			'generate some random words with random lengths (5-10)
 			body=body & randomizer.randomtext(randomizer.randomnumber(5,10)) & " "
 		next	
-		body=body & "</p>"
+		
 		
 	case "accessdb"
 	
@@ -73,7 +73,7 @@ select case lcase(asp.getRequest("action"))
 		set db=asp.plugin("accessDB")
 		db.path="db/sample.mdb"
 
-		body=body & "<p>Access database-plugin:</p><ul> " 
+		body=body & "Access database-plugin:<ul> " 
 
 		set rs=db.execute("select * from person")
 
@@ -86,7 +86,7 @@ select case lcase(asp.getRequest("action"))
 		
 	case else 'default content
 	
-		body="<p>No (known) action was detected. Initial load.</p>"	
+		body="No (known) action was detected. Initial load."	
 	
 
 end select
@@ -227,7 +227,7 @@ select case lcase(asp.getrequest("ajaxaction"))
 			specialeffects=specialeffects & replace(bsTemplate,"[src]",jpg.src,1,-1,1)
 			specialeffects=replace(specialeffects,"[caption]","rectangle",1,-1,1)
 		
-		asp.flush "<div class=""row"">" & specialeffects & "</div>"	
+		asp.flush "<div class=""card-columns"">" & specialeffects & "</div>"	
 
 end select
 

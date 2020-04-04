@@ -1,10 +1,8 @@
-<div class="col-md-4">
-<div class="thumbnail">
+<div class="card">
   <a href="[src]" target="_blank">
-	<img src="[src]" alt="" style="width:100%">
-	<div class="caption">
-	  <p>[caption]</p>
-	</div>
-  </a>
-</div>
+	<img src="[src]" class="card-img-top" alt="">
+	  <div class="card-body">   
+		<p class="card-text">[caption]</p>   
+	  </div>
+	</a>
 </div>

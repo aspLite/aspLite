@@ -63,10 +63,9 @@
 		  
 		   <div class="row">
 				<div class="col-sm">
-				   <div class="jumbotron">
-						<h3>Output regular handler:</h3>
-						[BODY]
-					</div>
+				
+					<h5>Output REGULAR handler:</h5>						
+					<div class="alert alert-success" role="alert"><p class="mb-0">[BODY]</p></div>					
 				   
 					<ul>
 						<li><a href="demo.asp">No action</a></li>
@@ -80,19 +79,17 @@
 					</ul>
 				   
 				   
-				   <form action="demo.asp" method="post">
-						<button class="btn btn-danger" type="submit" value="clickbutton" id="action">click button</button>		
+				   <form action="demo.asp" method="post">						
+						<button class="btn btn-danger" type="submit" value="clickbutton" id="action" name="action">click button</button>		
 					</form>	
 				   
 				   
 				</div>
 				<div class="col-sm">
-				   <div class="jumbotron"><h3>Output AJAX handler:</h3>
-						<div id="body">[BODY]</div>						
-					</div>
-						
-					<p class="lead">AJAX Events:</p>
-					
+				   
+					<h5>Output AJAX handler:</h5>
+					<div id="body" class="alert alert-primary" role="alert">[BODY]</div>						
+										
 					<form class="ajaxForm" action="default.asp">
 						<div class="input-group mb-3">
 							<input type="hidden" name="ajaxaction" value="ajaxhello" />							

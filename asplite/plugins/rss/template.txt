@@ -1,6 +1,6 @@
 <div style="width:100%">
 
-	<h4>[title]</h4>
+	<h6>[title]</h6>
 
 	<div style="margin-bottom:10px;font-size:smaller"><i>[pubdate]</i></div>
 	
