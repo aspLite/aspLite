@@ -4,8 +4,8 @@ Option Explicit
 %>
 <!-- #include file="config.asp"-->
 <%
-dim asp
-set asp=new cls_asplite
+dim aspL
+set aspL=new cls_asplite
 
 class cls_asplite	
 
@@ -97,7 +97,7 @@ class cls_asplite
 	
 		if not plugins.exists(value) then
 			
-			exec(asp_path & "/plugins/" & value & "/" & value & ".asp")	
+			exec(asp_path & "/plugins/" & value & "/" & value & ".resx")	
 			
 			dim pluginCls
 			set pluginCls=eval("new cls_asplite_" & value)
@@ -125,11 +125,7 @@ class cls_asplite
 		
 		on error goto 0	
 	
-	end function
-	
-	public sub codebehind
-		'this function is doing nothing, but leave it as it is
-	end sub
+	end function	
 	
 	Public function asperror(value)		
 		

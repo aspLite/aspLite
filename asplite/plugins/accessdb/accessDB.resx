@@ -24,7 +24,7 @@ Class cls_asplite_accessDB
 		Set Execute = connection.Execute(sql)
 		
 		if err.number<>0 then			
-			asp.asperror "The query """ & server.htmlEncode(sql) & """ cannot be executed. There may be a connection error and/or a mistake in the SQL-syntax."
+			aspL.asperror "The query """ & server.htmlEncode(sql) & """ cannot be executed. There may be a connection error and/or a mistake in the SQL-syntax."
 		end if
 		
 		On Error Goto 0
@@ -64,7 +64,7 @@ Class cls_asplite_accessDB
 			errM=errM &"<li>IUSR has not sufficient permissions on the database file/folder</li>"
 			errM=errM &"</ul><p>To be sure, check the error message below:</p>"
 			
-			asp.asperror (errM)			
+			aspL.asperror (errM)			
 			
 		end if
 

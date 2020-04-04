@@ -1,0 +1,125 @@
+<%
+dim html,titletag,body
+
+titletag="aspLite demo"
+
+'load the template
+html=aspL.load("html/demo.resx")
+
+'here you can typically add some sort of eventhandler (what did the user do exactly?)
+'in general: if the code for dealing with the event is not large, include it here.
+'if the code is getting complex, use yet another codebehind file, like in the examples below (helloworld, mail, json, etc)
+
+select case lcase(aspL.getRequest("e")) '"event"
+		
+	case "clicklink"
+		
+		body="Link was clicked"		
+		
+	case "clickbutton"
+	
+		body="Regular form was submitted"		
+		
+	case "loadclass"
+	
+		'CONDITIONAL load of asp page = include file
+		aspL.exec("code/includes/class.resx")	
+		
+		dim testObj
+		set testObj=new cls_test
+		body=testObj.hello
+		set testObj=nothing	
+		
+	
+	case "downloadlargefile"
+	
+		aspL.flushBinaryFile("html/largefile.jpg")
+	
+	case "downloadsmallfile"
+	
+		aspL.flushBinaryFile("html/smallfile.jpg")
+	
+	case "helloworld"
+	
+		aspL.exec("code/demo.asp/helloworld.resx")	
+		
+	case "randomizer"
+	
+		aspL.exec("code/demo.asp/randomtext.resx")		
+		
+	case "accessdb"
+	
+		aspL.exec("code/demo.asp/datasample.resx")	
+
+	'AJAX handlers
+		
+	case "ajaxhello"
+		
+		aspL.flush "Hello " & aspL.sanitize(aspL.URLDecode(aspL.getRequest("yourname")))
+
+	case "submit1"
+	
+		aspL.flush "Form 1 save button was clicked - " & aspL.getrequest("yourname")
+		
+	case "linksubmit"
+	
+		aspL.flush "Form 1 submitted by link - " & aspL.getrequest("yourname")
+	
+	case "delete1"
+	
+		aspL.flush "Form 1 delete button was clicked - " & aspL.getrequest("yourname")
+		
+	case "submit2"
+	
+		aspL.flush "Form 2 save button was clicked"
+	
+	case "delete2"
+	
+		aspL.flush "Form 2 delete button was clicked"
+		
+	case "buttonclick"
+	
+		aspL.flush "Regular button was clicked"
+		
+	case "clicklink1"
+
+		aspL.flush "First link clicked..."
+	
+	case "clicklink2"
+
+		aspL.flush "Second link clicked..."	
+	
+	case "returnbool"
+	
+		'returns a random boolean to the browser		
+		aspL.flush aspL.plugin("randomizer").randomnumber(0,100)>49	
+		
+	case "returnjsondata"
+
+		aspL.exec("code/demo.asp/jsontable.resx")	
+		
+	case "sendmail"
+		
+		aspL.exec("code/demo.asp/mailhandler.resx")		
+
+	case "rss"
+	
+		dim rss
+		set rss=aspL.plugin("rss")
+		aspL.flush rss.read("http://rss.cnn.com/rss/cnn_topstories.rss")
+		
+	case "jpg"	
+	
+		aspL.exec("code/demo.asp/jpghandler.resx")	
+	
+	case "onload" 'default content for AJAX handler	
+	
+		aspL.flush "Hello world, Καλημέρα κόσμε (utf8-ready)"
+		
+	case else 'default content for REGULAR handler
+	
+		body="No (known) action was detected. Initial load."
+		
+end select
+
+%>

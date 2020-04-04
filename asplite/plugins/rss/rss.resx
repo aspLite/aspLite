@@ -13,7 +13,7 @@ class cls_asplite_rss
 		counter=1
 		cache=10 'number of minutes this feed will be stored in cache
 		
-		template=asp.load(asp_path & "/plugins/rss/template.txt")
+		template=aspL.load(asp_path & "/plugins/rss/template.txt")
 		
 		templateBreakPoint="<div style=""clear:both""></div>"
 	
@@ -21,21 +21,21 @@ class cls_asplite_rss
 
 	public function read(url)
 	
-		if asp.convertGetal(cache)<>0 then
+		if aspL.convertGetal(cache)<>0 then
 
-			if isArray(asp.getcache("asprss" & url)) then
+			if isArray(aspL.getcache("asprss" & url)) then
 			
 				'check if it's time to renew
-				if DateDiff("n",asp.getcache("asprss" & url)(0),now())<=cache then
-					read=asp.getcache ("asprss" & url)(1)					
-					if not asp.isLeeg(read) then exit function
+				if DateDiff("n",aspL.getcache("asprss" & url)(0),now())<=cache then
+					read=aspL.getcache ("asprss" & url)(1)					
+					if not aspL.isLeeg(read) then exit function
 				end if
 			
 			end if
 		
 		end if
 
-		Set xmlDOM = asp.xmldom(url)
+		Set xmlDOM = aspL.xmldom(url)
 		
 		set feeditems=xmlDOM.getElementsByTagName("item")
 	
@@ -70,7 +70,7 @@ class cls_asplite_rss
 			
 			read=read & templateItem
 			
-			if asp.convertGetal(breakpoint)<>0 then				
+			if aspL.convertGetal(breakpoint)<>0 then				
 				if counter=breakpoint then
 					read=read & templateBreakPoint
 					counter=1
@@ -86,10 +86,10 @@ class cls_asplite_rss
 		read=read & templateBreakPoint
 		
 		'(re)fill cache
-		if asp.convertGetal(cache)<>0 then
-			asp.setcache "asprss" & url, array(now(),read)
+		if aspL.convertGetal(cache)<>0 then
+			aspL.setcache "asprss" & url, array(now(),read)
 		else
-			asp.clearcache "asprss" & url, array(now(),read)
+			aspL.clearcache "asprss" & url, array(now(),read)
 		end if
 
 		Set xmlDOM = Nothing

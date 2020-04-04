@@ -1,0 +1,31 @@
+
+dim db,rs,counter,json,field,fieldvalue
+
+counter=0
+		
+set db=aspL.plugin("accessdb")
+db.path="db/sample.mdb"
+
+set rs=db.GetDynamicRS
+
+rs.open ("select * from person")
+
+set json=aspL.plugin("json")
+json.data.Add "persons", json.Collection()	
+
+while not rs.eof
+
+	json.data("persons").Add counter,json.Collection()
+	
+	for each field in rs.fields	
+		fieldvalue=rs(field.name)
+		json.data("persons").item(counter).add aspL.sanitize(field.name),aspL.sanitize(fieldvalue)
+	next
+	
+	counter=counter+1
+	
+	rs.movenext
+
+wend
+
+aspL.flush json.JSONoutput
