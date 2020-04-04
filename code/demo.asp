@@ -15,7 +15,7 @@ titletag="aspLite demo"
 html=asp.load("html/demo.resx")
 
 'here you can typically add some sort of eventhandler (what exactly was clicked on?)
-select case lcase(asp.getRequest("action"))
+select case lcase(asp.getRequest("e")) '"event"
 		
 	case "clicklink"
 		
@@ -83,21 +83,9 @@ select case lcase(asp.getRequest("action"))
 		wend 
 
 		body=body & "</ul>"
-		
-	case else 'default content
-	
-		body="No (known) action was detected. Initial load."	
 	
 
-end select
-
-'AJAX handlers
-
-select case lcase(asp.getrequest("ajaxaction"))
-
-	case "onload"		
-	
-		asp.flush "Hello world, Καλημέρα κόσμε (utf8-ready)"
+	'AJAX handlers
 		
 	case "ajaxhello"
 		
@@ -200,7 +188,7 @@ select case lcase(asp.getrequest("ajaxaction"))
 
 		dim jpg
 		set jpg=asp.plugin("jpg")
-		jpg.maxsize=500 'px - max: 2560px
+		jpg.maxsize=600 'px - max: 2560px
 		
 		'this looks more complex than it is, as this sample is supposed to work in various setups
 		'by default, this would rather look like jpg.path="/images/img.jpg" where this path is relative to your directory
@@ -228,7 +216,16 @@ select case lcase(asp.getrequest("ajaxaction"))
 			specialeffects=replace(specialeffects,"[caption]","rectangle",1,-1,1)
 		
 		asp.flush "<div class=""card-columns"">" & specialeffects & "</div>"	
-
+	
+	
+	case "onload" 'default content for AJAX handler	
+	
+		asp.flush "Hello world, Καλημέρα κόσμε (utf8-ready)"
+		
+	case else 'default content for REGULAR handler
+	
+		body="No (known) action was detected. Initial load."
+		
 end select
 
 %>

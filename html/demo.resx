@@ -69,18 +69,18 @@
 				   
 					<ul>
 						<li><a href="demo.asp">No action</a></li>
-						<li><a href="demo.asp?action=clicklink">Clink link</a></li>
-						<li><a href="demo.asp?action=loadclass">conditionally load asp file</a></li>
-						<li><a href="demo.asp?action=downloadsmallfile">download small file (&lt;500kB)</a></li>
-						<li><a href="demo.asp?action=downloadlargefile">download large file (&gt;500kB)</a></li>
-						<li><a href="demo.asp?action=helloworld">hello world plugin</a></li>
-						<li><a href="demo.asp?action=randomizer">randomizer plugin</a></li>
-						<li><a href="demo.asp?action=accessdb">Access DB plugin</a></li>
+						<li><a href="demo.asp?e=clicklink">Clink link</a></li>
+						<li><a href="demo.asp?e=loadclass">conditionally load asp file</a></li>
+						<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a></li>
+						<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a></li>
+						<li><a href="demo.asp?e=helloworld">hello world plugin</a></li>
+						<li><a href="demo.asp?e=randomizer">randomizer plugin</a></li>
+						<li><a href="demo.asp?e=accessdb">Access DB plugin</a></li>
 					</ul>
 				   
 				   
 				   <form action="demo.asp" method="post">						
-						<button class="btn btn-danger" type="submit" value="clickbutton" id="action" name="action">click button</button>		
+						<button class="btn btn-danger" type="submit" value="clickbutton" name="e">click button</button>		
 					</form>	
 				   
 				   
@@ -92,11 +92,10 @@
 										
 					<form class="ajaxForm" action="default.asp">
 						<div class="input-group mb-3">
-							<input type="hidden" name="ajaxaction" value="ajaxhello" />							
+							<input type="hidden" name="e" value="ajaxhello" />							
 							<input placeholder="Your name" id="yourname" class="form-control" name="yourname" type="text" />
 							<input type="submit" class="btn btn-primary" value="AJAX" />
-						</div>
-							
+						</div>							
 					</form>	
 					
 					<hr>
@@ -109,8 +108,8 @@
 					<hr>
 
 					<p>Form 1</p>
-					<form class="ajaxForm" id="form1" action="#" method="post">
-						<input type="hidden" id="ajaxaction" name="ajaxaction" value="">
+					<form class="ajaxForm" id="form1" action="#" method="post">	
+						<input type="hidden" id="ajaxaction" name="e" value="">
 						
 						<div class="form-group">
 							<input type="text" class="form-control" name="yourname" placeholder="utf8" value="Hello world, Καλημέρα κόσμε, コンニチハ" />
@@ -125,7 +124,7 @@
 
 					<p>Form 2</p>
 					<form class="ajaxForm" action="#" method="post">
-						<input type="hidden" id="ajaxaction2" name="ajaxaction" value="">
+						<input type="hidden" id="ajaxaction2" name="e" value="">
 						<input onclick="$('#ajaxaction2').val('submit2')" class="btn btn-secondary" type="submit" value="Save">
 						<input onclick="$('#ajaxaction2').val('delete2')" class="btn btn-warning" type="submit" value="Delete">
 					</form>
@@ -134,8 +133,7 @@
 
 					<p>Button</p>
 					<button class="aspAjax btn btn-primary" id="buttonclick" type="button">Click Me!</button>
-						
-					
+										
 					<hr>									
 					
 				</div>
@@ -156,7 +154,7 @@
 
 	$('.aspAjax').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'text','ajaxaction=' + this.id,aspAjaxSuccess)
+		aspAjax('GET',aspAjaxUrl,'text','e=' + this.id,aspAjaxSuccess)
 	})
 
 	$('.ajaxForm').submit(function(e) {
@@ -166,11 +164,11 @@
 	
 	$('.aspAjaxData').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'json','ajaxaction=' + this.id,jsonToTable)
+		aspAjax('GET',aspAjaxUrl,'json','e=' + this.id,jsonToTable)
 	})
 
 	function onPageLoad () { 
-		aspAjax('GET',aspAjaxUrl,'text','ajaxaction=onload',aspAjaxSuccess)	
+		aspAjax('GET',aspAjaxUrl,'text','e=onload',aspAjaxSuccess)	
 	}
 
 	function aspAjaxSuccess(data) {
