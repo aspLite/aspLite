@@ -1,0 +1,9 @@
+<%
+dim html,titletag,body
+
+'load the template file
+html=aspL.load("html/default.asp/default.resx")
+
+titletag="aspLite"
+body="body"
+%>

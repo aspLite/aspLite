@@ -1,6 +1,6 @@
 <!-- #include file="asplite/asplite.asp"-->
 <%
-aspL.exec("code/default.resx") 'codebehind file
+aspL.exec("code/default.handler.resx") 'event-handler
 
 'head
 html=replace (html,"[TITLETAG]",titletag,1,-1,1)

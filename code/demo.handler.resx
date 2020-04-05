@@ -4,7 +4,7 @@ dim html,titletag,body
 titletag="aspLite demo"
 
 'load the template
-html=aspL.load("html/demo.resx")
+html=aspL.load("html/demo.asp/demo.resx")
 
 'here you can typically add some sort of eventhandler (what did the user do exactly?)
 'in general: if the code for dealing with the event is not large, include it here.
@@ -33,11 +33,11 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "downloadlargefile"
 	
-		aspL.flushBinaryFile("html/largefile.jpg")
+		aspL.flushBinaryFile("html/demo.asp/largefile.jpg")
 	
 	case "downloadsmallfile"
 	
-		aspL.flushBinaryFile("html/smallfile.jpg")
+		aspL.flushBinaryFile("html/demo.asp/smallfile.jpg")
 	
 	case "helloworld"
 	
@@ -50,6 +50,20 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "accessdb"
 	
 		aspL.exec("code/demo.asp/datasample.resx")	
+		
+	case "ckeditor"
+		
+		body=aspL.load("html/demo.asp/ckeditor.resx")	
+		
+		dim mNotes
+		mNotes=aspL.getRequest("mNotes")
+		
+		if aspL.isLeeg(mNotes) then
+			mNotes="<p>Some <strong>rich text</strong>.</p>"		
+		end if
+		
+		body=replace(body,"[value]",mNotes,1,-1,1)
+				
 
 	'AJAX handlers
 		
@@ -111,6 +125,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "jpg"	
 	
 		aspL.exec("code/demo.asp/jpghandler.resx")	
+	
 	
 	case "onload" 'default content for AJAX handler	
 	

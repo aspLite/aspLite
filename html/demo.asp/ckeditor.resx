@@ -1,0 +1,15 @@
+<form action="demo.asp" method="post">
+
+	<input type="hidden" value="ckeditor"  name="e" />
+	
+	<div class="form-group">
+		<textarea class="form-control" rows="3" name="mNotes">[value]</textarea>
+	</div>
+	
+	<input type="submit" value="Save" class="btn btn-dark" />
+	
+</form>
+
+<script>
+CKEDITOR.replace( 'mNotes' );
+</script>

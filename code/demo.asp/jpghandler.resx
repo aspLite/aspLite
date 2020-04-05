@@ -1,6 +1,7 @@
+<%
 'get the bootstrap thumbnail template
 dim bsTemplate
-bsTemplate=aspL.load("html/bootstrapthumb.txt")
+bsTemplate=aspL.load("html/demo.asp/bootstrapthumb.resx")
 
 dim jpg
 set jpg=aspL.plugin("jpg")
@@ -32,3 +33,4 @@ jpg.fsr=1
 	specialeffects=replace(specialeffects,"[caption]","rectangle",1,-1,1)
 
 aspL.flush "<div class=""card-columns"">" & specialeffects & "</div>"	
+%>
