@@ -865,11 +865,6 @@ section.lazy-placeholder:after {
 .cid-rV61e5Fdni .collapsed .navbar-collapse.show .navbar-buttons:last-child {
   margin-bottom: 1rem;
 }
-@media (min-width: 1024px) {
-  .cid-rV61e5Fdni .collapsed:not(.navbar-short) .navbar-collapse {
-    max-height: calc(98.5vh - 3.8rem);
-  }
-}
 .cid-rV61e5Fdni .collapsed button.navbar-toggler {
   display: block;
 }
