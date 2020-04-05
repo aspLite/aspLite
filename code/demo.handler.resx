@@ -64,7 +64,18 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 		body=replace(body,"[value]",mNotes,1,-1,1)
 				
+	case "upload"
+	
+		body=aspL.load("html/demo.asp/singleupload.resx")
+		
+	case "uploadfile"
 
+		aspL.exec("code/demo.asp/uploadfile.resx")	
+	
+	case "uploadmulti"
+	
+		body=aspL.load("html/demo.asp/multiupload.resx")
+	
 	'AJAX handlers
 		
 	case "ajaxhello"
