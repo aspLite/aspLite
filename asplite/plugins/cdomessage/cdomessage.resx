@@ -1,5 +1,4 @@
 <%
-option explicit
 
 class cls_asplite_cdomessage
 

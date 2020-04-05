@@ -1037,11 +1037,21 @@ section.lazy-placeholder:after {
   color: #767676;
 }
 .cid-rV627Nrqqp {
-  padding-top: 60px;
-  padding-bottom: 0px;
+  padding-top: 75px;
+  padding-bottom: 30px;
   background-color: #efefef;
 }
 .cid-rV627Nrqqp .mbr-section-subtitle {
+  color: #767676;
+  text-align: center;
+}
+.cid-rVhSG0Ox0k {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #efefef;
+}
+.cid-rVhSG0Ox0k .mbr-text,
+.cid-rVhSG0Ox0k blockquote {
   color: #767676;
 }
 .cid-rV6247wWc7 {

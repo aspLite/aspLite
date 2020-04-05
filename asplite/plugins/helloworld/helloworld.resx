@@ -1,6 +1,4 @@
 <%
-option explicit
-
 class cls_asplite_helloworld
 
 	public function hw

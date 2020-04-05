@@ -1,6 +1,4 @@
 <%
-option explicit
-
 Class cls_asplite_accessDB
 
 	public path
@@ -74,4 +72,5 @@ Class cls_asplite_accessDB
 		
 	end function
 	
-End Class%>
+End Class
+%>

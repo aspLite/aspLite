@@ -11,13 +11,13 @@
   
   <title>Home</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="assets/facebook-plugin/style.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/tether/tether.min.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/animatecss/animate.min.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
@@ -49,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown navbar-nav-top-padding" data-app-modern-menu="true"><li class="nav-item">
                     <a class="nav-link link text-white display-4" href="#top">home</a>
-                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#content4-7">introduction</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#content4-7">about</a></li>
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="index.html#content4-6">
                         
@@ -57,7 +57,7 @@
                 </li><li class="nav-item"><a class="nav-link link text-white display-4" href="https://demo.asplite.com" target="_blank">
                         
                         demo</a></li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-secondary display-4" href="https://github.com/PieterCooreman/aspLite" target="_blank"><span class="socicon socicon-github mbr-iconfont mbr-iconfont-btn"></span>
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-secondary display-4" href="https://github.com/PieterCooreman/aspLite" target="_blank"><span class="fa fa-github mbr-iconfont mbr-iconfont-btn"></span>
                     
                     GitHub</a></div>
         </div>
@@ -76,7 +76,7 @@
                 <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1"><span style="color:#E07E01">asp</span><span style="color: rgb(20, 157, 204); font-weight: normal;letter-spacing:-0.12em"><em>Lite</em></span></h1>
               
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">classic ASP/VBScript framework</p>
-                <div class="mbr-section-btn"><a class="btn btn-md btn-primary display-4" href="index.html#content4-7">read more</a></div>
+                <div class="mbr-section-btn"><a class="btn btn-md btn-primary display-4" href="index.html#content4-7"><span class="fa fa-navicon mbr-iconfont mbr-iconfont-btn"></span>read more</a> <a class="btn btn-md btn-secondary display-4" href="https://github.com/PieterCooreman/aspLite" target="_blank"><span class="fa fa-github mbr-iconfont mbr-iconfont-btn"></span>download</a></div>
             </div>
         </div>
     </div>
@@ -91,7 +91,7 @@
         <div class="media-container-row">
             <div class="title col-12 col-md-8">
                 <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                    Introduction</h2>
+                    about</h2>
                 
                 
             </div>
@@ -115,7 +115,7 @@
 </div><div>* VBScript executeGlobal</div><div>* ServerXMLHTTP &amp; DOMDocument</div><div>
 </div><div>* basic AJAX support</div><div>* application caching<span style="font-size: 1rem;">&nbsp;</span></div><div>* some generic ASP/VBScript functions</div><div>* write your own plugins</div><div><br></div><div>
 </div><div>
-</div><div><strong>Get started</strong></div><div><strong><br></strong></div><div>You may want to check <strong>demo.asp</strong>&nbsp;that comes with the download. It helps to understand how aspLite works.</div><div><br></div><div>To start using aspLite, include it <strong><u>at very the top</u></strong>&nbsp;of your asp-page:<br>&lt;!-- #include file="asplite/asplite.asp"--&gt;</div><div><br></div><div>From then on, you can use an object of the aspLite class: <strong>aspL (it's already created)</strong>. The word "<strong>aspL</strong>" should therefore be considered a <strong>reserved word</strong>. Do not re-declare, re-set or even destroy it in your web application.&nbsp;</div><div><br></div><div><strong>Stick to 1 asp file for your project</strong></div><div><strong><br></strong></div><div>There are some very good reasons to <strong>stick to 1 asp page only&nbsp;</strong>for your application, even if your application has 20 screens with various different menus, forms, buttons or links each. And your best option is to use "default.asp" in the <strong>root</strong> of your application. "Default.asp" is always included in the list "default documents" in IIS. Finally, using 1 asp page only, keeps server memory usage very low, specially when this technique is combined with conditionally loading asp scripts.</div><div><br></div><div><strong>Resx files?</strong></div><div><br></div><div>As an ASP developer, you will quickly notice that the .<strong>resx</strong>&nbsp;is used to include ASP scripts.&nbsp;<span style="font-size: 1rem;"><em>Why</em>? For <strong>security</strong> reasons. Resx files are never served nor executed by IIS. Therefore, it's impossible to inject or open resx files in the browser directly. You *can* however also use the regular .asp extensions for your handler-files. Make sure that visitors cannot inject (querystring, form submit) or load these pages in the browser directly.</span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>IDE?</strong></span></div><div><span style="font-size: 1rem;">I prefer <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to enable the default ASP syntax highlighting for .resx files. Open Settings, style configurator, select "asp", add "resx" to the "user ext". You have to reopen the resx files for this to take effect. I have also used Webmatrix in the past. Never liked Visual Studio Code... But that's just me.</span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>Check the demo!</strong></span></div><div><br></div><div>Again, check out <strong>demo.asp</strong> and its corresponding <strong>/code/demo.resx</strong> file on how aspLite can be used to organize your ASP application development.</div><div><br></div><div><strong>Plugins</strong></div><div><strong><br></strong></div><div><a href="index.html#content4-6"><em>How to add plugins?</em></a></div><div><strong><br></strong></div><div>The following plugins are included already - but they are not necessary to use the framework i.e. they can be ignored.&nbsp;<span style="font-size: 1rem;">When no plugins are used, they will not affect the performance of your application in any way.</span></div><div><span style="font-size: 1rem;"><br></span></div><div>
+</div><div><strong>Get started</strong></div><div><strong><br></strong></div><div>You may want to check <strong>demo.asp</strong>&nbsp;that comes with the download. It helps to understand how aspLite works.</div><div><br></div><div>To start using aspLite, include it <strong><u>at very the top</u></strong>&nbsp;of your asp-page:<br>&lt;!-- #include file="asplite/asplite.asp"--&gt;</div><div><br></div><div>From then on, you can use an object of the aspLite class: <strong>aspL (it's already created)</strong>. The word "<strong>aspL</strong>" should therefore be considered a <strong>reserved word</strong>. Do not re-declare, re-set or even destroy it in your web application.&nbsp;</div><div><br></div><div><strong>Stick to 1 asp file for your project</strong></div><div><strong><br></strong></div><div>There are some very good reasons to <strong>stick to 1 asp page only&nbsp;</strong>for your application, even if your application has 20 screens with various different menus, forms, buttons or links each. And your best option is to use "default.asp" in the <strong>root</strong> of your application. "Default.asp" is always included in the list "default documents" in IIS. Finally, using 1 asp page only, keeps server memory usage very low, specially when this technique is combined with conditionally loading asp scripts.</div><div><br></div><div><strong>Resx files?</strong></div><div><br></div><div>As an ASP developer, you will quickly notice that the .<strong>resx</strong>&nbsp;is used to include ASP scripts.&nbsp;<span style="font-size: 1rem;"><em>Why</em>? For <strong>security</strong> reasons. Resx files are never served nor executed by IIS. Therefore, it's impossible to inject or open resx files in the browser directly. You *can* however also use the regular .asp extensions for your handler-files. Make sure that visitors cannot inject (querystring, form submit) or load these pages in the browser directly.</span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>IDE?</strong></span></div><div><span style="font-size: 1rem;">I prefer <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to enable the default ASP syntax highlighting for .resx files. Open Settings, style configurator, select "asp", add "resx" to the "user ext". You have to reopen the resx files for this to take effect. Notepad++ also has some basic code-completion functions. Others may want to use <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> instead.</span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>Check the demo!</strong></span></div><div><br></div><div>Again, check out <strong>demo.asp</strong> and its corresponding <strong>/code/demo.resx</strong> file on how aspLite can be used to organize your ASP application development.</div><div><br></div><div><strong>Plugins</strong></div><div><strong><br></strong></div><div><a href="index.html#content4-6"><em>How to add plugins?</em></a></div><div><strong><br></strong></div><div>The following plugins are included already - but they are not necessary to use the framework i.e. they can be ignored.&nbsp;<span style="font-size: 1rem;">When no plugins are used, they will not affect the performance of your application in any way.</span></div><div><span style="font-size: 1rem;"><br></span></div><div>
 </div><div>* connector for Access databases (OLEDB)
 </div><div>* mailer for CDO.Message
 </div><div>* jpg resize/recolor/crop (.net required)
@@ -142,10 +142,21 @@
     <div class="container">
         <div class="media-container-row">
             <div class="title col-12 col-md-8">
-                <h2 class="align-center pb-3 mbr-fonts-style display-2">Develop plugins for aspLite</h2>
-                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">aspLite will always have a very small footprint. You can however develop your own plugins for aspLite. How?</h3>
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">plugins</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">aspLite will always have a very small footprint on your application and on the hosting server. You can however develop your own plugins for aspLite. How?</h3>
                 
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-rVhSG0Ox0k" id="content1-b">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 mbr-fonts-style display-7 col-md-10"><p>Once again, check one of the example plugins. Have a look at <strong>asplite/plugins/helloworld/helloworld.resx</strong></p><p><span style="font-size: 1rem;">&lt;%<br></span><span style="font-size: 1rem;">class cls_asplite_helloworld</span></p><p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">public function hw<br></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">hw="Hello world!"<br></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">end function<br><br></span><span style="font-size: 1rem;">end class<br></span><span style="font-size: 1rem;">%&gt;</span></p><p><span style="font-size: 1rem;">Some remarks: </span></p><p><span style="font-size: 1rem;">* You <em>have</em> to use the resx-extension for your main plugin-file, for security reasons (see above).<br><br>* The entire codeblock sits beteween &lt;% and %&gt; marks. This is not required, but it can help to trigger syntax highligthing, like when working in Notepad++. Be aware that at runtime, aspLite <em>removes</em> these marks - see asplite.exec(path)</span></p><p>* The entire content of this resx file will be considered ASP code. Do not mix it with html, text, js or css code. It would raise an error.</p><p><span style="font-size: 1rem;">* Even though I always use Option Explicit (forces to declare variables only once), it seems to have no effect on code that is executed through VBScript's executeGlobal. I have no idea why, but it's good to know I guess.</span></p><p>* As aspLite forces to use the resx-extension, your plugin cannot include other ASP files like you may be used to:&nbsp;<br><br><strong>&lt;!-- #include file="mypluginInc.asp"--&gt;</strong> would raise an <strong><u>error</u></strong>, even if that mypluginInc.asp exists.<br><br>You would need to use the <strong>aspLite conditional include</strong> instead:<br><br><strong>aspL.exec("asplite/plugins/myplugin/mypluginInc.resx")</strong><br><br>where mypluginInc.resx resides in your "myplugin" directory.<br><br>* Plugin-folders can include other subfolders and files, like html, js, css, images, etc. There are no limitations whatsoever.</p><p><strong><u>These are the steps to create a plugin for aspLite:</u></strong></p></div>
         </div>
     </div>
 </section>
@@ -157,9 +168,9 @@
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
-                    <li><span style="font-size: 1rem;">Plugins are stored in the /asplite/plugins folder.</span></li><li>Add a seperate folder for your plugin: eg: /asplite/plugins/myplugin/</li>
-                    <li>Add a resx file with the SAME name: /asplite/plugins/myplugin/myplugin.resx.<br><em>You <u>have</u> to use the resx-extension for your main plugin-file, for security reasons (see above).</em></li><li>In myplugin.resx, create a class with this SAME name as follows:
-<br><br>class cls_asplite_myplugin <br>... <br>end class</li><li>To create an instance of your plugin, use:<br><br>dim myObj<br>set myObj=aspL.plugin("myplugin")<br>myObj.XX()<br><br>You could also just:<br>aspL.plugin("myplugin").XX()<br><br>(where XX() is a public sub/function of your myplugin-class)</li>
+                    <li><span style="font-size: 1rem;">Plugins are stored in /asplite/plugins</span></li><li>Add a seperate folder for your plugin named <strong>myplugin</strong>: eg: /asplite/plugins/myplugin/</li>
+                    <li>Add a resx file with the <strong>same name</strong>: /asplite/plugins/myplugin/myplugin.resx.<br></li><li>In myplugin.resx, create a class with this <strong>same name</strong> as follows:
+<br><br>class cls_asplite_myplugin <br>... <br>end class</li><li>To create an instance of your plugin somewhere in your application, use:<br><br><strong>dim myObj<br>set myObj=aspL.plugin("myplugin")<br>myObj.XX()</strong><br><br>You could also just:<br><strong>aspL.plugin("myplugin").XX()</strong><br><br>(where XX() is a public sub/function of your myplugin-class)</li>
                 </ol>
             </div>
         </div>
@@ -173,7 +184,7 @@
     <div class="container">
         <div class="media-container-row title">
             <div class="col-12 col-md-8">
-                <div class="mbr-section-btn align-center"><a class="btn btn-secondary display-4" href="https://github.com/PieterCooreman/aspLite" target="_blank"><span class="socicon socicon-github mbr-iconfont mbr-iconfont-btn"></span>Download on GitHub</a> <a class="btn btn-primary display-4" href="https://demo.asplite.com/demo.asp" target="_blank"><span class="mbri-laptop mbr-iconfont mbr-iconfont-btn"></span>Demo</a></div>
+                <div class="mbr-section-btn align-center"><a class="btn btn-secondary display-4" href="https://github.com/PieterCooreman/aspLite" target="_blank"><span class="fa fa-github mbr-iconfont mbr-iconfont-btn"></span>Download on GitHub</a> <a class="btn btn-primary display-4" href="https://demo.asplite.com/demo.asp" target="_blank"><span class="mbri-laptop mbr-iconfont mbr-iconfont-btn"></span>Demo</a></div>
             </div>
         </div>
     </div>
@@ -196,17 +207,17 @@
 </section>
 
 
-  <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5"></script>
   <script src="https://apis.google.com/js/plusone.js"></script>
   <script src="assets/facebook-plugin/facebook-script.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="assets/tether/tether.min.js"></script>
   <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="assets/viewportchecker/jquery.viewportchecker.js"></script>
   <script src="assets/parallax/jarallax.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
   <script src="assets/dropdown/js/nav-dropdown.js"></script>
   <script src="assets/dropdown/js/navbar-dropdown.js"></script>
   <script src="assets/theme/js/script.js"></script>

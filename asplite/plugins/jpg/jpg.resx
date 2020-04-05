@@ -1,7 +1,4 @@
 <%
-
-option explicit 
-
 class cls_asplite_jpg
 
 	public maxsize,path,effect,fsr

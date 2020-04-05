@@ -1,6 +1,4 @@
 <%
-option explicit
-
 class cls_asplite_rss
 
 	public template,maxitems,templateBreakPoint,breakpoint,cache
