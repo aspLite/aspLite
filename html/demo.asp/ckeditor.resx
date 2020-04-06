@@ -1,3 +1,6 @@
+<!-- CKEditor CDN (basic package) -->
+<script src="//cdn.ckeditor.com/4.14.0/basic/ckeditor.js"></script>
+
 <form action="demo.asp" method="post">
 
 	<input type="hidden" value="ckeditor"  name="e" />
