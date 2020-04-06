@@ -106,9 +106,9 @@
 					
 					<hr>
 					
-					<p>JSON datatable</p>
+					<p>Datatable</p>
 					<ul>
-						<li><a class="aspAjaxData" href="#" id="returnjsondata">Get some JSON data (from database)</a></li>		
+						<li><a class="aspAjax" href="#" id="returndata">Get some data (from database)</a></li>		
 					</ul>
 					
 					<hr>
@@ -167,11 +167,6 @@
 		e.preventDefault()
 		aspAjax('POST',aspAjaxUrl,'text',$(this).serialize(),aspAjaxSuccess)
 	})
-	
-	$('.aspAjaxData').click(function(e) {
-		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'json','e=' + this.id,jsonToTable)
-	})
 
 	function onPageLoad () { 
 		aspAjax('GET',aspAjaxUrl,'text','e=onload',aspAjaxSuccess)	
@@ -180,48 +175,6 @@
 	function aspAjaxSuccess(data) {
 		$('#body').html(data)	
 	}
-	
-	function jsonToTable(data) {
-	
-		var persons=data.persons //expects parsed json
-		var liPersons=''
-			
-		if (persons.length==0) {
-			$('#body').html('<p>no records found</p>')
-			return
-		}
-		
-		for (var i = 0; i < persons.length; i++) {
-		
-			var person=persons[i]	
-		
-			for (var key in person) {
-				liPersons+='<th scope="col">' + key + '</th>'
-			}
-			
-			break	// stop after 1 loop just to get the table headers
-		
-		}
-		
-		liPersons='<tr>' + liPersons + '</tr>'	
-			
-		for (var i = 0; i < persons.length; i++) {
-		
-			liPersons+='<tr>'
-		
-			var person=persons[i]
-			
-			for (var key in person) {
-				liPersons+='<td>' + (person[key]) + '</td>'
-			}
-			
-			liPersons+='</tr>'
-			
-		}
-		
-		$('#body').html('<br><table class="table table-striped">' + liPersons + '</table>')
-		
-	}	
 
 </script>
 

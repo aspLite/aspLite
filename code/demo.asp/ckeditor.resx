@@ -1,0 +1,13 @@
+<%
+body=aspL.load("html/demo.asp/ckeditor.resx")	
+
+dim mNotes
+mNotes=aspL.getRequest("mNotes")
+
+if aspL.isLeeg(mNotes) then
+	mNotes="<p>Some <strong><u><i>rich text</i></u></strong>.</p>"		
+end if
+
+body=replace(body,"[value]",mNotes,1,-1,1)
+
+%>

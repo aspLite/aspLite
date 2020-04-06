@@ -53,16 +53,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "ckeditor"
 		
-		body=aspL.load("html/demo.asp/ckeditor.resx")	
-		
-		dim mNotes
-		mNotes=aspL.getRequest("mNotes")
-		
-		if aspL.isLeeg(mNotes) then
-			mNotes="<p>Some <strong><u><i>rich text</i></u></strong>.</p>"		
-		end if
-		
-		body=replace(body,"[value]",mNotes,1,-1,1)
+		body=aspL.load("html/demo.asp/ckeditor.resx")
 				
 	case "upload"
 	
@@ -114,14 +105,13 @@ select case lcase(aspL.getRequest("e")) '"event"
 
 		aspL.flush "Second link clicked..."	
 	
-	case "returnbool"
-	
-		'returns a random boolean to the browser		
+	case "returnbool"	
+		
 		aspL.flush aspL.plugin("randomizer").randomnumber(0,100)>49	
 		
-	case "returnjsondata"
+	case "returndata"
 
-		aspL.exec("code/demo.asp/jsontable.resx")	
+		aspL.exec("code/demo.asp/datatable.resx")	
 		
 	case "sendmail"
 		
@@ -136,7 +126,6 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "jpg"	
 	
 		aspL.exec("code/demo.asp/jpghandler.resx")	
-	
 	
 	case "onload" 'default content for AJAX handler	
 	

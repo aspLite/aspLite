@@ -17,12 +17,10 @@ if (UBound(ks) <> -1) then
 				
 		body=body & "<p>The file <strong>" & aspL.sanitize(filename) & " (" & round(filesize/1024,0) & " kB)</strong> was successfully uploaded (and removed again).</p>"
 		
-		'for security reasons, I immediately remove the uploaded file.
+		'for security reasons, I immediately remove the uploaded files.
 		Upload.UploadedFiles(fileKey).delete()
 		
 	next
 end if
-
-
 
 %>
