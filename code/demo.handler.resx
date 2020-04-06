@@ -53,7 +53,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "ckeditor"
 		
-		body=aspL.load("html/demo.asp/ckeditor.resx")
+		aspL.exec("code/demo.asp/ckeditor.resx")
 				
 	case "upload"
 	
