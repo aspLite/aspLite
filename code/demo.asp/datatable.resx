@@ -30,6 +30,9 @@ while not rs.eof
 
 wend
 
+set db=nothing
+set rs=nothing
+
 aspL.flush "<table class=""table table-striped"">" & datatable & "</tr>"
 
 %>
