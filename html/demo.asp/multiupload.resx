@@ -6,6 +6,13 @@
   </div>
 </form>
 
+<br>
+
+<div class="alert alert-danger" role="alert">
+  Security alert: this script uploads the selected file(s) in the /uploads folder. However,
+  for obvious security reasons, they are deleted right after. Check /code/demo.asp/uploadfile.resx.
+</div>
+
 <script>
 // Add the following code if you want the name of the file appear on select
 $(".custom-file-input").on("change", function() {  
