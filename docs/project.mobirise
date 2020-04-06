@@ -24,7 +24,7 @@
         "display4Font": "Rubik",
         "display4Size": 1,
         "isRoundedButtons": false,
-        "isAnimatedOnScroll": true,
+        "isAnimatedOnScroll": false,
         "isScrollToTopButton": true
       },
       "additionalSetColors": [
