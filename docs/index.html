@@ -49,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown navbar-nav-top-padding" data-app-modern-menu="true"><li class="nav-item">
                     <a class="nav-link link text-white display-4" href="#top">home</a>
-                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#content4-7">about</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#content4-7">about</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#content4-i">documentation</a></li>
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="index.html#content4-6">
                         
@@ -82,7 +82,11 @@
             </div>
         </div>
     </div>
-    
+    <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
+        <a href="#next">
+            <i class="mbri-down mbr-iconfont"></i>
+        </a>
+    </div>
 </section>
 
 <section class="mbr-section content4 cid-rV63QjeNnh" id="content4-7">
@@ -107,17 +111,41 @@
 
     <div class="container">
         <div class="media-container-row">
-            <div class="mbr-text col-12 mbr-fonts-style display-7 col-md-10"><div><br></div><div><strong>aspLite</strong> is a lightweight framework for ASP/VBScript developers. It can help to develop better ASP/VBScript applications. aspLite was born in April 2020, at the peak of the COVID19-crisis. As is often the case, very peculiar circumstances lead to new and fresh ideas. ASP/VBScript (also known as "classic ASP") is available for 20 years now and I believe it still makes sense to share this approach. After all this time, classic ASP has proven to be reliable, fast and secure.&nbsp;</div><div><br></div><div>
-</div><div><strong>Installation:</strong></div><div><strong><br></strong></div><div><strong>
+            <div class="mbr-text col-12 mbr-fonts-style display-7 col-md-8"><div><strong>Introduction</strong><br></div><div><strong><br></strong></div><div>aspLite is a lightweight framework for ASP/VBScript developers. It can help to develop better ASP/VBScript applications. aspLite was born in April 2020, at the peak of the COVID19-crisis. As is often the case, very peculiar circumstances lead to new and fresh ideas. ASP/VBScript (also known as "classic ASP") is available for 20 years now and I believe it still makes sense to share this approach. After all this time, classic ASP has proven to be reliable, fast and secure. aspLite is about coding habits and it facilitates to keep html, asp and plugins in seperate locations.</div><div><br></div><div>
+</div><div><strong>Installation</strong></div><div><strong><br></strong></div><div><strong>
 </strong></div><div>
-</div><div>Install as a website or virtual directory in IIS. The actual framework is located in <strong>/asplite/asplite.asp</strong>. The path /asplite can be changed to anything else in /asplite/config.asp. If you prefer to use aspLite in a subfolder /mypath/asplite, make sure to update config.asp correspondingly. To run the demo site that ships with the framework, you need to enable 32bits applications for your website's application pool, as it includes a MS Access database sample. aspLite can also be used in any <em>IIS Express</em> edition.</div><div>
-</div><div><br></div><div><strong>Less is more</strong></div><div><strong><br></strong></div><div><strong>
-</strong></div><div>
-</div><div>aspLite consists out of <strong>2 asp files only</strong>:</div><div><br></div><div>/asplite/asplite.asp</div><div>/asplite/config.asp</div><div><br></div><div>The only thing this framework really does, is wrap useful ASP techniques, coding habits and components into <strong>one reusable VBScript class</strong>:</div><div><br></div><div>* split html/css/javascript and asp<br>* conditionally load asp code (rather than include them 'all')</div><div>* .net-alike codebehind approach<br>* charset utf8-proof</div><div>* file streaming (text, code + binary)</div><div>
-</div><div>* VBScript executeGlobal</div><div>* ServerXMLHTTP &amp; DOMDocument</div><div>
+</div><div>Install as a website or virtual directory in IIS. Make sure IUSR has <strong>full permissions</strong> on the entire folder and subfolders.<br><br>The actual framework is located in <strong>/asplite/asplite.asp</strong>. The path /asplite can be changed to anything else in /asplite/config.asp. If you prefer to use aspLite in a subfolder /mypath/asplite, make sure to update config.asp correspondingly. To run the demo site that ships with the framework, you need to enable <strong>32bits applications</strong> for your website's application pool, as it includes a MS Access database sample.</div><div><br></div><div> aspLite can also be used in any <em><strong>IIS Express</strong></em> edition.</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-rVmnA01MLR" id="content4-i">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    documentation</h2>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-rVmmTRHkuj" id="content1-h">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 mbr-fonts-style display-7 col-md-8"><div><br></div><div><strong>Less is more</strong><br></div><div><strong><br></strong></div><div></div><div>
+</div><div>aspLite consists out of <strong>2 asp files only</strong>:</div><div><br></div><div>/asplite/asplite.asp</div><div>/asplite/config.asp</div><div><br></div><div>The only thing this framework really does, is wrap useful ASP techniques, coding habits and components into <strong>one reusable VBScript class</strong>:</div><div><br></div><div>* split html/css/javascript and asp<br>* conditionally load asp code (rather than include them 'all')</div><div>* .net-alike codebehind approach<br>* charset utf8-proof</div><div>* file streaming (text, code + binary)</div><div><span style="font-size: 1rem;">* ServerXMLHTTP &amp; DOMDocument</span></div><div>
 </div><div>* basic AJAX support</div><div>* application caching<span style="font-size: 1rem;">&nbsp;</span></div><div>* some generic ASP/VBScript functions</div><div>* write your own plugins</div><div><br></div><div>
 </div><div>
-</div><div><strong>Get started</strong></div><div><strong><br></strong></div><div>You may want to check <strong>demo.asp</strong>. It helps to understand how aspLite works.</div><div><br></div><div>To start using aspLite, include it <strong><u>at the very top</u></strong>&nbsp;of your asp-page:<br>&lt;!-- #include file="asplite/asplite.asp"--&gt;</div><div><br></div><div>From then on, you can use an object of the aspLite class: <strong>aspL (it's already created)</strong>. The word "<strong>aspL</strong>" should therefore be considered a <strong>reserved word</strong>. Do not re-declare, re-set or even destroy it.&nbsp;</div><div><br></div><div><strong>Stick to 1 asp file for your project</strong></div><div><strong><br></strong></div><div>There are some very good reasons to <strong>stick to 1 asp page only&nbsp;</strong>for your application, even if your application has 20 screens with various different menus, forms, buttons or links each. Your best option is to use "default.asp" in the <strong>root</strong> of your application. "Default.asp" is always included in the list of "default documents" in IIS (express). But above all, using 1 asp page only, keeps server memory usage very low, specially when combined with conditionally loading asp scripts.</div><div><br></div><div><strong>Resx files?</strong></div><div><br></div><div>As an ASP developer, you will quickly notice that the .<strong>resx</strong>&nbsp;extension is used to include ASP scripts.&nbsp;<span style="font-size: 1rem;"><em>Why</em>? For <strong>security</strong> reasons. Resx files are never served nor executed by IIS. Therefore, it's impossible to inject or open resx files in the browser directly. You *can* however also use the regular .asp extensions for your handler-files. Make sure that visitors cannot inject (querystring, form submit) or load these pages in the browser directly.</span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>IDE?</strong></span></div><div><span style="font-size: 1rem;">I prefer <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to enable ASP syntax highlighting for .resx files. <em>Open Settings, Style configurator, select "asp", add "resx" to the "user ext". </em>You have to reopen the resx files for this to take effect. Notepad++ also comes with some basic code-completion functions. Others may want to use <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> instead.</span></div><div><br></div><div><strong>Bootstrap &amp; jQuery</strong></div><div><br></div><div>
+</div><div><strong>Get started</strong></div><div><strong><br></strong></div><div>You may want to check <strong>demo.asp</strong>. It helps to understand how aspLite works.</div><div><br></div><div>To start using aspLite, include it <strong><u>at the very top</u></strong>&nbsp;of your asp-page:<br>&lt;!-- #include file="asplite/asplite.asp"--&gt;</div><div><br></div><div>From then on, you can use an object of the aspLite class: <strong>aspL (it's already created)</strong>. The word "<strong>aspL</strong>" should therefore be considered a <strong>reserved word</strong>. Do not re-declare, re-set or even destroy it.&nbsp;</div><div><br></div><div><strong>Stick to 1 asp file for your project</strong></div><div><strong><br></strong></div><div>There are some very good reasons to <strong>stick to 1 asp page only&nbsp;</strong>for your application, even if your application has 20 screens with various different menus, forms, buttons or links each. Your best option is to use "<strong>default.asp</strong>" in the <strong>root</strong> of your application. "Default.asp" is always included in the list of "default documents" in IIS (express). But above all, using 1 asp page only, keeps server memory usage very low, specially when combined with conditionally loading asp scripts.</div><div><br></div><div><strong>Resx files?</strong></div><div><br></div><div>As an ASP developer, you will quickly notice that the .<strong>resx</strong>&nbsp;extension is used to include ASP scripts.&nbsp;<span style="font-size: 1rem;"><em>Why</em>? For <strong>security</strong> reasons. Resx files are never served nor executed by IIS. Therefore, it's impossible to inject or open resx files in the browser directly. You *can* however also use the regular .asp extensions for your handler-files. Make sure that visitors cannot inject (querystring, form submit) or load these pages in the browser directly.</span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>IDE?</strong></span></div><div><span style="font-size: 1rem;">I prefer <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to enable ASP syntax highlighting for .resx files. <em>Open Settings, Style configurator, select "asp", add "resx" to the "user ext". </em>You have to reopen the resx files for this to take effect. Notepad++ also comes with some basic code-completion functions. Others may want to use <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> instead.</span></div><div><br></div><div><strong>Bootstrap &amp; jQuery</strong></div><div><br></div><div>
 </div><div>
 </div><div>aspLite does not include or favorize frontend CSS/JavaScript libraries. But&nbsp;<span style="font-size: 1rem;">Bootstrap and some AJAX-examples - both using jQuery - are used in demo.asp. I believe that Bootstrap and jQuery are about everything a (back-end) web developer needs to build modern web applications and websites. Also, jQuery is the perfect toolset for implementing AJAX-based forms and pages.</span></div></div>
         </div>
@@ -148,23 +176,117 @@
             <div class="mbr-text col-12 mbr-fonts-style display-7 col-md-10"><p>The following plugins are included already - but not necessary to use the framework i.e. they can be ignored. When no plugins are used, they will not affect security or performance of your application in any way.
 </p><p></p><p>
 * connector for Access databases (OLEDB)
-<br><span style="font-size: 1rem;">* mailer for CDO.Message&nbsp;<br></span><span style="font-size: 1rem;">* jpg resize/recolor/crop (.net required)&nbsp;<br></span><span style="font-size: 1rem;">* json read/write&nbsp;<br></span><span style="font-size: 1rem;">* text/number randomizing&nbsp;<br></span><span style="font-size: 1rem;">* rss feed reader&nbsp;<br></span><span style="font-size: 1rem;">* file uploader</span></p><p><strong>How to add your own?</strong></p><p>Let's inspect one of the example plugins:&nbsp;<strong>asplite/plugins/helloworld/helloworld.resx</strong></p><p><span style="font-size: 1rem;">&lt;%<br></span><span style="font-size: 1rem;">class cls_asplite_helloworld</span></p><p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">public function hw<br></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">hw="Hello world!"<br></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">end function<br><br></span><span style="font-size: 1rem;">end class<br></span><span style="font-size: 1rem;">%&gt;</span></p><p><span style="font-size: 1rem;">Some remarks: </span></p><p><span style="font-size: 1rem;">* You <em>have</em> to use the resx-extension for your main plugin-file, for security reasons (see above).<br><br>* The entire codeblock sits beteween &lt;% and %&gt; marks. This is not required, but it can help to trigger syntax highlighting, like when working in Notepad++. Be aware that at runtime, aspLite <em>removes</em> these marks - see asplite.exec(path)</span></p><p>* The entire content of this resx file will be considered ASP code. Do not mix it with html, text, js or css code. It would raise an error.</p><p><span style="font-size: 1rem;">* Even though I always use Option Explicit (forces to declare variables only once), it seems to have no effect on code that is executed through VBScript's executeGlobal. I have no idea why, but it's good to know I guess.</span></p><p>* As aspLite forces to use the resx-extension, your plugin cannot include other ASP files like you may be used to:&nbsp;<br><br><strong>&lt;!-- #include file="mypluginInc.asp"--&gt;</strong> would raise an <strong><u>error</u></strong>, even if that mypluginInc.asp exists.<br><br>You would need to use the <strong>aspLite conditional include</strong> instead:<br><br><strong>aspL.exec("asplite/plugins/myplugin/mypluginInc.resx")</strong><br><br>where mypluginInc.resx resides in your "myplugin" directory.<br><br>* Plugin-folders can include other subfolders and files, like html, js, css, images, etc. There are no limitations whatsoever.</p><p><strong><u>These are the steps to create a plugin for aspLite:</u></strong></p></div>
+<br><span style="font-size: 1rem;">* mailer for CDO.Message&nbsp;<br></span><span style="font-size: 1rem;">* jpg resize/recolor/crop (.net required)&nbsp;<br></span><span style="font-size: 1rem;">* json read/write&nbsp;<br></span><span style="font-size: 1rem;">* text/number randomizing&nbsp;<br></span><span style="font-size: 1rem;">* rss feed reader&nbsp;<br></span><span style="font-size: 1rem;">* file uploader</span></p><p><strong>How to add your own?</strong></p><p>Let's inspect one of the example plugins:&nbsp;<strong>asplite/plugins/helloworld/helloworld.resx</strong></p><p><span style="font-size: 1rem;">&lt;%<br></span><span style="font-size: 1rem;">class cls_asplite_helloworld</span></p><p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">public function hw<br></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">hw="Hello world!"<br></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 1rem;">end function<br><br></span><span style="font-size: 1rem;">end class<br></span><span style="font-size: 1rem;">%&gt;</span></p><p><span style="font-size: 1rem;">Some remarks: </span></p><p><span style="font-size: 1rem;">* You <em>have</em> to use the resx-extension for your main plugin-file, for security reasons (see above).<br><br>* The entire codeblock sits beteween &lt;% and %&gt; marks. This is not required, but it can help to trigger syntax highlighting, like when working in Notepad++. Be aware that at runtime, aspLite <em>removes</em> these marks - see asplite.exec(path)</span></p><p>* The entire content of this resx file will be considered ASP code. Do not mix it with html, text, js or css code. It would raise an error.</p><p><span style="font-size: 1rem;">* Even though I always use Option Explicit (forces to declare variables only once), it seems to have no effect on code that is executed through VBScript's executeGlobal. I have no idea why, but it's good to know I guess.</span></p><p>* As aspLite forces to use the resx-extension, your plugin cannot include other ASP files like you may be used to:&nbsp;<br><br><strong>&lt;!-- #include file="mypluginInc.asp"--&gt;</strong> would raise an <strong><u>error</u></strong>, even if that mypluginInc.asp exists.<br><br>You would need to use the <strong>aspLite conditional include</strong> instead:<br><br><strong>aspL.exec("asplite/plugins/myplugin/mypluginInc.resx")</strong><br><br>where mypluginInc.resx resides in your "myplugin" directory.<br><br>* Plugin-folders can include other subfolders and files, like html, js, css, images, etc. There are no limitations whatsoever.</p></div>
         </div>
     </div>
 </section>
 
-<section class="mbr-section article content11 cid-rV6247wWc7" id="content11-5">
-     
+<section class="step1 cid-rVmjJ3cm6d" id="step1-e">
 
+    
+
+    
+    
     <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-                <ol>
-                    <li><span style="font-size: 1rem;">Plugins are stored in /asplite/plugins</span></li><li>Add a seperate folder for your plugin named <strong>myplugin</strong>: eg: /asplite/plugins/myplugin/</li>
-                    <li>Add a resx file with the <strong>same name</strong>: /asplite/plugins/myplugin/myplugin.resx.<br></li><li>In myplugin.resx, create a class with this <strong>same name</strong> as follows:
-<br><br>class cls_asplite_myplugin <br>... <br>end class</li><li>To create an instance of your plugin somewhere in your application, use:<br><br><strong>dim myObj<br>set myObj=aspL.plugin("myplugin")<br>myObj.XX()</strong><br><br>You could also just:<br><strong>aspL.plugin("myplugin").XX()</strong><br><br>(where XX() is a public sub/function of your myplugin-class)</li>
-                </ol>
+        
+        <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style align-center display-5">These are the steps to create a plugin for aspLite:</h3>
+        <div class="step-container">
+            <div class="card separline pb-4">
+                <div class="step-element d-flex">
+                    <div class="step-wrapper pr-3">
+                        <h3 class="step d-flex align-items-center justify-content-center">
+                            1
+                        </h3>
+                    </div>          
+                    <div class="step-text-content">
+                        <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Locate</h4>
+                        <p class="mbr-step-text mbr-fonts-style display-7">
+                            Plugins are stored in /asplite/plugins
+                        </p>
+                    </div>
+                </div>
             </div>
+
+            <div class="card separline pb-4">
+                <div class="step-element d-flex">
+                    <div class="step-wrapper pr-3">
+                        <h3 class="step d-flex align-items-center justify-content-center">
+                            2
+                        </h3>
+                    </div>          
+                    <div class="step-text-content">
+                        <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Add your plugin-folder</h4>
+                        <p class="mbr-step-text mbr-fonts-style display-7">
+                            Add a seperate folder for your plugin named myplugin: eg: /asplite/plugins/myplugin/
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card separline pb-4">
+                <div class="step-element d-flex">
+                    <div class="step-wrapper pr-3">
+                        <h3 class="step d-flex align-items-center justify-content-center">
+                            3
+                        </h3>
+                    </div>          
+                    <div class="step-text-content">
+                        <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Create plugin-resx</h4>
+                        <p class="mbr-step-text mbr-fonts-style display-7">Add a resx file with the same name: /asplite/plugins/myplugin/myplugin.resx.&nbsp;<br></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card separline pb-4">
+                <div class="step-element d-flex">
+                    <div class="step-wrapper pr-3">
+                        <h3 class="step d-flex align-items-center justify-content-center">
+                            4
+                        </h3>
+                    </div>          
+                    <div class="step-text-content">
+                        <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">
+                            Create class</h4>
+                        <p class="mbr-step-text mbr-fonts-style display-7">In myplugin.resx, create a class with this same name as follows: 
+<br>
+<br>class cls_asplite_myplugin 
+<br>... 
+<br>end class</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="step-element d-flex">
+                    <div class="step-wrapper pr-3">
+                        <h3 class="step d-flex align-items-center justify-content-center">
+                            5
+                        </h3>
+                    </div>          
+                    <div class="step-text-content">
+                        <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">
+                            Usage</h4>
+                        <p class="mbr-step-text mbr-fonts-style display-7">To create an instance of your plugin somewhere in your application, use:
+<br>
+<br><strong>dim myObj
+<br>set myObj=aspL.plugin("myplugin")
+<br>myObj.XX()
+</strong><br>
+<br>You could also just:
+<br><strong>aspL.plugin("myplugin").XX()
+<br></strong>
+<br>(where XX() is a public sub/function of your myplugin-class)</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
         </div>
     </div>
 </section>
