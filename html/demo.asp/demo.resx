@@ -80,15 +80,13 @@
 						<li><a href="demo.asp?e=accessdb">Access DB plugin</a></li>
 						<li><a href="demo.asp?e=ckeditor">CKEditor 4 (WYSIWYG editor)</a></li>
 						<li><a href="demo.asp?e=upload">upload single file</a></li>
-						<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>			
-						
-					</ul>
-				   
+						<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>					
+					</ul>				   
 				   
 				   <form action="demo.asp" method="post">						
 						<button class="btn btn-danger" type="submit" value="clickbutton" name="e">click button</button>		
 					</form>	
-				   
+				   <br /><br />
 				   
 				</div>
 				<div class="col-sm">

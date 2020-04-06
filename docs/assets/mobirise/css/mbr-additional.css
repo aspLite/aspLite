@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap);
 
 
 
@@ -8,7 +8,7 @@ body {
   font-family: Rubik;
 }
 .display-1 {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 4.25rem;
   font-display: swap;
 }
@@ -16,7 +16,7 @@ body {
   font-size: 6.8rem;
 }
 .display-2 {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 3rem;
   font-display: swap;
 }
@@ -24,7 +24,7 @@ body {
   font-size: 4.8rem;
 }
 .display-4 {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   font-display: swap;
 }
@@ -32,7 +32,7 @@ body {
   font-size: 1.6rem;
 }
 .display-5 {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.5rem;
   font-display: swap;
 }
@@ -40,7 +40,7 @@ body {
   font-size: 2.4rem;
 }
 .display-7 {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   font-display: swap;
 }
@@ -529,7 +529,7 @@ a:hover {
 }
 /* Scroll to top button*/
 .form-control {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   font-display: swap;
 }

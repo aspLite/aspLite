@@ -1,15 +1,17 @@
 <%
 dim uploadsDirVar, filesize, filename
+
+'default path: uploads
 uploadsDirVar = server.MapPath ("uploads") 
 
 dim upload
-Set upload = aspL.plugin("upload")
+Set upload = aspL.plugin("uploader")
 
 upload.Save uploadsDirVar
 
 dim ks, fileKey, strMessage
 ks = Upload.UploadedFiles.keys
-if (UBound(ks) <> -1) then
+'if (UBound(ks) <> -1) then
 	for each fileKey in Upload.UploadedFiles.keys
 		
 		filesize=Upload.UploadedFiles(fileKey).Length
@@ -21,6 +23,12 @@ if (UBound(ks) <> -1) then
 		Upload.UploadedFiles(fileKey).delete()
 		
 	next
+'end if
+
+if not aspL.isleeg(upload.errorMessage) then
+	body=upload.errorMessage
 end if
+
+set upload=nothing
 
 %>
