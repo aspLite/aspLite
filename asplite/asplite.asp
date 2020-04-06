@@ -9,7 +9,7 @@ set aspL=new cls_asplite
 
 class cls_asplite	
 
-	private startTime,stopTime,plugins
+	private startTime,stopTime,plugins,p_fso
 	
 	Private Sub Class_Initialize()
 	
@@ -26,6 +26,7 @@ class cls_asplite
 		Response.ExpiresAbsolute	= Now()-1	
 		
 		set plugins=nothing
+		set p_fso=nothing
 		
 	End Sub	
 	
@@ -41,6 +42,8 @@ class cls_asplite
 		
 			set plugins=nothing
 		end if
+		
+		set p_fso=nothing
 		
 	End sub
 	
@@ -364,6 +367,16 @@ class cls_asplite
 				application.contents.remove(el)
 			end if
 		next
+	
+	end function
+	
+	public function fso
+	
+		if p_fso is nothing then
+			set p_fso=server.createobject("scripting.filesystemobject")
+		end if
+		
+		set fso=p_fso
 	
 	end function
 	

@@ -91,9 +91,8 @@ Class cls_asplite_uploader
 	End Sub
 	
 	public sub SaveOne(path, num, byref outFileName, byref outLocalFileName)
-		Dim streamFile, fileItems, fileItem, fs
-
-        set fs = Server.CreateObject("Scripting.FileSystemObject")
+		Dim streamFile, fileItems, fileItem
+        
 		if Right(path, 1) <> "\" then path = path & "\"
 
 		if not uploadedYet then Upload
@@ -119,9 +118,8 @@ Class cls_asplite_uploader
 	end sub
     
     public function GetFileStream(num)
-		Dim streamFile, fileItems, fileItem, fs
-
-        set fs = Server.CreateObject("Scripting.FileSystemObject")
+	
+		Dim streamFile, fileItems, fileItem
 
 		if not uploadedYet then Upload
 		if UploadedFiles.Count > 0 then
@@ -354,20 +352,14 @@ Class UploadedFile
         FileName = nameOfFile
     End Property
 	
-	Public function delete()
-				
-		dim fsoUPLOAD
-		set fsoUPLOAD=server.CreateObject ("scripting.filesystemobject")
+	Public function delete()	
 	
-		if fsoUPLOAD.FileExists (path) then
-			fsoUPLOAD.DeleteFile (path)
-		end if
-		
-		set fsoUPLOAD=nothing				
+		if aspL.fso.FileExists (path) then
+			aspL.fso.DeleteFile (path)
+		end if	
     
     end function
-
-    'Public Property Get FileN()ame
+    
 End Class
 
 
@@ -409,8 +401,8 @@ Function GetFileName(strSaveToPath, FileName)
     Dim strTempFileName
     Dim FileExt
     Dim NewFullPath
-    dim objFSO, p
-    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    dim p
+   
     Counter = 0
     p = instrrev(FileName, ".")
     FileExt = mid(FileName, p+1)
@@ -419,7 +411,7 @@ Function GetFileName(strSaveToPath, FileName)
     Flag = False
     
     Do Until Flag = True
-        If objFSO.FileExists(NewFullPath) = False Then
+        If aspL.fso.FileExists(NewFullPath) = False Then
             Flag = True
             GetFileName = Mid(NewFullPath, InstrRev(NewFullPath, "\") + 1)
         Else
