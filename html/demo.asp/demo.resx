@@ -44,11 +44,12 @@
 					  <li class="nav-item active dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">AJAX Event Handler</a>
 						<div class="dropdown-menu"  aria-labelledby="dropdown01">
-						  <a class="aspAjax dropdown-item" id="clicklink1" href="#">Click a first link</a>
-						  <a class="aspAjax dropdown-item" id="clicklink2" href="#">Click a second link</a>
-						  <a class="aspAjax dropdown-item" id="jpg" href="#">Get images from server</a>						  
-						  <a class="aspAjax dropdown-item" id="returnbool" href="#">Get random boolean from server</a>
-						  <a class="aspAjax dropdown-item" id="rss" href="#">Read the news</a>					  
+							<a class="aspAjax dropdown-item" id="clicklink1" href="#">Click a first link</a>
+							<a class="aspAjax dropdown-item" id="clicklink2" href="#">Click a second link</a>
+							<a class="aspAjax dropdown-item" id="jpg" href="#">Get images from server</a>						  
+							<a class="aspAjax dropdown-item" id="returnbool" href="#">Get random boolean from server</a>
+							<a class="aspAjax dropdown-item" id="rss" href="#">Read the news</a>	
+							<a class="aspAjax dropdown-item" id="onload" href="#">Reset</a>						  
 						</div>
 					  </li>
 				</ul>
@@ -93,7 +94,7 @@
 				<div class="col-sm">
 				   
 					<h5>Output AJAX handler:</h5>
-					<div id="body" class="alert alert-primary" role="alert">[BODY]</div>						
+					<div id="body" class="alert alert-primary" role="alert"></div>						
 										
 					<form class="ajaxForm" action="default.asp">
 						<div class="input-group mb-3">
