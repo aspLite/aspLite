@@ -23,7 +23,7 @@ Class cls_asplite_uploader
 		StreamRequest.Type = 2 'adTypeText
 		StreamRequest.Open
 		uploadedYet = false
-		internalChunkSize = 200000
+		internalChunkSize = 150000
 	End Sub
 	
 	Private Sub Class_Terminate()
