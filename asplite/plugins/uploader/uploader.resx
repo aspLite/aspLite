@@ -328,10 +328,8 @@ Class cls_asplite_uploader
 End Class
 
 Class UploadedFile
-	Public ContentType
-	Public Start
-	Public Length
-	Public Path
+
+	Public ContentType, Start, Length, Path
 	Private nameOfFile
 
     ' Need to remove characters that are valid in UNIX, but not in Windows
@@ -408,8 +406,8 @@ Function GetFileName(strSaveToPath, FileName)
     FileExt = mid(FileName, p+1)
     strTempFileName = left(FileName, p-1)
     NewFullPath = strSaveToPath & "\" & FileName
-    Flag = False
-    
+    Flag = False	
+	    
     Do Until Flag = True
         If aspL.fso.FileExists(NewFullPath) = False Then
             Flag = True
