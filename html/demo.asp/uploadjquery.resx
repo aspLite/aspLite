@@ -11,7 +11,20 @@
 		</div>
 	</div>
 	
-	<div id="uploadFB"></div>
+	<div>
+	
+	<div style="display:none" id="alert" class="alert alert-primary" role="alert">
+		
+		<div id="loading" style="float:right" class="spinner-border spinner-border-sm" role="status">
+			  <span class="sr-only">Loading...</span>
+			  
+			</div>
+			
+			<div id="uploadFB"></div>
+		
+		
+		</div>
+	</div>
   
 </form>
 
@@ -29,7 +42,11 @@ $("#uploadForm").submit(function(e){
 
 	e.preventDefault()
 	
-	$("#uploadFB").html('<div class="alert alert-warning" role="alert"><strong>Upload started!</strong> Do not close this window.</div>')
+	$("#uploadFB").html('<strong>Upload started!</strong> Do not close this window.')
+	
+	$("#loading").css("display","block");
+	$("#alert").css("display","block");
+	
 
 	$("#uploadForm").find("input[type=file]").each(function(index, field){
 		files=field.files		
@@ -53,12 +70,14 @@ function jQueryUpload() {
 		contentType: false, 
 		processData: false, 
 		success: function (data) {			
-					$("#uploadFB").html('<div class="alert alert-warning" role="alert"><strong>' + file.name + '</strong> was uploaded</div>')	
+					$("#uploadFB").html('<strong>' + file.name + '</strong> was uploaded')	
 					i++				
 					if(i<files.length) {jQueryUpload()}
 					else {
-					//done					
-					$("#uploadFB").html('<div class="alert alert-primary" role="alert"><strong>' + i + ' files</strong> have been uploaded</div>')
+					//done	
+					$("#loading").css("display","none");					
+					$("#uploadFB").html('<strong>' + i + ' files</strong> have been uploaded')
+					$("#uploadFB").css("width","100%");	
 					i=0;
 					}
 				},
