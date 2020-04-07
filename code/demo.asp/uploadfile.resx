@@ -1,5 +1,5 @@
 <%
-on error resume next
+'on error resume next
 
 dim uploadsDirVar, filesize, filename, errorMessage
 
@@ -12,7 +12,7 @@ Set upload = aspL.plugin("uploader")
 upload.Save uploadsDirVar
 
 dim ks, fileKey, strMessage
-ks = Upload.UploadedFiles.keys
+'ks = Upload.UploadedFiles.keys
 'if (UBound(ks) <> -1) then
 	for each fileKey in Upload.UploadedFiles.keys
 		
