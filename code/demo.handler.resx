@@ -33,11 +33,11 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "downloadlargefile"
 	
-		aspL.flushBinaryFile("html/demo.asp/largefile.jpg")
+		aspL.dumpBinary("html/demo.asp/largefile.jpg")
 	
 	case "downloadsmallfile"
 	
-		aspL.flushBinaryFile("html/demo.asp/smallfile.jpg")
+		aspL.dumpBinary("html/demo.asp/smallfile.jpg")
 	
 	case "helloworld"
 	
@@ -67,47 +67,56 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 		body=aspL.load("html/demo.asp/multiupload.resx")
 	
+	case "uploadjquery"
+	
+		body=aspL.load("html/demo.asp/uploadjquery.resx")
+		
+	case "uploadfilejquery"
+	
+		aspL.exec("code/demo.asp/uploadfile.resx")	
+		aspL.dump errorMessage
+	
 	'AJAX handlers
 		
 	case "ajaxhello"
 		
-		aspL.flush "Hello " & aspL.sanitize(aspL.URLDecode(aspL.getRequest("yourname")))
+		aspL.dump "Hello " & aspL.sanitize(aspL.URLDecode(aspL.getRequest("yourname")))
 
 	case "submit1"
 	
-		aspL.flush "Form 1 save button was clicked - " & aspL.getrequest("yourname")
+		aspL.dump "Form 1 save button was clicked - " & aspL.getrequest("yourname")
 		
 	case "linksubmit"
 	
-		aspL.flush "Form 1 submitted by link - " & aspL.getrequest("yourname")
+		aspL.dump "Form 1 submitted by link - " & aspL.getrequest("yourname")
 	
 	case "delete1"
 	
-		aspL.flush "Form 1 delete button was clicked - " & aspL.getrequest("yourname")
+		aspL.dump "Form 1 delete button was clicked - " & aspL.getrequest("yourname")
 		
 	case "submit2"
 	
-		aspL.flush "Form 2 save button was clicked"
+		aspL.dump "Form 2 save button was clicked"
 	
 	case "delete2"
 	
-		aspL.flush "Form 2 delete button was clicked"
+		aspL.dump "Form 2 delete button was clicked"
 		
 	case "buttonclick"
 	
-		aspL.flush "Regular button was clicked"
+		aspL.dump "Regular button was clicked"
 		
 	case "clicklink1"
 
-		aspL.flush "First link clicked..."
+		aspL.dump "First link clicked..."
 	
 	case "clicklink2"
 
-		aspL.flush "Second link clicked..."	
+		aspL.dump "Second link clicked..."	
 	
 	case "returnbool"	
 		
-		aspL.flush aspL.plugin("randomizer").randomnumber(0,100)>49	
+		aspL.dump aspL.plugin("randomizer").randomnumber(0,100)>49	
 		
 	case "returndata"
 
@@ -121,7 +130,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 		dim rss
 		set rss=aspL.plugin("rss")
-		aspL.flush rss.read("http://rss.cnn.com/rss/cnn_topstories.rss")
+		aspL.dump rss.read("http://rss.cnn.com/rss/cnn_topstories.rss")
 		
 	case "jpg"	
 	
@@ -129,7 +138,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "onload" 'default content for AJAX handler	
 	
-		aspL.flush "Hello world, Καλημέρα κόσμε (utf8-ready)"
+		aspL.dump "Hello world, Καλημέρα κόσμε (utf8-ready)"
 		
 	case else 'default content for REGULAR handler
 	

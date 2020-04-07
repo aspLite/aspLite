@@ -14,5 +14,8 @@ html=replace (html,"[BODY]",body,1,-1,1)
 'timer
 html=replace (html,"[TIMER]","<!--code took " & aspL.printTimer & " ms to execute-->",1,-1,1)
 
-aspL.flush html
+response.write html
+
+'destroy aspLite
+set aspL=nothing
 %>

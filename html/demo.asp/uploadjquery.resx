@@ -1,0 +1,72 @@
+
+<p>Select multiple files (jQuery upload):</p>
+<form method="post" enctype="multipart/form-data" id="uploadForm" action=""> 
+ 
+	<div class="form-group">
+		<div class="custom-file">
+		
+		<input type="file" class="custom-file-input" name="files" id="files" multiple onchange="$('#uploadForm').submit();return false;">
+		<label class="custom-file-label" id="customFileLabel" for="customFile">Choose files</label>
+
+		</div>
+	</div>
+	
+	<div id="uploadFB"></div>
+  
+</form>
+
+<div class="alert alert-danger" role="alert">
+  Security alert: this script uploads the selected file(s) in the /uploads folder. However,
+  for obvious security reasons, they are deleted right after. Check /code/demo.asp/uploadfile.resx.
+</div>
+
+<script>
+
+var i=0;
+var files;
+
+$("#uploadForm").submit(function(e){
+
+	e.preventDefault()
+	
+	$("#uploadFB").html('<div class="alert alert-warning" role="alert"><strong>Upload started!</strong>. Do not close this window.</div>')
+
+	$("#uploadForm").find("input[type=file]").each(function(index, field){
+		files=field.files		
+		})	
+		
+	jQueryUpload()
+	
+});
+
+function jQueryUpload() {	
+	
+	var file = files[i]
+	var fd = new FormData(); 			
+	fd.append('file', file)	
+	
+	$.ajax({		
+		type: "post",
+		url: "demo.asp?e=uploadfilejquery",
+		dataType: "text",
+		data: fd,
+		contentType: false, 
+		processData: false, 
+		success: function (data) {			
+					$("#uploadFB").html('<div class="alert alert-warning" role="alert"><strong>' + file.name + '</strong> was uploaded</div>')	
+					i++				
+					if(i<files.length) {jQueryUpload()}
+					else {
+					//done					
+					$("#uploadFB").html('<div class="alert alert-primary" role="alert"><strong>' + i + ' files</strong> have been uploaded</div>')
+					i=0;
+					}
+				},
+		error: function (data) {
+			console.log (data)
+			}
+		});
+	}
+
+
+</script>

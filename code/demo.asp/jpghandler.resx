@@ -32,5 +32,5 @@ jpg.fsr=1
 	specialeffects=specialeffects & replace(bsTemplate,"[src]",jpg.src,1,-1,1)
 	specialeffects=replace(specialeffects,"[caption]","rectangle",1,-1,1)
 
-aspL.flush "<div class=""card-columns"">" & specialeffects & "</div>"	
+aspL.dump "<div class=""card-columns"">" & specialeffects & "</div>"	
 %>

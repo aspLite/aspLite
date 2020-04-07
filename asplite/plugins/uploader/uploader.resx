@@ -10,8 +10,6 @@
 'Sep 3, 2010: Enforce UTF-8 everywhere; new function to convert byte array to unicode string
 
 
-const adSaveCreateOverWrite = 2
-
 Class cls_asplite_uploader
 
 	Public UploadedFiles, FormElements, errorMessage
@@ -193,7 +191,9 @@ Class cls_asplite_uploader
 			StreamRequest.WriteText(VarArrayBinRequest)
 			StreamRequest.Flush()
 			if Err.Number <> 0 then 
-				errorMessage="<p>System reported an error:</p><p>" & Err.Description  &"</p><p>The most likely cause for this error is the incorrect setup of AspMaxRequestEntityAllowed in IIS MetaBase.<p>"
+				errorMessage="<p>System reported an error:</p>"
+				errorMessage=errorMessage & "<p>" & Err.Description  & "</p>"
+				errorMessage=errorMessage & "<p>The most likely cause for this error is the incorrect setup of AspMaxRequestEntityAllowed in IIS MetaBase.</p>"
 				Exit Sub
 			end if
 		on error goto 0 'reset error handling

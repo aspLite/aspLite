@@ -1,5 +1,7 @@
 <%
-dim uploadsDirVar, filesize, filename
+on error resume next
+
+dim uploadsDirVar, filesize, filename, errorMessage
 
 'default path: uploads
 uploadsDirVar = server.MapPath ("uploads") 
@@ -27,8 +29,11 @@ ks = Upload.UploadedFiles.keys
 
 if not aspL.isleeg(upload.errorMessage) then
 	body=upload.errorMessage
+	errorMessage=body
 end if
 
 set upload=nothing
+
+on error goto 0
 
 %>

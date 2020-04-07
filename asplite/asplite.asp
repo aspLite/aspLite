@@ -137,28 +137,21 @@ class cls_asplite
 		asperror=asperror & "err.number: " &  err.number & "<br><br>"
 		asperror=asperror & "err.description: " &  err.description & "<br><br>"
 				
-		flush asperror
+		dump asperror
 	
-	end function
+	end function	
 	
-	
-	public function flush (value)
+	public function dump (value)
 	
 		response.clear
-		response.write value		
+		response.write value
+		Class_Terminate()		
 		response.end	
 	
 	end function
 	
-	public function flushbinary (value)
 	
-		response.clear
-		response.binarywrite value		
-		response.end	
-	
-	end function
-	
-	public function flushBinaryFile (path)
+	public function dumpBinary (path)
 	
 		on error resume next
 	
@@ -253,12 +246,11 @@ class cls_asplite
 				response.flush()
 			next
 			
-		end if	
-	
-		response.flush()
+		end if		
 		
 		set objStream=nothing
 		response.clear
+		Class_Terminate()
 		response.end 
 	
 	end function
@@ -371,6 +363,8 @@ class cls_asplite
 	end function
 	
 	public function fso
+	
+		'gives back a filesystemobject (created only once)
 	
 		if p_fso is nothing then
 			set p_fso=server.createobject("scripting.filesystemobject")

@@ -11,5 +11,5 @@ mail.fromemail="info@quickersite.com"
 'mail.send() 'commented out for security reasons - make sure to uncomment when you're ready
 set mail=nothing
 
-aspL.flush "Mail sent"
+aspL.dump "Mail sent"
 %>
