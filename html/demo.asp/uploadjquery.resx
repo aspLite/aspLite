@@ -1,5 +1,5 @@
-
 <p>Select multiple files (jQuery upload):</p>
+
 <form method="post" enctype="multipart/form-data" id="uploadForm" action=""> 
  
 	<div class="form-group">
@@ -11,19 +11,15 @@
 		</div>
 	</div>
 	
-	<div>
-	
 	<div style="display:none" id="alert" class="alert alert-primary" role="alert">
 		
-		<div id="loading" style="float:right" class="spinner-border spinner-border-sm" role="status">
-			  <span class="sr-only">Loading...</span>
-			  
-			</div>
-			
-			<div id="uploadFB"></div>
 		
+		<div id="loading" class="spinner-border" style="float:right;width: 1.5rem; height: 1.5rem;" role="status">
+		  <span class="sr-only">Loading...</span>		  
+		</div>			
 		
-		</div>
+		<div id="uploadFB"></div>		
+	
 	</div>
   
 </form>
@@ -36,6 +32,7 @@
 <script>
 
 var i=0;
+var j=0;
 var files;
 
 $("#uploadForm").submit(function(e){
@@ -47,7 +44,6 @@ $("#uploadForm").submit(function(e){
 	$("#loading").css("display","block");
 	$("#alert").css("display","block");
 	
-
 	$("#uploadForm").find("input[type=file]").each(function(index, field){
 		files=field.files		
 		})	
@@ -75,17 +71,33 @@ function jQueryUpload() {
 					if(i<files.length) {jQueryUpload()}
 					else {
 					//done	
-					$("#loading").css("display","none");					
-					$("#uploadFB").html('<strong>' + i + ' files</strong> have been uploaded')
-					$("#uploadFB").css("width","100%");	
-					i=0;
+					finish()
 					}
 				},
 		error: function (data) {
-			console.log (data)
+			$("#uploadFB").html('<strong>' + file.name + '</strong> was NOT uploaded')	
+			i++
+			j++
+			if(i<files.length) {jQueryUpload()}
+			else {
+				//done
+				finish()
+				}			
 			}
 		});
 	}
 
-
+function finish() {
+	
+	$("#loading").css("display","none")
+	
+	$("#uploadFB").html('<strong>' + (i-j) + ' files</strong> have been uploaded')
+	
+	if(!j==0) {
+		$("#uploadFB").append('<br><strong>' + j + ' files</strong> have NOT been uploaded (probably too big)')
+	}
+	
+	i=0;
+	j=0;
+}
 </script>
