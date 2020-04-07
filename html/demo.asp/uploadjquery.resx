@@ -29,7 +29,7 @@ $("#uploadForm").submit(function(e){
 
 	e.preventDefault()
 	
-	$("#uploadFB").html('<div class="alert alert-warning" role="alert"><strong>Upload started!</strong>. Do not close this window.</div>')
+	$("#uploadFB").html('<div class="alert alert-warning" role="alert"><strong>Upload started!</strong> Do not close this window.</div>')
 
 	$("#uploadForm").find("input[type=file]").each(function(index, field){
 		files=field.files		
