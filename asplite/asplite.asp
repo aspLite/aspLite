@@ -54,8 +54,7 @@ class cls_asplite
 		value=replace(value,"<" & "%","",1,-1,1)
 		removeCRB=replace(value,"%" & ">","",1,-1,1)		
 	
-	end function
-	
+	end function	
 
 	public sub exec(path)
 		
@@ -67,8 +66,7 @@ class cls_asplite
 		
 		load=stream(path)
 
-	end function
-	
+	end function	
 	
 	private function stream(path)
 	
@@ -112,8 +110,7 @@ class cls_asplite
 		
 		set plugin=plugins(value)
 	
-	end function
-	
+	end function	
 	
 	public function getRequest(value)
 	

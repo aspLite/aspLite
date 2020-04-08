@@ -74,7 +74,7 @@
     "index.html": {
       "settings": {
         "main": true,
-        "title": "Home",
+        "title": "aspLite - lightweight framework for ASP/VBScript developers",
         "meta_descr": "",
         "header_custom": "",
         "footer_custom": "",
