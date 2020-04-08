@@ -73,13 +73,9 @@ Class cls_asplite_uploader
 				Counter = Counter + 1
 				NewFullPath = strSaveToPath & "\" & strTempFileName & Counter & "." & FileExt
 			End If
-		Loop
-		
-		 if err.number<>0 then
-			aspL.asperror()
-		 end if
+		Loop		 
 		 
-		 on error goto 0		
+		on error goto 0		
 		
 	End Function 
             
@@ -111,13 +107,9 @@ Class cls_asplite_uploader
 			Set streamFile = Nothing
 			fileItem.Path = filePath			
 			
-		 Next
+		 Next		
 		 
-		 if err.number<>0 then
-			aspL.asperror()
-		 end if
-		 
-		 on error goto 0
+		on error goto 0
 		 
 	End Sub	
 

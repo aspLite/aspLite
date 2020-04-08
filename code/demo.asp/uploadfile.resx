@@ -27,10 +27,5 @@ next
 
 set upload=nothing
 
-if err.number<>0 then
-	aspL.asperror()
- end if
-
 on error goto 0
-
 %>

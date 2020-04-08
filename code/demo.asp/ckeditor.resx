@@ -1,5 +1,4 @@
 <%
-
 'you can have multiple ckeditor instances. 
 
 'load the template file first (including JavScript CDN)
@@ -19,5 +18,4 @@ end if
 
 body=replace(body,"[mNotes1]",mNotes1,1,-1,1)
 body=replace(body,"[mNotes2]",mNotes2,1,-1,1)
-
 %>

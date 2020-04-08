@@ -1,3 +1,4 @@
+<%
 'database plugin example
 dim db,rs 
 
@@ -14,3 +15,4 @@ while not rs.eof
 wend 
 
 body=body & "</ul>"
+%>

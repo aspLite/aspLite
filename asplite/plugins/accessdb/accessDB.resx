@@ -21,10 +21,8 @@ Class cls_asplite_accessDB
 		set connection = getConn()
 		Set Execute = connection.Execute(sql)
 		
-		if err.number<>0 then			
-			aspL.asperror "The query """ & server.htmlEncode(sql) & """ cannot be executed. There may be a connection error and/or a mistake in the SQL-syntax."
-		end if
-		
+		aspL.asperror "The query """ & server.htmlEncode(sql) & """ cannot be executed. There may be a connection error and/or a mistake in the SQL-syntax."
+				
 		On Error Goto 0
 		
 	End Function

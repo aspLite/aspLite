@@ -1,5 +1,4 @@
 <%
-
 class cls_asplite_cdomessage
 
 	public smtpserver,smtpport,sendusing,pickupdir,smtpusername,smtpuserpw,smtpusessl
@@ -66,11 +65,9 @@ class cls_asplite_cdomessage
 		myMail.HTMLBodypart.Charset = "utf-8"
 		myMail.send
 		
-		set MyMail=nothing		
-	
-		if err.number<>0 then	
-			asperror("Something goes wrong when sending emails.")
-		end if		
+		set MyMail=nothing	
+			
+		asperror("Something goes wrong when sending emails. See details below:")		
 		
 		On Error Goto 0
 		

@@ -81,9 +81,7 @@ class cls_asplite
 			stream = objStream.ReadText()					
 		set objStream=nothing
 		
-		if err.number<>0 then	
-			asperror(path)
-		end if	
+		asperror(path)			
 		
 		on error goto 0	
 	
@@ -128,14 +126,18 @@ class cls_asplite
 	
 	end function	
 	
-	Public function asperror(value)		
+	Public function asperror(value)	
 		
-		asperror="<h1>Error  details:</h1>"
-		asperror=asperror & value & "<br><br>"
-		asperror=asperror & "err.number: " &  err.number & "<br><br>"
-		asperror=asperror & "err.description: " &  err.description & "<br><br>"
-				
-		dump asperror
+		if err.number<>0 then
+		
+			asperror="<h1>Error  details:</h1>"
+			asperror=asperror & value & "<br><br>"
+			asperror=asperror & "err.number: " &  err.number & "<br><br>"
+			asperror=asperror & "err.description: " &  err.description & "<br><br>"
+					
+			dump asperror
+		
+		end if
 	
 	end function	
 	
@@ -162,10 +164,8 @@ class cls_asplite
 		objStream.type=1 'adTypeBinary
 		objStream.LoadFromFile(path)
 
-		if err.number<>0 then	
-			asperror(path)
-		end if		
-		
+		asperror(path)
+				
 		'get filesize
 		dim size
 		size=objStream.size	
