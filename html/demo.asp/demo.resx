@@ -78,7 +78,7 @@
 						<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a></li>
 						<li><a href="demo.asp?e=helloworld">hello world plugin</a></li>
 						<li><a href="demo.asp?e=randomizer">randomizer plugin</a></li>
-						<li><a href="customurl">userfriendly urls?</a> (<a href="">not working?</a>)</li>
+						<li><a href="customurl">userfriendly urls?</a> (<a target="_blank" href="https://asplite.com">not working?</a>)</li>
 						<li><a href="demo.asp?e=accessdb">Access DB plugin</a></li>
 						<li><a href="demo.asp?e=ckeditor">CKEditor 4 (WYSIWYG editor)</a></li>
 						<li><a href="demo.asp?e=upload">upload single file</a></li>
