@@ -379,6 +379,52 @@ class cls_asplite
 	
 	end function
 	
+	
+	Public function getUFL 'get userfriendly url if any
+		
+		dim ufl
+		ufl=Request.ServerVariables("query_string")	
+				
+		if instr(ufl,"?")>0 then
+			ufl=left(ufl,instr(ufl,"?"))
+		end if			
+		
+		if not isLeeg(ufl) then
+		
+			ufl=replace(ufl,":80","",1,-1,1)
+			ufl=replace(ufl,":443","",1,-1,1)
+			ufl=replace(ufl,"http://" & request.servervariables("http_host") & "/" & asp_path,"",1,-1,1)
+			ufl=replace(ufl,"https://" & request.servervariables("http_host") & "/" & asp_path,"",1,-1,1)
+			ufl=replace(ufl,"http://" & request.servervariables("http_host"),"",1,-1,1)
+			ufl=replace(ufl,"https://" & request.servervariables("http_host"),"",1,-1,1)
+			ufl=replace(ufl,"404;","",1,-1,1)
+			ufl=replace(ufl,"aspxerrorpath=/","",1,-1,1)			
+			ufl=replace(ufl,":" & request.servervariables("server_port"),"",1,-1,1)		
+
+			dim uflLoop
+			uflLoop=true
+			
+			while uflLoop
+				if instr(ufl,"//")>0 then
+					ufl=replace(ufl,"//","/",1,-1,1)
+				else
+					uflLoop=false
+				end if
+			wend	
+			
+			ON Error Resume Next		
+			
+			if not isLeeg(ufl) and IsAlphaNumeric(ufl) then
+				Response.Status = "200 OK"
+				getUFL=ufl			
+			end if			
+				
+			ON Error Goto 0
+			
+		end if
+		
+	end function
+	
 	'#################################################################################################
 	'#################################################################################################
 	'###### This is it as far as aspLite is concerned. 
@@ -553,7 +599,18 @@ class cls_asplite
 		
 		URLDecode = sOutput
 		
-	End Function	
+	End Function
+		
+		
+	Function IsAlphaNumeric(byVal str)
+		If IsNull(str) Then str = ""
+		Dim ianRegEx
+		Set ianRegEx = New RegExp
+		ianRegEx.Pattern = "[^a-z0-9\/\_\-\.]"
+		ianRegEx.Global = True
+		ianRegEx.IgnoreCase = True
+		IsAlphaNumeric = (str = ianRegEx.Replace(str,""))
+	End Function
 
 
 end class

@@ -48,8 +48,8 @@
 							<a class="aspAjax dropdown-item" id="clicklink2" href="#">Click a second link</a>
 							<a class="aspAjax dropdown-item" id="jpg" href="#">Get images from server</a>						  
 							<a class="aspAjax dropdown-item" id="returnbool" href="#">Get random boolean from server</a>
-							<a class="aspAjax dropdown-item" id="rss" href="#">Read the news</a>	
-							<a class="aspAjax dropdown-item" id="onload" href="#">Reset</a>						  
+							<a class="aspAjax dropdown-item" id="rss" href="#">Read the news</a>							
+							<a class="aspAjax dropdown-item" id="onload" href="#">Reset</a>								
 						</div>
 					  </li>
 				</ul>
@@ -71,12 +71,14 @@
 				   
 					<ul>
 						<li><a href="demo.asp">no action</a></li>
+						<li><a href="demo.asp?e=login">login</a></li>
 						<li><a href="demo.asp?e=clicklink">clink link</a></li>
 						<li><a href="demo.asp?e=loadclass">conditionally load asp file</a></li>
 						<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a></li>
 						<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a></li>
 						<li><a href="demo.asp?e=helloworld">hello world plugin</a></li>
 						<li><a href="demo.asp?e=randomizer">randomizer plugin</a></li>
+						<li><a href="customurl">userfriendly urls?</a> (<a href="">not working?</a>)</li>
 						<li><a href="demo.asp?e=accessdb">Access DB plugin</a></li>
 						<li><a href="demo.asp?e=ckeditor">CKEditor 4 (WYSIWYG editor)</a></li>
 						<li><a href="demo.asp?e=upload">upload single file</a></li>

@@ -66,6 +66,12 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "uploadmulti"
 	
 		body=aspL.load("html/demo.asp/multiupload.resx")
+		
+	case "login"
+		'this will load a complete different template.
+		'because we override the html variable.
+		'this has as such nothing to do with aspLite. It's just a technique that can be used.
+		html=aspL.load("html/demo.asp/login.resx")		
 	
 	
 	'AJAX handlers
@@ -137,6 +143,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		aspL.exec("code/demo.asp/uploadfile.resx")
 		aspL.die
 	
+		
 	case "onload" 'default content for AJAX handler	
 	
 		aspL.dump "Hello world, Καλημέρα κόσμε (utf8-ready)"
@@ -144,6 +151,11 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case else 'default content for REGULAR handler
 	
 		body="No (known) action was detected. Initial load."
+		
+		'get userfriendly url, if any
+		if not aspL.isLeeg(aspl.getUFL) then
+			body="A non-existing item <strong>" & aspl.getUFL & "</strong> was requested."
+		end if
 		
 end select
 
