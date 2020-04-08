@@ -67,14 +67,6 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 		body=aspL.load("html/demo.asp/multiupload.resx")
 	
-	case "uploadjquery"
-	
-		body=aspL.load("html/demo.asp/uploadjquery.resx")
-		
-	case "uploadfilejquery"
-	
-		aspL.exec("code/demo.asp/uploadfile.resx")
-		response.end 
 	
 	'AJAX handlers
 		
@@ -135,6 +127,15 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "jpg"	
 	
 		aspL.exec("code/demo.asp/jpghandler.resx")	
+	
+	case "uploadjquery" 'screen
+	
+		aspL.dump(aspL.load("html/demo.asp/uploadjquery.resx"))
+	
+	case "uploadfilejquery" 'uploader
+	
+		aspL.exec("code/demo.asp/uploadfile.resx")
+		response.end 
 	
 	case "onload" 'default content for AJAX handler	
 	

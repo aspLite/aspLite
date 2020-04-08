@@ -80,8 +80,7 @@
 						<li><a href="demo.asp?e=accessdb">Access DB plugin</a></li>
 						<li><a href="demo.asp?e=ckeditor">CKEditor 4 (WYSIWYG editor)</a></li>
 						<li><a href="demo.asp?e=upload">upload single file</a></li>
-						<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>	
-						<li><a href="demo.asp?e=uploadjquery">jQuery multiple file upload</a></li>	
+						<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>						
 					</ul>				   
 				   
 				   <form action="demo.asp" method="post">						
@@ -102,6 +101,13 @@
 							<input type="submit" class="btn btn-primary" value="AJAX" />
 						</div>							
 					</form>	
+					
+					<hr>
+					
+					<p>jQuery AJAX multifile uploader</p>					
+					<ul>
+						<li><a class="aspAjax" href="#" id="uploadjquery">jQuery multiple file upload</a></li>	
+					</ul>
 					
 					<hr>
 					
