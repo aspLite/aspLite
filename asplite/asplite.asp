@@ -52,7 +52,7 @@ class cls_asplite
 		'remove Code Render Blocks
 	
 		value=replace(value,"<" & "%","",1,-1,1)
-		removeCRB=replace(value,"%" & ">","",1,-1,1)		
+		removeCRB=replace(value,"%" & ">","",1,-1,1)	
 	
 	end function	
 
@@ -78,7 +78,7 @@ class cls_asplite
 			objStream.Open	
 			objStream.type=2 'adTypeText
 			objStream.LoadFromFile(server.mappath(path))
-			stream = objStream.ReadText()					
+			stream = objStream.ReadText()		
 		set objStream=nothing
 		
 		asperror(path)			
@@ -603,16 +603,20 @@ class cls_asplite
 		
 		
 	Function IsAlphaNumeric(byVal str)
+	
 		If IsNull(str) Then str = ""
+		
 		Dim ianRegEx
 		Set ianRegEx = New RegExp
 		ianRegEx.Pattern = "[^a-z0-9\/\_\-\.]"
 		ianRegEx.Global = True
 		ianRegEx.IgnoreCase = True
 		IsAlphaNumeric = (str = ianRegEx.Replace(str,""))
+		
+		Set ianRegEx=nothing
+		
 	End Function
 
 
 end class
-
 %>
