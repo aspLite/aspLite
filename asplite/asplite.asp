@@ -43,7 +43,7 @@ class cls_asplite
 			set plugins=nothing
 		end if
 		
-		set p_fso=nothing
+		set p_fso=nothing	 
 		
 	End sub
 	
@@ -141,12 +141,18 @@ class cls_asplite
 	
 	end function	
 	
+	public sub die
+	
+		Class_Terminate()		
+		response.end	
+	
+	end sub
+	
 	public function dump (value)
 	
 		response.clear
 		response.write value
-		Class_Terminate()		
-		response.end	
+		die()
 	
 	end function
 	
@@ -247,9 +253,10 @@ class cls_asplite
 		end if		
 		
 		set objStream=nothing
+		
 		response.clear
-		Class_Terminate()
-		response.end 
+		
+		die()
 	
 	end function
 	

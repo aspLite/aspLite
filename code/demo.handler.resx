@@ -135,7 +135,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "uploadfilejquery" 'uploader
 	
 		aspL.exec("code/demo.asp/uploadfile.resx")
-		response.end 
+		aspL.die
 	
 	case "onload" 'default content for AJAX handler	
 	
