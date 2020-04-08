@@ -73,8 +73,8 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "uploadfilejquery"
 	
-		aspL.exec("code/demo.asp/uploadfile.resx")	
-		aspL.dump errorMessage
+		aspL.exec("code/demo.asp/uploadfile.resx")
+		response.end 
 	
 	'AJAX handlers
 		

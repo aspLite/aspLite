@@ -47,18 +47,19 @@ class cls_asplite
 		
 	End sub
 	
+	private function removeCRB(value)
+	
+		'remove Code Render Blocks
+	
+		value=replace(value,"<" & "%","",1,-1,1)
+		removeCRB=replace(value,"%" & ">","",1,-1,1)		
+	
+	end function
+	
 
 	public sub exec(path)
-
-		path=lcase(path)
 		
-		dim strData
-		strData=stream(path)
-		
-		strData=replace(strData,"<" & "%","",1,-1,1)
-		strData=replace(strData,"%" & ">","",1,-1,1)	
-		
-		executeGlobal strData
+		executeGlobal removeCRB(stream(path))
 
 	end sub	
 	

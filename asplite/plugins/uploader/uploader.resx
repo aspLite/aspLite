@@ -9,11 +9,9 @@
 'Jan 6, 2009: Lars added ASP_CHUNK_SIZE
 'Sep 3, 2010: Enforce UTF-8 everywhere; new function to convert byte array to unicode string
 
-
 Class cls_asplite_uploader
 
-	Public UploadedFiles, FormElements, errorMessage
-
+	Public UploadedFiles, FormElements, errorMessage, overWriteFiles
 	Private VarArrayBinRequest, StreamRequest, uploadedYet, internalChunkSize
 
 	Private Sub Class_Initialize()
@@ -23,6 +21,7 @@ Class cls_asplite_uploader
 		StreamRequest.Type = 2 'adTypeText
 		StreamRequest.Open
 		uploadedYet = false
+		overWriteFiles=false
 		internalChunkSize = 150000
 	End Sub
 	
@@ -52,30 +51,56 @@ Class cls_asplite_uploader
             Exists = false
             If FormElements.Exists(LCase(sIndex)) Then Exists = true
     End Property
-        
-    Public Property Get FileExists(sIndex)
-        FileExists = false
-            if UploadedFiles.Exists(LCase(sIndex)) then FileExists = true
-    End Property
-        
-    Public Property Get chunkSize()
-		chunkSize = internalChunkSize
-	End Property
-
-	Public Property Let chunkSize(sz)
-		internalChunkSize = sz
-	End Property
-
-	'Calls Upload to extract the data from the binary request and then saves the uploaded files
+	
+	Function GetFileName(strSaveToPath, FileName)
+	
+		on error resume next
+		
+		Dim Counter, flag, strTempFileName, FileExt, NewFullPath, p
+	   
+		Counter = 0
+		p = instrrev(FileName, ".")
+		FileExt = mid(FileName, p+1)
+		strTempFileName = left(FileName, p-1)
+		NewFullPath = strSaveToPath & "\" & FileName
+		Flag = False	
+			
+		Do Until Flag = True
+			If aspL.fso.FileExists(NewFullPath) = False Then
+				Flag = True
+				GetFileName = Mid(NewFullPath, InstrRev(NewFullPath, "\") + 1)				
+			Else
+				Counter = Counter + 1
+				NewFullPath = strSaveToPath & "\" & strTempFileName & Counter & "." & FileExt
+			End If
+		Loop
+		
+		 if err.number<>0 then
+			aspL.asperror()
+		 end if
+		 
+		 on error goto 0		
+		
+	End Function 
+            
 	Public Sub Save(path)
+	
+		on error resume next
+		
 		Dim streamFile, fileItem, filePath
 
 		if Right(path, 1) <> "\" then path = path & "\"
 
 		if not uploadedYet then Upload
 
-		For Each fileItem In UploadedFiles.Items
-			filePath = path & fileItem.FileName
+		For Each fileItem In UploadedFiles.Items		
+		
+			if overWriteFiles then
+				filePath = path & fileItem.FileName
+			else
+				filePath = path & GetFileName(path,fileItem.FileName)
+			end if
+			
 			Set streamFile = Server.CreateObject("ADODB.Stream")
 			streamFile.Type = 1 'adTypeBinary
 			streamFile.Open
@@ -84,85 +109,21 @@ Class cls_asplite_uploader
 			streamFile.SaveToFile filePath, 2 'adSaveCreateOverWrite
 			streamFile.close
 			Set streamFile = Nothing
-			fileItem.Path = filePath
+			fileItem.Path = filePath			
+			
 		 Next
-	End Sub
-	
-	public sub SaveOne(path, num, byref outFileName, byref outLocalFileName)
-		Dim streamFile, fileItems, fileItem
-        
-		if Right(path, 1) <> "\" then path = path & "\"
-
-		if not uploadedYet then Upload
-		if UploadedFiles.Count > 0 then
-			fileItems = UploadedFiles.Items
-			set fileItem = fileItems(num)
-		
-			outFileName = fileItem.FileName
-			outLocalFileName = GetFileName(path, outFileName)
-		
-			Set streamFile = Server.CreateObject("ADODB.Stream")
-			streamFile.Type = 1 'adTypeBinary
-			streamFile.Open
-			StreamRequest.Position = fileItem.Start
-			StreamRequest.CopyTo streamFile, fileItem.Length
-            
-            Response.write("path: '" & path & "' outLocalFileName: '" & outLocalFileName & "'")
-			streamFile.SaveToFile path & outLocalFileName, 2 'adSaveCreateOverWrite
-			streamFile.close
-			Set streamFile = Nothing
-			fileItem.Path = path & filename
-		end if
-	end sub
-    
-    public function GetFileStream(num)
-	
-		Dim streamFile, fileItems, fileItem
-
-		if not uploadedYet then Upload
-		if UploadedFiles.Count > 0 then
-			fileItems = UploadedFiles.Items
-			set fileItem = fileItems(num)
-		
-			Set streamFile = Server.CreateObject("ADODB.Stream")
-			streamFile.Type = 1 'adTypeBinary
-			streamFile.Open
-			StreamRequest.Position = fileItem.Start
-			StreamRequest.CopyTo streamFile, fileItem.Length
-            
-            Set GetFileStream = streamFile
-		
-        Else
-            Set GetFileStream = Nothing
-		end if
-        
-	end function
-
-	Public Function SaveBinRequest(path) ' For debugging purposes
-		StreamRequest.SaveToFile path & "\debugStream.bin", 2
-	End Function
-
-	Public Sub DumpData() 'only works if files are plain text
-		Dim i, aKeys, f
-		response.write "Form Items:<br>"
-		aKeys = FormElements.Keys
-		For i = 0 To FormElements.Count -1 ' Iterate the array
-			response.write aKeys(i) & " = " & FormElements.Item(aKeys(i)) & "<BR>"
-		Next
-		response.write "Uploaded Files:<br>"
-		For Each f In UploadedFiles.Items
-			response.write "Name: " & f.FileName & "<br>"
-			response.write "Type: " & f.ContentType & "<br>"
-			response.write "Start: " & f.Start & "<br>"
-			response.write "Size: " & f.Length & "<br>"
-		 Next
-   	End Sub
+		 
+		 if err.number<>0 then
+			aspL.asperror()
+		 end if
+		 
+		 on error goto 0
+		 
+	End Sub	
 
 	Public Sub Upload()
-		Dim nCurPos, nDataBoundPos, nLastSepPos
-		Dim nPosFile, nPosBound
-		Dim sFieldName, osPathSep, auxStr
-		Dim readBytes, readLoop, tmpBinRequest
+	
+		Dim nCurPos, nDataBoundPos, nLastSepPos, nPosFile, nPosBound, sFieldName, osPathSep, auxStr, readBytes, readLoop, tmpBinRequest
 		
 		'RFC1867 Tokens
 		Dim vDataSep
@@ -268,9 +229,8 @@ Class cls_asplite_uploader
 
 	Private Function SkipToken(sToken, nStart)
 		SkipToken = InstrB(nStart, VarArrayBinRequest, sToken)
-		If SkipToken = 0 then
-			Response.write "Error in parsing uploaded binary request. The most likely cause for this error is the incorrect setup of AspMaxRequestEntityAllowed in IIS MetaBase. Please see instructions in the <A HREF='http://www.freeaspupload.net/freeaspupload/requirements.asp'>requirements page of freeaspupload.net</A>.<p>"
-			Response.End
+		If SkipToken = 0 then		
+			aspL.asperror("Error in parsing uploaded binary request. The most likely cause for this error is the incorrect setup of AspMaxRequestEntityAllowed in IIS MetaBase.")
 		end if
 		SkipToken = SkipToken + LenB(sToken)
 	End Function
@@ -283,8 +243,7 @@ Class cls_asplite_uploader
 		Dim nEnd
 		nEnd = InstrB(nStart, VarArrayBinRequest, sToken)
 		If nEnd = 0 then
-			Response.write "Error in parsing uploaded binary request."
-			Response.End
+			aspL.asperror("Error in parsing uploaded binary request.")		
 		end if
 		ExtractField = ConvertUtf8BytesToString(nStart, nEnd-nStart)
 	End Function
@@ -357,66 +316,33 @@ Class UploadedFile
 		end if	
     
     end function
+	
+	' Does not depend on RegEx, which is not available on older VBScript
+	' Is not recursive, which means it will not run out of stack space
+	Function SubstNoReg(initialStr, oldStr, newStr)
+		Dim currentPos, oldStrPos, skip
+		If IsNull(initialStr) Or Len(initialStr) = 0 Then
+			SubstNoReg = ""
+		ElseIf IsNull(oldStr) Or Len(oldStr) = 0 Then
+			SubstNoReg = initialStr
+		Else
+			If IsNull(newStr) Then newStr = ""
+			currentPos = 1
+			oldStrPos = 0
+			SubstNoReg = ""
+			skip = Len(oldStr)
+			Do While currentPos <= Len(initialStr)
+				oldStrPos = InStr(currentPos, initialStr, oldStr)
+				If oldStrPos = 0 Then
+					SubstNoReg = SubstNoReg & Mid(initialStr, currentPos, Len(initialStr) - currentPos + 1)
+					currentPos = Len(initialStr) + 1
+				Else
+					SubstNoReg = SubstNoReg & Mid(initialStr, currentPos, oldStrPos - currentPos) & newStr
+					currentPos = oldStrPos + skip
+				End If
+			Loop
+		End If
+	End Function	
     
-End Class
-
-
-' Does not depend on RegEx, which is not available on older VBScript
-' Is not recursive, which means it will not run out of stack space
-Function SubstNoReg(initialStr, oldStr, newStr)
-    Dim currentPos, oldStrPos, skip
-    If IsNull(initialStr) Or Len(initialStr) = 0 Then
-        SubstNoReg = ""
-    ElseIf IsNull(oldStr) Or Len(oldStr) = 0 Then
-        SubstNoReg = initialStr
-    Else
-        If IsNull(newStr) Then newStr = ""
-        currentPos = 1
-        oldStrPos = 0
-        SubstNoReg = ""
-        skip = Len(oldStr)
-        Do While currentPos <= Len(initialStr)
-            oldStrPos = InStr(currentPos, initialStr, oldStr)
-            If oldStrPos = 0 Then
-                SubstNoReg = SubstNoReg & Mid(initialStr, currentPos, Len(initialStr) - currentPos + 1)
-                currentPos = Len(initialStr) + 1
-            Else
-                SubstNoReg = SubstNoReg & Mid(initialStr, currentPos, oldStrPos - currentPos) & newStr
-                currentPos = oldStrPos + skip
-            End If
-        Loop
-    End If
-End Function
-
-Function GetFileName(strSaveToPath, FileName)
-'This function is used when saving a file to check there is not already a file with the same name so that you don't overwrite it.
-'It adds numbers to the filename e.g. file.gif becomes file1.gif becomes file2.gif and so on.
-'It keeps going until it returns a filename that does not exist.
-'You could just create a filename from the ID field but that means writing the record - and it still might exist!
-'N.B. Requires strSaveToPath variable to be available - and containing the path to save to
-    Dim Counter
-    Dim Flag
-    Dim strTempFileName
-    Dim FileExt
-    Dim NewFullPath
-    dim p
-   
-    Counter = 0
-    p = instrrev(FileName, ".")
-    FileExt = mid(FileName, p+1)
-    strTempFileName = left(FileName, p-1)
-    NewFullPath = strSaveToPath & "\" & FileName
-    Flag = False	
-	    
-    Do Until Flag = True
-        If aspL.fso.FileExists(NewFullPath) = False Then
-            Flag = True
-            GetFileName = Mid(NewFullPath, InstrRev(NewFullPath, "\") + 1)
-        Else
-            Counter = Counter + 1
-            NewFullPath = strSaveToPath & "\" & strTempFileName & Counter & "." & FileExt
-        End If
-    Loop
-End Function 
- 
+End Class 
 %>

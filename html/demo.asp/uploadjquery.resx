@@ -68,7 +68,7 @@ function jQueryUpload() {
 		processData: false, 
 		success: function (data) {			
 					$("#uploadFB").append('<strong>' + file.name + '</strong> was uploaded<br />')	
-					i++				
+					i++					
 					if(i<files.length) {jQueryUpload()}
 					else {
 					//done	
@@ -79,6 +79,7 @@ function jQueryUpload() {
 			$("#uploadFB").append('<strong>' + file.name + '</strong> (' + Math.round(file.size/1024/1024) +' MB) was NOT uploaded<br />')	
 			i++
 			j++
+			console.log(data)
 			if(i<files.length) {jQueryUpload()}
 			else {
 				//done
@@ -88,21 +89,11 @@ function jQueryUpload() {
 		});
 	}
 
-function finish() {
-	
-	$("#loading").css("display","none")
-	
-	$("#uploadFBS").html('<strong>Upload finished</strong><br /><br>')
-	
-	if(!j==0) {
-		$("#uploadFB").prepend('<strong>' + j + ' files</strong> have NOT been uploaded (probably too big)<br /><br />')
-	}
-	
-	if(!(i-j)==0) {
-	$("#uploadFB").prepend('<strong>' + (i-j) + ' files</strong> have been uploaded<br /><br>')	
-	}
-	
-	i=0;
-	j=0;
+function finish() {	
+	$("#loading").css("display","none")	
+	$("#uploadFBS").html('<strong>Upload finished</strong><br /><br>')	
+	if(!j==0) {$("#uploadFB").prepend('<strong>' + j + ' files</strong> have NOT been uploaded (probably too big)<br /><br />')}	
+	if(!(i-j)==0) {$("#uploadFB").prepend('<strong>' + (i-j) + ' files</strong> have been uploaded<br /><br>')}	
+	i=0;j=0;
 }
 </script>

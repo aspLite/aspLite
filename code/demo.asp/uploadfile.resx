@@ -1,7 +1,7 @@
 <%
-'on error resume next
+on error resume next
 
-dim uploadsDirVar, filesize, filename, errorMessage
+dim uploadsDirVar, filesize, filename
 
 'default path: uploads
 uploadsDirVar = server.MapPath ("uploads") 
@@ -11,28 +11,25 @@ Set upload = aspL.plugin("uploader")
 
 upload.Save uploadsDirVar
 
-dim ks, fileKey, strMessage
-'ks = Upload.UploadedFiles.keys
-'if (UBound(ks) <> -1) then
-	for each fileKey in Upload.UploadedFiles.keys
-		
-		filesize=Upload.UploadedFiles(fileKey).Length
-		filename=Upload.UploadedFiles(fileKey).filename
-				
-		body=body & "<p>The file <strong>" & aspL.sanitize(filename) & " (" & round(filesize/1024,0) & " kB)</strong> was successfully uploaded (and removed again).</p>"
-		
-		'for security reasons, I immediately remove the uploaded files.
-		Upload.UploadedFiles(fileKey).delete()
-		
-	next
-'end if
+dim fileKey, strMessage
 
-if not aspL.isleeg(upload.errorMessage) then
-	body=upload.errorMessage
-	errorMessage=body
-end if
+for each fileKey in Upload.UploadedFiles.keys
+	
+	filesize=Upload.UploadedFiles(fileKey).Length
+	filename=Upload.UploadedFiles(fileKey).filename
+			
+	body=body & "<p>The file <strong>" & aspL.sanitize(filename) & " (" & round(filesize/1024,0) & " kB)</strong> was successfully uploaded (and removed again).</p>"
+	
+	'for security reasons, I immediately remove the uploaded files.
+	Upload.UploadedFiles(fileKey).delete()
+	
+next
 
 set upload=nothing
+
+if err.number<>0 then
+	aspL.asperror()
+ end if
 
 on error goto 0
 
