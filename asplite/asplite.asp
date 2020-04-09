@@ -412,6 +412,26 @@ class cls_asplite
 				end if
 			wend	
 			
+			uflLoop=true
+			
+			while uflLoop
+				if left(ufl,1)="/" then
+					ufl=right(ufl,len(ufl)-1)
+				else
+					uflLoop=false
+				end if
+			wend
+			
+			uflLoop=true
+
+			while uflLoop
+				if right(ufl,1)="/" then
+					ufl=left(ufl,len(ufl)-1)
+				else
+					uflLoop=false
+				end if
+			wend			
+			
 			ON Error Resume Next		
 			
 			if not isLeeg(ufl) and IsAlphaNumeric(ufl) then

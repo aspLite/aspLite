@@ -3,19 +3,16 @@
 ' https://github.com/rcdmk/aspJSON
 '
 ' License MIT - see LICENCE.txt for details
-
 const JSON_ROOT_KEY = "[[JSONroot]]"
 const JSON_DEFAULT_PROPERTY_NAME = "data"
 const JSON_SPECIAL_VALUES_REGEX = "^(?:(?:t(?:r(?:ue?)?)?)|(?:f(?:a(?:l(?:se?)?)?)?)|(?:n(?:u(?:ll?)?))|(?:u(?:n(?:d(?:e(?:f(?:i(?:n(?:ed?)?)?)?)?)?)?)?))$"
-
 const JSON_ERROR_PARSE = 1
 const JSON_ERROR_PROPERTY_ALREADY_EXISTS = 2
 const JSON_ERROR_PROPERTY_DOES_NOT_EXISTS = 3 ' DEPRECATED
 const JSON_ERROR_NOT_AN_ARRAY = 4
 const JSON_ERROR_NOT_A_STRING = 5
 const JSON_ERROR_INDEX_OUT_OF_BOUNDS = 9 ' Numbered to have the same error number as the default "Subscript out of range" exeption
-
-class cls_asplite_json
+class JSONobject
 	dim i_debug, i_depth, i_parent
 	dim i_properties, i_version, i_defaultPropertyName
 	private vbback
@@ -28,18 +25,14 @@ class cls_asplite_json
 	public property let debug(value)
 		i_debug = value
 	end property
-
 	
 	' Gets/sets the default property name generated when loading recordsets and arrays (default "data")
 	public property get defaultPropertyName
 		defaultPropertyName = i_defaultPropertyName
 	end property
-
 	public property let defaultPropertyName(value)
 		i_defaultPropertyName = value
 	end property
-
-
 	' The depth of the object in the chain, starting with 1
 	public property get depth
 		depth = i_depth
@@ -63,7 +56,6 @@ class cls_asplite_json
 	end property
 	
 	
-
 	' Constructor and destructor
 	private sub class_initialize()
 		i_version = "3.8.1"
@@ -139,7 +131,7 @@ class cls_asplite_json
 					
 					if key <> JSON_ROOT_KEY or TypeName(root) = "JSONarray" then
 						' creates a new object
-						set item = new cls_asplite_json
+						set item = new JSONobject
 						set item.parent = currentObject
 						
 						addedToArray = false
@@ -152,7 +144,6 @@ class cls_asplite_json
 								currentArray.Push item
 								
 								addedToArray = true
-
 								log("Added to the array")
 							end if
 						end if
@@ -194,7 +185,6 @@ class cls_asplite_json
 						currentObject.add key, item
 						log("Added to parent object")
 					end if
-
 					if key = JSON_ROOT_KEY and item.depth = 1 then
 						set root = item
 						log("Set as root")
@@ -304,14 +294,12 @@ class cls_asplite_json
 								value = value & vbtab
 							case "b"
 								value = value & vbback
-
 							' escaped chars fix by @IT-Portal
 							case "\"
 								'for \\t we must have \t (not \tab)
 								'here we're resetting prevchar for next iteration
 								value = value & char
 								char = ""
-
 							' escaped unicode syntax by @IT-Portal
 							case "u"
 								'\uxxxx support
@@ -438,11 +426,11 @@ class cls_asplite_json
 							set currentArray = currentArray.parent
 						
 						' if the parent is an object
-						elseif TypeName(currentArray.parent) = "cls_asplite_json" then
+						elseif TypeName(currentArray.parent) = "JSONobject" then
 							set tmpObj = currentArray.parent
 							
 							' we search for the next parent array to set the current array
-							while isObject(tmpObj) and TypeName(tmpObj) = "cls_asplite_json"
+							while isObject(tmpObj) and TypeName(tmpObj) = "JSONobject"
 								if isObject(tmpObj.parent) then
 									set tmpObj = tmpObj.parent
 								else
@@ -459,13 +447,12 @@ class cls_asplite_json
 					openArray = openArray - 1
 					
 					mode = "next"
-
 				elseif char = "}" then
 					log("Close object</ul>")
 					
 					' If it's an open object, we close it and set the current object as it's parent
 					if isobject(currentObject.parent) then
-						if TypeName(currentObject.parent) = "cls_asplite_json" then
+						if TypeName(currentObject.parent) = "JSONobject" then
 							set currentObject = currentObject.parent
 						
 						' If the parent is and array
@@ -511,16 +498,13 @@ class cls_asplite_json
 			set item = new JSONpair
 			item.name = prop
 			set item.parent = me
-
 			dim itemType
 			itemType = GetTypeName(obj)
-
 			if isArray(obj) then
 				dim item2
 				set item2 = new JSONarray
 				item2.items = obj
 				set item2.parent = me
-
 				set item.value = item2
 				
 			elseif itemType = "Field" then
@@ -530,7 +514,6 @@ class cls_asplite_json
 			else
 				item.value = obj
 			end if
-
 			ArrayPush i_properties, item
 		end if
 	end sub
@@ -593,7 +576,6 @@ class cls_asplite_json
 		found = false		
 		
 		i = 0
-
 		do while i <= ubound(i_properties)
 			set p = i_properties(i)
 			
@@ -662,7 +644,6 @@ class cls_asplite_json
 				
 			elseif isObject(value) and GetTypeName(value) = "JSONscript" then
 				out = out & value.Serialize()
-
 			elseif isObject(value) then
 				out = out & serializeObject(value)
 				
@@ -680,7 +661,6 @@ class cls_asplite_json
 	' (quoted for strings, the type name for objects, null for nothing and null values)
 	public function serializeValue(byval value)
 		dim out
-
 		select case lcase(GetTypeName(value))
 			case "null"
 				out = "null"
@@ -726,9 +706,8 @@ class cls_asplite_json
 	' Serializes an array item to JSON formatted string
 	private function serializeArrayItem(byref elm)
 		dim out, val
-
 		if isobject(elm) then
-			if GetTypeName(elm) = "cls_asplite_json" then
+			if GetTypeName(elm) = "JSONobject" then
 				set val = elm
 			
 			elseif GetTypeName(elm) = "JSONarray" then
@@ -743,7 +722,6 @@ class cls_asplite_json
 		else
 			val = elm
 		end if
-
 		if isArray(val) or GetTypeName(val) = "JSONarray" then
 			out = out & serializeArray(val)
 			
@@ -753,14 +731,11 @@ class cls_asplite_json
 		else
 			out = out & serializeValue(val)
 		end if
-
 		serializeArrayItem = out
 	end function
-
 	' Serializes an array or JSONarray object to JSON formatted string
 	public function serializeArray(byref arr)
 		dim i, j, k, dimensions, out, innerArray, elm, val
-
 		out = "["
 		
 		if isobject(arr) then
@@ -770,14 +745,12 @@ class cls_asplite_json
 			log("Serializing VB array")
 			innerArray = arr
 		end if
-
 		dimensions = NumDimensions(innerArray)
 		
 		if dimensions > 1 then
 			log("Multidimensional array")
 			for j = 0 to ubound(innerArray, 1)
 				out = out & "["
-
 				for k = 0 to ubound(innerArray, 2)
 					if k > 0 then out = out & ","
 					
@@ -786,10 +759,8 @@ class cls_asplite_json
 					else
 						elm = innerArray(j, k)
 					end if
-
 					out = out & serializeArrayItem(elm)
 				next
-
 				out = out & "]"
 			next	
 		else
@@ -805,7 +776,6 @@ class cls_asplite_json
 				out = out & serializeArrayItem(elm)
 			next
 		end if
-
 		out = out & "]"
 		
 		serializeArray = out
@@ -870,7 +840,7 @@ class cls_asplite_json
 		set arr = new JSONArray
 		
 		while not rs.eof
-			set obj = new cls_asplite_json
+			set obj = new JSONobject
 		
 			for each field in rs.fields
 				obj.Add field.name, field.value
@@ -937,18 +907,14 @@ class cls_asplite_json
 		if i_debug then response.write "<li>" & msg & "</li>" & vbcrlf
 	end sub
 end class
-
-
 ' JSON array class
 ' Represents an array of JSON objects and values
 class JSONarray
 	dim i_items, i_depth, i_parent, i_version, i_defaultPropertyName
-
 	' The class version
 	public property get version
 		version = i_version
 	end property
-
 	' The actual array items
 	public property get items
 		items = i_items
@@ -987,11 +953,9 @@ class JSONarray
 	public property get defaultPropertyName
 		defaultPropertyName = i_defaultPropertyName
 	end property
-
 	public property let defaultPropertyName(value)
 		i_defaultPropertyName = value
 	end property
-
 	
 	
 	' Constructor and destructor
@@ -1033,11 +997,11 @@ class JSONarray
 	public sub Push(byref value)
 		dim js, instantiated
 		
-		if typeName(i_parent) = "cls_asplite_json" then
+		if typeName(i_parent) = "JSONobject" then
 			set js = i_parent
 			i_defaultPropertyName = i_parent.defaultPropertyName
 		else
-			set js = new cls_asplite_json
+			set js = new JSONobject
 			js.defaultPropertyName = i_defaultPropertyName
 			instantiated = true
 		end if
@@ -1052,7 +1016,7 @@ class JSONarray
 		dim obj, field
 		
 		while not rs.eof
-			set obj = new cls_asplite_json
+			set obj = new JSONobject
 		
 			for each field in rs.fields
 				obj.Add field.name, field.value
@@ -1065,7 +1029,6 @@ class JSONarray
 		
 		set obj = nothing
 	end sub
-
 	' Returns the item at the specified index
 	' @param index as int - the desired item index
 	public default function ItemAt(byval index)
@@ -1084,7 +1047,7 @@ class JSONarray
 	end function
 	
 	' Serializes this JSONarray object in JSON formatted string value
-	' (uses the cls_asplite_json.SerializeArray method)
+	' (uses the JSONobject.SerializeArray method)
 	public function Serialize()
 		dim js, out, instantiated, actualLCID
 		
@@ -1092,14 +1055,14 @@ class JSONarray
 		Response.LCID = 1033
 		
 		if not isEmpty(i_parent) then
-			if TypeName(i_parent) = "cls_asplite_json" then
+			if TypeName(i_parent) = "JSONobject" then
 				set js = i_parent
 				i_defaultPropertyName = i_parent.defaultPropertyName
 			end if
 		end if
 		
 		if isEmpty(js) then
-			set js = new cls_asplite_json
+			set js = new JSONobject
 			js.defaultPropertyName = i_defaultPropertyName
 			instantiated = true
 		end if
@@ -1118,12 +1081,9 @@ class JSONarray
 		Response.Write Serialize()
 	end function
 end class
-
-
 class JSONscript
 	dim i_version
 	dim s_value, s_nullString
-
 	' The value
 	public property get value
 		value = s_value
@@ -1156,8 +1116,6 @@ class JSONscript
 		Response.Write Serialize()
 	end function
 end class
-
-
 ' JSON pair class
 ' represents a name/value pair of a JSON object
 class JSONpair
@@ -1207,5 +1165,10 @@ class JSONpair
 	private sub class_terminate
 		if isObject(value) then set value = nothing
 	end sub
+end class
+
+'added for aspLite 
+class cls_asplite_json
+'this class is a bit of a workaround so aspLite can automatically create some sort of object... even though it's useless.
 end class
 %>

@@ -1,8 +1,8 @@
 <%
 Response.LCID = 1033
 
-dim jsonObj
-set jsonObj=aspL.plugin("json")
+'simply load the plugincode in the namespace of this asp script
+aspL.plugin("json")
 
 dim db
 set db=aspl.plugin("accessDB")
@@ -18,7 +18,6 @@ jsonArr.LoadRecordSet rs
 dim output
 output=jsonArr.Serialize	
 
-set jsonObj=nothing
 set jsonArr=nothing
 set rs=nothing
 set db=nothing
