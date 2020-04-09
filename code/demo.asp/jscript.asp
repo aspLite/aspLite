@@ -1,5 +1,4 @@
-<%@ Language= "Javascript" codepage="65001" %> 
-<%
+<script runat="server" language="jscript">
 
 // this script has access to the Request() collection.
  
@@ -7,5 +6,5 @@
   for (var i = 0, endI = 10 ; i < endI ; i++){ 
       Response.Write( message + ' ' + i + '<br>' )
   }
- 
-%>
+  
+</script>
