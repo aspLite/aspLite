@@ -115,7 +115,8 @@
 					
 					<p>Datatable</p>
 					<ul>
-						<li><a class="aspAjax" href="#" id="returndata">Get some data (from database)</a></li>		
+						<li><a class="aspAjax" href="#" id="returndata">Get some data (from database)</a></li>					
+						<li><a class="aspAjaxJSON" href="#" id="returnjsondata">Get some JSON data</a></li>		
 					</ul>
 					
 					<hr>
@@ -182,6 +183,32 @@
 	function aspAjaxSuccess(data) {
 		$('#body').html(data)	
 	}
+	
+	$('.aspAjaxJSON').click(function(e) {
+		e.preventDefault()
+		aspAjax('GET',aspAjaxUrl,'json','e=' + this.id,jsonToHTML)
+	})
+	
+	function jsonToHTML(data) {
+	
+		var records=data.records
+	
+		var output='<ul>'
+	
+		for(var i = 0; i < records.length; i++) {
+		
+			var obj = records[i]
+			output+="<li>" + obj.sName + ' ('
+			output+=obj.iYear + ")</li>";
+			
+		}
+		
+		output+='</ul>'	
+		
+		$('#body').html(output)		
+	}
+			
+	
 
 </script>
 

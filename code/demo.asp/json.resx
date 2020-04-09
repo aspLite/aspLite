@@ -1,0 +1,27 @@
+<%
+Response.LCID = 1033
+
+dim jsonObj
+set jsonObj=aspL.plugin("json")
+
+dim db
+set db=aspl.plugin("accessDB")
+db.path="db/sample.mdb"
+
+set rs=db.GetDynamicRS
+
+rs.open ("select * from person")
+
+set jsonArr=new JSONarray
+jsonArr.LoadRecordSet rs
+
+dim output
+output=jsonArr.Serialize	
+
+set jsonObj=nothing
+set jsonArr=nothing
+set rs=nothing
+set db=nothing
+
+aspL.dump "{""records"":" & output & "}"
+%>

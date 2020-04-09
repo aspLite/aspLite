@@ -120,6 +120,10 @@ select case lcase(aspL.getRequest("e")) '"event"
 
 		aspL.exec("code/demo.asp/datatable.resx")	
 		
+	case "returnjsondata"
+	
+		aspL.exec("code/demo.asp/json.resx")	
+		
 	case "sendmail"
 		
 		aspL.exec("code/demo.asp/mailhandler.resx")		
