@@ -380,7 +380,7 @@ class cls_asplite
 	end function
 	
 	
-	Public function getUFL 'get userfriendly url if any
+	Public function pathinfo 'get userfriendly url from 404 request if any
 		
 		dim ufl
 		ufl=Request.ServerVariables("query_string")	
@@ -436,7 +436,7 @@ class cls_asplite
 			
 			if not isLeeg(ufl) and IsAlphaNumeric(ufl) then
 				Response.Status = "200 OK"
-				getUFL=ufl			
+				pathinfo=ufl			
 			end if			
 				
 			ON Error Goto 0
