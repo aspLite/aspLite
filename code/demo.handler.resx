@@ -146,7 +146,16 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 		aspL.exec("code/demo.asp/uploadfile.resx")
 		aspL.die
+		
+	case "jscript"
 	
+		'server.execute executes a remote asp(-only) page that resides on the same server
+		'that asp page has access to the response and request collection
+		'the remote asp page has however no access to the aspL object 
+		'or any other object that was created so far
+		'in this case, a JScript sample page was loaded.
+		server.execute("code/demo.asp/jscript.asp")		
+		aspL.die
 		
 	case "onload" 'default content for AJAX handler	
 	
