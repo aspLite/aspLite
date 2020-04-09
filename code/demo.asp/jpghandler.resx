@@ -1,4 +1,6 @@
 <%
+on error resume next
+
 'get the bootstrap thumbnail template
 dim bsTemplate
 bsTemplate=aspL.load("html/demo.asp/bootstrapthumb.resx")
@@ -32,5 +34,9 @@ jpg.fsr=1
 	specialeffects=specialeffects & replace(bsTemplate,"[src]",jpg.src,1,-1,1)
 	specialeffects=replace(specialeffects,"[caption]","rectangle",1,-1,1)
 
-aspL.dump "<div class=""card-columns"">" & specialeffects & "</div>"	
+aspL.asperror("jpghandler")
+
+aspL.dump "<div class=""card-columns"">" & specialeffects & "</div>"
+
+on error goto 0
 %>

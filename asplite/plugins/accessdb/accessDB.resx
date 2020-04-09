@@ -35,7 +35,7 @@ Class cls_asplite_accessDB
 		Set GetDynamicRS = server.CreateObject ("adodb.recordset")
 		GetDynamicRS.CursorType = 1
 		GetDynamicRS.LockType = 3
-		set GetDynamicRS.ActiveConnection = getConn()
+		set GetDynamicRS.ActiveConnection = getConn()		
 		
 		On Error Goto 0
 		

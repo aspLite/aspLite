@@ -9,11 +9,12 @@ set aspL=new cls_asplite
 
 class cls_asplite	
 
-	private startTime,stopTime,plugins,p_fso
+	private debug,startTime,stopTime,plugins,p_fso
 	
 	Private Sub Class_Initialize()
 	
-		startTime=Timer()			
+		startTime=Timer()
+		debug						= true 'you may want to set to false for live sites
 	
 		Response.Buffer				= true
 		session.Timeout				= 180 '3 hours
@@ -127,14 +128,18 @@ class cls_asplite
 	end function	
 	
 	Public function asperror(value)	
+	
+		if not debug then exit function
 		
 		if err.number<>0 then
 		
-			asperror="<h1>Error  details:</h1>"
+			asperror="<h1>aspLite error details:</h1>"
 			asperror=asperror & value & "<br><br>"
 			asperror=asperror & "err.number: " &  err.number & "<br><br>"
 			asperror=asperror & "err.description: " &  err.description & "<br><br>"
-					
+			
+			asperror=asperror & request.servervariables("ALL_RAW")			
+			
 			dump asperror
 		
 		end if
