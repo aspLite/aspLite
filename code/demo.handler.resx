@@ -51,6 +51,10 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 		aspL.exec("code/demo.asp/datasample.resx")	
 		
+	case "jquerydatatable"
+	
+		aspL.exec("code/demo.asp/jquerydatatable.resx")
+		
 	case "ckeditor"
 		
 		aspL.exec("code/demo.asp/ckeditor.resx")
@@ -122,7 +126,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "returnjsondata"
 	
-		aspL.exec("code/demo.asp/json.resx")	
+		aspL.exec("code/demo.asp/json.resx")
 		
 	case "sendmail"
 		

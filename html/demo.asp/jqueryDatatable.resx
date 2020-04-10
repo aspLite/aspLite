@@ -1,0 +1,15 @@
+<p>See <a target="_blank" href="https://datatables.net/">DataTables</a> jQuery plugin</p>
+
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<table style="visibility:hidden" id="myTable" class="stripe" style="width:100%">
+[datatable]
+</table>
+
+<script>
+$(document).ready( function () {	
+	$('#myTable').css('visibility','visible');
+    $('#myTable').DataTable();
+} );
+</script>

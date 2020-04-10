@@ -642,6 +642,5 @@ class cls_asplite
 		
 	End Function
 
-
 end class
 %>
