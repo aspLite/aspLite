@@ -123,6 +123,14 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "returndata"
 
 		aspL.exec("code/demo.asp/datatable.resx")	
+	
+	case "sha256"
+	
+		dim password
+		password=aspl.plugin("randomizer").randomText(25)		
+		
+		aspL.dump "<h5>one way encryption</h5><p><strong>" & password & "</strong> becomes <strong>" & aspL.plugin("sha256").sha256(password) & "</strong> when one-way encrypted with the Secure Hash Algorithm (sha256)</p>"
+		
 		
 	case "returnjsondata"
 	
