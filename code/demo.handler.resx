@@ -71,8 +71,12 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 		body=aspL.load("html/demo.asp/multiupload.resx")
 		
+	case "jszip"
+	
+		aspL.exec("code/demo.asp/jszip.resx")	
+		
 	case "login"
-		'this will load a complete different template.
+		'this will load a completely different template.
 		'because we override the html variable.
 		'this has as such nothing to do with aspLite. It's just a technique that can be used.
 		html=aspL.load("html/demo.asp/login.resx")		

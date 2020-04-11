@@ -1,0 +1,101 @@
+<script src="js/jszip.min.js"></script>
+<script src="js/filesaver.min.js"></script>
+
+<p><strong>JSZip</strong> experiment - <a target="_blank" href="https://stuk.github.io/jszip/">https://stuk.github.io/jszip/</a></p>
+<p>Works on firefox, chrome , opera &gt;= 15 and IE &gt;= 10 (but NOT in compatibility view).</p>
+<button id="blob" class="btn btn-primary">click to download zip</button>
+
+
+<script>
+
+var zip = new JSZip()
+var i=0
+[filelist]
+
+jQuery("#blob").on("click", function () {
+try {
+	getUrl(urls[i][0],urls[i][1])
+	}
+	catch(e){}
+});
+
+function download() {
+
+	try {
+
+		i=0
+
+		zip.generateAsync({type:"blob"}).then(function (blob) { // 1) generate the zip file
+			saveAs(blob, "download.zip");                          // 2) trigger the download
+		}, function (err) {console.log('error when creating zip')})
+	}
+	catch(e){}
+
+}
+
+function getUrl(url,type) {
+	
+	try {
+		$.ajax({
+			url: url,
+			//processData:false,
+			cache:false,
+			xhr:function(){
+				
+				try {	
+					var xhr = new XMLHttpRequest();
+					xhr.responseType= type
+					return xhr;
+					}
+				catch(e) {
+					
+				}
+			},
+			success: function(data){
+				try {
+					console.log('OK:' + url)
+					if (type=='blob') {
+						try {
+							zip.file(url, data,{binary: true})
+							}
+						catch(e) {console.log('ERR zip:' +url)}
+					}
+					else
+					{
+						try{
+							zip.file(url, data,{binary: false})
+							}
+						catch(e) {console.log('ERR:' +url)}
+					}
+				}
+				catch(e){console.log('ERR:' +url)}
+				
+				i++		
+				
+				if (i==urls.length) 
+					{download()}
+					else
+					{
+					getUrl(urls[i][0],urls[i][1])
+					}
+				
+			},
+			error:function(){
+				try {
+					console.log('ERRajax:' +url)
+					i++
+					if (i==urls.length) 
+						{download()}
+					else
+						{
+						getUrl(urls[i][0],urls[i][1])
+						}
+					}
+				catch(e) {console.log('ERR:' +url)}
+			}
+		});
+	}
+	catch(e){}
+}
+
+</script>

@@ -9,7 +9,7 @@ set aspL=new cls_asplite
 
 class cls_asplite	
 
-	private debug,startTime,stopTime,plugins,p_fso
+	private debug,startTime,stopTime,plugins,p_fso,p_safeFileTypes
 	
 	Private Sub Class_Initialize()
 	
@@ -27,6 +27,7 @@ class cls_asplite
 		Response.ExpiresAbsolute	= Now()-1	
 		
 		set plugins=nothing
+		set p_safeFileTypes=nothing
 		set p_fso=nothing
 		
 	End Sub	
@@ -44,7 +45,8 @@ class cls_asplite
 			set plugins=nothing
 		end if
 		
-		set p_fso=nothing	 
+		set p_fso=nothing	
+		set p_safeFileTypes=nothing
 		
 	End sub
 	
@@ -57,11 +59,11 @@ class cls_asplite
 	
 	end function	
 
-	public sub exec(path)
+	public sub exec(path)		
 		
 		on error resume next
 		
-		executeGlobal removeCRB(stream(path))
+		executeGlobal removeCRB(stream(path,false,""))
 		
 		aspError("problem when executing " & path)
 		
@@ -69,23 +71,44 @@ class cls_asplite
 
 	end sub	
 	
-	public function load(path)
+	public function load(path)		
 		
-		load=stream(path)
+		load=stream(path,false,"")
+
+	end function
+	
+	public function loadBinary(path)		
+		
+		loadBinary=stream(server.mappath(path),true,"")
 
 	end function	
 	
-	private function stream(path)
+	private function stream(path,binary,byref size)
 	
 		on error resume next
 
 		Dim objStream
 		Set objStream = server.CreateObject("ADODB.Stream")	
+		
+		if binary then
+		
+			objStream.Open	
+			objStream.type=1 'adTypeBinary
+			objStream.LoadFromFile(path)
+			stream=objStream.Read()
+		
+		else
+	
 			objStream.CharSet = "utf-8"
 			objStream.Open	
 			objStream.type=2 'adTypeText
 			objStream.LoadFromFile(server.mappath(path))
-			stream = objStream.ReadText()		
+			stream = objStream.ReadText()
+			
+		end if
+		
+		size=objStream.size
+			
 		set objStream=nothing
 		
 		asperror(path)			
@@ -454,6 +477,108 @@ class cls_asplite
 		
 	end function
 	
+	public function getFileType(filename)
+	
+		getFileType=right(filename,len(filename)-InStrRev(filename,".",-1,1))
+	
+	end function	
+	
+	public function safeFileTypes
+	
+		if p_safeFileTypes is nothing then
+		
+			set p_safeFileTypes=server.createObject("scripting.dictionary")
+		
+			'image types
+			p_safeFileTypes.Add "jpg",""
+			p_safeFileTypes.Add "jpeg",""
+			p_safeFileTypes.Add "jpe",""
+			p_safeFileTypes.Add "jp2",""
+			p_safeFileTypes.Add "jfif",""
+			p_safeFileTypes.Add "gif",""
+			p_safeFileTypes.Add "bmp",""
+			p_safeFileTypes.Add "png",""
+			p_safeFileTypes.Add "psd",""
+			p_safeFileTypes.Add "eps",""
+			p_safeFileTypes.Add "ico",""
+			p_safeFileTypes.Add "tif",""
+			p_safeFileTypes.Add "tiff",""
+			p_safeFileTypes.Add "ai",""
+			p_safeFileTypes.Add "raw",""
+			p_safeFileTypes.Add "tga",""
+			p_safeFileTypes.Add "mng",""
+			p_safeFileTypes.Add "svg",""
+			'doctype
+			p_safeFileTypes.Add "doc",""
+			p_safeFileTypes.Add "rtf",""
+			p_safeFileTypes.Add "txt",""
+			p_safeFileTypes.Add "wpd",""
+			p_safeFileTypes.Add "wps",""
+			p_safeFileTypes.Add "csv",""
+			p_safeFileTypes.Add "xml",""
+			p_safeFileTypes.Add "xsd",""
+			p_safeFileTypes.Add "sql",""
+			p_safeFileTypes.Add "pdf",""
+			p_safeFileTypes.Add "xls",""
+			p_safeFileTypes.Add "mdb",""
+			p_safeFileTypes.Add "ppt",""
+			p_safeFileTypes.Add "docx",""
+			p_safeFileTypes.Add "xlsx",""
+			p_safeFileTypes.Add "pptx",""
+			p_safeFileTypes.Add "ppsx",""
+			p_safeFileTypes.Add "artx",""
+			'media types
+			p_safeFileTypes.Add "mp3",""
+			p_safeFileTypes.Add "wma",""
+			p_safeFileTypes.Add "mid",""
+			p_safeFileTypes.Add "midi",""
+			p_safeFileTypes.Add "mp4",""
+			p_safeFileTypes.Add "mpg",""
+			p_safeFileTypes.Add "mpeg",""
+			p_safeFileTypes.Add "wav",""
+			p_safeFileTypes.Add "ram",""
+			p_safeFileTypes.Add "ra",""
+			p_safeFileTypes.Add "avi",""
+			p_safeFileTypes.Add "mov",""
+			p_safeFileTypes.Add "flv",""
+			p_safeFileTypes.Add "m4a",""
+			p_safeFileTypes.Add "m4v",""
+			p_safeFileTypes.Add "ogv",""
+			p_safeFileTypes.Add "ogg",""
+			p_safeFileTypes.Add "webm",""
+			p_safeFileTypes.Add "ics",""
+
+			'internet related types
+			p_safeFileTypes.Add "htm",""
+			p_safeFileTypes.Add "html",""
+			p_safeFileTypes.Add "css",""
+			p_safeFileTypes.Add "swf",""
+			p_safeFileTypes.Add "js",""
+			p_safeFileTypes.Add "less",""
+			p_safeFileTypes.Add "json",""
+			
+
+			'p_safeFileTypes.Add "vbs",""
+			'p_safeFileTypes.Add "swt",""
+			'compression types
+			p_safeFileTypes.Add "rar",""
+			p_safeFileTypes.Add "zip",""
+			p_safeFileTypes.Add "tar",""
+			p_safeFileTypes.Add "gz",""
+			'fonts
+			p_safeFileTypes.Add "woff",""
+			p_safeFileTypes.Add "woff2",""
+			p_safeFileTypes.Add "otf",""
+			p_safeFileTypes.Add "ttf",""
+			p_safeFileTypes.Add "eot",""
+			
+		end if
+		
+		set safeFileTypes=p_safeFileTypes
+
+	end function
+	
+	
 	'#################################################################################################
 	'#################################################################################################
 	'###### This is it as far as aspLite is concerned. 
@@ -645,6 +770,6 @@ class cls_asplite
 		Set ianRegEx=nothing
 		
 	End Function
-
+	
 end class
 %>

@@ -1,0 +1,75 @@
+<%
+'load the template file first (including JavScript CDN)
+body=aspL.load("html/demo.asp/jszip.resx")	
+
+'this folder will be zipped by the browser!
+dim folderToZip
+folderToZip="uploads"
+
+'get filelist
+dim filelist,filelistArr,objFSO,objSuperFolder,filepath,filetype
+set filelist=server.createobject("scripting.dictionary")
+Set objFSO = server.CreateObject("Scripting.FileSystemObject")
+set objSuperFolder = objFSO.getfolder(server.mappath(folderToZip))
+
+ShowSubfolders (objSuperFolder)
+
+dim url
+for each url in filelist
+	filelistArr=filelistArr & "['" & url & "','" & filelist(url) & "'],"
+next
+
+filelistArr=left(filelistArr,len(filelistArr)-1)
+
+filelistArr="var urls=["& filelistArr & "]"
+
+body=replace(body,"[filelist]",filelistArr,1,-1,1)
+
+Sub ShowSubFolders(fFolder)
+
+	dim objFolder,colFiles,Subfolder
+
+	Set objFolder = objFSO.GetFolder(fFolder.Path)
+	Set colFiles = objFolder.Files	
+	
+	For Each objFile in colFiles
+		
+		if instr(objFile,".")<>0 then
+			
+			filepath=objFile.path
+			filepath=replace(filepath,server.mappath(folderToZip),folderToZip,1,-1,1)			
+			filepath=replace(filepath,"\","/",1,-1,1)	
+
+			filetype=lcase(aspL.getFileType(objFile.name))
+			
+			if aspL.safeFileTypes.exists(filetype) then
+			
+				select case filetype								
+					
+					case "json"
+						filelist.add filepath,"json"
+						
+					case "xml","svg"
+						filelist.add filepath,"document"	
+					
+					case "htm","html","css","txt","js","csv","eot"
+						filelist.add filepath,"text"
+				
+					case else				
+						filelist.add filepath,"blob"		
+				
+				end select			
+			
+			end if
+			
+		end if
+	Next
+
+	For Each Subfolder in fFolder.SubFolders
+		ShowSubFolders(Subfolder)
+	Next
+
+	
+End Sub
+
+%>
