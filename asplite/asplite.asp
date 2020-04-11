@@ -555,16 +555,15 @@ class cls_asplite
 			p_safeFileTypes.Add "swf",""
 			p_safeFileTypes.Add "js",""
 			p_safeFileTypes.Add "less",""
-			p_safeFileTypes.Add "json",""
-			
+			p_safeFileTypes.Add "json",""	
 
-			'p_safeFileTypes.Add "vbs",""
-			'p_safeFileTypes.Add "swt",""
+			
 			'compression types
 			p_safeFileTypes.Add "rar",""
 			p_safeFileTypes.Add "zip",""
 			p_safeFileTypes.Add "tar",""
 			p_safeFileTypes.Add "gz",""
+			
 			'fonts
 			p_safeFileTypes.Add "woff",""
 			p_safeFileTypes.Add "woff2",""

@@ -7,16 +7,17 @@ dim folderToZip
 folderToZip="uploads"
 
 'get filelist
-dim filelist,filelistArr,objFSO,objSuperFolder,filepath,filetype
+dim filelist,filelistArr,objSuperFolder,filepath,filetype
 set filelist=server.createobject("scripting.dictionary")
-Set objFSO = server.CreateObject("Scripting.FileSystemObject")
-set objSuperFolder = objFSO.getfolder(server.mappath(folderToZip))
+set objSuperFolder = aspL.fso.getfolder(server.mappath(folderToZip))
 
 ShowSubfolders (objSuperFolder)
 
+set objSuperFolder=nothing
+
 dim url
 for each url in filelist
-	filelistArr=filelistArr & "['" & url & "','" & filelist(url) & "'],"
+	filelistArr=filelistArr & "[encodeURI('" & aspL.sanitizeJS(url) & "'),'" & filelist(url) & "'],"
 next
 
 filelistArr=left(filelistArr,len(filelistArr)-1)
@@ -25,11 +26,13 @@ filelistArr="var urls=["& filelistArr & "]"
 
 body=replace(body,"[filelist]",filelistArr,1,-1,1)
 
+set filelist=nothing
+
 Sub ShowSubFolders(fFolder)
 
 	dim objFolder,colFiles,Subfolder
 
-	Set objFolder = objFSO.GetFolder(fFolder.Path)
+	Set objFolder = aspL.fso.GetFolder(fFolder.Path)
 	Set colFiles = objFolder.Files	
 	
 	For Each objFile in colFiles
@@ -38,7 +41,7 @@ Sub ShowSubFolders(fFolder)
 			
 			filepath=objFile.path
 			filepath=replace(filepath,server.mappath(folderToZip),folderToZip,1,-1,1)			
-			filepath=replace(filepath,"\","/",1,-1,1)	
+			filepath=replace(filepath,"\","/",1,-1,1)			
 
 			filetype=lcase(aspL.getFileType(objFile.name))
 			
@@ -68,7 +71,9 @@ Sub ShowSubFolders(fFolder)
 	For Each Subfolder in fFolder.SubFolders
 		ShowSubFolders(Subfolder)
 	Next
-
+	
+	set objFolder=nothing
+	set colFiles=nothing
 	
 End Sub
 
