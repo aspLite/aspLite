@@ -82,7 +82,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "ajaxhello"
 		
-		aspL.dump "Hello " & aspL.sanitize(aspL.URLDecode(aspL.getRequest("yourname"))) & ".<br><br>This is your name one way encrypted (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>"
+		aspL.dump "Hello " & aspL.sanitize(aspL.URLDecode(aspL.getRequest("yourname"))) & ".<br><br>Hashed (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>"
 
 	case "submit1"
 	
@@ -124,13 +124,9 @@ select case lcase(aspL.getRequest("e")) '"event"
 
 		aspL.exec("code/demo.asp/datatable.resx")	
 	
-	case "sha256"
+	case "hash"
 	
-		dim password
-		password=aspl.plugin("randomizer").randomText(25)		
-		
-		aspL.dump "<h5>one way encryption</h5><p><strong>" & password & "</strong> becomes <div class=""form-group""><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(password) & "</textarea></div> when one-way encrypted with the Secure Hash Algorithm (sha256)</p>"
-		
+		aspL.exec("code/demo.asp/hash.resx")	
 		
 	case "returnjsondata"
 	

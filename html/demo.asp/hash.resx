@@ -1,0 +1,11 @@
+<h5>Password hasing</h5>
+
+<div><strong>[pw]</strong> becomes 
+
+	<div class="form-group">
+<textarea rows="6" class="form-control">md5:
+[md5]
+
+sha256:
+[sha256]</textarea></div>
+</div>

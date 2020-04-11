@@ -59,7 +59,13 @@ class cls_asplite
 
 	public sub exec(path)
 		
+		on error resume next
+		
 		executeGlobal removeCRB(stream(path))
+		
+		aspError("problem when executing " & path)
+		
+		on error goto 0
 
 	end sub	
 	
@@ -341,23 +347,21 @@ class cls_asplite
 	'### some caching functions
 	'############################
 	
-	public function setcache(name,value)
-
-		'ASP Caching Object - ACO
+	public function setcache(name,value)	
 	
-		application("ACO_" & name)=value
+		application("aspLite_" & name)=value
 	
 	end function
 	
 	public function clearcache(name)
 	
-		application.contents.remove("ACO_" & name)
+		application.contents.remove("aspLite_" & name)
 	
 	end function
 	
 	public function getcache(name)
 	
-		getcache=application("ACO_" & name)
+		getcache=application("aspLite_" & name)
 		
 	end function
 	
@@ -365,7 +369,7 @@ class cls_asplite
 	
 		dim el
 		for each el in application.contents		
-			if left(el,4)="ACO_" then
+			if left(el,4)="aspLite_" then
 				application.contents.remove(el)
 			end if
 		next

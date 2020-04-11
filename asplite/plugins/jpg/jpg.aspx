@@ -75,12 +75,12 @@
 			
 		End If
 		
-		dim FSR as string = Request.QueryString("FSR")
-		IF FSR IS NOTHING ANDALSO FSR.length = 0 Then
-			FSR="0"
+		dim square as string = Request.QueryString("square")
+		IF square IS NOTHING ANDALSO square.length = 0 Then
+			square="0"
 		END IF
 		
-		If FSR = "1" Then
+		If square = "1" Then
 			If newWidth < newHeight Then
 				thumbNailImg = fullSizeImg.GetThumbnailImage(newWidth * (newHeight / newWidth), newHeight * (newHeight / newWidth), dummyCallBack, IntPtr.Zero)
 				thumbNailImg = CropImage(thumbNailImg, New Point(0, (newHeight - newWidth) / 2), New Point(newHeight, newHeight + (newHeight - newWidth) / 2))
@@ -94,8 +94,7 @@
 			else				
 				thumbNailImg = fullSizeImg					
 			End If
-		End If
-	  
+		End If	  
 		
 		createOutput(thumbNailImg,isPNG)	 
 		
@@ -107,6 +106,7 @@
 	   
 
 		On Error GoTo 0
+		
     End Sub
 
     Sub createOutput(ByRef ImageObj As System.Drawing.Image,isPNG as Boolean)
@@ -207,24 +207,24 @@
 	
 	Public Function PixelLoopConvert (ByVal Image As System.Drawing.Bitmap)    
    
-    For i As Integer = 0 To Image.Width - 1
-      For j As Integer = 0 To Image.Height - 1
-        Dim iRed As Integer = Image.GetPixel(i, j).R
-        Dim iGreen As Integer = Image.GetPixel(i, j).G
-        Dim iBlue As Integer = Image.GetPixel(i, j).B
+		For i As Integer = 0 To Image.Width - 1
+		  For j As Integer = 0 To Image.Height - 1
+			Dim iRed As Integer = Image.GetPixel(i, j).R
+			Dim iGreen As Integer = Image.GetPixel(i, j).G
+			Dim iBlue As Integer = Image.GetPixel(i, j).B
 
-        ' Bereken de nieuwe RGB-waarde voor deze pixel:
-        Dim iSepiaRed As Integer = Math.Min(Convert.ToInt32(iRed * 0.393 + iGreen * 0.769 + iBlue * 0.189), 255)
-        Dim iSepiaGreen As Integer = Math.Min(Convert.ToInt32(iRed * 0.349 + iGreen * 0.686 + iBlue * 0.168), 255)
-        Dim iSepiaBlue As Integer = Math.Min(Convert.ToInt32(iRed * 0.272 + iGreen * 0.534 + iBlue * 0.131), 255)
+			' Bereken de nieuwe RGB-waarde voor deze pixel:
+			Dim iSepiaRed As Integer = Math.Min(Convert.ToInt32(iRed * 0.393 + iGreen * 0.769 + iBlue * 0.189), 255)
+			Dim iSepiaGreen As Integer = Math.Min(Convert.ToInt32(iRed * 0.349 + iGreen * 0.686 + iBlue * 0.168), 255)
+			Dim iSepiaBlue As Integer = Math.Min(Convert.ToInt32(iRed * 0.272 + iGreen * 0.534 + iBlue * 0.131), 255)
 
-        ' Wijzig de RGB-waarde van de huidige pixel van de oude naar de nieuwe:
-        Image.SetPixel(i, j, Color.FromArgb(iSepiaRed, iSepiaGreen, iSepiaBlue))
-      Next
-    Next
-	
-    Return Image
+			' Wijzig de RGB-waarde van de huidige pixel van de oude naar de nieuwe:
+			Image.SetPixel(i, j, Color.FromArgb(iSepiaRed, iSepiaGreen, iSepiaBlue))
+		  Next
+		Next
+		
+		Return Image
 
-  End Function
+	End Function
     
 </script>

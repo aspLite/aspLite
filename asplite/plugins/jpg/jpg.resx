@@ -1,9 +1,9 @@
 <%
 class cls_asplite_jpg
 
-	public maxsize,path,effect,fsr
+	public maxsize,path,effect,square
 	
-	'fsr=0/1 - crop image to rectangle: 0:no / 1:yes
+	'square=0/1 - crop square: 0:no / 1:yes
 	'effect=1/2/3 - 1:bw / 2:grayscale / 3:sepia
 
 	private sub class_initialize
@@ -14,7 +14,7 @@ class cls_asplite_jpg
 	
 	public function src
 	
-		src=asp_path & "/plugins/jpg/jpg.aspx?img=" & server.urlencode(path) & "&maxsize="& maxsize & "&se=" & effect & "&fsr=" & fsr
+		src=asp_path & "/plugins/jpg/jpg.aspx?img=" & server.urlencode(path) & "&maxsize="& maxsize & "&se=" & effect & "&square=" & square
 	
 	end function
 

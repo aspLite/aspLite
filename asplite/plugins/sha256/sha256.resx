@@ -1,13 +1,7 @@
 <%
 class cls_asplite_sha256
 
-	private m_lOnBits(30)
-	private m_l2Power(30)
-	private K(63)
-
-	private BITS_TO_A_BYTE
-	private BYTES_TO_A_WORD
-	private BITS_TO_A_WORD
+	private m_lOnBits(30), m_l2Power(30), K(63), BITS_TO_A_BYTE, BYTES_TO_A_WORD, BITS_TO_A_WORD
 	
 	private sub class_initialize()
 	
