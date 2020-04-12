@@ -75,6 +75,10 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 		aspL.exec("code/demo.asp/jszip.resx")	
 		
+	case "jspdf"
+	
+		body=aspL.load("html/demo.asp/jspdf.resx")	
+		
 	case "login"
 		'this will load a completely different template.
 		'because we override the html variable.

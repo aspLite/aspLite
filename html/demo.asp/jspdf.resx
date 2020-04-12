@@ -1,0 +1,25 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+
+<p><strong>jsPDF</strong> experiment - <a target="_blank" href="https://github.com/MrRio/jsPDF">https://github.com/MrRio/jsPDF</a></p>
+
+<button id="pdf" class="btn btn-primary">click to download pdf</button>
+
+<script>
+
+$("#pdf").on("click", function () {
+
+	// Default export is a4 paper, portrait, using milimeters for units
+	var doc = new jsPDF()
+
+	doc.setFontSize(16);
+	
+	doc.text('Hello world!', 20, 20)
+	
+	doc.setFontSize(12);
+	
+	doc.text('You don\'t need an expensive 3rd party component to create PDF files....', 20, 30)
+	
+	doc.save('a4.pdf')	
+});
+
+</script>

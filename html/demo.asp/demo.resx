@@ -77,7 +77,8 @@
 						<li><a href="demo.asp?e=login">login</a></li>
 						<li><a href="demo.asp?e=clicklink">clink link</a></li>
 						<li><a href="demo.asp?e=loadclass">conditionally load asp file</a></li>
-						<li><a href="demo.asp?e=jszip">create zip file</a></li>		
+						<li><a href="demo.asp?e=jszip">create ZIP file</a></li>	
+						<li><a href="demo.asp?e=jspdf">create PDF file</a></li>							
 						<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a></li>
 						<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a></li>
 						<li><a href="demo.asp?e=helloworld">hello world plugin</a></li>

@@ -11,7 +11,7 @@ var zip = new JSZip()
 var i=0
 var urls = []
 
-jQuery("#blob").on("click", function () {
+$("#blob").on("click", function () {
 
 	$(this).html('please wait... files are downloaded')
 	
