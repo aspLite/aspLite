@@ -11,7 +11,6 @@ var zip = new JSZip()
 var i=0
 var urls = []
 
-
 jQuery("#blob").on("click", function () {
 
 	$(this).html('please wait... files are downloaded')
@@ -33,7 +32,7 @@ function download() {
 	zip.generateAsync({type:"blob"}).then(function (blob) { 
 		saveAs(blob, "download.zip")
 		$('#blob').html('click to download zip')			
-	}, function (err) {console.log('error when creating zip')})
+	}, function (err) {})
 
 }
 
