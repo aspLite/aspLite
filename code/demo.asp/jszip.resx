@@ -17,12 +17,8 @@ set objSuperFolder=nothing
 
 dim url
 for each url in filelist
-	filelistArr=filelistArr & "[encodeURI('" & aspL.sanitizeJS(url) & "'),'" & filelist(url) & "'],"
+	filelistArr=filelistArr & vbtab & "urls.push(['" & aspL.sanitizeJS(url) & "','" & filelist(url) & "'])" & vbcrlf
 next
-
-filelistArr=left(filelistArr,len(filelistArr)-1)
-
-filelistArr="var urls=["& filelistArr & "]"
 
 body=replace(body,"[filelist]",filelistArr,1,-1,1)
 
@@ -55,8 +51,11 @@ Sub ShowSubFolders(fFolder)
 					case "xml","svg"
 						filelist.add filepath,"document"	
 					
-					case "htm","html","css","txt","js","csv","eot"
+					case "htm","html","css","txt","csv"
 						filelist.add filepath,"text"
+						
+					case "js","mdb"
+						'we're not including these files for security reasons
 				
 					case else				
 						filelist.add filepath,"blob"		
