@@ -187,7 +187,8 @@
 	}
 
 	function aspAjaxSuccess(data) {
-		$('#body').html(data)	
+		$('#body').html(data)
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 	
 	$('.aspAjaxJSON').click(function(e) {
@@ -211,7 +212,8 @@
 		
 		output+='</ul>'	
 		
-		$('#body').html(output)		
+		$('#body').html(output)	
+		window.scrollTo({ top: 0, behavior: 'smooth' });		
 	}
 			
 	
