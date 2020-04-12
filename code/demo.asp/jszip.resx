@@ -51,10 +51,10 @@ Sub ShowSubFolders(fFolder)
 					case "xml","svg"
 						filelist.add filepath,"document"	
 					
-					case "htm","html","css","txt","csv"
+					case "htm","html","css","txt","csv","js"
 						filelist.add filepath,"text"
 						
-					case "js","mdb"
+					case "mdb"
 						'we're not including these files for security reasons
 				
 					case else				

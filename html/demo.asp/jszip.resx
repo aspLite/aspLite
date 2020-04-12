@@ -43,13 +43,17 @@ function getUrl(url,type) {
 		type:'GET',
 		cache:false,
 		xhr:function(){		
+
+			console.log('downloading: ' + url + ' - type: ' + type + ')')
 				
 			var xhr = new XMLHttpRequest();
-			xhr.responseType= type
-			return xhr;			
+			xhr.responseType= type			
+			return xhr;		
 				
 		},
 		success: function(data){
+		
+			
 			
 			if (type=='blob') {zip.file(url, data,{binary: true})}
 			else {zip.file(url, data)}			
