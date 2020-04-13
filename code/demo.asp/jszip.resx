@@ -58,11 +58,11 @@ Sub ShowSubFolders(fFolder)
 			
 			select case lcase(aspL.getFileType(objFile.name))
 			
-				case "htm","html","js","css","svg","json","txt","csv","xml","mobirise","less","rtf","log","scss","xsl","xsd"
+				case "htm","html","js","css","svg","json","txt","csv","xml","mobirise","less","rtf","log","scss","xsl","xsd","yml"
 					
 					filelist.add filepath,"text"		
 				
-				case "asp","php","mdb","aspx","gitattributes","sample"
+				case "asp","asa","php","mdb","aspx","gitattributes","sample"
 					'do nothing
 					
 				case else

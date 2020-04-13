@@ -1,0 +1,11 @@
+<%
+'load template
+body=aspL.load("html/demo.asp/codemirror.resx")
+
+dim somecode
+
+somecode=aspL.load("code/demo.asp/codemirrorsample.resx")
+
+body=replace(body,"[somecode]",aspL.sanitize(somecode),1,-1,1)
+
+%>

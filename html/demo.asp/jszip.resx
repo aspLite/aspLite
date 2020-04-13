@@ -2,7 +2,7 @@
 <script src="js/filesaver.min.js"></script>
 
 <p><strong>JSZip</strong> experiment - <a target="_blank" href="https://stuk.github.io/jszip/">https://stuk.github.io/jszip/</a></p>
-<p>Works on firefox, chrome , opera &gt;= 15 and IE &gt;= 10 (but NOT in compatibility view).</p>
+
 <button id="blob" class="btn btn-primary">click to download zip</button>
 
 <script>
@@ -13,7 +13,7 @@ var urls = []
 
 $("#blob").on("click", function () {
 
-	$(this).html('please wait... files are downloaded')
+	$(this).html('please wait... files are downloading')
 	
 	//the list of files below is generated on the server
 	//see code/demo.asp/jszip.resx
@@ -64,7 +64,9 @@ function getUrl(filename,url) {
 			else {getUrl(urls[i][0],urls[i][1])}
 				
 		},
-		error:function(){		
+		error:function(){	
+
+			console.log('err: ' + filename)
 			
 			i++
 			

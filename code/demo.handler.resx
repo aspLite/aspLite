@@ -77,7 +77,11 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "jspdf"
 	
-		body=aspL.load("html/demo.asp/jspdf.resx")	
+		body=aspL.load("html/demo.asp/jspdf.resx")
+	
+	case "codemirror"
+	
+		aspL.exec("code/demo.asp/codemirror.resx")	
 		
 	case "login"
 		'this will load a completely different template.

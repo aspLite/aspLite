@@ -30,7 +30,7 @@
   
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 			
-			<a class="navbar-brand" href="default.asp">aspLite</a>
+			<a class="navbar-brand" target="_blank" href="https://asplite.com">aspLite</a>
 			
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -59,12 +59,7 @@
 			</div>
 		</nav>
 
-		<main role="main" class="container">
-
-		  <div class="starter-template">
-			<h1>[PAGETITLE]</h1>
-			<p class="lead">a lightweight framework for ASP/VBScript developers - <a target="_blank" href="https://aspLite.com">aspLite.com</a></p>			
-		  </div>
+		<main role="main" class="container">		  
 		  
 		   <div class="row">
 				<div class="col-sm">
@@ -78,7 +73,8 @@
 						<li><a href="demo.asp?e=clicklink">clink link</a></li>
 						<li><a href="demo.asp?e=loadclass">conditionally load asp file</a></li>
 						<li><a href="demo.asp?e=jszip">create ZIP file</a></li>	
-						<li><a href="demo.asp?e=jspdf">create PDF file</a></li>							
+						<li><a href="demo.asp?e=jspdf">create PDF file</a></li>	
+						<li><a href="demo.asp?e=codemirror">CodeMirror</a></li>							
 						<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a></li>
 						<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a></li>
 						<li><a href="demo.asp?e=helloworld">hello world plugin</a></li>
