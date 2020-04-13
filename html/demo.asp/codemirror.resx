@@ -2,7 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/vbscript/vbscript.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
 
-<p>CodeMirror - <a target="_blank" href="https://codemirror.net/">https://codemirror.net/</a> - lets you edit (all sorts of) code inline. The textarea below belows loads a sample ASP file code/demo.asp/codemirrorsample.resx (that's not even an ASP file)</p>
+<p>CodeMirror - <a target="_blank" href="https://codemirror.net/">https://codemirror.net/</a> - lets you edit (all sorts of) code inline. The textarea below loads a sample ASP file code/demo.asp/codemirrorsample.resx (that's not even an ASP file)</p>
 
 <!-- also check /code/demo.asp/codemirror.resx -->
 <textarea id="codemirror">[somecode]</textarea>
