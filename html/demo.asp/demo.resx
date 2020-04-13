@@ -172,12 +172,14 @@
 
 	$('.aspAjax').click(function(e) {
 		e.preventDefault()
-		aspAjax('GET',aspAjaxUrl,'text','e=' + this.id,aspAjaxSuccess)
+		aspAjax('GET',aspAjaxUrl,'text','e=' + this.id,aspAjaxSuccess)	
+		scroll()		
 	})
 
 	$('.ajaxForm').submit(function(e) {
 		e.preventDefault()
 		aspAjax('POST',aspAjaxUrl,'text',$(this).serialize(),aspAjaxSuccess)
+		scroll()
 	})
 
 	function onPageLoad () { 
@@ -185,8 +187,11 @@
 	}
 
 	function aspAjaxSuccess(data) {
-		$('#body').html(data)		
-		$('html,body').animate({scrollTop: $("#ajaxhandler").offset().top-100}, 'slow')		
+		$('#body').html(data)			
+	}
+	
+	function scroll() {
+		$('html,body').animate({scrollTop: $("#ajaxhandler").offset().top-100}, 'slow')	
 	}
 	
 	$('.aspAjaxJSON').click(function(e) {
@@ -211,7 +216,7 @@
 		output+='</ul>'	
 		
 		$('#body').html(output)	
-		$('html,body').animate({scrollTop: $("#ajaxhandler").offset().top-100}, 'slow')		
+		scroll()
 	}
 			
 	
