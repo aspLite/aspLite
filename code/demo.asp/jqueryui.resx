@@ -1,0 +1,13 @@
+<%
+'load template
+body=aspL.load("html/demo.asp/jqueryui.resx")
+
+'the jquery ui Datepicker expects dd/mm/yy
+dim today
+
+'the aspl.convert2() converts 1 to 01, 2 to 02 and so on (needed for Datepicker)
+today=aspl.convert2(day(date)) & "/" & aspl.convert2(month(date)) & "/" & year(date)
+
+body=replace(body,"[today]",today,1,-1,1)
+
+%>

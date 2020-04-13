@@ -82,6 +82,10 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "codemirror"
 	
 		aspL.exec("code/demo.asp/codemirror.resx")	
+	
+	case "jqueryui"
+	
+		aspL.exec("code/demo.asp/jqueryui.resx")
 		
 	case "login"
 		'this will load a completely different template.

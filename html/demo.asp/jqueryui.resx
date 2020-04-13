@@ -1,0 +1,23 @@
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<p>Very useful Datepicker by jQuery UI - <a href="https://jqueryui.com/datepicker/" target="_blank"> https://jqueryui.com/datepicker/</a> with lots of options.</p>
+ 
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">date</span>
+  </div>
+  <!-- "today" is replaced with today's date in /code/demo.asp/jqueryui.resx -->
+  <input type="text" name="datepicker" class="form-control" value="[today]" id="datepicker" aria-describedby="basic-addon1">
+</div>
+ 
+<script>
+
+	$('#datepicker').datepicker({inline: true, dateFormat:"dd/mm/yy"});
+	
+	$('#datepicker').keyup(function(e) {
+		if(e.keyCode == 8 || e.keyCode == 46) 
+			{$.datepicker._clearDate(this);}
+	});
+	
+</script>
