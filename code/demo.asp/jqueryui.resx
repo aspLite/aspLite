@@ -15,7 +15,9 @@ if not aspl.isLeeg(aspL.getRequest("today")) then
 	
 	today=aspL.getRequest("today")
 	
-	'be careful... this is not necessarely a valid VBScript date. It's a string actually. It has to be converted to a date!
+	'be careful... the selected date is not necessarely a valid VBScript date. 
+	'It's a string actually. It has to be converted to a VBScript date!
+	
 	vbDate=dateFromDatepicker(today)
 	
 	body=replace(body,"[feedback]","<p>You selected <strong>" & FormatDateTime(vbDate,1) & "</strong> (vbLongDate)</p>",1,-1,1)
