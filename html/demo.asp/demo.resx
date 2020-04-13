@@ -94,9 +94,10 @@
 				   <br /><br />
 				   
 				</div>
-				<div class="col-sm">
+				<div class="col-sm">					
+					
 				   
-					<h5>Output AJAX handler:</h5>
+					<h5 id="ajaxhandler">Output AJAX handler:</h5>
 					<div id="body" class="alert alert-primary" role="alert"></div>						
 										
 					<form class="ajaxForm" action="default.asp">
@@ -184,8 +185,8 @@
 	}
 
 	function aspAjaxSuccess(data) {
-		$('#body').html(data)
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+		$('#body').html(data)		
+		$('html,body').animate({scrollTop: $("#ajaxhandler").offset().top-100}, 'slow')		
 	}
 	
 	$('.aspAjaxJSON').click(function(e) {
@@ -210,7 +211,7 @@
 		output+='</ul>'	
 		
 		$('#body').html(output)	
-		window.scrollTo({ top: 0, behavior: 'smooth' });		
+		$('html,body').animate({scrollTop: $("#ajaxhandler").offset().top-100}, 'slow')		
 	}
 			
 	
