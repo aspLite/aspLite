@@ -1,6 +1,6 @@
 <%
 'load template
-body=aspL.load("html/demo.asp/jqueryui.resx")
+body=aspL.loadText("html/demo.asp/jqueryui.resx")
 
 'load some variables and functions (dateformat, dateFromPicker, dateToPicker)
 aspL.exec("code/demo.asp/functions.resx")

@@ -8,7 +8,7 @@ if not aspL.isLeeg(request.querystring("stream")) then
 
 	'security check
 	if left(request.querystring("stream"),len(folderToZip))=folderToZip then
-		aspL.dump(aspl.load(request.querystring("stream")))
+		aspL.dump(aspl.loadText(request.querystring("stream")))
 	else
 		response.end 'not allowed
 	end if
@@ -16,7 +16,7 @@ if not aspL.isLeeg(request.querystring("stream")) then
 end if
 
 'load the template file first (including JavScript CDN)
-body=aspL.load("html/demo.asp/jszip.resx")	
+body=aspL.loadText("html/demo.asp/jszip.resx")	
 
 'get filelist
 dim filelist,filelistArr,objSuperFolder,filepath

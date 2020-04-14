@@ -66,9 +66,9 @@ class cls_asplite
 
 	end sub	
 	
-	public function load(path)		
+	public function loadText(path)		
 		
-		load=stream(path,false,"")
+		loadText=stream(path,false,"")
 
 	end function
 	

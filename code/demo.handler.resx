@@ -4,7 +4,7 @@ dim html,titletag,body
 titletag="aspLite demo"
 
 'load the template
-html=aspL.load("html/demo.asp/demo.resx")
+html=aspL.loadText("html/demo.asp/demo.resx")
 
 'here you can typically add some sort of eventhandler (what did the user do exactly?)
 'in general: if the code for dealing with the event is not large, include it here.
@@ -61,7 +61,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 				
 	case "upload"
 	
-		body=aspL.load("html/demo.asp/singleupload.resx")
+		body=aspL.loadText("html/demo.asp/singleupload.resx")
 		
 	case "uploadfile"
 
@@ -69,7 +69,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "uploadmulti"
 	
-		body=aspL.load("html/demo.asp/multiupload.resx")
+		body=aspL.loadText("html/demo.asp/multiupload.resx")
 		
 	case "jszip"
 	
@@ -77,7 +77,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "jspdf"
 	
-		body=aspL.load("html/demo.asp/jspdf.resx")
+		body=aspL.loadText("html/demo.asp/jspdf.resx")
 	
 	case "codemirror"
 	
@@ -91,7 +91,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		'this will load a completely different template.
 		'because we override the html variable.
 		'this has as such nothing to do with aspLite. It's just a technique that can be used.
-		html=aspL.load("html/demo.asp/login.resx")		
+		html=aspL.loadText("html/demo.asp/login.resx")		
 	
 	
 	'AJAX handlers
@@ -164,7 +164,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "uploadjquery" 'screen
 	
-		aspL.dump(aspL.load("html/demo.asp/uploadjquery.resx"))
+		aspL.dump(aspL.loadText("html/demo.asp/uploadjquery.resx"))
 	
 	case "uploadfilejquery" 'uploader
 	

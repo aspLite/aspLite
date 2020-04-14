@@ -2,7 +2,7 @@
 on error resume next
 
 dim template
-template=aspL.load("html/demo.asp/hash.resx")
+template=aspL.loadText("html/demo.asp/hash.resx")
 
 dim password
 password=aspl.plugin("randomizer").randomText(30)		
