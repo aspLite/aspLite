@@ -24,16 +24,23 @@
   
 </form>
 
+<div class="alert alert-warning" role="alert">
+ Image files are resized to 1200px before uploading (optional, see resizeImagesToPx)
+</div>
+
 <div class="alert alert-danger" role="alert">
   Security alert: this script uploads the selected file(s) in the /uploads folder. However,
   for security reasons, they are deleted right after. Check /code/demo.asp/uploadfile.resx.
 </div>
 
 <script>
+//image files can be automatically resized if wanted
+var resizeImages=true
+var resizeImagesToPx=1200 // max size horizontal or vertical
 
-var i=0;
-var j=0;
-var files;
+var i=0
+var j=0
+var files
 
 $("#uploadForm").submit(function(e){
 
@@ -56,18 +63,38 @@ $("#uploadForm").submit(function(e){
 function jQueryUpload() {	
 	
 	var file = files[i]
-	var fd = new FormData(); 			
-	fd.append('file', file)	
 	
+	if(resizeImages && file.type.match(/image.*/)) {
+		resizeImage(file)		
+	}
+	else
+	{
+		var fd = new FormData()			
+		fd.append('file', file, file.name)	
+		ajax(fd,file.name)		
+	}	
+}
+
+//works!
+
+$(document).on("imageResized", function (event) {
+		
+		var fd = new FormData()		
+		fd.append('file', event.blob, event.filename)	
+		ajax(fd,event.filename)
+		
+	})
+
+function ajax(fd,filename) {
+
 	$.ajax({		
 		type: "post",
 		url: "demo.asp?e=uploadfilejquery",
 		dataType: "text",
 		data: fd,
-		contentType: false, 
 		processData: false, 
 		success: function (data) {			
-					$("#uploadFB").append('<strong>' + file.name + '</strong> was uploaded<hr />')	
+					$("#uploadFB").append('<strong>' + filename + '</strong> was uploaded<hr />')	
 					i++					
 					if(i<files.length) {jQueryUpload()}
 					else {
@@ -76,7 +103,7 @@ function jQueryUpload() {
 					}
 				},
 		error: function (data) {
-			$("#uploadFB").append('<span style="color:Red"><strong>' + file.name + '</strong> (' + Math.round(file.size/1024/1024) +' MB) was NOT uploaded</span><hr />')	
+			$("#uploadFB").append('<span style="color:Red"><strong>' + filename + '</strong> was NOT uploaded</span><hr />')	
 			i++
 			j++
 			console.log(data)
@@ -86,8 +113,9 @@ function jQueryUpload() {
 				finish()
 				}			
 			}
-		});
-	}
+		})		
+
+}
 
 function finish() {	
 	$("#loading").css("display","none")	
@@ -96,4 +124,75 @@ function finish() {
 	if(!(i-j)==0) {$("#uploadFB").prepend('<strong>' + (i-j) + ' files</strong> have been uploaded<hr />')}	
 	i=0;j=0;
 }
+
+// solution found on https://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload
+// by https://stackoverflow.com/users/689298/ferics2
+function resizeImage(fileObj) {
+
+	// Load the image
+	var reader = new FileReader();
+	reader.onload = function (readerEvent) {
+		var image = new Image();
+		image.onload = function (imageEvent) {
+
+			// Resize the image
+			var canvas = document.createElement('canvas'),
+				max_size = resizeImagesToPx,
+				width = image.width,
+				height = image.height;
+			if (width > height) {
+				if (width > max_size) {
+					height *= max_size / width;
+					width = max_size;
+				}
+			} else {
+				if (height > max_size) {
+					width *= max_size / height;
+					height = max_size;
+				}
+			}
+			canvas.width = width;
+			canvas.height = height;
+			canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+			var dataUrl = canvas.toDataURL('image/jpeg');                
+			
+			var fd = new FormData()		
+			fd.append('file', dataURLToBlob(dataUrl), fileObj.name)	
+			ajax(fd,fileObj.name)
+			
+		}
+		image.src = readerEvent.target.result;
+	}		
+	
+	reader.readAsDataURL(fileObj);
+    
+}
+
+/* Utility function to convert a canvas to a BLOB */
+var dataURLToBlob = function(dataURL) {
+    var BASE64_MARKER = ';base64,';
+    if (dataURL.indexOf(BASE64_MARKER) == -1) {
+        var parts = dataURL.split(',');
+        var contentType = parts[0].split(':')[1];
+        var raw = parts[1];
+
+        return new Blob([raw], {type: contentType});
+    }
+
+    var parts = dataURL.split(BASE64_MARKER);
+    var contentType = parts[0].split(':')[1];
+    var raw = window.atob(parts[1]);
+    var rawLength = raw.length;
+
+    var uInt8Array = new Uint8Array(rawLength);
+
+    for (var i = 0; i < rawLength; ++i) {
+        uInt8Array[i] = raw.charCodeAt(i);
+    }
+
+    return new Blob([uInt8Array], {type: contentType});
+}
+/* End Utility function to convert a canvas to a BLOB      */
+
+
 </script>
