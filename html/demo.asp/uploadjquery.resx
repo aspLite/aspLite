@@ -75,16 +75,6 @@ function jQueryUpload() {
 	}	
 }
 
-//works!
-
-$(document).on("imageResized", function (event) {
-		
-		var fd = new FormData()		
-		fd.append('file', event.blob, event.filename)	
-		ajax(fd,event.filename)
-		
-	})
-
 function ajax(fd,filename) {
 
 	$.ajax({		
