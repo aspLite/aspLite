@@ -1,4 +1,4 @@
-<p>Select multiple files (jQuery upload):</p>
+<p>Select multiple files:</p>
 
 <form method="post" enctype="multipart/form-data" id="uploadForm" action=""> 
  
@@ -47,8 +47,7 @@ $("#uploadForm").submit(function(e){
 	e.preventDefault()
 	
 	$("#uploadFBS").html('<strong>Upload started</strong><br /><br />')
-	$("#uploadFB").html('')
-	
+	$("#uploadFB").html('')	
 	$("#loading").css("display","block");
 	$("#alert").css("display","block");
 	
@@ -71,11 +70,11 @@ function jQueryUpload() {
 	{
 		var fd = new FormData()			
 		fd.append('file', file, file.name)	
-		ajax(fd,file.name)		
+		ajax(fd,file)		
 	}	
 }
 
-function ajax(fd,filename) {
+function ajax(fd,file) {
 
 	$.ajax({		
 		type: "post",
@@ -84,7 +83,7 @@ function ajax(fd,filename) {
 		data: fd,
 		processData: false, 
 		success: function (data) {			
-					$("#uploadFB").append('<strong>' + filename + '</strong> was uploaded<hr />')	
+					$("#uploadFB").append('<strong>' + file.name + '</strong> was uploaded<hr />')	
 					i++					
 					if(i<files.length) {jQueryUpload()}
 					else {
@@ -93,7 +92,7 @@ function ajax(fd,filename) {
 					}
 				},
 		error: function (data) {
-			$("#uploadFB").append('<span style="color:Red"><strong>' + filename + '</strong> was NOT uploaded</span><hr />')	
+			$("#uploadFB").append('<span style="color:Red"><strong>' + file.name + '</strong> (' + Math.round(file.size/1024/1024) + ' MB) was NOT uploaded</span><hr />')	
 			i++
 			j++
 			console.log(data)
@@ -148,7 +147,7 @@ function resizeImage(fileObj) {
 			
 			var fd = new FormData()		
 			fd.append('file', dataURLToBlob(dataUrl), fileObj.name)	
-			ajax(fd,fileObj.name)
+			ajax(fd,fileObj)
 			
 		}
 		image.src = readerEvent.target.result;
