@@ -14,11 +14,8 @@ class cls_asplite
 	Private Sub Class_Initialize()
 	
 		startTime=Timer()
-		debug						= true 'you may want to set to false for live sites
-	
-		Response.Buffer				= true
-		session.Timeout				= 180 '3 hours
-		server.ScriptTimeout		= 800 '3 minutes: needed for uploading bigger pictures/files!
+		debug						= true 'you may want to set to false for live sites	
+		Response.Buffer				= true		
 		Response.CharSet			= "utf-8"
 		Response.ContentType		= "text/html"
 		Response.CacheControl		= "no-cache"
