@@ -4,7 +4,16 @@ body=aspL.load("html/demo.asp/codemirror.resx")
 
 dim somecode
 
-somecode=aspL.load("code/demo.asp/codemirrorsample.resx")
+if not aspl.isleeg(aspl.getrequest("codemirror")) then
+
+	somecode=aspl.getrequest("codemirror")
+	'save the file here?
+	
+else
+
+	somecode=aspL.load("code/demo.asp/codemirrorsample.resx")
+	
+end if
 
 body=replace(body,"[somecode]",aspL.sanitize(somecode),1,-1,1)
 
