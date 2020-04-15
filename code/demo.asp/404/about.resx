@@ -1,0 +1,18 @@
+<%
+body=aspl.loadText("html/demo.asp/404/default.resx")
+
+'heading
+body=replace(body,"[heading]","About",1,-1,1)
+
+'get some random text
+dim randomtext,i
+for i=1 to 100
+	randomtext=randomtext & aspl.plugin("randomizer").randomtext(aspl.plugin("randomizer").randomNumber(10,30)) & " "
+next
+
+'body - we load some random text
+body=replace(body,"[body]","<p>Some random text... " & randomtext & "</p>",1,-1,1)
+
+aspL.dump(body)
+
+%>

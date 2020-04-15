@@ -1,0 +1,12 @@
+<%
+body=aspl.loadText("html/demo.asp/404/default.resx")
+
+'heading
+body=replace(body,"[heading]","Get code",1,-1,1)
+
+'body
+body=replace(body,"[body]","<p>Welcome to the get-code page of this website.</p>",1,-1,1)
+
+aspL.dump(body)
+
+%>

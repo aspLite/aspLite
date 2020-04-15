@@ -1,0 +1,12 @@
+<%
+body=aspl.loadText("html/demo.asp/404/default.resx")
+
+'heading
+body=replace(body,"[heading]","Contact",1,-1,1)
+
+'body - here we load yet another html-control, a bootstrap form (html/demo.asp/404/contactform.resx)
+body=replace(body,"[body]",aspl.loadText("html/demo.asp/404/contactform.resx"),1,-1,1)
+
+aspL.dump(body)
+
+%>

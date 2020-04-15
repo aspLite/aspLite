@@ -6,7 +6,7 @@
 		<div class="custom-file">
 		
 		<input type="file" class="custom-file-input" name="files" id="files" multiple onchange="$('#uploadForm').submit();return false;">
-		<label class="custom-file-label" id="customFileLabel" for="customFile">Choose files</label>
+		<label class="custom-file-label" id="customFileLabel" for="customFile">Choose or drop files here</label>
 
 		</div>
 	</div>
@@ -52,8 +52,9 @@ $("#uploadForm").submit(function(e){
 	$("#alert").css("display","block");
 	
 	$("#uploadForm").find("input[type=file]").each(function(index, field){
-		files=field.files	
+		files=field.files
 		})	
+	
 		
 	jQueryUpload()
 	
@@ -63,15 +64,18 @@ function jQueryUpload() {
 	
 	var file = files[i]
 	
-	if(resizeImages && file.type.match(/image.*/)) {
-		resizeImage(file)		
+	if (typeof(file) != "undefined") {
+		
+		if (resizeImages && file.type.match(/image.*/)) {
+			resizeImage(file)		
+		}
+		else
+		{
+			var fd = new FormData()			
+			fd.append('file', file, file.name)	
+			ajax(fd,file)		
+		}
 	}
-	else
-	{
-		var fd = new FormData()			
-		fd.append('file', file, file.name)	
-		ajax(fd,file)		
-	}	
 }
 
 function ajax(fd,file) {

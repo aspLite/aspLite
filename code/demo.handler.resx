@@ -189,10 +189,8 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 		body="No (known) action was detected. Initial load."
 		
-		'get userfriendly url, if any
-		if not aspL.isLeeg(aspl.pathinfo) then
-			body="A non-existing item <strong>" & aspl.pathinfo & "</strong> was requested."
-		end if
+		'get userfriendly url, if any (and launch a new handler-instance)
+		aspL.exec("code/demo.asp/404handler.resx")		
 		
 end select
 
