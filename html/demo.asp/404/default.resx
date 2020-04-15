@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Jumbotron Template · Bootstrap</title>
+    <title>[title] - aspLite custom 404 catcher at work</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -77,7 +77,7 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-3">Now we're talking!</h1>
+      <h1 class="display-3">[title]</h1>
       <p class="lead">If you can read this, you got the <strong><i>aspLite custom 404 catcher</i></strong> (enabling userfriendly urls) to work. This is great. A whole new world opens up now. You can use an unlimited number of imaginary folders and subfolders(*) for your web application. You would typically store important information in them, like "/category/products/productname". This way you can create very good SEO urls. The 4 buttons below will lead you to 4 different "pages" of this application. Please note that we're always (and only) executing "demo.asp" in the root of this aspLite installation.</p>
 	  
       <p>

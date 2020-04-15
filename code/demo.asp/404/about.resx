@@ -1,8 +1,11 @@
 <%
 body=aspl.loadText("html/demo.asp/404/default.resx")
 
+'title
+body=replace(body,"[title]","About",1,-1,1)
+
 'heading
-body=replace(body,"[heading]","About",1,-1,1)
+body=replace(body,"[heading]","About us",1,-1,1)
 
 'get some random text
 dim randomtext,i
