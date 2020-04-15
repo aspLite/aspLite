@@ -30,7 +30,7 @@
 
 <div class="alert alert-danger" role="alert">
   Security alert: this script uploads the selected file(s) in the /uploads folder. However,
-  for security reasons, they are deleted right after. Check /code/demo.asp/uploadfile.resx.
+  for security reasons, they are deleted right after. Check /code/demo_asp/uploadfile.resx.
 </div>
 
 <script>
@@ -53,16 +53,21 @@ $("#uploadForm").submit(function(e){
 	
 	$("#uploadForm").find("input[type=file]").each(function(index, field){
 		files=field.files
+		
+		if (files.length>0) {jQueryUpload()}
+		
 		})	
 	
 		
-	jQueryUpload()
+	
 	
 });
 
 function jQueryUpload() {	
 	
 	var file = files[i]
+	
+	//alert(file)
 	
 	if (typeof(file) != "undefined") {
 		

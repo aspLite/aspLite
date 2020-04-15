@@ -3,7 +3,7 @@ on error resume next
 
 'get the bootstrap thumbnail template
 dim bsTemplate
-bsTemplate=aspL.loadText("html/demo.asp/bootstrapthumb.resx")
+bsTemplate=aspL.loadText("html/demo_asp/bootstrapthumb.resx")
 
 dim jpg
 set jpg=aspL.plugin("jpg")

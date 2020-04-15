@@ -4,7 +4,7 @@ dim html,titletag,body
 titletag="aspLite demo"
 
 'load the template
-html=aspL.loadText("html/demo.asp/demo.resx")
+html=aspL.loadText("html/demo_asp/demo.resx")
 
 'here you can typically add some sort of eventhandler (what did the user do exactly?)
 'in general: if the code for dealing with the event is not large, include it here.
@@ -23,7 +23,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "loadclass"
 	
 		'CONDITIONAL load of asp page = include file
-		aspL.exec("code/demo.asp/class.resx")	
+		aspL.exec("code/demo_asp/class.resx")	
 		
 		dim testObj
 		set testObj=new cls_test
@@ -33,65 +33,65 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "downloadlargefile"
 	
-		aspL.dumpBinary("html/demo.asp/largefile.jpg")
+		aspL.dumpBinary("html/demo_asp/largefile.jpg")
 	
 	case "downloadsmallfile"
 	
-		aspL.dumpBinary("html/demo.asp/smallfile.jpg")
+		aspL.dumpBinary("html/demo_asp/smallfile.jpg")
 	
 	case "helloworld"
 	
-		aspL.exec("code/demo.asp/helloworld.resx")	
+		aspL.exec("code/demo_asp/helloworld.resx")	
 		
 	case "randomizer"
 	
-		aspL.exec("code/demo.asp/randomtext.resx")		
+		aspL.exec("code/demo_asp/randomtext.resx")		
 		
 	case "accessdb"
 	
-		aspL.exec("code/demo.asp/datasample.resx")	
+		aspL.exec("code/demo_asp/datasample.resx")	
 		
 	case "jquerydatatable"
 	
-		aspL.exec("code/demo.asp/jquerydatatable.resx")
+		aspL.exec("code/demo_asp/jquerydatatable.resx")
 		
 	case "ckeditor"
 		
-		aspL.exec("code/demo.asp/ckeditor.resx")
+		aspL.exec("code/demo_asp/ckeditor.resx")
 				
 	case "upload"
 	
-		body=aspL.loadText("html/demo.asp/singleupload.resx")
+		body=aspL.loadText("html/demo_asp/singleupload.resx")
 		
 	case "uploadfile"
 
-		aspL.exec("code/demo.asp/uploadfile.resx")	
+		aspL.exec("code/demo_asp/uploadfile.resx")	
 	
 	case "uploadmulti"
 	
-		body=aspL.loadText("html/demo.asp/multiupload.resx")
-		
+		body=aspL.loadText("html/demo_asp/multiupload.resx")		
+	
 	case "jszip"
 	
-		aspL.exec("code/demo.asp/jszip.resx")	
+		aspL.exec("code/demo_asp/jszip.resx")	
 		
 	case "jspdf"
 	
-		body=aspL.loadText("html/demo.asp/jspdf.resx")
+		body=aspL.loadText("html/demo_asp/jspdf.resx")
 	
 	case "codemirror"
 	
-		aspL.exec("code/demo.asp/codemirror.resx")	
+		aspL.exec("code/demo_asp/codemirror.resx")	
 	
 	case "jqueryui"
 	
-		aspL.exec("code/demo.asp/jqueryui.resx")
+		aspL.exec("code/demo_asp/jqueryui.resx")
 		
 	case "login"
 		'this will load a completely different template.
 		'because we override the html variable.
 		'this has as such nothing to do with aspLite. It's just a technique that can be used.
-		html=aspL.loadText("html/demo.asp/login.resx")		
+		html=aspL.loadText("html/demo_asp/login.resx")		
 	
 	
 	'AJAX handlers
@@ -138,19 +138,19 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "returndata"
 
-		aspL.exec("code/demo.asp/datatable.resx")	
+		aspL.exec("code/demo_asp/datatable.resx")	
 	
 	case "hash"
 	
-		aspL.exec("code/demo.asp/hash.resx")	
+		aspL.exec("code/demo_asp/hash.resx")	
 		
 	case "returnjsondata"
 	
-		aspL.exec("code/demo.asp/json.resx")
+		aspL.exec("code/demo_asp/json.resx")
 		
 	case "sendmail"
 		
-		aspL.exec("code/demo.asp/mailhandler.resx")		
+		aspL.exec("code/demo_asp/mailhandler.resx")		
 
 	case "rss"
 	
@@ -160,16 +160,17 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "jpg"	
 	
-		aspL.exec("code/demo.asp/jpghandler.resx")	
+		aspL.exec("code/demo_asp/jpghandler.resx")	
 	
 	case "uploadjquery" 'screen
 	
-		aspL.dump(aspL.loadText("html/demo.asp/uploadjquery.resx"))
+		aspL.dump(aspL.loadText("html/demo_asp/uploadjquery.resx"))
 	
 	case "uploadfilejquery" 'uploader
 	
-		aspL.exec("code/demo.asp/uploadfile.resx")
-		aspL.die
+		aspL.exec("code/demo_asp/uploadfile.resx")
+		aspL.die	
+	
 		
 	case "jscript"
 	
@@ -178,7 +179,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		'the remote asp page has however no access to the aspL object 
 		'or any other object that was created so far
 		'in this case, a JScript sample page was loaded.
-		server.execute("code/demo.asp/jscript.asp")		
+		server.execute("code/demo_asp/jscript.asp")		
 		aspL.die
 		
 	case "onload" 'default content for AJAX handler	
@@ -190,7 +191,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		body="No (known) action was detected. Initial load."
 		
 		'get userfriendly url, if any (and launch a new handler-instance)
-		aspL.exec("code/demo.asp/404handler.resx")		
+		aspL.exec("code/demo_asp/404handler.resx")		
 		
 end select
 

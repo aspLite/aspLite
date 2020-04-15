@@ -16,7 +16,7 @@ $("#blob").on("click", function () {
 	$(this).html('please wait... files are downloading')
 	
 	//the list of files below is generated on the server
-	//see code/demo.asp/jszip.resx
+	//see code/demo_asp/jszip.resx
 [filelist]
 	
 	getUrl(urls[i][0],urls[i][1])	

@@ -1,8 +1,8 @@
-<p>Select multiple files:</p>
+<p>Select a single file:</p>
 <form method="post" enctype="multipart/form-data" id="uploadForm" action="demo.asp?e=uploadfile"> 
- <div class="custom-file">
-    <input type="file" class="custom-file-input" name="files" id="files" multiple onchange="$('#uploadForm').submit()">
-    <label class="custom-file-label" for="customFile">Choose files</label>
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" name="customFile" id="customFile" onchange="$('#uploadForm').submit()">
+    <label class="custom-file-label" for="customFile">Choose file</label>
   </div>
 </form>
 
@@ -10,7 +10,7 @@
 
 <div class="alert alert-danger" role="alert">
   Security alert: this script uploads the selected file(s) in the /uploads folder. However,
-  for security reasons, they are deleted right after. Check /code/demo.asp/uploadfile.resx.
+  for security reasons, they are deleted right after. Check /code/demo_asp/uploadfile.resx.
 </div>
 
 <script>

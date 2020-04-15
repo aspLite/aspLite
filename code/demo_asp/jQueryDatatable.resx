@@ -1,5 +1,5 @@
 <%
-body=aspL.loadText("html/demo.asp/jqueryDatatable.resx")
+body=aspL.loadText("html/demo_asp/jqueryDatatable.resx")
 
 dim i, randomizer, table
 set randomizer=aspL.plugin("randomizer")

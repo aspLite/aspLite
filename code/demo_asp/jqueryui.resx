@@ -1,9 +1,9 @@
 <%
 'load template
-body=aspL.loadText("html/demo.asp/jqueryui.resx")
+body=aspL.loadText("html/demo_asp/jqueryui.resx")
 
 'load some variables and functions (dateformat, dateFromPicker, dateToPicker)
-aspL.exec("code/demo.asp/functions.resx")
+aspL.exec("code/demo_asp/functions.resx")
 
 body=replace(body,"[dateformat]",dateformat,1,-1,1)
 

@@ -1,6 +1,6 @@
 <%
 'load template
-body=aspL.loadText("html/demo.asp/codemirror.resx")
+body=aspL.loadText("html/demo_asp/codemirror.resx")
 
 dim somecode
 
@@ -11,7 +11,7 @@ if not aspl.isleeg(aspl.getrequest("codemirror")) then
 	
 else
 
-	somecode=aspL.loadText("code/demo.asp/codemirrorsample.resx")
+	somecode=aspL.loadText("code/demo_asp/codemirrorsample.resx")
 	
 end if
 

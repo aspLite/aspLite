@@ -1,0 +1,30 @@
+<%
+select case lcase(aspl.pathinfo)
+
+	case "customurl"
+	
+		aspL.exec("code/demo_asp/404/default.resx")
+		
+	case "learn-more"
+		
+		aspL.exec("code/demo_asp/404/learnmore.resx")
+	
+	case "about"
+	
+		aspL.exec("code/demo_asp/404/about.resx")
+	
+	case "getcode"
+	
+		aspL.exec("code/demo_asp/404/getcode.resx")
+	
+	case "contact"
+		
+		aspL.exec("code/demo_asp/404/contact.resx")
+	
+	case else
+	
+		'do nothing?
+
+end select
+
+%>

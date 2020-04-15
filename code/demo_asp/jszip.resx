@@ -16,7 +16,7 @@ if not aspL.isLeeg(request.querystring("stream")) then
 end if
 
 'load the template file first (including JavScript CDN)
-body=aspL.loadText("html/demo.asp/jszip.resx")	
+body=aspL.loadText("html/demo_asp/jszip.resx")	
 
 'get filelist
 dim filelist,filelistArr,objSuperFolder,filepath

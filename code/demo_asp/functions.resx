@@ -1,6 +1,6 @@
 <%
 
-'the functions below are not part of aspLite. But they are used in code/demo.asp/jqueryui.resx.
+'the functions below are not part of aspLite. But they are used in code/demo_asp/jqueryui.resx.
 'they are rather specific to use with the jQuery Datepicker. You can extend this list of functions as you wish.
 
 'select a date-format
