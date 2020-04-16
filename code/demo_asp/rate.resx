@@ -1,0 +1,26 @@
+<%
+on error resume next
+
+if not aspl.isLeeg(aspl.getRequest("score")) then
+
+	body="Thanks so much for your <strong>" & aspl.sanitize(aspl.getRequest("score")) & "</strong> stars!"
+	
+else
+
+	'load the list of stars
+	aspL.exec("code/demo_asp/optionList.resx")
+
+	dim starlist : set starlist=new cls_starlist
+	'load the template
+	body=aspL.loadText("html/demo_asp/rate.resx")
+	body=replace(body,"[starlist]",starlist.showSelected("option",""),1,-1,1)
+	
+end if
+
+aspl.asperror("rating")
+
+aspL.dump body
+
+on error goto 0
+
+%>

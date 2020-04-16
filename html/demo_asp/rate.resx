@@ -1,0 +1,18 @@
+<form id="ratingform" method="post" action="">
+	<input type="hidden" name="e" value="rate">
+
+	<p>How would you rate aspLite so far?</p>
+
+	<select onchange="$('#ratingform').submit()" name="score">
+	[starlist]
+	</select>
+</form>
+
+<script>
+$("#ratingform").submit(function(e){
+
+	e.preventDefault()
+	aspAjax('POST','demo.asp','text',$(this).serialize(),aspAjaxSuccess)
+	
+})
+</script>

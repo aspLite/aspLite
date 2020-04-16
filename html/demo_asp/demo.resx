@@ -52,7 +52,8 @@
 							<a class="aspAjax dropdown-item" id="rss" href="#">Read the news</a>	
 							<a class="aspAjax dropdown-item" id="jscript" href="#">JScript example</a>
 							<a class="aspAjax dropdown-item" id="hash" href="#">Hashing</a>								
-							<a class="aspAjax dropdown-item" id="onload" href="#">Reset</a>								
+							<a class="aspAjax dropdown-item" id="onload" href="#">Reset</a>	
+							<a class="aspAjax dropdown-item" id="rate" href="#">Rate</a>							
 						</div>
 					  </li>
 				</ul>
@@ -100,7 +101,7 @@
 					<h5 id="ajaxhandler">Output AJAX handler:</h5>
 					<div id="body" class="alert alert-primary" role="alert"></div>						
 										
-					<form class="ajaxForm" action="default.asp">
+					<form class="ajaxForm">
 						<div class="input-group mb-3">
 							<input type="hidden" name="e" value="ajaxhello" />							
 							<input placeholder="Your name" id="yourname" class="form-control" name="yourname" type="text" />

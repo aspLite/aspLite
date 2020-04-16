@@ -25,7 +25,7 @@ end if
 body=replace(body,"[savesuccess]","",1,-1,1)
 body=replace(body,"[somecode]",aspL.sanitize(somecode),1,-1,1)
 
-asperror("codemirror")	
+aspl.asperror("codemirror")	
 
 on error goto 0
 

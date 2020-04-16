@@ -97,7 +97,9 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "uploadjquery" : aspL.dump(aspL.loadText("html/demo_asp/uploadjquery.resx")) 'screen
 	
-	case "uploadfilejquery" : aspL.exec("code/demo_asp/uploadfile.resx") : aspL.die	''uploader	
+	case "uploadfilejquery" : aspL.exec("code/demo_asp/uploadfile.resx") : aspL.die	''uploader
+	
+	case "rate" : aspL.exec("code/demo_asp/rate.resx")	
 		
 	case "jscript" : server.execute("code/demo_asp/jscript.asp") : aspL.die		
 	

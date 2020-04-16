@@ -67,7 +67,7 @@ class cls_asplite_cdomessage
 		
 		set MyMail=nothing	
 			
-		asperror("Something goes wrong when sending emails. See details below:")		
+		aspl.asperror("Something goes wrong when sending emails. See details below:")		
 		
 		On Error Goto 0
 		
