@@ -1,4 +1,6 @@
 <%
+on error resume next
+
 'load template
 body=aspL.loadText("html/demo_asp/codemirror.resx")
 
@@ -22,5 +24,9 @@ end if
 
 body=replace(body,"[savesuccess]","",1,-1,1)
 body=replace(body,"[somecode]",aspL.sanitize(somecode),1,-1,1)
+
+asperror("codemirror")	
+
+on error goto 0
 
 %>
