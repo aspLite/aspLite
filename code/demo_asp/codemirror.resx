@@ -4,17 +4,23 @@ body=aspL.loadText("html/demo_asp/codemirror.resx")
 
 dim somecode
 
-if not aspl.isleeg(aspl.getrequest("codemirror")) then
+if aspl.convertBool(aspl.getrequest("saveCodemirror")) then
 
 	somecode=aspl.getrequest("codemirror")
-	'save the file here?
 	
+	'save the file here?
+	'the line below would succesfully save UTF-8 texts
+	'it's commented out for security reasons
+	
+	'aspL.saveText "code/demo_asp/codemirrorsample.resx",somecode	
+	body=replace(body,"[savesuccess]","file was saved",1,-1,1)
 else
 
 	somecode=aspL.loadText("code/demo_asp/codemirrorsample.resx")
 	
 end if
 
+body=replace(body,"[savesuccess]","",1,-1,1)
 body=replace(body,"[somecode]",aspL.sanitize(somecode),1,-1,1)
 
 %>

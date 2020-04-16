@@ -1,4 +1,4 @@
-<%
+﻿<%
 response.write "ASP functions and methods are colored"
 
 'VBScript comments are colored as well.

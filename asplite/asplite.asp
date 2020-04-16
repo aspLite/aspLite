@@ -79,7 +79,7 @@ class cls_asplite
 	'loads the content of a binary file (image, pdf, zip, etc)
 	public function loadBinary(path)		
 		
-		loadBinary=stream(server.mappath(path),true,"")
+		loadBinary=stream(path,true,"")
 
 	end function	
 	
@@ -94,7 +94,7 @@ class cls_asplite
 		
 			objStream.Open	
 			objStream.type=1 'adTypeBinary
-			objStream.LoadFromFile(path)
+			objStream.LoadFromFile(server.mappath(path))
 			stream=objStream.Read()
 		
 		else
@@ -115,7 +115,28 @@ class cls_asplite
 		
 		on error goto 0	
 	
-	end function
+	end function	
+	
+	public sub saveText(sPath,data)
+	
+		on error resume next
+	
+		Dim objStream
+		Set objStream = CreateObject("ADODB.Stream")
+		objStream.CharSet = "utf-8"
+		objStream.mode = 3 'adModeReadWrite
+		objStream.Open		
+		objStream.position = 0
+		objStream.WriteText data
+		objStream.SaveToFile server.mappath(sPath), 2      
+        objStream.close
+        set objStream = nothing  
+
+		asperror(path)
+      
+        on error goto 0
+		
+    end sub	
 	
 	public function plugin(value)
 	
