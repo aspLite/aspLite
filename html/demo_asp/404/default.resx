@@ -1,19 +1,16 @@
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.6">
+    <meta name="description" content="">    
+   
     <title>[title] - aspLite custom 404 catcher at work</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<meta name="theme-color" content="#563d7c">
-
+	<meta name="theme-color" content="#563d7c">
 
     <style>
 	/* Move down content because we have a fixed navbar that is 3.5rem tall */
@@ -96,8 +93,7 @@
     <!-- Example row of columns -->
     
         <h2>[heading]</h2>
-        [body]       
-      
+		[body]   
 
     <hr>
 
@@ -106,7 +102,7 @@
 </main>
 
 <footer class="container">
-  <p>&copy; Company 2017-2019</p>
+  <p>&copy; aspLite 2020</p>
 </footer>
 
 

@@ -47,17 +47,13 @@ class cls_asplite_rss
 
 				select case lcase(child.nodename)
 					
-					case "title"				
-						templateItem=replace(templateItem,"[TITLE]",child.text,1,-1,1)
+					case "title" : templateItem=replace(templateItem,"[TITLE]",child.text,1,-1,1)
 						
-					case "description"
-						templateItem=replace(templateItem,"[DESCRIPTION]",child.text,1,-1,1)
+					case "description" : templateItem=replace(templateItem,"[DESCRIPTION]",child.text,1,-1,1)
 						
-					case "pubdate"
-						templateItem=replace(templateItem,"[PUBDATE]",child.text,1,-1,1)
+					case "pubdate" : templateItem=replace(templateItem,"[PUBDATE]",child.text,1,-1,1)
 						
-					case "link"
-						templateItem=replace(templateItem,"[LINK]",child.text,1,-1,1)
+					case "link" : templateItem=replace(templateItem,"[LINK]",child.text,1,-1,1)
 						
 				end select 		
 			  

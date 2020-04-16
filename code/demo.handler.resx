@@ -12,13 +12,9 @@ html=aspL.loadText("html/demo_asp/demo.resx")
 
 select case lcase(aspL.getRequest("e")) '"event"
 		
-	case "clicklink"
+	case "clicklink" : body="Link was clicked"		
 		
-		body="Link was clicked"		
-		
-	case "clickbutton"
-	
-		body="Regular form was submitted"		
+	case "clickbutton" : body="Regular form was submitted"		
 		
 	case "loadclass"
 	
@@ -31,166 +27,91 @@ select case lcase(aspL.getRequest("e")) '"event"
 		set testObj=nothing	
 		
 	
-	case "downloadlargefile"
+	case "downloadlargefile" : aspL.dumpBinary("html/demo_asp/largefile.jpg")
 	
-		aspL.dumpBinary("html/demo_asp/largefile.jpg")
+	case "downloadsmallfile" : aspL.dumpBinary("html/demo_asp/smallfile.jpg")
 	
-	case "downloadsmallfile"
-	
-		aspL.dumpBinary("html/demo_asp/smallfile.jpg")
-	
-	case "helloworld"
-	
-		aspL.exec("code/demo_asp/helloworld.resx")	
+	case "helloworld" : aspL.exec("code/demo_asp/helloworld.resx")	
 		
-	case "randomizer"
-	
-		aspL.exec("code/demo_asp/randomtext.resx")		
+	case "randomizer" : aspL.exec("code/demo_asp/randomtext.resx")		
 		
-	case "accessdb"
-	
-		aspL.exec("code/demo_asp/datasample.resx")	
+	case "accessdb" : aspL.exec("code/demo_asp/datasample.resx")	
 		
-	case "jquerydatatable"
-	
-		aspL.exec("code/demo_asp/jquerydatatable.resx")
+	case "jquerydatatable" : aspL.exec("code/demo_asp/jquerydatatable.resx")
 		
-	case "ckeditor"
-		
-		aspL.exec("code/demo_asp/ckeditor.resx")
+	case "ckeditor" : aspL.exec("code/demo_asp/ckeditor.resx")
 				
-	case "upload"
-	
-		body=aspL.loadText("html/demo_asp/singleupload.resx")
+	case "upload" : body=aspL.loadText("html/demo_asp/singleupload.resx")
 		
-	case "uploadfile"
+	case "uploadfile" : aspL.exec("code/demo_asp/uploadfile.resx")	
+	
+	case "uploadmulti" : body=aspL.loadText("html/demo_asp/multiupload.resx")		
+	
+	case "jszip" : aspL.exec("code/demo_asp/jszip.resx")	
+		
+	case "jspdf" : body=aspL.loadText("html/demo_asp/jspdf.resx")
+	
+	case "codemirror" : aspL.exec("code/demo_asp/codemirror.resx")	
+	
+	case "jqueryui" : aspL.exec("code/demo_asp/jqueryui.resx")
+		
+	case "login" : html=aspL.loadText("html/demo_asp/login.resx")	
+		'this will load a completely different template because we override the html variable
 
-		aspL.exec("code/demo_asp/uploadfile.resx")	
-	
-	case "uploadmulti"
-	
-		body=aspL.loadText("html/demo_asp/multiupload.resx")		
-	
-	case "jszip"
-	
-		aspL.exec("code/demo_asp/jszip.resx")	
 		
-	case "jspdf"
-	
-		body=aspL.loadText("html/demo_asp/jspdf.resx")
-	
-	case "codemirror"
-	
-		aspL.exec("code/demo_asp/codemirror.resx")	
-	
-	case "jqueryui"
-	
-		aspL.exec("code/demo_asp/jqueryui.resx")
-		
-	case "login"
-		'this will load a completely different template.
-		'because we override the html variable.
-		'this has as such nothing to do with aspLite. It's just a technique that can be used.
-		html=aspL.loadText("html/demo_asp/login.resx")		
-	
-	
 	'AJAX handlers
+	'aspl.dump function is often used for AJAX handlers. "dump" basically means "flush" and "stop", 
+	'AJAX calls only need a portion of html/text/json/xml most of the times, not an entire html-document 
 		
-	case "ajaxhello"
-		
-		aspL.dump "Hello " & aspL.sanitize(aspL.URLDecode(aspL.getRequest("yourname"))) & ".<br><br>Hashed (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>"
+	case "ajaxhello" : aspL.dump "Hello " & aspL.sanitize(aspL.URLDecode(aspL.getRequest("yourname"))) & ".<br><br>Hashed (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>"
 
-	case "submit1"
-	
-		aspL.dump "Form 1 save button was clicked - " & aspL.getrequest("yourname")
+	case "submit1" : aspL.dump "Form 1 save button was clicked - " & aspL.getrequest("yourname")
 		
-	case "linksubmit"
+	case "linksubmit" : aspL.dump "Form 1 submitted by link - " & aspL.getrequest("yourname")
 	
-		aspL.dump "Form 1 submitted by link - " & aspL.getrequest("yourname")
-	
-	case "delete1"
-	
-		aspL.dump "Form 1 delete button was clicked - " & aspL.getrequest("yourname")
+	case "delete1" : aspL.dump "Form 1 delete button was clicked - " & aspL.getrequest("yourname")
 		
-	case "submit2"
+	case "submit2" : aspL.dump "Form 2 save button was clicked"
 	
-		aspL.dump "Form 2 save button was clicked"
-	
-	case "delete2"
-	
-		aspL.dump "Form 2 delete button was clicked"
+	case "delete2" : aspL.dump "Form 2 delete button was clicked"
 		
-	case "buttonclick"
-	
-		aspL.dump "Regular button was clicked"
+	case "buttonclick" : aspL.dump "Regular button was clicked"
 		
-	case "clicklink1"
+	case "clicklink1" : aspL.dump "First link clicked..."
+	
+	case "clicklink2" : aspL.dump "Second link clicked..."	
+	
+	case "returnbool" : aspL.dump aspL.plugin("randomizer").randomnumber(0,100)>49	
+		
+	case "returndata" : aspL.exec("code/demo_asp/datatable.resx")	
+	
+	case "hash" : aspL.exec("code/demo_asp/hash.resx")	
+		
+	case "returnjsondata" : aspL.exec("code/demo_asp/json.resx")
+		
+	case "sendmail" : aspL.exec("code/demo_asp/mailhandler.resx")		
 
-		aspL.dump "First link clicked..."
-	
-	case "clicklink2"
-
-		aspL.dump "Second link clicked..."	
-	
-	case "returnbool"	
+	case "rss" : aspL.dump aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss")
 		
-		aspL.dump aspL.plugin("randomizer").randomnumber(0,100)>49	
+	case "jpg" : aspL.exec("code/demo_asp/jpghandler.resx")	
+	
+	case "uploadjquery" : aspL.dump(aspL.loadText("html/demo_asp/uploadjquery.resx")) 'screen
+	
+	case "uploadfilejquery" : aspL.exec("code/demo_asp/uploadfile.resx") : aspL.die	''uploader	
 		
-	case "returndata"
-
-		aspL.exec("code/demo_asp/datatable.resx")	
-	
-	case "hash"
-	
-		aspL.exec("code/demo_asp/hash.resx")	
-		
-	case "returnjsondata"
-	
-		aspL.exec("code/demo_asp/json.resx")
-		
-	case "sendmail"
-		
-		aspL.exec("code/demo_asp/mailhandler.resx")		
-
-	case "rss"
-	
-		dim rss
-		set rss=aspL.plugin("rss")
-		aspL.dump rss.read("http://rss.cnn.com/rss/cnn_topstories.rss")
-		
-	case "jpg"	
-	
-		aspL.exec("code/demo_asp/jpghandler.resx")	
-	
-	case "uploadjquery" 'screen
-	
-		aspL.dump(aspL.loadText("html/demo_asp/uploadjquery.resx"))
-	
-	case "uploadfilejquery" 'uploader
-	
-		aspL.exec("code/demo_asp/uploadfile.resx")
-		aspL.die	
-	
-		
-	case "jscript"
+	case "jscript" : server.execute("code/demo_asp/jscript.asp") : aspL.die		
 	
 		'server.execute executes a remote asp(-only) page that resides on the same server
 		'that asp page has access to the response and request collection
 		'the remote asp page has however no access to the aspL object 
 		'or any other object that was created so far
 		'in this case, a JScript sample page was loaded.
-		server.execute("code/demo_asp/jscript.asp")		
-		aspL.die
+			
+	case "onload" :	aspL.dump "Hello world, Καλημέρα κόσμε (utf8-ready)" 'default content for AJAX handler	
 		
-	case "onload" 'default content for AJAX handler	
-	
-		aspL.dump "Hello world, Καλημέρα κόσμε (utf8-ready)"
-		
-	case else 'default content for REGULAR handler
-	
-		body="No (known) action was detected. Initial load."
-		
-		'get userfriendly url, if any (and launch a new handler-instance)
+	case else body="No (known) action was detected. Initial load." 'default content for REGULAR handler
+			
+		'get userfriendly url, if any (and launch a new handler-instance!)
 		aspL.exec("code/demo_asp/404handler.resx")		
 		
 end select

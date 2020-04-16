@@ -54,6 +54,9 @@ class cls_asplite
 	
 	end function	
 
+	'executeGlobal: the ASP code in the file (path) will
+	'be executed as classic ASP and it will be available in
+	'the namespace of this page-script.
 	public sub exec(path)		
 		
 		on error resume next
@@ -66,12 +69,14 @@ class cls_asplite
 
 	end sub	
 	
+	'loads the content of text file (utf8)
 	public function loadText(path)		
 		
 		loadText=stream(path,false,"")
 
 	end function
 	
+	'loads the content of a binary file (image, pdf, zip, etc)
 	public function loadBinary(path)		
 		
 		loadBinary=stream(server.mappath(path),true,"")
@@ -219,48 +224,27 @@ class cls_asplite
 		
 		select case lcase(filetype)
 		
-			case "jpeg","jpg"
-				response.ContentType="image/JPEG"
-			case "png"
-				response.ContentType="image/x-png"
-			case "htm","html"
-				response.ContentType="text/HTML"
-			case "js"
-				response.ContentType="text/HTML"
-			case "gif"
-				response.ContentType="image/GIF"
-			case "txt","css"
-				response.ContentType="text/plain"
-			case "zip"
-				response.ContentType="application/x-zip-compressed"
-			case "pdf"
-				response.ContentType="application/pdf"
-			case "doc","docx"
-				Response.ContentType = "application/msword"
-			case "xls","xlsx"
-				Response.ContentType = "application/x-msexcel"
-			case "mpeg"
-				Response.ContentType = "video/mpeg"	
-			case "mp3"
-				Response.ContentType = "audio/mpeg"
-			case "mp4"
-				Response.ContentType = "video/mp4"
-			case "avi"
-				Response.ContentType = "video/x-msvideo"
-			case "wmv"
-				Response.ContentType = "video/x-ms-wmv"
-			case "m4v"
-				Response.ContentType = "video/x-m4v"
-			case "mov"
-				Response.ContentType = "video/quicktime"
-			case "3gp"
-				Response.ContentType = "video/3gpp"
-			case "xml"
-				Response.ContentType = "application/xml"
-			case "wav"
-				Response.ContentType = "audio/wav"
-			case else
-				Response.ContentType = "application/octet-stream"
+			case "jpeg","jpg" : response.ContentType="image/JPEG"
+			case "png" : response.ContentType="image/x-png"
+			case "htm","html" : response.ContentType="text/HTML"
+			case "js" : response.ContentType="text/HTML"
+			case "gif" : response.ContentType="image/GIF"
+			case "txt","css" : response.ContentType="text/plain"
+			case "zip" : response.ContentType="application/x-zip-compressed"
+			case "pdf" : response.ContentType="application/pdf"
+			case "doc","docx" : Response.ContentType = "application/msword"
+			case "xls","xlsx" : Response.ContentType = "application/x-msexcel"
+			case "mpeg" : Response.ContentType = "video/mpeg"	
+			case "mp3" : Response.ContentType = "audio/mpeg"
+			case "mp4" : Response.ContentType = "video/mp4"
+			case "avi" : Response.ContentType = "video/x-msvideo"
+			case "wmv" : Response.ContentType = "video/x-ms-wmv"
+			case "m4v" : Response.ContentType = "video/x-m4v"
+			case "mov" : Response.ContentType = "video/quicktime"
+			case "3gp" : Response.ContentType = "video/3gpp"
+			case "xml" : Response.ContentType = "application/xml"
+			case "wav" : Response.ContentType = "audio/wav"
+			case else Response.ContentType = "application/octet-stream"
 		
 		end select
 				
