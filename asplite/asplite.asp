@@ -218,8 +218,7 @@ class cls_asplite
 	
 		path=server.mappath(path)
 	
-		Dim objStream
-		Set objStream = server.CreateObject("ADODB.Stream")
+		Dim objStream : Set objStream = server.CreateObject("ADODB.Stream")
 		
 		objStream.Open	
 		objStream.type=1 'adTypeBinary
@@ -228,20 +227,16 @@ class cls_asplite
 		asperror(path)
 				
 		'get filesize
-		dim size
-		size=objStream.size	
+		dim size : size=objStream.size	
 
 		'set chunksize - files will be served by chunks of 500kb each
-		dim chunksize
-		chunksize=500000
+		dim chunksize : chunksize=500000
 	
 		'retrieve filename
-		dim filename		
-		filename=right(path,len(path)-InStrRev(path,"\",-1,1))		
+		dim filename : filename=right(path,len(path)-InStrRev(path,"\",-1,1))		
 		
 		'retrieve filetype		
-		dim filetype
-		filetype=getFileType(filename)		
+		dim filetype : filetype=getFileType(filename)		
 		
 		select case lcase(filetype)
 		
