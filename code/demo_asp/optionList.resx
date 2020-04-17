@@ -1,5 +1,7 @@
 <%
-'this sample class can return a list of options or a single value from the list 
+'this sample class can return a list of options or a single value from a list of key/pairs
+'the list dictionary can also be filled with records from a database, like a list of countries
+ 
 Class cls_starlist
 	
 	Public list

@@ -81,7 +81,8 @@ class cls_asplite_cdomessage
 			
 			wrapInHTML="<!doctype html>" & vbcrlf
 			wrapInHTML=wrapInHTML & "<html>" & vbcrlf & "<head>" & vbcrlf 
-			wrapInHTML=wrapInHTML & "<meta HTTP-EQUIV=""Content-Type"" content=""text/html; charset=""utf-8"">"  & vbcrlf 
+			wrapInHTML=wrapInHTML & "<meta charset=""utf-8"">"  & vbcrlf 
+			wrapInHTML=wrapInHTML & "<meta name=""viewport"" content=""width=device-width, initial-scale=1, minimum-scale=1"">"  & vbcrlf 
 			wrapInHTML=wrapInHTML & "<title>"& subject &"</title>" & vbcrlf & "</head>" & vbcrlf 
 			wrapInHTML=wrapInHTML& "<body>" & vbcrlf & body & vbcrlf & "</body>" & vbcrlf & "</html>" & vbcrlf 
 		

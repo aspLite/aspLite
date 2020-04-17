@@ -13,18 +13,29 @@ class cls_asplite
 	
 	Private Sub Class_Initialize()
 	
+		on error resume next
+	
 		startTime=Timer()
 		debug						= true 'you may want to set to false for live sites	
+		
+		'IMPORTANT
+		'no matter what language you speak or what you're up to in classic ASP,
+		'this is how an ASP page should start (together with the language, codepage
+		'and option explicit statement - see above
+		'-------------------------------------------
 		Response.Buffer				= true		
-		Response.CharSet			= "utf-8"
+		Response.CharSet			= "utf-8" 'does not work on IIS5 (Windows 2000 Servers)
 		Response.ContentType		= "text/html"
 		Response.CacheControl		= "no-cache"
 		Response.AddHeader "pragma", "no-cache"
 		Response.Expires			= -1
-		Response.ExpiresAbsolute	= Now()-1	
+		Response.ExpiresAbsolute	= Now()-1
+		'-------------------------------------------
 		
 		set plugins=nothing	
 		set p_fso=nothing
+		
+		on error goto 0
 		
 	End Sub	
 	

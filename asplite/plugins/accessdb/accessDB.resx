@@ -17,8 +17,7 @@ Class cls_asplite_accessDB
 	
 		On Error Resume Next	
 		
-		dim connection
-		set connection = getConn()
+		dim connection : set connection = getConn()
 		Set Execute = connection.Execute(sql)
 		
 		aspL.asperror "The query """ & server.htmlEncode(sql) & """ cannot be executed. There may be a connection error and/or a mistake in the SQL-syntax."
@@ -43,12 +42,21 @@ Class cls_asplite_accessDB
 	
 	Private function getConn()
 	
+		'this is the crucial part of this class.
+		'i always use the native OLEDB driver for Access (much MUCH faster than ODBC)
+		'however, to get this working, you need to enable 32 applications for the application pool in IIS
+		'luckily, this is taken care of by most ISP's and it's the default behaviour in IIS Express
+		'note that I create a connection object only ONCE through the lifespan of this ASP page
+		'it's important to NOT open multiple connections to an Access database, as there is a limit
+		'of 255 concurrent users. in the context of a web application however, where users are 
+		'connected for a very short period of time (milliseconds), you will most likely never run 
+		'into problems when using Access, even for very busy websites.
+	
 		On Error Resume Next
 		
 		if p_getConn is nothing then
 			Set p_getConn = Server.Createobject("ADODB.Connection")		
-			p_getConn.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & server.mappath(path)	
-			
+			p_getConn.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & server.mappath(path)			
 		end if			
 		
 		if err.number<>0 then	
