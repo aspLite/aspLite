@@ -129,8 +129,8 @@ class cls_asplite
 		objStream.position = 0
 		objStream.WriteText data
 		objStream.SaveToFile server.mappath(sPath), 2      
-        objStream.close
-        set objStream = nothing  
+		objStream.close
+		set objStream = nothing  
 
 		asperror(path)
       
