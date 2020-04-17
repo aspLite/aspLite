@@ -6,6 +6,7 @@
 	<select onchange="$('#ratingform').submit()" name="score">
 	[starlist]
 	</select>
+	
 </form>
 
 <script>

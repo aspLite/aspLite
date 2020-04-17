@@ -3,6 +3,8 @@ on error resume next
 
 if not aspl.isLeeg(aspl.getRequest("score")) then
 
+	'this is the place to store the score somehow...
+
 	body="Thanks so much for your <strong>" & aspl.sanitize(aspl.getRequest("score")) & "</strong> stars!"
 	
 else
