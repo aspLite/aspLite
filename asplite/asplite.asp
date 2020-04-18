@@ -75,7 +75,7 @@ class cls_asplite
 		
 		executeGlobal removeCRB(stream(path,false,""))
 		
-		aspError("problem when executing " & path)
+		aspError("problem when executing " & path & " - <strong><a target=""_blank"" href=""" & path & """>try to load the ASP file directly</a></strong>")
 		
 		on error goto 0
 
@@ -160,7 +160,7 @@ class cls_asplite
 	
 		if not plugins.exists(value) then
 			
-			exec(asp_path & "/plugins/" & value & "/" & value & ".resx")	
+			exec(asp_path & "/plugins/" & value & "/" & value & ".asp")	
 			
 			dim pluginCls
 			set pluginCls=eval("new cls_asplite_" & value)
@@ -200,7 +200,7 @@ class cls_asplite
 			asperror=asperror & "err.number: " &  err.number & "<br><br>"
 			asperror=asperror & "err.description: " &  err.description & "<br><br>"
 			
-			asperror=asperror & request.servervariables("ALL_RAW")			
+			asperror=asperror & replace(request.servervariables("ALL_RAW"),vbcrlf,"<br>",1,-1,1)		
 			
 			dump asperror
 		

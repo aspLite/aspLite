@@ -3,7 +3,7 @@
 body=aspL.loadText("html/demo_asp/jqueryui.resx")
 
 'load some variables and functions (dateformat, dateFromPicker, dateToPicker)
-aspL.exec("code/demo_asp/functions.resx")
+aspL.exec("code/demo_asp/functions.asp")
 
 body=replace(body,"[dateformat]",dateformat,1,-1,1)
 

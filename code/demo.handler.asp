@@ -19,7 +19,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "loadclass"
 	
 		'CONDITIONAL load of asp page = include file
-		aspL.exec("code/demo_asp/class.resx")	
+		aspL.exec("code/demo_asp/class.asp")	
 		
 		dim testObj
 		set testObj=new cls_test
@@ -31,29 +31,29 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "downloadsmallfile" : aspL.dumpBinary("html/demo_asp/smallfile.jpg")
 	
-	case "helloworld" : aspL.exec("code/demo_asp/helloworld.resx")	
+	case "helloworld" : aspL.exec("code/demo_asp/helloworld.asp")	
 		
-	case "randomizer" : aspL.exec("code/demo_asp/randomtext.resx")		
+	case "randomizer" : aspL.exec("code/demo_asp/randomtext.asp")		
 		
-	case "accessdb" : aspL.exec("code/demo_asp/datasample.resx")	
+	case "accessdb" : aspL.exec("code/demo_asp/datasample.asp")	
 		
-	case "jquerydatatable" : aspL.exec("code/demo_asp/jquerydatatable.resx")
+	case "jquerydatatable" : aspL.exec("code/demo_asp/jquerydatatable.asp")
 		
-	case "ckeditor" : aspL.exec("code/demo_asp/ckeditor.resx")
+	case "ckeditor" : aspL.exec("code/demo_asp/ckeditor.asp")
 				
 	case "upload" : body=aspL.loadText("html/demo_asp/singleupload.resx")
 		
-	case "uploadfile" : aspL.exec("code/demo_asp/uploadfile.resx")	
+	case "uploadfile" : aspL.exec("code/demo_asp/uploadfile.asp")	
 	
 	case "uploadmulti" : body=aspL.loadText("html/demo_asp/multiupload.resx")		
 	
-	case "jszip" : aspL.exec("code/demo_asp/jszip.resx")	
+	case "jszip" : aspL.exec("code/demo_asp/jszip.asp")	
 		
 	case "jspdf" : body=aspL.loadText("html/demo_asp/jspdf.resx")
 	
-	case "codemirror" : aspL.exec("code/demo_asp/codemirror.resx")	
+	case "codemirror" : aspL.exec("code/demo_asp/codemirror.asp")	
 	
-	case "jqueryui" : aspL.exec("code/demo_asp/jqueryui.resx")
+	case "jqueryui" : aspL.exec("code/demo_asp/jqueryui.asp")
 		
 	case "login" : html=aspL.loadText("html/demo_asp/login.resx")	
 		'this will load a completely different template because we override the html variable
@@ -83,23 +83,23 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "returnbool" : aspL.dump aspL.plugin("randomizer").randomnumber(0,100)>49	
 		
-	case "returndata" : aspL.exec("code/demo_asp/datatable.resx")	
+	case "returndata" : aspL.exec("code/demo_asp/datatable.asp")	
 	
-	case "hash" : aspL.exec("code/demo_asp/hash.resx")	
+	case "hash" : aspL.exec("code/demo_asp/hash.asp")	
 		
-	case "returnjsondata" : aspL.exec("code/demo_asp/json.resx")
+	case "returnjsondata" : aspL.exec("code/demo_asp/json.asp")
 		
-	case "sendmail" : aspL.exec("code/demo_asp/mailhandler.resx")		
+	case "sendmail" : aspL.exec("code/demo_asp/mailhandler.asp")		
 
 	case "rss" : aspL.dump aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss")
 		
-	case "jpg" : aspL.exec("code/demo_asp/jpghandler.resx")	
+	case "jpg" : aspL.exec("code/demo_asp/jpghandler.asp")	
 	
 	case "uploadjquery" : aspL.dump(aspL.loadText("html/demo_asp/uploadjquery.resx")) 'screen
 	
-	case "uploadfilejquery" : aspL.exec("code/demo_asp/uploadfile.resx") : aspL.die	''uploader
+	case "uploadfilejquery" : aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
 	
-	case "rate" : aspL.exec("code/demo_asp/rate.resx")	
+	case "rate" : aspL.exec("code/demo_asp/rate.asp")	
 		
 	case "jscript" : server.execute("code/demo_asp/jscript.asp") : aspL.die		
 	
@@ -114,7 +114,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case else body="No (known) action was detected. Initial load." 'default content for REGULAR handler
 			
 		'get userfriendly url, if any (and launch a new handler-instance!)
-		aspL.exec("code/demo_asp/404handler.resx")		
+		aspL.exec("code/demo_asp/404handler.asp")		
 		
 end select
 

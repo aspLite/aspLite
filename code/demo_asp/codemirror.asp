@@ -14,11 +14,11 @@ if aspl.convertBool(aspl.getrequest("saveCodemirror")) then
 	'the line below would succesfully save UTF-8 texts
 	'it's commented out for security reasons
 	
-	'aspL.saveText "code/demo_asp/codemirrorsample.resx",somecode	
+	'aspL.saveText "code/demo_asp/codemirrorsample.asp",somecode	
 	body=replace(body,"[savesuccess]","file was saved",1,-1,1)
 else
 
-	somecode=aspL.loadText("code/demo_asp/codemirrorsample.resx")
+	somecode=aspL.loadText("code/demo_asp/codemirrorsample.asp")
 	
 end if
 

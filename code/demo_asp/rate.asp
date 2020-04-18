@@ -10,7 +10,7 @@ if not aspl.isLeeg(aspl.getRequest("score")) then
 else
 
 	'load the list of stars
-	aspL.exec("code/demo_asp/optionList.resx")
+	aspL.exec("code/demo_asp/optionList.asp")
 
 	dim starlist : set starlist=new cls_starlist
 	'load the template
