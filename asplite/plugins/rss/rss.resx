@@ -9,7 +9,7 @@ class cls_asplite_rss
 		maxitems=6	
 		breakpoint=0
 		counter=1
-		cache=10 'number of minutes this feed will be stored in cache
+		cache=60 'number of seconds this feed will be stored in cache
 		
 		template=aspL.loadText(asp_path & "/plugins/rss/template.txt")
 		
@@ -20,15 +20,11 @@ class cls_asplite_rss
 	public function read(url)
 	
 		if aspL.convertGetal(cache)<>0 then
-
-			if isArray(aspL.getcache("asprss" & url)) then
+		
+			read=aspL.getCacheT("asprss" & url,cache)
 			
-				'check if it's time to renew
-				if DateDiff("n",aspL.getcache("asprss" & url)(0),now())<=cache then
-					read=aspL.getcache ("asprss" & url)(1)					
-					if not aspL.isLeeg(read) then exit function
-				end if
-			
+			if not aspL.isLeeg(read) then				
+				exit function
 			end if
 		
 		end if
@@ -79,11 +75,12 @@ class cls_asplite_rss
 
 		read=read & templateBreakPoint
 		
-		'(re)fill cache
+		'(re)fill cache (aspLite will add the timestamp)
 		if aspL.convertGetal(cache)<>0 then
-			aspL.setcache "asprss" & url, array(now(),read)
+			aspL.setcache "asprss" & url, read
 		else
-			aspL.clearcache "asprss" & url, array(now(),read)
+			'or clear the cache
+			aspL.clearcache "asprss" & url
 		end if
 
 		Set xmlDOM = Nothing

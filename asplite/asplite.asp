@@ -9,7 +9,7 @@ set aspL=new cls_asplite
 
 class cls_asplite	
 
-	private debug,startTime,stopTime,plugins,p_fso
+	private debug,startTime,stopTime,plugins,p_fso,cacheprefix
 	
 	Private Sub Class_Initialize()
 	
@@ -32,6 +32,7 @@ class cls_asplite
 		Response.ExpiresAbsolute	= Now()-1
 		'-------------------------------------------
 		
+		cacheprefix="asplite_"
 		set plugins=nothing	
 		set p_fso=nothing
 		
@@ -376,21 +377,49 @@ class cls_asplite
 	'### some caching functions
 	'############################
 	
-	public function setcache(name,value)	
+	public function setcache(name,value)
 	
-		application("aspLite_" & name)=value
+		'cached items always get a timestamp at the moment they're stored
+
+		dim arr(2)
+		arr(0)=Timer()
+		arr(1)=value		
+	
+		application(cacheprefix & name)=arr
 	
 	end function
 	
 	public function clearcache(name)
 	
-		application.contents.remove("aspLite_" & name)
+		application.contents.remove(cacheprefix & name)
 	
 	end function
 	
-	public function getcache(name)
+	public function getCacheT (name, seconds)
+		
+		'returns the cached content only if it was stored less than x seconds ago
 	
-		getcache=application("aspLite_" & name)
+		getCacheT=getcache(name)
+		
+		if not isLeeg(getCacheT) then
+			if round((Timer - application(cacheprefix & name)(0)),0) > convertGetal(seconds) then
+				getCacheT=""				
+			end if
+		end if
+		
+
+	end function
+	
+	public function getCache(name)
+	
+		'returns the cached content, regardless the timestamp
+		on error resume next
+		
+		getCache=application(cacheprefix & name)(1)
+		
+		if err.number<>0 then getCache=""
+		
+		on error goto 0
 		
 	end function
 	
@@ -398,7 +427,7 @@ class cls_asplite
 	
 		dim el
 		for each el in application.contents		
-			if left(el,4)="aspLite_" then
+			if left(el,len(cacheprefix))=cacheprefix then
 				application.contents.remove(el)
 			end if
 		next
