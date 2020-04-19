@@ -19,9 +19,9 @@ class cls_asplite
 		debug						= true 'you may want to set to false for live sites	
 		
 		'IMPORTANT
-		'no matter what language you speak or what you're up to in classic ASP,
-		'this is how an ASP page should start (together with the language, codepage
-		'and option explicit statement - see above
+		'no matter which language you speak or what you're up to in classic ASP,
+		'this is how an ASP page should start (together with the @language, codepage
+		'and option explicit statements - see above
 		'-------------------------------------------
 		Response.Buffer				= true		
 		Response.CharSet			= "utf-8" 'does not work on IIS5 (Windows 2000 Servers)
