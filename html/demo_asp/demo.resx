@@ -163,6 +163,7 @@
 <!-- /.container --> 
   
 <!-- AJAX functions for demo.asp -->
+<script src="js/demoAjax.js"></script>	
 <script src="js/aspAjax.js"></script>	
 
  <!-- Bootstrap JS -->
