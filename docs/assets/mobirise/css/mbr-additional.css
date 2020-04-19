@@ -1066,7 +1066,10 @@ section.lazy-placeholder:after {
 }
 .cid-rV627Nrqqp .mbr-section-subtitle {
   color: #767676;
-  text-align: center;
+  text-align: left;
+}
+.cid-rV627Nrqqp H2 {
+  text-align: left;
 }
 .cid-rVhSG0Ox0k {
   padding-top: 0px;
@@ -1116,6 +1119,9 @@ section.lazy-placeholder:after {
 }
 .cid-rWergBUfL1 .mbr-section-subtitle {
   color: #767676;
+}
+.cid-rWergBUfL1 H2 {
+  text-align: left;
 }
 .cid-rWetaMv7DC {
   padding-top: 0px;
