@@ -40,6 +40,8 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "jquerydatatable" : aspL.exec("code/demo_asp/jquerydatatable.asp")
 		
 	case "ckeditor" : aspL.exec("code/demo_asp/ckeditor.asp")
+	
+	case "ckeditor5" : aspL.exec("code/demo_asp/ckeditor5.asp")
 				
 	case "upload" : body=aspL.loadText("html/demo_asp/singleupload.resx")
 		

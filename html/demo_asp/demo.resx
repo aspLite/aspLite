@@ -84,6 +84,7 @@
 						<li><a href="demo.asp?e=accessdb">Access DB plugin</a></li>	
 						<li><a href="demo.asp?e=jquerydatatable">jQuery datatable</a> - See <a target="_blank" href="https://datatables.net/">DataTables</a> jQuery plugin</li>						
 						<li><a href="demo.asp?e=ckeditor">CKEditor 4 (WYSIWYG editor)</a></li>
+						<li><a href="demo.asp?e=ckeditor5">CKEditor 5 (WYSIWYG editor)</a></li>						
 						<li><a href="demo.asp?e=upload">upload single file</a></li>
 						<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>
 					</ul>				   

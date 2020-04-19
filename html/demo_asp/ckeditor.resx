@@ -3,7 +3,9 @@
 
 <form action="demo.asp" method="post">
 
-	<input type="hidden" value="ckeditor"  name="e" />
+<input type="hidden" value="ckeditor"  name="e" />
+
+	<p>CKEditor 4 - <a target="_blank" href="https://ckeditor.com/ckeditor-4/">https://ckeditor.com/ckeditor-4/</a></p>
 	
 	<div class="form-group">
 		<textarea class="form-control" id="mNotes1" name="mNotes1">[mNotes1]</textarea>

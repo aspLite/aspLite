@@ -4,7 +4,7 @@
 'load the template file first (including JavScript CDN)
 body=aspL.loadText("html/demo_asp/ckeditor.resx")	
 
-dim mNotes1,mNotes2
+dim mNotes1,mNotes2,mNotes3
 mNotes1=aspL.getRequest("mNotes1")
 mNotes2=aspL.getRequest("mNotes2")
 
@@ -18,4 +18,5 @@ end if
 
 body=replace(body,"[mNotes1]",mNotes1,1,-1,1)
 body=replace(body,"[mNotes2]",mNotes2,1,-1,1)
+
 %>
