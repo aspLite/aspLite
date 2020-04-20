@@ -1017,7 +1017,9 @@ section.lazy-placeholder:after {
   color: #c1c1c1 !important;
 }
 .cid-rV5FX7YuF8 {
-  background-image: url("../../../assets/images/background4.jpg");
+  padding-top: 120px;
+  padding-bottom: 75px;
+  background-color: #4f4943;
 }
 .cid-rV63QjeNnh {
   padding-top: 90px;
