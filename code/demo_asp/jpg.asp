@@ -2,12 +2,11 @@
 on error resume next
 
 'get the bootstrap thumbnail template
-dim bsTemplate
-bsTemplate=aspL.loadText("html/demo_asp/bootstrapthumb.resx")
+dim bsTemplate : bsTemplate=aspL.loadText("html/demo_asp/jpg.resx")
 
 dim jpg
 set jpg=aspL.plugin("jpg")
-jpg.maxsize=300 'px - max: 2560px
+jpg.maxsize=500 'px - max: 2560px
 
 'this looks more complex than it is, as this sample is supposed to work in various setups
 'by default, this would rather look like jpg.path="/images/img.jpg" where this path is relative to your directory

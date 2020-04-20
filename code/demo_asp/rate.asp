@@ -1,7 +1,7 @@
 <%
 on error resume next
 
-if not aspl.isLeeg(aspl.getRequest("score")) then
+if not aspl.isEmp(aspl.getRequest("score")) then
 
 	'this is the place to store the score somehow...
 

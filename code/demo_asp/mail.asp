@@ -1,7 +1,7 @@
 <%
 dim mail: set mail=aspL.plugin("cdomessage")
 
-mail.body="<pre>" & aspL.loadText("html/demo_asp/utf8.txt") & "</pre>"
+mail.body="<pre>" & aspL.loadText("html/demo_asp/mail.txt") & "</pre>"
 mail.subject="ABCDEFGHIJKLMNOPQRSTUVWXYZ /0123456789  abcdefghijklmnopqrstuvwxyz £©µÀÆÖÞßéöÿ  –—‘“”„†•…‰™œŠŸž€ ΑΒΓΔΩαβγδω АБВГДабвгд  ∀∂∈ℝ∧∪≡∞ ↑↗↨↻⇣ ┐┼╔╘░►☺♀ ﬁ�⑀₂ἠḂӥẄɐː⍎אԱა"
 mail.receiverEmail="pietercooreman@gmail.com"
 mail.receiverName="Pieter Cooreman"

@@ -8,11 +8,11 @@ dim mNotes1,mNotes2,mNotes3
 mNotes1=aspL.getRequest("mNotes1")
 mNotes2=aspL.getRequest("mNotes2")
 
-if aspL.isLeeg(mNotes1) then
+if aspL.isEmp(mNotes1) then
 	mNotes1="<p>Some <strong><u><i>rich text</i></u></strong>.</p>"		
 end if
 
-if aspL.isLeeg(mNotes2) then
+if aspL.isEmp(mNotes2) then
 	mNotes2="<p>Some <strong><u><i>more</i></u></strong> rich text.</p>"		
 end if
 

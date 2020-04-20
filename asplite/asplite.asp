@@ -177,9 +177,9 @@ class cls_asplite
 	
 		on error resume next
 	
-		if not isLeeg(request.querystring(value)) then
+		if not isEmp(request.querystring(value)) then
 			getRequest=request.querystring(value)
-		elseif isLeeg(request.form(value)) then
+		elseif isEmp(request.form(value)) then
 			getRequest=request.form(value)
 		else
 			getRequest=request(value)
@@ -221,8 +221,7 @@ class cls_asplite
 		response.write value
 		die()
 	
-	end function
-	
+	end function	
 	
 	public function dumpBinary (path)
 	
@@ -401,8 +400,8 @@ class cls_asplite
 	
 		getCacheT=getcache(name)
 		
-		if not isLeeg(getCacheT) then
-			if round((Timer - application(cacheprefix & name)(0)),0) > convertGetal(seconds) then
+		if not isEmp(getCacheT) then
+			if round((Timer - application(cacheprefix & name)(0)),0) > convertNmbr(seconds) then
 				getCacheT=""				
 			end if
 		end if
@@ -456,7 +455,7 @@ class cls_asplite
 			ufl=left(ufl,instr(ufl,"?"))
 		end if			
 		
-		if not isLeeg(ufl) then
+		if not isEmp(ufl) then
 		
 			ufl=replace(ufl,":80","",1,-1,1)
 			ufl=replace(ufl,":443","",1,-1,1)
@@ -501,7 +500,7 @@ class cls_asplite
 			
 			ON Error Resume Next		
 			
-			if not isLeeg(ufl) and IsAlphaNumeric(ufl) then
+			if not isEmp(ufl) and IsAlphaNumeric(ufl) then
 				Response.Status = "200 OK"
 				pathinfo=ufl			
 			end if			
@@ -530,25 +529,33 @@ class cls_asplite
 	end function
 	
 	public function isNumber(byval value)
+		
+		on error resume next
 
-		if isLeeg(value) then
+		if isEmp(value) then
 			isNumber=false
 		else
 			isNumber=isNumeric(value)
 		end if
 		
+		on error goto 0
+		
 	end function
 
 
-	public function isLeeg(byval value)
+	public function isEmp(byval value)
+	
+		on error resume next
 		
-		isLeeg=false
+		isEmp=false
 		
 		if isNull(value) then
-			isLeeg=true
+			isEmp=true
 		else
-			if isEmpty(value) or trim(value)="" then isLeeg=true
+			if isEmpty(value) or trim(value)="" then isEmp=true
 		end if
+		
+		on error goto 0
 		
 	End Function
 
@@ -573,7 +580,7 @@ class cls_asplite
 
 	public function sanitize(sValue)
 
-		if isLeeg(sValue) then
+		if isEmp(sValue) then
 			sanitize=""
 		else
 			sanitize=replace(sValue,"""","&quot;",1,-1,1)
@@ -590,17 +597,17 @@ class cls_asplite
 	end function
 
 
-	public function convertGetal(value)
+	public function convertNmbr(value)
 
 		on error resume next
 
 		if isNumber(value) then 
-			convertGetal=cdbl(value)
+			convertNmbr=cdbl(value)
 		else
-			convertGetal=0
+			convertNmbr=0
 		end if
 		
-		if err.number<>0 then convertGetal=0
+		if err.number<>0 then convertNmbr=0
 		
 		on error goto 0
 					
@@ -610,11 +617,11 @@ class cls_asplite
 		
 		On Error Resume Next
 		
-		if isLeeg(value) then
+		if isEmp(value) then
 			convertBool=false
 			exit function
 		end if
-		if convertGetal(value)=1 then
+		if convertNmbr(value)=1 then
 			convertBool=true
 			exit function
 		end if
@@ -642,19 +649,18 @@ class cls_asplite
 	End Function
 
 	public function sqli(str)
-		if isLeeg(str) then
+		if isEmp(str) then
 			sqli=""
 		else
 			sqli=replace(str,"'","''",1,-1,1)
 		end if
 	end function
 
-
 	public function numberList(startNr,stopNr,interval,selected)
 		dim i
 		for i=startNr to stopNr step interval
 			numberList=numberList& "<option value=" & i 
-			if convertGetal(selected)=convertGetal(i) then numberList=numberList & " selected"
+			if convertNmbr(selected)=convertNmbr(i) then numberList=numberList & " selected"
 			numberList=numberList& ">" & i & "</option>"
 		next
 	end function		
@@ -665,12 +671,11 @@ class cls_asplite
 		else
 			convert2=getal
 		end if
-	end function
-	
+	end function	
 
 	Public Function URLDecode(value)	
 		
-		If isLeeg(value) Then
+		If isEmp(value) Then
 		   URLDecode = ""
 		   Exit Function
 		End If
@@ -694,8 +699,7 @@ class cls_asplite
 		
 		URLDecode = sOutput
 		
-	End Function
-		
+	End Function		
 		
 	Function IsAlphaNumeric(byVal str)
 	

@@ -9,7 +9,7 @@ body=replace(body,"[dateformat]",dateformat,1,-1,1)
 
 dim today,vbDate
 
-if not aspl.isLeeg(aspL.getRequest("today")) then	
+if not aspl.isEmp(aspL.getRequest("today")) then	
 	
 	'form was submitted. 
 	

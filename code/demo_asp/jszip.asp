@@ -4,7 +4,7 @@
 dim folderToZip
 folderToZip="uploads"
 
-if not aspL.isLeeg(request.querystring("stream")) then
+if not aspL.isEmp(request.querystring("stream")) then
 
 	'security check
 	if left(request.querystring("stream"),len(folderToZip))=folderToZip then

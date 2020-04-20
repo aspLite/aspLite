@@ -1,7 +1,8 @@
 var aspAjaxUrl='demo.asp'
 
-$(document).ready(function(e) {		
-	onPageLoad()
+$(document).ready(function(e) {	
+	//commented out as this would clash with the default regular handler
+	//onPageLoad()
 })
 
 $('.aspAjax').click(function(e) {

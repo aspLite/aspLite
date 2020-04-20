@@ -91,11 +91,11 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "returnjsondata" : aspL.exec("code/demo_asp/json.asp")
 		
-	case "sendmail" : aspL.exec("code/demo_asp/mailhandler.asp")		
+	case "sendmail" : aspL.exec("code/demo_asp/mail.asp")		
 
 	case "rss" : aspL.dump aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss")
 		
-	case "jpg" : aspL.exec("code/demo_asp/jpghandler.asp")	
+	case "jpg" : aspL.exec("code/demo_asp/jpg.asp")	
 	
 	case "uploadjquery" : aspL.dump(aspL.loadText("html/demo_asp/uploadjquery.resx")) 'screen
 	

@@ -9,7 +9,7 @@ dateformat="dd/mm/yy" 'or mm/dd/yy see function dateFromPicker - you can add mor
 
 function dateFromPicker(theDate)
 	
-	if not aspL.isLeeg(theDate) then
+	if not aspL.isEmp(theDate) then
 	
 		dim arrDate
 		arrDate=split(theDate,"/")
@@ -32,7 +32,7 @@ end function
 
 function dateToPicker(theDate)
 
-	if not aspL.isLeeg(theDate) then
+	if not aspL.isEmp(theDate) then
 	
 		select case dateformat
 		

@@ -6,7 +6,7 @@ dim mNotes3
 
 mNotes3=aspL.getRequest("mNotes3")
 
-if aspL.isLeeg(mNotes3) then
+if aspL.isEmp(mNotes3) then
 	mNotes3="<p>Some <strong><u><i>more</i></u></strong> rich text (CKEditor 5).</p>"		
 end if
 

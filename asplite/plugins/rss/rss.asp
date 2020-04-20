@@ -9,7 +9,7 @@ class cls_asplite_rss
 		maxitems=6	
 		breakpoint=0
 		counter=1
-		cache=60 'number of seconds this feed will be stored in cache
+		cache=0 'number of seconds this feed will be stored in cache - default 0 (no caching)
 		
 		template=aspL.loadText(asp_path & "/plugins/rss/template.txt")
 		
@@ -19,11 +19,11 @@ class cls_asplite_rss
 
 	public function read(url)
 	
-		if aspL.convertGetal(cache)<>0 then
+		if aspL.convertNmbr(cache)<>0 then
 		
 			read=aspL.getCacheT("asprss" & url,cache)
 			
-			if not aspL.isLeeg(read) then				
+			if not aspL.isEmp(read) then				
 				exit function
 			end if
 		
@@ -60,7 +60,7 @@ class cls_asplite_rss
 			
 			read=read & templateItem
 			
-			if aspL.convertGetal(breakpoint)<>0 then				
+			if aspL.convertNmbr(breakpoint)<>0 then				
 				if counter=breakpoint then
 					read=read & templateBreakPoint
 					counter=1
@@ -76,7 +76,7 @@ class cls_asplite_rss
 		read=read & templateBreakPoint
 		
 		'(re)fill cache (aspLite will add the timestamp)
-		if aspL.convertGetal(cache)<>0 then
+		if aspL.convertNmbr(cache)<>0 then
 			aspL.setcache "asprss" & url, read
 		else
 			'or clear the cache
