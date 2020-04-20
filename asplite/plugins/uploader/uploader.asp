@@ -15,8 +15,8 @@ Class cls_asplite_uploader
 	Private VarArrayBinRequest, StreamRequest, uploadedYet, internalChunkSize
 
 	Private Sub Class_Initialize()
-		Set UploadedFiles = Server.CreateObject("Scripting.Dictionary")
-		Set FormElements = Server.CreateObject("Scripting.Dictionary")
+		Set UploadedFiles = aspL.dict
+		Set FormElements = aspL.dict
 		Set StreamRequest = Server.CreateObject("ADODB.Stream")
 		StreamRequest.Type = 2 'adTypeText
 		StreamRequest.Open

@@ -20,7 +20,7 @@ body=aspL.loadText("html/demo_asp/jszip.resx")
 
 'get filelist
 dim filelist,filelistArr,objSuperFolder,filepath
-set filelist=server.createobject("scripting.dictionary")
+set filelist=aspL.dict
 set objSuperFolder = aspL.fso.getfolder(server.mappath(folderToZip))
 
 ShowSubfolders (objSuperFolder)

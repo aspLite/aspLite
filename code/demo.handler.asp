@@ -65,7 +65,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	'aspl.dump function is often used for AJAX handlers. "dump" basically means "flush" and "stop", 
 	'AJAX calls only need a portion of html/text/json/xml most of the times, not an entire html-document 
 		
-	case "ajaxhello" : aspL.dump "Hello " & aspL.sanitize(aspL.URLDecode(aspL.getRequest("yourname"))) & ".<br><br>Hashed (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>"
+	case "ajaxhello" : aspL.dump "Hello " & aspL.sanitize(aspL.getRequest("yourname")) & ".<br><br>Hashed (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>"
 
 	case "submit1" : aspL.dump "Form 1 save button was clicked - " & aspL.getrequest("yourname")
 		

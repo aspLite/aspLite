@@ -6,7 +6,7 @@ class cls_asplite_cdomessage
 	public receiverEmail,receiverName, subject, body, attachments, fromemail, fromname
 	
 	private sub class_initialize
-		set attachments=server.CreateObject ("scripting.dictionary")
+		set attachments=aspL.dict
 		pickupdir="C:\Inetpub\mailroot\Pickup"
 		smtpport=25
 		smtpusessl=false

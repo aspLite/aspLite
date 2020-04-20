@@ -155,7 +155,7 @@ class cls_asplite
 		value=lcase(value)
 		
 		if plugins is nothing then
-			set plugins=server.createobject("scripting.dictionary")
+			set plugins=dict
 		end if
 	
 		if not plugins.exists(value) then
@@ -445,6 +445,13 @@ class cls_asplite
 	
 	end function
 	
+	public function dict
+	
+		'gives back a scripting.dictionary		
+		set dict=server.createobject("scripting.dictionary")
+	
+	end function
+	
 	
 	Public function pathinfo 'get userfriendly url from 404 request if any
 		
@@ -654,16 +661,7 @@ class cls_asplite
 		else
 			sqli=replace(str,"'","''",1,-1,1)
 		end if
-	end function
-
-	public function numberList(startNr,stopNr,interval,selected)
-		dim i
-		for i=startNr to stopNr step interval
-			numberList=numberList& "<option value=" & i 
-			if convertNmbr(selected)=convertNmbr(i) then numberList=numberList & " selected"
-			numberList=numberList& ">" & i & "</option>"
-		next
-	end function		
+	end function	
 
 	public function convert2 (byref getal)
 		if len(getal)=1 then 
@@ -672,34 +670,6 @@ class cls_asplite
 			convert2=getal
 		end if
 	end function	
-
-	Public Function URLDecode(value)	
-		
-		If isEmp(value) Then
-		   URLDecode = ""
-		   Exit Function
-		End If
-		
-		dim aSplit, sOutput, i
-		
-		' convert all pluses to spaces
-		sOutput = replace(value, "+", " ",1,-1,1)
-		
-		' next convert %hexdigits to the character
-		aSplit = Split(sOutput, "%")
-		
-		If IsArray(aSplit) Then
-		  sOutput = aSplit(0)
-		  For I = 0 to UBound(aSplit) - 1
-			sOutput = sOutput & _
-			  Chr("&H" & Left(aSplit(i + 1), 2)) &_
-			  Right(aSplit(i + 1), Len(aSplit(i + 1)) - 2)
-		  Next
-		End If
-		
-		URLDecode = sOutput
-		
-	End Function		
 		
 	Function IsAlphaNumeric(byVal str)
 	

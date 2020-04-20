@@ -8,7 +8,7 @@ Class cls_starlist
 	
 	Private Sub Class_Initialize
 	
-		Set list = Server.CreateObject("scripting.dictionary")
+		Set list = aspL.dict
 		
 		list.Add "0", "0 stars"
 		list.Add "1", "1 star"
