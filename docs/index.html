@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="assets/facebook-plugin/style.css">
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
@@ -48,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown navbar-nav-top-padding" data-app-modern-menu="true"><li class="nav-item">
                     <a class="nav-link link text-white display-4" href="index.html">home</a>
-                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#about">about</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#developer-guidelines">developers</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#about">about</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#developer-guidelines">developers</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#table1-16">API</a></li>
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="index.html#plugins">
                         
@@ -152,6 +153,219 @@
 </div><div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/configuration&gt;</div><div><br></div><div><em>(change /default.asp to the page of your choice - eventually add the virtual directory, eg: /mydir/default.asp)</em></div><div><br></div><div>The advantage of using this technique, is that your urls would look like:<br><strong>www.site.com/folder</strong> (rather than <em>www.site.com/default.asp?folder=foldername</em>)</div><div><strong>www.site.com/folder/folder
 </strong></div><div><strong>www.site.com/folder/folder/folder</strong></div><div>Not only this <em>looks</em> better and it's <em>easier</em> to type, you can also retrieve a lot of information from these 404 requests. This is a very powerful technique, available to classic ASP developers for years already (as from Windows 2000). If you use this technique consistently, nobody will ever be able to tell which technology your site uses (php? asp? .net?). This technique is&nbsp;not harming SEO, as status 200 is returned to the browser. It's even <em>improving</em> SEO a lot, as userfriendly (and meaningful) urls are used.</div><div><br></div><div><strong>Resx files?</strong></div><div><br></div><div>As a web developer, you will notice that I use the .<strong>resx</strong>&nbsp;extension to include HTML snippets/code.&nbsp;<span style="font-size: 1rem;"><em>Why</em>? For <strong>security</strong> reasons. Resx files are never served or executed by IIS. Therefore, it's impossible to open resx files in the browser directly. If html extensions were used, html templates and/or snippets will eventually be crawled by search engines and potentially weird and/or private data would show up in search results. Using the resx extension for HTML templates/snippets avoids that.</span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>Access databases?</strong></span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;">A lot has been said about using Access databases in web applications (whether or not developed in classic ASP). Bottom line, most experts say: <em>don't</em>! However, I say: Access is the easiest, fastest, most server-friendly (uses no memory) and an extremely reliable database to use with classic ASP. Period. I'm using them for 20 years now. Never ran into a single problem. And today - with these fast SSD drives and powerful CPU's - you're not going to crash an ASP page that's using an Access database. I have gone through all the available stress-tests over the years. I was even getting frustrated at some point, as I have invested a lot of time and money in migrating to SQL Server in the past. All in vain. Waste of time and money. I went back to Access for all my hosted websites in 2018. No regrets.</span></div><div><span style="font-size: 1rem;"><br></span></div><div>That said, there are some guidelines and things to keep in mind when using Access in classic ASP:</div><div><br></div><div>* <u>Do not store</u> <strong>binary files</strong> (images, pdf, documents) in Access databases. Store them as regular files. If you're concerned about security, give your files a secure (not downloadable) extension (like .resx) and stream them to users with <em>adodb.stream</em>. aspLite comes with a function for that: aspl.dumpBinary.&nbsp;</div><div><br></div><div>* <u>Do not store</u> <strong>visitor data</strong> (logfiles) in a database. Again, use the file system. There is no point in storing bulk data that you're probably never going to look into afterwards anyway. Also, visitor data are typically stored in the IIS logfiles already. No need to duplicate them.</div><div><br></div><div>* Summarizing: <em><strong>only store text and numeric data</strong></em> in Access databases that you're actually going to <em><strong>use</strong> </em>in your application: read, update, delete and search for.</div><div><br></div><div>* Make <strong>backups</strong> of your Access mdb files. Do it. Every day, or even every couple of hours for business critical applications. You really don't want to loose data.</div><div><br></div><div>* Have a look at the <strong>Access-plugin</strong> I developed for aspLite: /asplite/plugins/accessdb/accessdb.asp. Ideally, an ASP page opens a connection to a database only ONCE through its lifespan. Opening (and closing) database connections are probably the most time-consuming operations in ASP pages. Doing this only once drastically speeds up your ASP pages. </div><div><br></div><div>* There is a hard limit of <strong>255 concurrent users</strong> for Access databases. However, when using Access in a web application, the "user" (IUSR in most cases) is only connected for a few milliseconds. You wil not often face situations where 255 visitors simultaneously open an ASP page <em>(that is: on the very same millisecond)</em>. Unless you're Google or Facebook... I have never faced that situation in 20 years time.</div><div><br></div><div>* There is a hard limit of <strong>2GB </strong>for Access databases. That's a lot of text and numeric data. Do not let Access databases grow <em>even close</em> to 2GB. I would personally decide to upsize to SQL Server as soon as an Access mdb file grows bigger than 500MB. But that's just me, given the hardware I use and trust (EC2 instance on AWS). I currently do not host a single Access database bigger than 250MB.</div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>IDE</strong></span></div><div><span style="font-size: 1rem;"><strong><br></strong></span></div><div><span style="font-size: 1rem;">Classic ASP developers have been lacking a dedicated IDE (Integrated Development Environment) for some time now, unless they don't mind to wait 30 seconds before some bloated .NET monster raises from the dead (and eats all your ram and kills your cpu). I therefore prefer to use&nbsp;<a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to enable HTML syntax highlighting for .resx files. <em>Open Settings, Style configurator, select "html", add "resx" to the "user ext". </em>You have to reopen the resx files for this to take effect. Notepad++ also comes with some basic code-completion functions. Notepad++ can also be freely installed and used on any Windows Server. I often use it to search for specific texts and strings in over 1 million files. No problem at all. Others may want to use <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> instead.</span></div><div><span style="font-size: 1rem;"><br></span></div><div><span style="font-size: 1rem;"><strong>JScript?</strong></span></div><div><span style="font-size: 1rem;"><br></span></div><div>In the early days, classic ASP was also developed in <a href="https://nl.wikipedia.org/wiki/JScript" target="_blank">JScript</a>, the Microsoft variant of JavaScript back then. JScript never reached the level of popularity VBScript did when it came to classic ASP. aspLite is 100% about VBScript and as such not useful for JScript developers. But demo.asp includes a little JScript sample, via server.execute(). Not sure anyone would ever want to use it this way.</div></div>
         </div>
+    </div>
+</section>
+
+<section class="section-table cid-rWJSCOZ6Cq" id="table1-16">
+
+  
+  
+  <div class="container container-table">
+      <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+          API</h2>
+      
+      <div class="table-wrapper">
+        <div class="container">
+          <div class="row search">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="dataTables_filter">
+                  <label class="searchInfo mbr-fonts-style display-7">Search:</label>
+                  <input class="form-control input-sm" disabled="">
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container scroll">
+          <table class="table isSearch" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+                  
+                  
+                  
+                  
+              <th class="head-item mbr-fonts-style display-7">
+                      Method</th><th class="head-item mbr-fonts-style display-7">
+                      Function</th></tr>
+            </thead>
+
+            <tbody>
+              
+              
+              
+              
+            <tr> 
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.aspError</td><td class="body-item mbr-fonts-style display-7">Flushes the VBScript runtime error (if any) and stops executing the page&nbsp;</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.clearAllCache
+<br></td><td class="body-item mbr-fonts-style display-7">Clears all cache from the Application</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.clearCache
+(name)<br></td><td class="body-item mbr-fonts-style display-7">Clears Application cache for item "name"</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.convert2(value)</td><td class="body-item mbr-fonts-style display-7">Converts value 1-9 to 01-09</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.convertBool(value)</td><td class="body-item mbr-fonts-style display-7">Returns VBScript true or false (never null)</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.convertNmbr(value)</td><td class="body-item mbr-fonts-style display-7">Returns a double or 0 (never null)</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.convertStr(value)</td><td class="body-item mbr-fonts-style display-7">Returns a string (never null)</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.dict</td><td class="body-item mbr-fonts-style display-7">Returns a Scripting.Dictionary Object</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.die</td><td class="body-item mbr-fonts-style display-7">Destroys all plugins and terminates the page</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.dump(value)</td><td class="body-item mbr-fonts-style display-7">Flushes value to the browser and terminates the page</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.dumpBinary(path)</td><td class="body-item mbr-fonts-style display-7">Flushes binary file to the browser and terminates the page</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.exec(filepath)</td><td class="body-item mbr-fonts-style display-7">Executes the code streamed from filepath</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.fso</td><td class="body-item mbr-fonts-style display-7">Returns a Scripting.Dictionary</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.getCache(name)</td><td class="body-item mbr-fonts-style display-7">Returns the Application cache for item "name"</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.getCacheT (name, seconds)</td><td class="body-item mbr-fonts-style display-7">Returns the Application cache for item "name" if it has been cached less than x seconds ago</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.getFileType(filepath)</td><td class="body-item mbr-fonts-style display-7">Returns the file-extension for the filepath</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.getRequest(name)</td><td class="body-item mbr-fonts-style display-7">Returns item from the request-collections querystring or form&nbsp;</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.IsAlphaNumeric(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is alphanumeric</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.isEmp(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is empty or null</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.isNumber(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is a number</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.loadText(filepath)</td><td class="body-item mbr-fonts-style display-7">Loads text from filepath</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.pathInfo</td><td class="body-item mbr-fonts-style display-7">Loads pathinfo in case custom 404 is setup</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.plugin(name)</td><td class="body-item mbr-fonts-style display-7">Returns a plugin object with that name (it's already created)</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.printTimer</td><td class="body-item mbr-fonts-style display-7">Returns the page execution time so far</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.sanitize(value)</td><td class="body-item mbr-fonts-style display-7">Basic htmlencode</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.sanitizeJS(value)</td><td class="body-item mbr-fonts-style display-7">Basic JavaScript single quote-escape</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.setCache(name,value)</td><td class="body-item mbr-fonts-style display-7">Sets Application item with a given value</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.sqli(value)</td><td class="body-item mbr-fonts-style display-7">Basic sqlInjection prevention</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.xmldom(url)</td><td class="body-item mbr-fonts-style display-7">Returns fetched xml from url via Server.CreateObject("MSXML2.DOMDocument")</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.xmlhttp(url,binary)</td><td class="body-item mbr-fonts-style display-7">Returns fetched text or binary from url via server.createobject("MSXML2.ServerXMLHTTP")</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          <div class="row info">
+            <div class="col-md-6">
+              <div class="dataTables_info mbr-fonts-style display-7">
+                <span class="infoBefore">Showing</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoAfter">entries</span>
+                <span class="infoFilteredBefore">(filtered from</span>
+                <span class="inactive infoRows"></span>
+                <span class="infoFilteredAfter"> total entries)</span>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
     </div>
 </section>
 
@@ -378,11 +592,13 @@
   <script src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5"></script>
   <script src="https://apis.google.com/js/plusone.js"></script>
   <script src="assets/facebook-plugin/facebook-script.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/dropdown/js/nav-dropdown.js"></script>
   <script src="assets/dropdown/js/navbar-dropdown.js"></script>
   <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/datatables/jquery.data-tables.min.js"></script>
+  <script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
-  <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/theme/js/script.js"></script>
   
   
