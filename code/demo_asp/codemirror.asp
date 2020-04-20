@@ -12,7 +12,7 @@ if aspl.convertBool(aspl.getrequest("saveCodemirror")) then
 	
 	'save the file here?
 	'the line below would succesfully save UTF-8 texts
-	'it's commented out for security reasons
+	'it's commented out for SECURITY reasons - be careful NOT TO LET STRANGERS save ASP files on your server!!!
 	
 	'aspL.saveText "code/demo_asp/codemirrorsample.asp",somecode	
 	body=replace(body,"[savesuccess]","file was saved",1,-1,1)
