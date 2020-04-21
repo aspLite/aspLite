@@ -9,17 +9,21 @@
   <link rel="shortcut icon" href="assets/images/favicon2-64x66.png" type="image/x-icon">
   <meta name="description" content="">
   
+  
   <title>aspLite - lightweight framework for ASP/VBScript developers</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+  <link rel="stylesheet" href="assets/facebook-plugin/style.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/facebook-plugin/style.css">
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/recaptcha.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
   
@@ -200,7 +204,7 @@
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.aspError</td><td class="body-item mbr-fonts-style display-7">Flushes the VBScript runtime error (if any) and stops executing the page&nbsp;</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.aspError</td><td class="body-item mbr-fonts-style display-7">Flushes VBScript runtime error (if any) and stops executing the page&nbsp;</td></tr><tr>
                 
                 
                 
@@ -217,7 +221,7 @@
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.convert2(value)</td><td class="body-item mbr-fonts-style display-7">Converts value 1-9 to 01-09</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.convert2(value)</td><td class="body-item mbr-fonts-style display-7">Converts values 1-9 to 01-09</td></tr><tr>
                 
                 
                 
@@ -227,12 +231,12 @@
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.convertNmbr(value)</td><td class="body-item mbr-fonts-style display-7">Returns a double or 0 (never null)</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.convertNmbr(value)</td><td class="body-item mbr-fonts-style display-7">Returns VBScript double or 0 (never null)</td></tr><tr>
                 
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.convertStr(value)</td><td class="body-item mbr-fonts-style display-7">Returns a string (never null)</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.convertStr(value)</td><td class="body-item mbr-fonts-style display-7">Returns VBScript string (never null)</td></tr><tr>
                 
                 
                 
@@ -257,12 +261,12 @@
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.exec(filepath)</td><td class="body-item mbr-fonts-style display-7">Executes the code streamed from filepath</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.exec(filepath)</td><td class="body-item mbr-fonts-style display-7">Executes the ASP/VBScript code from filepath</td></tr><tr>
                 
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.fso</td><td class="body-item mbr-fonts-style display-7">Returns a Scripting.Dictionary</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.fso</td><td class="body-item mbr-fonts-style display-7">Returns a Scripting.FilesystemObject</td></tr><tr>
                 
                 
                 
@@ -287,17 +291,17 @@
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.IsAlphaNumeric(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is alphanumeric</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.IsAlphaNumeric(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is alphanumeric - returns true/false</td></tr><tr>
                 
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.isEmp(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is empty or null</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.isEmp(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is empty or null - returns true/false</td></tr><tr>
                 
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.isNumber(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is a number</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.isNumber(value)</td><td class="body-item mbr-fonts-style display-7">Checks if value is a number - returns true/false</td></tr><tr>
                 
                 
                 
@@ -307,7 +311,7 @@
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.pathInfo</td><td class="body-item mbr-fonts-style display-7">Loads pathinfo in case custom 404 is setup</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.pathInfo</td><td class="body-item mbr-fonts-style display-7">Loads pathinfo in case custom 404 is configured</td></tr><tr>
                 
                 
                 
@@ -337,17 +341,17 @@
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.sqli(value)</td><td class="body-item mbr-fonts-style display-7">Basic sqlInjection prevention</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.sqli(value)</td><td class="body-item mbr-fonts-style display-7">Basic sql-injection prevention (single quotes -&gt; two quotes)</td></tr><tr>
                 
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.xmldom(url)</td><td class="body-item mbr-fonts-style display-7">Returns fetched xml from url via Server.CreateObject("MSXML2.DOMDocument")</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.xmldom(url)</td><td class="body-item mbr-fonts-style display-7">Returns fetched xml from url via "MSXML2.DOMDocument"</td></tr><tr>
                 
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.xmlhttp(url,binary)</td><td class="body-item mbr-fonts-style display-7">Returns fetched text or binary from url via server.createobject("MSXML2.ServerXMLHTTP")</td></tr></tbody>
+              <td class="body-item mbr-fonts-style display-7">aspL.xmlhttp(url,binary)</td><td class="body-item mbr-fonts-style display-7">Returns fetched text or binary from url via "MSXML2.ServerXMLHTTP"</td></tr></tbody>
           </table>
         </div>
         <div class="container table-info-container">
@@ -586,20 +590,21 @@
 </section>
 
 
-  <script src="assets/popper/popper.min.js"></script>
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
   <script src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5"></script>
   <script src="https://apis.google.com/js/plusone.js"></script>
   <script src="assets/facebook-plugin/facebook-script.js"></script>
-  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/dropdown/js/nav-dropdown.js"></script>
   <script src="assets/dropdown/js/navbar-dropdown.js"></script>
   <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="assets/datatables/jquery.data-tables.min.js"></script>
   <script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/tether/tether.min.js"></script>
   <script src="assets/theme/js/script.js"></script>
+  <script src="assets/formoid.min.js"></script>
   
   
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>

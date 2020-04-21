@@ -348,9 +348,9 @@
                     $('> *:eq(0)', this).before($img);
 
                     // youtube or vimeo
-                    if (parsedUrl && (/youtube/g.test(parsedUrl[3]) || /vimeo/g.test(parsedUrl[3]))) {
+                    if (parsedUrl && (/youtu\.?be/g.test(parsedUrl[3]) || /vimeo/g.test(parsedUrl[3]))) {
                         // youtube
-                        if (parsedUrl && /youtube/g.test(parsedUrl[3])) {
+                        if (parsedUrl && /youtu\.?be/g.test(parsedUrl[3])) {
                             var previewURL = 'http' + ('https:' === location.protocol ? 's' : '') + ':';
                             previewURL += '//img.youtube.com/vi/' + parsedUrl[6] + '/maxresdefault.jpg';
 
