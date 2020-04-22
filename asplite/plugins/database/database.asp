@@ -2,8 +2,8 @@
 Class cls_asplite_database
 
 	public path,dbms
-	public sqlserver,initial_catalog
-	public userID,password
+	public sqlserver,initial_catalog 'server instance name, database name
+	public userID,password 'only for SQL server
 	
 	'dbms=1 -> Access (default)
 	'dbms=2 -> SQL Server Integrated Security = SSPI (NO SQL Server username/password - sqlserver,initial_catalog REQUIRED)
