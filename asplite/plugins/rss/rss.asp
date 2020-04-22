@@ -9,7 +9,7 @@ class cls_asplite_rss
 		maxitems=6	
 		breakpoint=0
 		counter=1
-		cache=0 'number of seconds this feed will be stored in cache - default 0 (no caching)
+		cache=600 'number of seconds this feed will be stored in cache
 		
 		template=aspL.loadText(asp_path & "/plugins/rss/template.txt")
 		
@@ -18,6 +18,8 @@ class cls_asplite_rss
 	end sub
 
 	public function read(url)
+	
+		on error resume next	
 	
 		if aspL.convertNmbr(cache)<>0 then
 		

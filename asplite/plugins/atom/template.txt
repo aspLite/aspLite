@@ -1,0 +1,15 @@
+<div style="width:100%">
+
+	<h4>[title]</h4>
+	
+	<div>[summary]</div>
+
+	<div style="margin-bottom:10px;font-size:smaller"><i>[updated]</i></div>	
+	
+	<div>[content]</div>
+	
+	<div><a target="_blank" class="btn btn-warning" href="[link]">read more</a></div>
+	
+	<hr>
+	
+</div>

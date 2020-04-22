@@ -92,6 +92,8 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "returnjsondata" : aspL.exec("code/demo_asp/json.asp")
 		
 	case "sendmail" : aspL.exec("code/demo_asp/mail.asp")		
+	
+	case "atom" : aspL.dump aspL.plugin("atom").read("https://github.com/timeline")	
 
 	case "rss" : aspL.dump aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss")
 		
