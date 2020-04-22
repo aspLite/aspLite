@@ -86,6 +86,7 @@ Class cls_asplite_database
 			errM="Something went wrong while connection to the database:<ul>"
 			errM=errM &"<li>You may need to enable 32 Bits application for your IIS application pool.</li>"
 			errM=errM &"<li>The path to your database is not correct</li>"
+			errM=errM &"<li>The username/password for SQL Server are incorret</li>"
 			errM=errM &"<li>IUSR has not sufficient permissions on the database file/folder</li>"
 			errM=errM &"</ul><p>To be sure, check the error message below:</p>"
 			
