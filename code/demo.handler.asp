@@ -35,7 +35,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "randomizer" : aspL.exec("code/demo_asp/randomtext.asp")		
 		
-	case "accessdb" : aspL.exec("code/demo_asp/datasample.asp")	
+	case "db" : aspL.exec("code/demo_asp/datasample.asp")	
 		
 	case "jquerydatatable" : aspL.exec("code/demo_asp/jquerydatatable.asp")
 		

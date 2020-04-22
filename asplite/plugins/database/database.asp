@@ -1,11 +1,18 @@
 <%
-Class cls_asplite_accessDB
+Class cls_asplite_database
 
-	public path
+	public path,dbms
+	public sqlserver,initial_catalog
+	public userID,password
+	
+	'dbms=1 -> Access (default)
+	'dbms=2 -> SQL Server Integrated Security = SSPI (NO SQL Server username/password - sqlserver,initial_catalog REQUIRED)
+	'dbms=3 -> SQL Server with userID & password  & sqlserver & initial_catalog ALL REQUIRED
 
 	private p_getConn
 	
 	Private Sub Class_Initialize()
+		dbms=1 '-> Access (default)
 		set p_getConn = nothing
 	End Sub
 	
@@ -43,8 +50,8 @@ Class cls_asplite_accessDB
 	Private function getConn()
 	
 		'this is the crucial part of this class.
-		'i always use the native OLEDB driver for Access (much MUCH faster than ODBC)
-		'however, to get this working, you need to enable 32 applications for the application pool in IIS
+		'i always use the native OLEDB driver for Access & SQL Server (much MUCH faster than ODBC)
+		'however, to get this working for Access, you need to enable 32 applications for the application pool in IIS
 		'luckily, this is taken care of by most ISP's and it's the default behaviour in IIS Express
 		'note that I create a connection object only ONCE through the lifespan of this ASP page
 		'it's important to NOT open multiple connections to an Access database, as there is a limit
@@ -52,13 +59,27 @@ Class cls_asplite_accessDB
 		'connected for a very short period of time (milliseconds), you will most likely never run 
 		'into problems when using Access, even for very busy websites.
 	
-		On Error Resume Next
+		On Error Resume Next		
 		
 		if p_getConn is nothing then
+			
 			Set p_getConn = Server.Createobject("ADODB.Connection")		
-			p_getConn.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & server.mappath(path)			
-		end if			
 		
+			select case aspL.convertNmbr(dbms)			
+			
+				'Access
+				case 1 : p_getConn.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & server.mappath(path)
+								
+				'SQL Server SSPI - no username/password required
+				case 2 : p_getConn.Open "Provider=SQLOLEDB;SERVER=" & sqlserver & ";initial catalog=" & initial_catalog  & ";Integrated Security=SSPI;"
+				
+				'SQL Server username/password required
+				case 3 : p_getConn.Open "Provider=SQLOLEDB;SERVER=" & sqlserver & ";initial catalog=" & initial_catalog  & ";User ID=" & userID & ";Password=" & password
+			
+			end select 
+			
+		end if		
+
 		if err.number<>0 then	
 		
 			dim errM

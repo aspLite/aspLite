@@ -2,7 +2,7 @@
 'database plugin example
 dim db,rs 
 
-set db=aspL.plugin("accessDB")
+set db=aspL.plugin("database")
 db.path="db/sample.mdb"
 
 body=body & "Access database-plugin:<ul> " 

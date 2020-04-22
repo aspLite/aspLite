@@ -7,7 +7,7 @@ Response.LCID = 1033
 aspL.plugin("json")
 
 dim db
-set db=aspl.plugin("accessDB")
+set db=aspl.plugin("database")
 db.path="db/sample.mdb"
 
 set rs=db.GetDynamicRS
