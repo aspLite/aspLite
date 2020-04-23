@@ -11,7 +11,7 @@ class cls_asplite_rss
 		counter=1
 		cache=600 'number of seconds this feed will be stored in cache
 		
-		template=aspL.loadText(asp_path & "/plugins/rss/template.txt")
+		template=aspL.loadText(aspL_path & "/plugins/rss/template.txt")
 		
 		templateBreakPoint="<div style=""clear:both""></div>"
 	

@@ -7,7 +7,7 @@ Option Explicit
 dim aspL
 set aspL=new cls_asplite
 
-class cls_asplite	
+class cls_asplite
 
 	private debug,startTime,stopTime,plugins,p_fso,cacheprefix
 	
@@ -16,7 +16,7 @@ class cls_asplite
 		on error resume next
 	
 		startTime=Timer()
-		debug						= true 'you may want to set to false for live sites	
+		debug						= aspL_debug 
 		
 		'IMPORTANT
 		'no matter which language you speak or what you're up to in classic ASP,
@@ -160,7 +160,7 @@ class cls_asplite
 	
 		if not plugins.exists(value) then
 			
-			exec(asp_path & "/plugins/" & value & "/" & value & ".asp")	
+			exec(aspL_path & "/plugins/" & value & "/" & value & ".asp")	
 			
 			dim pluginCls
 			set pluginCls=eval("new cls_asplite_" & value)
@@ -196,9 +196,12 @@ class cls_asplite
 		if err.number<>0 then
 		
 			asperror="<h1>aspLite error details:</h1>"
-			asperror=asperror & value & "<br><br>"
-			asperror=asperror & "err.number: " &  err.number & "<br><br>"
-			asperror=asperror & "err.description: " &  err.description & "<br><br>"
+			asperror=asperror & "<span style=""color:Red;font-size:1.5em;font-weight:700"">" & value & "</span><br><br>"
+			asperror=asperror & "err.number: " &  err.number & "<br>"
+			asperror=asperror & "err.source: " &  err.source & "<br>"
+			asperror=asperror & "err.description: " &  err.description
+			
+			asperror=asperror & "<hr>"
 			
 			asperror=asperror & replace(request.servervariables("ALL_RAW"),vbcrlf,"<br>",1,-1,1)		
 			
@@ -466,8 +469,8 @@ class cls_asplite
 		
 			ufl=replace(ufl,":80","",1,-1,1)
 			ufl=replace(ufl,":443","",1,-1,1)
-			ufl=replace(ufl,"http://" & request.servervariables("http_host") & "/" & asp_path,"",1,-1,1)
-			ufl=replace(ufl,"https://" & request.servervariables("http_host") & "/" & asp_path,"",1,-1,1)
+			ufl=replace(ufl,"http://" & request.servervariables("http_host") & "/" & aspL_path,"",1,-1,1)
+			ufl=replace(ufl,"https://" & request.servervariables("http_host") & "/" & aspL_path,"",1,-1,1)
 			ufl=replace(ufl,"http://" & request.servervariables("http_host"),"",1,-1,1)
 			ufl=replace(ufl,"https://" & request.servervariables("http_host"),"",1,-1,1)
 			ufl=replace(ufl,"404;","",1,-1,1)
@@ -685,6 +688,7 @@ class cls_asplite
 		Set ianRegEx=nothing
 		
 	End Function
+
 	
 end class
 %>

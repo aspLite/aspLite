@@ -24,5 +24,4 @@ aspl.asperror("rating")
 aspL.dump body
 
 on error goto 0
-
 %>

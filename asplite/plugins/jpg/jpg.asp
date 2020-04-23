@@ -14,7 +14,7 @@ class cls_asplite_jpg
 	
 	public function src
 	
-		src=asp_path & "/plugins/jpg/jpg.aspx?img=" & server.urlencode(path) & "&maxsize="& maxsize & "&se=" & effect & "&square=" & square
+		src=aspL_path & "/plugins/jpg/jpg.aspx?img=" & server.urlencode(path) & "&maxsize="& maxsize & "&se=" & effect & "&square=" & square
 	
 	end function
 

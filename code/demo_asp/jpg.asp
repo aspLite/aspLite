@@ -10,7 +10,7 @@ jpg.maxsize=500 'px - max: 2560px
 
 'this looks more complex than it is, as this sample is supposed to work in various setups
 'by default, this would rather look like jpg.path="/images/img.jpg" where this path is relative to your directory
-jpg.path=replace(request.servervariables("path_info"),"demo.asp","",1,-1,1) & asp_path & "/plugins/jpg/sample.jpg"
+jpg.path=replace(request.servervariables("path_info"),"demo.asp","",1,-1,1) & aspL_path & "/plugins/jpg/sample.jpg"
 
 dim specialeffects
 specialeffects=replace(bsTemplate,"[src]",jpg.src,1,-1,1)

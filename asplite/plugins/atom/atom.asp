@@ -10,7 +10,7 @@ class cls_asplite_atom
 	
 		i=0
 		maxitems=10	
-		template=aspL.loadText(asp_path & "/plugins/atom/template.txt")		
+		template=aspL.loadText(aspL_path & "/plugins/atom/template.txt")		
 		cache=600 'number of seconds this feed will be stored in cache
 		
 	end sub
