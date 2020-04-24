@@ -3,13 +3,43 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
+<hr>
+
+<h3>HTML table:</h3>
+
 <table style="visibility:hidden" id="myTable" class="stripe" style="width:100%">
 [datatable]
 </table>
 
+<hr>
+
+<h3>JSon data:</h3>
+
+<table id="jsExample" class="stripe" style="width:100%">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>name</th>
+			<th>year</th>			
+		</tr>
+	</thead>
+</table>
+
 <script>
 $(document).ready( function () {	
+
+	//html table
 	$('#myTable').css('visibility','visible');
     $('#myTable').DataTable();
-} );
+	
+	//json data
+	$('#jsExample').DataTable({
+		"ajax": 'demo.asp?e=json',
+		"columns": [
+            { "data": "iId" },
+            { "data": "sName" },
+            { "data": "iYear" }
+			]	
+	});
+});
 </script>

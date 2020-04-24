@@ -33,6 +33,6 @@ wend
 set db=nothing
 set rs=nothing
 
-aspL.dump "<table class=""table table-striped"">" & datatable & "</tr>"
+aspL.dump "<table class=""table table-striped""><tbody>" & datatable & "</tbody></table>"
 
 %>

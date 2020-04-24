@@ -49,22 +49,22 @@ function json2HTML (data) {
 	//bootstrap buttons
 	$("#body").append('<hr><h5>Buttons</h5>');	
     template = {'<>':'button','onclick':function(){alert("hi!")},'style':'margin:10px','class':'btn btn-info','text':'${sName} (${iYear})'};    
-    $("#body").json2html(data.records,template);
+    $("#body").json2html(data.data,template);
 	
 	//html list
 	$("#body").append('<hr><h5>HTML lists</h5><ul id="json2html_list"></ul>');	
 	template = {'<>':'li','text':'${sName} (${iYear})'};
-	$("#json2html_list").json2html(data.records,template);
+	$("#json2html_list").json2html(data.data,template);
 	
 	//bootstrap alerts
 	$("#body").append('<hr><h5>Bootstrap alerts</h5>');	
 	template = {'<>':'div','class':'alert alert-warning','text':'${sName} (${iYear})'};
-	$("#body").json2html(data.records,template);
+	$("#body").json2html(data.data,template);
 	
 	//html tables
 	$("#body").append('<hr><h5>HTML tables</h5><table class="table table-striped" id="json2html_table"><tbody></tbody></table>');	
 	template = {'<>':'tr','html':'<td>${iId}</td><td>${sName}</td><td>${iYear}</td>'};
-	$("#json2html_table").json2html(data.records,template);
+	$("#json2html_table").json2html(data.data,template);
 	
 	scroll()
 	
@@ -74,10 +74,10 @@ function jsonToHTML(data) {
 
 	var output='<ul>'
 
-	for(var i = 0; i < data.records.length; i++) {	
+	for(var i = 0; i < data.data.length; i++) {	
 		
-		output+="<li>" + data.records[i].sName + ' ('
-		output+=data.records[i].iYear + ")</li>";
+		output+="<li>" + data.data[i].sName + ' ('
+		output+=data.data[i].iYear + ")</li>";
 		
 	}
 	
