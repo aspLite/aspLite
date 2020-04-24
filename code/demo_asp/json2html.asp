@@ -8,12 +8,13 @@ aspL.plugin("json")
 
 dim db : set db=aspl.plugin("database")
 db.path="db/sample.mdb"
-dim rs : set rs=db.execute ("select * from person")
+dim rs : set rs=db.getDynmicRS 
+rs.open ("select * from person")
 
 set jsonArr=new JSONarray
 jsonArr.LoadRecordSet rs
 
-aspL.asperror("json")
+aspL.asperror("json2html")
 
 aspL.dump "{""records"":" & jsonArr.Serialize & "}"
 

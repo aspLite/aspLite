@@ -6,7 +6,7 @@ function aspAjax (type,url,dataType,data,success) {
 		dataType: dataType,
 		data: data,
 		success: success,
-		error: aspAjaxError,
+		error: aspAjaxError
 	});	
 };
 

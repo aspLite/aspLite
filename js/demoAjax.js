@@ -34,17 +34,25 @@ $('.aspAjaxJSON').click(function(e) {
 	aspAjax('GET',aspAjaxUrl,'json','e=' + this.id,jsonToHTML)
 })
 
-function jsonToHTML(data) {
+$('.aspAjaxJSON2html').click(function(e) {
+	e.preventDefault()
+	aspAjax('GET',aspAjaxUrl,'json','e=' + this.id,json2HTML)
+})
 
-	var records=data.records
+function json2HTML (data) {
+    let template = {'<>':'button','style':'margin:10px','class':'btn btn-info','text':'${sName} (${iYear})'};    
+    $("#body").html('');
+	$("#body").json2html(data.records,template);
+	}
+    
+function jsonToHTML(data) {
 
 	var output='<ul>'
 
-	for(var i = 0; i < records.length; i++) {
-	
-		var obj = records[i]
-		output+="<li>" + obj.sName + ' ('
-		output+=obj.iYear + ")</li>";
+	for(var i = 0; i < data.records.length; i++) {	
+		
+		output+="<li>" + data.records[i].sName + ' ('
+		output+=data.records[i].iYear + ")</li>";
 		
 	}
 	

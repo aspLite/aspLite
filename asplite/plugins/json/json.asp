@@ -1169,6 +1169,6 @@ end class
 
 'added for aspLite 
 class cls_asplite_json
-'this class is a bit of a workaround so aspLite can automatically create some sort of object... even though it's useless.
+'this class is a bit of a workaround so aspLite can automatically create an instance of a class
 end class
 %>
