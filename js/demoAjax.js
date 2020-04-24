@@ -40,10 +40,35 @@ $('.aspAjaxJSON2html').click(function(e) {
 })
 
 function json2HTML (data) {
-    let template = {'<>':'button','style':'margin:10px','class':'btn btn-info','text':'${sName} (${iYear})'};    
-    $("#body").html('');
+	
+	var template;
+	
+	$("#body").html('<p><strong>JSON2HTML</strong> - see <a target="_blank" href="http://json2html.com/">http://json2html.com/</a></p>'); 
+	$("#body").append('<p>The same <a target="_blank" href="demo.asp?e=json">JSON-data</a> can be visualized in various ways using this library. Fun!</p>'); 
+	
+	//bootstrap buttons
+	$("#body").append('<hr><h5>Buttons</h5>');	
+    template = {'<>':'button','onclick':function(){alert("hi!")},'style':'margin:10px','class':'btn btn-info','text':'${sName} (${iYear})'};    
+    $("#body").json2html(data.records,template);
+	
+	//html list
+	$("#body").append('<hr><h5>HTML lists</h5><ul id="json2html_list"></ul>');	
+	template = {'<>':'li','text':'${sName} (${iYear})'};
+	$("#json2html_list").json2html(data.records,template);
+	
+	//bootstrap alerts
+	$("#body").append('<hr><h5>Bootstrap alerts</h5>');	
+	template = {'<>':'div','class':'alert alert-warning','text':'${sName} (${iYear})'};
 	$("#body").json2html(data.records,template);
-	}
+	
+	//html tables
+	$("#body").append('<hr><h5>HTML tables</h5><table class="table table-striped" id="json2html_table"><tbody></tbody></table>');	
+	template = {'<>':'tr','html':'<td>${iId}</td><td>${sName}</td><td>${iYear}</td>'};
+	$("#json2html_table").json2html(data.records,template);
+	
+	scroll()
+	
+}
     
 function jsonToHTML(data) {
 
