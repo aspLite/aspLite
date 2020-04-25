@@ -18,10 +18,10 @@ table=table & "<tbody>"
 for i=1 to 250
 	'generate some random content for the table cells
 	table=table & "<tr>"
-	table=table & "<td>" & randomizer.randomnumber(10000,99999) & "</td>"
-	table=table & "<td>" & randomizer.randomtext(randomizer.randomnumber(7,10)) & "</td>"
-	table=table & "<td>" & randomizer.randomtext(randomizer.randomnumber(7,10)) & "</td>"	
-	table=table & "<td>" & randomizer.randomtext(randomizer.randomnumber(7,10)) & "</td>"
+		table=table & "<td>" & randomizer.randomnumber(10000,99999) & "</td>"
+		table=table & "<td>" & randomizer.randomtext(randomizer.randomnumber(7,10)) & "</td>"
+		table=table & "<td>" & randomizer.randomtext(randomizer.randomnumber(7,10)) & "</td>"	
+		table=table & "<td>" & randomizer.randomtext(randomizer.randomnumber(7,10)) & "</td>"
 	table=table & "</tr>"
 next
 

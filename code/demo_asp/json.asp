@@ -16,7 +16,7 @@ jsonArr.LoadRecordSet rs
 
 aspL.asperror("json")
 
-aspL.dump "{""data"":" & jsonArr.Serialize & "}"
+aspL.dump "{""aspLrecords"":" & jsonArr.Serialize & "}"
 
 on error goto 0
 %>

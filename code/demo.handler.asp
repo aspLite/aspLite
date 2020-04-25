@@ -38,6 +38,8 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "db" : aspL.exec("code/demo_asp/datasample.asp")	
 		
 	case "datatables" : aspL.exec("code/demo_asp/datatables.asp")
+	
+	case "json_datatables" : aspL.exec("code/demo_asp/json_datatables.asp")
 		
 	case "ckeditor" : aspL.exec("code/demo_asp/ckeditor.asp")
 	

@@ -13,14 +13,14 @@
 
 <hr>
 
-<h3>JSon data:</h3>
+<h3>JSON data:</h3>
 
 <table id="jsExample" class="stripe" style="width:100%">
 	<thead>
 		<tr>
 			<th>id</th>
-			<th>name</th>
-			<th>year</th>			
+			<th>First name</th>
+			<th>Last name</th>			
 		</tr>
 	</thead>
 </table>
@@ -34,12 +34,17 @@ $(document).ready( function () {
 	
 	//json data
 	$('#jsExample').DataTable({
-		"ajax": 'demo.asp?e=json',
+	
+		 "ajax": {
+            "url": "demo.asp?e=json_datatables",
+            "dataSrc": "aspLrecords"
+			},		
 		"columns": [
-            { "data": "iId" },
-            { "data": "sName" },
-            { "data": "iYear" }
-			]	
+            { "data": "id" },
+            { "data": "Firstname" },
+            { "data": "Lastname" }
+			]
+			
 	});
 });
 </script>
