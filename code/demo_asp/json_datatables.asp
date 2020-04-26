@@ -12,7 +12,7 @@ if aspL.isEmp(cachedJson) then
 	db.path="db/sample.mdb"
 	dim rs : set rs=db.execute("select * from testdata")
 
-	aspL.plugin("json")
+	aspL.plugin("aspJson")
 	dim jsonArr : set jsonArr=new JSONarray
 	jsonArr.LoadRecordSet rs
 	

@@ -3,7 +3,7 @@
 
 on error resume next
 
-'Reading ordering data nd settin to empty if none. Empty should never happen, but it's just for safety.
+'Reading ordering data and settin to empty if none. Empty should never happen, but it's just for safety.
 OrderCol = aspL.convertNmbr(Request("Order[0][column]"))
 OrderDir =  aspL.getRequest("Order[0][dir]")
 if not OrderCol = 0 and not OrderDir = "" then
@@ -29,7 +29,7 @@ RowsPerPage = aspL.convertNmbr(aspL.getRequest("length"))
 if RowsPerPage = 0 then RowsPerPage=10
  
 'reading search phrase - this one may be empty
-strSearch = (aspL.getRequest("search[value]"))
+strSearch = aspL.getRequest("search[value]")
  
 'if not empty, then gerenate 'WHERE' Clause. Here you should edjust query to your DB.
 if not aspL.isEmp(strSearch) then
@@ -58,22 +58,21 @@ if rTotal>0 then
 	rsReport.pagesize=RowsPerPage
 end if
 
-aspL.exec("code/demo_asp/json/json.asp")
-dim jsonObj : set jsonObj=new json : jsonObj.recordsetPaging=true
+dim jsonObj : set jsonObj=aspL.plugin("json") : jsonObj.recordsetPaging=true
 JsonAnswer=jsonObj.toJSON("data", rsReport, false) 
- 
+
 'finalizing JSON response - preparing header:
 JsonHeader = "{ ""draw"": "& draw &", "& vbcrlf
 JsonHeader = JsonHeader & """recordsTotal"": " & rTotal &", "& vbcrlf
 JsonHeader = JsonHeader & """recordsFiltered"": " & rTotal &", "& vbcrlf
   
-'removing from generated JSON initial bracket { and concatenating all toghether.
+'removing from generated JSON initial bracket { and concatenating all together.
 JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
 JsonAnswer = JsonHeader & JsonAnswer
 
-set db=noting
-set rsReport=noting
-set db=jsonObj
+set db=nothing
+set rsReport=nothing
+set jsonObj=nothing
  
 'writing a response:
 aspL.dumpJson(JsonAnswer)
