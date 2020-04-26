@@ -86,10 +86,10 @@ class JSONobject
 		dim actualLCID, tmpArray, tmpObj, addedToArray
 		dim root, currentObject, currentArray
 		
-		log("Load string: """ & strJson & """")
+		'log("Load string: """ & strJson & """")
 		
 		' Store the actual LCID and use the en-US to conform with the JSON standard
-		actualLCID = Response.LCID
+		'actualLCID = Response.LCID
 		Response.LCID = 1033
 		
 		strJson = trim(strJson)
@@ -120,14 +120,14 @@ class JSONobject
 			
 			' root, object or array start
 			if mode = "init" then
-				log("Enter init")
+				'log("Enter init")
 				
 				' if we are in root, clear previous object properties
 				if key = JSON_ROOT_KEY and TypeName(currentArray) <> "JSONarray" then redim i_properties(-1)
 				
 				' Init object
 				if char = "{" then
-					log("Create object<ul>")
+					'log("Create object<ul>")
 					
 					if key <> JSON_ROOT_KEY or TypeName(root) = "JSONarray" then
 						' creates a new object
@@ -144,13 +144,13 @@ class JSONobject
 								currentArray.Push item
 								
 								addedToArray = true
-								log("Added to the array")
+								'log("Added to the array")
 							end if
 						end if
 						
 						if not addedToArray then
 							currentObject.add key, item
-							log("Added to parent object: """ & key & """")
+							'log("Added to parent object: """ & key & """")
 						end if
 												
 						set currentObject = item
@@ -161,7 +161,7 @@ class JSONobject
 					
 				' Init Array
 				elseif char = "[" then
-					log("Create array<ul>")
+					'log("Create array<ul>")
 					
 					set item = new JSONarray
 					
@@ -176,18 +176,18 @@ class JSONobject
 							
 							addedToArray = true
 							
-							log("Added to parent array")
+							'log("Added to parent array")
 						end if
 					end if
 					
 					if not addedToArray then
 						set item.parent = currentObject
 						currentObject.add key, item
-						log("Added to parent object")
+						'log("Added to parent object")
 					end if
 					if key = JSON_ROOT_KEY and item.depth = 1 then
 						set root = item
-						log("Set as root")
+						'log("Set as root")
 					end if
 					
 					set currentArray = item
@@ -199,10 +199,10 @@ class JSONobject
 			elseif mode = "openKey" then
 				key = ""
 				if char = """" then
-					log("Open key")
+					'log("Open key")
 					mode = "closeKey"
 				elseif char = "}" then ' empty objects
-					log("Empty object")
+					'log("Empty object")
 					mode = "next"
 					i = i - 1 ' we backup one char to make the next iteration get the closing bracket
 				end if
@@ -211,7 +211,7 @@ class JSONobject
 			elseif mode = "closeKey" then
 				' If it finds a non scaped quotation, change to value mode
 				if char = """" and prevchar <> "\" then
-					log("Close key: """ & key & """")
+					'log("Close key: """ & key & """")
 					mode = "preValue"
 				else
 					key = key & char
@@ -221,7 +221,7 @@ class JSONobject
 			elseif mode = "preValue" then
 				if char = ":" then
 					mode = "openValue"
-					log("Open value for """ & key & """")
+					'log("Open value for """ & key & """")
 				end if
 			
 			' Begining of value
@@ -230,27 +230,27 @@ class JSONobject
 				
 				' If the next char is a closing square barcket (]), its closing an empty array
 				if char = "]" then
-					log("Closing empty array")
+					'log("Closing empty array")
 					quoted = false
 					mode = "next"
 					i = i - 1 ' we backup one char to make the next iteration get the closing bracket
 				
 				' If it begins with a double quote, its a string value
 				elseif char = """" then
-					log("Open string value")
+					'log("Open string value")
 					quoted = true
 					mode = "closeValue"
 				
 				' If it begins with open square bracket ([), its an array
 				elseif char = "[" then
-					log("Open array value")
+					'log("Open array value")
 					quoted = false
 					mode = "init"
 					i = i - 1 ' we backup one char to init with '['
 				
 				' If it begins with open a bracket ({), its an object
 				elseif char = "{" then
-					log("Open object value")
+					'log("Open object value")
 					quoted = false
 					mode = "init"
 					i = i - 1 ' we backup one char to init with '{'
@@ -259,7 +259,7 @@ class JSONobject
 					' If its a number, start a numeric value
 					if regex.pattern <> "\d" then regex.pattern = "\d"
 					if regex.test(char) then
-						log("Open numeric value")
+						'log("Open numeric value")
 						quoted = false
 						value = char
 						mode = "closeValue"
@@ -269,7 +269,7 @@ class JSONobject
 						
 					' special values: null, true, false and undefined
 					elseif char = "n" or char = "t" or char = "f" or char = "u" then
-						log("Open special value")
+						'log("Open special value")
 						quoted = false
 						value = char
 						mode = "closeValue"
@@ -280,7 +280,7 @@ class JSONobject
 			elseif mode = "closeValue" then
 				if quoted then
 					if char = """" and prevchar <> "\" then
-						log("Close string value: """ & value & """")
+						'log("Close string value: """ & value & """")
 						mode = "addValue"
 						
 					' special and escaped chars
@@ -336,12 +336,12 @@ class JSONobject
 							if char = "." or char = "e" or (prevchar = "e" and (char = "-" or char = "+")) then
 								value = value & char
 							else
-								log("Close numeric value: " & value)
+								'log("Close numeric value: " & value)
 								mode = "addValue"
 								i = i - 1
 							end if
 						else
-							log("Close numeric value: " & value)
+							'log("Close numeric value: " & value)
 							mode = "addValue"
 							i = i - 1
 						end if
@@ -356,10 +356,10 @@ class JSONobject
 					
 					if not quoted then
 						if isNumeric(value) then
-							log("Value converted to number")
+							'log("Value converted to number")
 							value = cdbl(value)
 						else
-							log("Value converted to " & value)
+							'log("Value converted to " & value)
 							value = eval(value)
 						end if
 					end if
@@ -383,13 +383,13 @@ class JSONobject
 							
 							currentArray.items = tmpArray
 							
-							log("Value added to array: """ & key & """: " & value)
+							'log("Value added to array: """ & key & """: " & value)
 						end if
 					end if
 					
 					if not useArray then
 						currentObject.add key, value
-						log("Value added: """ & key & """")
+						'log("Value added: """ & key & """")
 					end if
 				end if
 				
@@ -404,21 +404,21 @@ class JSONobject
 						' and the current object is a parent or sibling object
 						if currentArray.depth >= currentObject.depth then
 							' start an array value
-							log("New value")
+							'log("New value")
 							mode = "openValue"
 						else
 							' start an object key
-							log("New key")
+							'log("New key")
 							mode = "openKey"
 						end if
 					else
 						' start an object key
-						log("New key")
+						'log("New key")
 						mode = "openKey"
 					end if
 				
 				elseif char = "]" then
-					log("Close array</ul>")
+					'log("Close array</ul>")
 					
 					' If it's and open array, we close it and set the current array as its parent
 					if isobject(currentArray.parent) then
@@ -448,7 +448,7 @@ class JSONobject
 					
 					mode = "next"
 				elseif char = "}" then
-					log("Close object</ul>")
+					'log("Close object</ul>")
 					
 					' If it's an open object, we close it and set the current object as it's parent
 					if isobject(currentObject.parent) then
@@ -481,7 +481,7 @@ class JSONobject
 		
 		set regex = nothing
 		
-		Response.LCID = actualLCID
+		'Response.LCID = actualLCID
 		
 		set parse = root
 	end function
@@ -598,12 +598,12 @@ class JSONobject
 	' Serialize the current object to a JSON formatted string
 	public function Serialize()
 		dim actualLCID, out
-		actualLCID = Response.LCID
+		'actualLCID = Response.LCID
 		Response.LCID = 1033
 		
 		out = serializeObject(me)
 		
-		Response.LCID = actualLCID
+		'Response.LCID = actualLCID
 		
 		Serialize = out
 	end function
@@ -739,16 +739,16 @@ class JSONobject
 		out = "["
 		
 		if isobject(arr) then
-			log("Serializing jsonArray object")
+			'log("Serializing jsonArray object")
 			innerArray = arr.items
 		else
-			log("Serializing VB array")
+			'log("Serializing VB array")
 			innerArray = arr
 		end if
 		dimensions = NumDimensions(innerArray)
 		
 		if dimensions > 1 then
-			log("Multidimensional array")
+			'log("Multidimensional array")
 			for j = 0 to ubound(innerArray, 1)
 				out = out & "["
 				for k = 0 to ubound(innerArray, 2)
@@ -903,9 +903,9 @@ class JSONobject
 	end function
 	
 	' Used to write the log messages to the response on debug mode
-	private sub log(byval msg)
-		if i_debug then response.write "<li>" & msg & "</li>" & vbcrlf
-	end sub
+	'private sub log(byval msg)
+		'if i_debug then response.write "<li>" & msg & "</li>" & vbcrlf
+	'end sub
 end class
 ' JSON array class
 ' Represents an array of JSON objects and values
@@ -1051,7 +1051,7 @@ class JSONarray
 	public function Serialize()
 		dim js, out, instantiated, actualLCID
 		
-		actualLCID = Response.LCID
+		'actualLCID = Response.LCID
 		Response.LCID = 1033
 		
 		if not isEmpty(i_parent) then
@@ -1071,7 +1071,7 @@ class JSONarray
 		
 		if instantiated then set js = nothing
 		
-		Response.LCID = actualLCID
+		'Response.LCID = actualLCID
 		
 		Serialize = out
 	end function

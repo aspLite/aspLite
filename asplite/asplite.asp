@@ -226,6 +226,13 @@ class cls_asplite
 	
 	end function	
 	
+	public function dumpJson (value)	
+		
+		Response.ContentType = "application/json"
+		dump(value)
+	
+	end function
+	
 	public function dumpBinary (path)
 	
 		on error resume next
