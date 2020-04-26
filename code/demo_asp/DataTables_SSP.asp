@@ -2,7 +2,6 @@
 'solution as found on https://datatables.net/forums/discussion/59746/new-classic-asp-server-side-script-for-datatables-1-10-20
 
 on error resume next
-aspL.exec("code/demo_asp/json/json.asp")
 
 'Reading ordering data nd settin to empty if none. Empty should never happen, but it's just for safety.
 OrderCol = aspL.convertNmbr(Request("Order[0][column]"))
@@ -11,7 +10,7 @@ if not OrderCol = 0 and not OrderDir = "" then
  
 	'WHERE clause uses columns number, like e.g: ORDER BY 1 DESC, you may add translations to column names here, like e.g.: OrderCol = Replace(OrderCol,"0","Col1")
 	'We are adding 1 here, because DataTables indexes columns starting from 0
-	strOrder=" Order By " & OrderCol+1 & " " & OrderDir
+	strOrder=" Order By " & OrderCol+1 & " " & aspL.sqli(OrderDir)
 
 end if
  
@@ -46,18 +45,12 @@ if not aspL.isEmp(strSearch) then
 		strWhere=strWhere & " or day(date)="& strSearch		
 	end if
 	
-else
-	strWhere=""
 end if
 
 dim db : set db=aspL.plugin("database")
 db.path="db/sample.mdb"
 set rsReport=db.getDynamicRS
-
-'first query to get data from DB to table with WHERE, ORDER and 'PAGINATION' clauses
-strReport = "select * from testbigdata " & strWhere  & strOrder 
-
-rsReport.Open strReport
+rsReport.Open "select * from testbigdata " & strWhere  & strOrder
 rTotal=rsReport.recordcount
 
 if rTotal>0 then
@@ -65,10 +58,8 @@ if rTotal>0 then
 	rsReport.pagesize=RowsPerPage
 end if
 
-dim jsonObj
-set jsonObj=new json
-jsonObj.recordsetPaging=true
-
+aspL.exec("code/demo_asp/json/json.asp")
+dim jsonObj : set jsonObj=new json : jsonObj.recordsetPaging=true
 JsonAnswer=jsonObj.toJSON("data", rsReport, false) 
  
 'finalizing JSON response - preparing header:
@@ -79,6 +70,10 @@ JsonHeader = JsonHeader & """recordsFiltered"": " & rTotal &", "& vbcrlf
 'removing from generated JSON initial bracket { and concatenating all toghether.
 JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
 JsonAnswer = JsonHeader & JsonAnswer
+
+set db=noting
+set rsReport=noting
+set db=jsonObj
  
 'writing a response:
 aspL.dumpJson(JsonAnswer)
