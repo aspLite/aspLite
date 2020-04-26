@@ -8,9 +8,6 @@
 	<!-- jQuery -->
 	<script src="js/jquery.js"></script>	
 	
-	
-
-	
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
@@ -92,6 +89,7 @@
 						<li><a href="customurl">userfriendly urls?</a> (<a target="_blank" href="https://asplite.com">not working?</a>)</li>
 						<li><a href="demo.asp?e=db">Access DB plugin</a></li>	
 						<li><a href="demo.asp?e=datatables">DataTables (jQuery plugin)</a> - See <a target="_blank" href="https://datatables.net/">DataTables</a> jQuery plugin</li>						
+						<li><a href="demo.asp?e=datatables_ssp">DataTables - Server Side (ASP) Processing</a></li>						
 						<li><a href="demo.asp?e=ckeditor">CKEditor 4 (WYSIWYG editor)</a></li>
 						<li><a href="demo.asp?e=ckeditor5">CKEditor 5 (WYSIWYG editor)</a></li>											
 						<li><a href="demo.asp?e=upload">upload single file</a></li>
