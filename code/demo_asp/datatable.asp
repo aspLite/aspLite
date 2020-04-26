@@ -4,7 +4,6 @@ dim db,rs,field,datatable
 set db=aspL.plugin("database")
 db.path="db/sample.mdb"
 set rs=db.GetDynamicRS
-
 rs.open ("select * from person")
 
 datatable="<tr>"

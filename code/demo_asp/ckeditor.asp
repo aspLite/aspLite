@@ -1,7 +1,8 @@
 <%
+on error resume next
 'you can have multiple ckeditor instances. 
 
-'load the template file first (including JavScript CDN)
+'load the template file first (including JavaScript CDN)
 body=aspL.loadText("html/demo_asp/ckeditor.resx")	
 
 dim mNotes1,mNotes2,mNotes3

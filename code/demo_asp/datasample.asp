@@ -1,13 +1,11 @@
 <%
+on error resume next
+
 'database plugin example
-dim db,rs 
+dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
+dim rs : set rs=db.execute("select * from person")
 
-set db=aspL.plugin("database")
-db.path="db/sample.mdb"
-
-body=body & "Access database-plugin:<ul> " 
-
-set rs=db.execute("select * from person")
+body=body & "Access database-plugin:<ul>"
 
 while not rs.eof
 	body=body & "<li>" & rs("sName") & "</li>"
@@ -15,4 +13,6 @@ while not rs.eof
 wend 
 
 body=body & "</ul>"
+
+on error goto 0
 %>
