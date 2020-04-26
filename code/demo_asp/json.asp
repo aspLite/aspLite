@@ -3,16 +3,17 @@ on error resume next
 
 dim db : set db=aspL.plugin("database")
 db.path="db/sample.mdb"
-dim rs : set rs=db.execute ("select * from person")
+dim rs : set rs=db.getDynamicRS
+rs.open ("select * from person")
 
-'load the json-plugin in the namespace of this page
-aspL.plugin("aspJson")
-set jsonArr=new JSONarray
-jsonArr.LoadRecordSet rs
+dim jsonObj : set jsonObj=aspL.plugin("json")
+dim JsonAnswer : JsonAnswer=jsonObj.toJSON("aspLrecords", rs, false)	
+
+set jsonObj=nothing
 
 aspL.asperror("json")
 
-aspL.dumpJson "{""aspLrecords"":" & jsonArr.Serialize & "}"
+aspL.dumpJson JsonAnswer
 
 on error goto 0
 %>

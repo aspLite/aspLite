@@ -125,6 +125,7 @@ class cls_asplite_json
 	''					(if toResponse is on then the return is written directly to the response and nothing is returned)
 	'******************************************************************************************************************
 	public default function toJSON(name, val, nested)
+	
 		if not nested and not isEmpty(name) then write("{")
 		if not isEmpty(name) then write("""" & escape(name) & """: ")
 		generateValue(val)
@@ -237,7 +238,7 @@ class cls_asplite_json
 			write("{")
 			for i = 0 to val.fields.count - 1
 				if i > 0 then write(",")
-				toJSON lCase(val.fields(i).name), val.fields(i).value, true
+				toJSON val.fields(i).name, val.fields(i).value, true
 			next
 			write("}")
 			val.movenext()
