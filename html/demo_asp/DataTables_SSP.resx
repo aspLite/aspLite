@@ -3,10 +3,11 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
-
 <h3>DataTables sample - JSON data via Server Side Processing</h3>
+
 <hr>
-<p>Loading some dozens or even hundreds of records at once works fine. But what if you want to browse 10000's? The table below browses (and searches) 50.000 records. Only the records shown are actually loaded. This speeds up the page loadtime (a lot). I found inspiration for this feature <a href="https://datatables.net/forums/discussion/59746/new-classic-asp-server-side-script-for-datatables-1-10-20" target="_blank">here</a> (SlavTheClaw). </p>
+
+<p>Loading some dozens or even hundreds of records at once works fine. But what if you want to browse 10000's? The table below browses (sorts and searches) 50.000 records. Only the records shown are actually loaded. This speeds up the page loadtime (a lot). I found inspiration for this feature <a href="https://datatables.net/forums/discussion/59746/new-classic-asp-server-side-script-for-datatables-1-10-20" target="_blank">here</a> (SlavTheClaw). </p>
 <hr>
 <table id="jsExampleSSP" class="table table-striped table-bordered" style="width:100%">
 	<thead>
@@ -27,12 +28,13 @@ $(document).ready( function () {
 		"serverSide": true,
 		"ajax": 'demo.asp?e=json_datatables_data',
 		"processing": true,
+		"columnDefs": [{"targets": '_all',"render":$.fn.dataTable.render.text()}],
 		"columns": [
-            { "data": "id",render: $.fn.dataTable.render.text() },
-            { "data": "text",render: $.fn.dataTable.render.text() },
-            { "data": "number",render: $.fn.dataTable.render.text() },
-			{ "data": "boolean",render: $.fn.dataTable.render.text() },
-			{ "data": "date",render: $.fn.dataTable.render.text() }			
+            { "data": "id" },
+            { "data": "text"},
+            { "data": "number" },
+			{ "data": "boolean" },
+			{ "data": "date" }			
 			]		
 	} );	
 });

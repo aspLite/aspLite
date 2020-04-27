@@ -3,9 +3,8 @@
 
 on error resume next
 
-OrderCol = aspL.convertNmbr(Request("Order[0][column]"))
+OrderCol = aspL.convertNmbr(aspL.getRequest("Order[0][column]"))
 OrderDir =  aspL.getRequest("Order[0][dir]")
-if aspL.isEmpty(OrderDir) then OrderDir="asc"
  
 'WHERE clause uses columns number, like e.g: ORDER BY 1 DESC, you may add translations to column names here, like e.g.: OrderCol = Replace(OrderCol,"0","Col1")
 'We are adding 1 here, because DataTables indexes columns starting from 0
@@ -44,10 +43,9 @@ if not aspL.isEmpty(strSearch) then
 	
 end if
 
-dim db : set db=aspL.plugin("database")
-db.path="db/sample.mdb"
-set rs=db.rs
-rs.Open "select * from testbigdata " & strWhere  & strOrder
+dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
+set rs=db.rs : rs.Open "select * from testbigdata " & strWhere  & strOrder
+
 rTotal=rs.recordcount
 
 if rTotal>0 then
@@ -67,9 +65,7 @@ JsonHeader = JsonHeader & """recordsFiltered"": " & rTotal &", "& vbcrlf
 JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
 JsonAnswer = JsonHeader & JsonAnswer
 
-set db=nothing
-set rs=nothing
-set jsonObj=nothing
+set db=nothing : set rs=nothing : set jsonObj=nothing
  
 'writing a response:
 aspL.dumpJson(JsonAnswer)

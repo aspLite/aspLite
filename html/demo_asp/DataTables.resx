@@ -32,15 +32,17 @@ $(document).ready( function () {
 
 	//html table
 	$('#myTable').css('visibility','visible');
-    $('#myTable').DataTable();
+    $('#myTable').DataTable({
+		"columnDefs": [{"targets": '_all',"render":$.fn.dataTable.render.text()}]
+	});
 	
 	//json data
 	$('#jsExample').DataTable({
 	
-		 "ajax": {
-            "url": "demo.asp?e=json_datatables",
-            "dataSrc": "aspLrecords"
-			},	
+		"columnDefs": [{"targets": '_all',"render":$.fn.dataTable.render.text()}],
+	
+		 "ajax": {"url": "demo.asp?e=json_datatables","dataSrc": "aspLrecords"},	
+		 
 		"columns": [
             { "data": "id",render: $.fn.dataTable.render.text() },
             { "data": "text",render: $.fn.dataTable.render.text() },
