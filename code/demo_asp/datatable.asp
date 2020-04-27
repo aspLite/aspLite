@@ -3,8 +3,7 @@ dim db,rs,field,datatable
 	
 set db=aspL.plugin("database")
 db.path="db/sample.mdb"
-set rs=db.GetDynamicRS
-rs.open ("select * from person")
+set rs=db.rs : rs.open ("select * from person")
 
 datatable="<tr>"
 

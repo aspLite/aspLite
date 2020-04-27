@@ -24,16 +24,16 @@
 $(document).ready( function () {	
 	
 	$('#jsExampleSSP').DataTable( {
-		serverSide: true,
-		ajax: 'demo.asp?e=json_datatables_data',
+		"serverSide": true,
+		"ajax": 'demo.asp?e=json_datatables_data',
+		"processing": true,
 		"columns": [
-            { "data": "id" },
-            { "data": "text" },
-            { "data": "number" },
-			{ "data": "boolean" },
-			{ "data": "date" }			
-			]
-	} );
-	
+            { "data": "id",render: $.fn.dataTable.render.text() },
+            { "data": "text",render: $.fn.dataTable.render.text() },
+            { "data": "number",render: $.fn.dataTable.render.text() },
+			{ "data": "boolean",render: $.fn.dataTable.render.text() },
+			{ "data": "date",render: $.fn.dataTable.render.text() }			
+			]		
+	} );	
 });
 </script>

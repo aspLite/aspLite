@@ -3,16 +3,13 @@
 
 on error resume next
 
-'Reading ordering data and settin to empty if none. Empty should never happen, but it's just for safety.
 OrderCol = aspL.convertNmbr(Request("Order[0][column]"))
 OrderDir =  aspL.getRequest("Order[0][dir]")
-if not OrderCol = 0 and not OrderDir = "" then
+if aspL.isEmpty(OrderDir) then OrderDir="asc"
  
-	'WHERE clause uses columns number, like e.g: ORDER BY 1 DESC, you may add translations to column names here, like e.g.: OrderCol = Replace(OrderCol,"0","Col1")
-	'We are adding 1 here, because DataTables indexes columns starting from 0
-	strOrder=" Order By " & OrderCol+1 & " " & aspL.sqli(OrderDir)
-
-end if
+'WHERE clause uses columns number, like e.g: ORDER BY 1 DESC, you may add translations to column names here, like e.g.: OrderCol = Replace(OrderCol,"0","Col1")
+'We are adding 1 here, because DataTables indexes columns starting from 0
+strOrder=" Order By " & OrderCol+1 & " " & aspL.sqli(OrderDir)
  
 'reading numbers sent by DataTables and setting them to defaults in case of empty (which should never happen):
 draw = aspL.convertNmbr(aspL.getRequest("draw"))
@@ -32,7 +29,7 @@ if RowsPerPage = 0 then RowsPerPage=10
 strSearch = aspL.getRequest("search[value]")
  
 'if not empty, then gerenate 'WHERE' Clause. Here you should edjust query to your DB.
-if not aspL.isEmp(strSearch) then
+if not aspL.isEmpty(strSearch) then
 
 	strWhere = " where text like '%" & aspl.sqli(strSearch) & "%'"	
 	
@@ -49,17 +46,17 @@ end if
 
 dim db : set db=aspL.plugin("database")
 db.path="db/sample.mdb"
-set rsReport=db.getDynamicRS
-rsReport.Open "select * from testbigdata " & strWhere  & strOrder
-rTotal=rsReport.recordcount
+set rs=db.rs
+rs.Open "select * from testbigdata " & strWhere  & strOrder
+rTotal=rs.recordcount
 
 if rTotal>0 then
-	rsReport.AbsolutePosition=StartRecord
-	rsReport.pagesize=RowsPerPage
+	rs.AbsolutePosition=StartRecord
+	rs.pagesize=RowsPerPage
 end if
 
 dim jsonObj : set jsonObj=aspL.plugin("json") : jsonObj.recordsetPaging=true
-JsonAnswer=jsonObj.toJSON("data", rsReport, false) 
+JsonAnswer=jsonObj.toJSON("data", rs, false) 
 
 'finalizing JSON response - preparing header:
 JsonHeader = "{ ""draw"": "& draw &", "& vbcrlf
@@ -71,7 +68,7 @@ JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
 JsonAnswer = JsonHeader & JsonAnswer
 
 set db=nothing
-set rsReport=nothing
+set rs=nothing
 set jsonObj=nothing
  
 'writing a response:

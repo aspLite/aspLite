@@ -68,7 +68,7 @@ class cls_asplite
 
 	'executeGlobal: the ASP code in the file (path) will
 	'be executed as classic ASP and it will be available in
-	'the namespace of this page-script.
+	'the namespace of this page.
 	public sub exec(path)		
 		
 		on error resume next
@@ -177,9 +177,9 @@ class cls_asplite
 	
 		on error resume next
 	
-		if not isEmp(request.querystring(value)) then
+		if not [isEmpty](request.querystring(value)) then
 			getRequest=request.querystring(value)
-		elseif isEmp(request.form(value)) then
+		elseif [isEmpty](request.form(value)) then
 			getRequest=request.form(value)
 		else
 			getRequest=request(value)
@@ -410,7 +410,7 @@ class cls_asplite
 	
 		getCacheT=getcache(name)
 		
-		if not isEmp(getCacheT) then
+		if not [isEmpty](getCacheT) then
 			if round((Timer - application(cacheprefix & name)(0)),0) > convertNmbr(seconds) then
 				getCacheT=""				
 			end if
@@ -472,7 +472,7 @@ class cls_asplite
 			ufl=left(ufl,instr(ufl,"?"))
 		end if			
 		
-		if not isEmp(ufl) then
+		if not [isEmpty](ufl) then
 		
 			ufl=replace(ufl,":80","",1,-1,1)
 			ufl=replace(ufl,":443","",1,-1,1)
@@ -517,7 +517,7 @@ class cls_asplite
 			
 			ON Error Resume Next		
 			
-			if not isEmp(ufl) and IsAlphaNumeric(ufl) then
+			if not [isEmpty](ufl) and IsAlphaNumeric(ufl) then
 				Response.Status = "200 OK"
 				pathinfo=ufl			
 			end if			
@@ -549,7 +549,7 @@ class cls_asplite
 		
 		on error resume next
 
-		if isEmp(value) then
+		if [isEmpty](value) then
 			isNumber=false
 		else
 			isNumber=isNumeric(value)
@@ -560,16 +560,16 @@ class cls_asplite
 	end function
 
 
-	public function isEmp(byval value)
+	public function [isEmpty](byval value)
 	
 		on error resume next
 		
-		isEmp=false
+		isEmpty=false
 		
 		if isNull(value) then
-			isEmp=true
+			isEmpty=true
 		else
-			if isEmpty(value) or trim(value)="" then isEmp=true
+			if trim(value)="" then isEmpty=true
 		end if
 		
 		on error goto 0
@@ -597,7 +597,7 @@ class cls_asplite
 
 	public function sanitize(sValue)
 
-		if isEmp(sValue) then
+		if [isEmpty](sValue) then
 			sanitize=""
 		else
 			sanitize=replace(sValue,"""","&quot;",1,-1,1)
@@ -634,7 +634,7 @@ class cls_asplite
 		
 		On Error Resume Next
 		
-		if isEmp(value) then
+		if [isEmpty](value) then
 			convertBool=false
 			exit function
 		end if
@@ -666,7 +666,7 @@ class cls_asplite
 	End Function
 
 	public function sqli(str)
-		if isEmp(str) then
+		if [isEmpty](str) then
 			sqli=""
 		else
 			sqli=replace(str,"'","''",1,-1,1)

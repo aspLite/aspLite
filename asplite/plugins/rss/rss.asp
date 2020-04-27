@@ -25,7 +25,7 @@ class cls_asplite_rss
 		
 			read=aspL.getCacheT("asprss" & url,cache)
 			
-			if not aspL.isEmp(read) then				
+			if not aspL.isEmpty(read) then				
 				exit function
 			end if
 		

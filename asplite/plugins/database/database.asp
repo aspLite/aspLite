@@ -34,14 +34,14 @@ Class cls_asplite_database
 	End Function
 	
 
-	Public Function GetDynamicRS
+	Public Function rs
 	
 		On Error Resume Next
 		
-		Set GetDynamicRS = server.CreateObject ("adodb.recordset")
-		GetDynamicRS.CursorType = 1
-		GetDynamicRS.LockType = 3
-		set GetDynamicRS.ActiveConnection = getConn()		
+		Set rs = server.CreateObject ("adodb.recordset")
+		rs.CursorType = 1
+		rs.LockType = 3
+		set rs.ActiveConnection = getConn()		
 		
 		On Error Goto 0
 		

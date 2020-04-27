@@ -23,7 +23,7 @@ class cls_asplite_atom
 		
 			read=aspL.getCacheT("aspatom" & url,cache)
 			
-			if not aspL.isEmp(read) then				
+			if not aspL.isEmpty(read) then				
 				exit function
 			end if
 		
@@ -66,7 +66,7 @@ class cls_asplite_atom
 						
 					case "link","atom:link"
 						
-						if lcase(aspL.convertStr(child.GetAttribute("rel")))="alternate" or aspL.isEmp(child.GetAttribute("rel")) then
+						if lcase(aspL.convertStr(child.GetAttribute("rel")))="alternate" or aspL.isEmpty(child.GetAttribute("rel")) then
 							link = child.GetAttribute("href")
 						end if
 						
