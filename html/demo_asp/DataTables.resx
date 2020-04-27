@@ -41,7 +41,7 @@ $(document).ready( function () {
 	
 		"columnDefs": [{"targets": '_all',"render":$.fn.dataTable.render.text()}],
 	
-		 "ajax": {"url": "demo.asp?e=json_datatables","dataSrc": "aspLrecords"},	
+		"ajax": {"url": "demo.asp?e=json_datatables","dataSrc": "aspLrecords"},	
 		 
 		"columns": [
             { "data": "id",render: $.fn.dataTable.render.text() },
