@@ -8,58 +8,77 @@ testData.pick(aspL.getRequest("iId"))
 'catch ajax call!
 if aspl.convertBool(aspl.getRequest("postBack")) then
 
+	'prepare JSON answer
+	dim jsonObj : set jsonObj=aspL.plugin("json")
+	dim jsonDict : set jsonDict=aspL.dict
+	jsonDict.add "iId",testData.iId
+
 	select case aspl.getRequest("btnAction")
 	
 		case "save"
 	
 			testData.sText		= trim(left(aspl.getRequest("sText"),255))
-			testData.iNumber	= trim(left(aspl.getRequest("iNumber"),255))
-			testData.bBoolean	= left(aspl.getRequest("bBoolean"),255)
-			testData.dDate		= left(dateFromPicker(aspl.getRequest("dDate")),255)
+			testData.iNumber	= aspl.getRequest("iNumber")
+			testData.bBoolean	= aspl.getRequest("bBoolean")
+			testData.dDate		= dateFromPicker(aspl.getRequest("dDate"))
 			
 			if testData.save then
-				aspL.dump "OK"
+				jsonDict.add "status","OK"				
 			else
-				aspL.dump "ERR"
-			end if
+				jsonDict.add "status","ERR"				
+			end if			
 		
 		case "delete"
 		
 			testData.delete			
-			aspL.dump "DELETE"
+			jsonDict.add "status","DELETE"	
 	
 	end select 
+	
+	'add the testData-object to the JSON output		
+	testData.reflectTo(jsonDict)
+	
+	'the Ajax page-execution stops here!
+	aspL.dumpJson jsonObj.toJSON("aspLiteResponse", jsonDict, false)
 	
 end if
 
 dim template : template=aspL.loadText("html/demo_asp/postdtt.resx")
+
+'set the dateformat for jQuery UI DatePicker
 template=replace(template,"[dateformat]",dateformat,1,-1,1)
 
+'hide or show the delete button
 if aspl.convertNmbr(testData.iId)=0 then 'new record!
-	template=replace(template,"[display]"," style='display:none' ",1,-1,1)
+	template=replace(template,"[display]"," style=""display:none"" ",1,-1,1)
+else
+	template=replace(template,"[display]","",1,-1,1)
 end if
 
 dim booleanlist : set booleanlist=new cls_booleanlist
 
-'replacements
-template=replace(template,"[iId]",testData.iId,1,-1,1)
-template=replace(template,"[sText]",testData.sText,1,-1,1)
-template=replace(template,"[iNumber]",testData.iNumber,1,-1,1)
-template=replace(template,"[booleanlist]",booleanlist.showSelected("option",testData.bBoolean),1,-1,1)
-template=replace(template,"[dDate]",dateToPicker(testData.dDate),1,-1,1)
+'template replacements
+template=replace(template,"[iId]",aspL.sanitize(testData.iId),1,-1,1)
+template=replace(template,"[sText]",aspL.sanitize(testData.sText),1,-1,1)
+template=replace(template,"[iNumber]",aspL.sanitize(testData.iNumber),1,-1,1)
+template=replace(template,"[booleanlist]",booleanlist.showSelected("option",aspL.sanitize(testData.bBoolean)),1,-1,1)
+template=replace(template,"[dDate]",aspL.sanitize(dateToPicker(testData.dDate)),1,-1,1)
 
 set booleanlist=nothing
 
 aspL.dump template
+'the actual page-execution stops here - what follows are classes that should to be shifted to seperate files
 
 class cls_testData
 
 	private db, rs
 	public iId, sText, iNumber, bBoolean, dDate
+	public reflection
 	
 	Private Sub Class_Initialize
 	
 		set db=aspl.plugin("database") : db.path="db/sample.mdb"
+		reflection = Array("iId","sText","iNumber","bBoolean","dDate")
 		
 	End Sub
 	
@@ -144,6 +163,15 @@ class cls_testData
 		
 		db.execute("delete from testbigdata where iId=" & aspl.convertNmbr(iId))
 		
+	end function
+	
+	
+	public function reflectTo(byref dict)	
+				
+		for i=lbound(reflection) to ubound(reflection)
+			dict.add "testData_" & reflection(i),eval(reflection(i))
+		next
+	
 	end function
 
 end class
