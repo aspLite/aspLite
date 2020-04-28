@@ -10,8 +10,10 @@
 <hr>
 
 <p>Loading some dozens or even hundreds of records at once works fine. But what if you want to browse 10000's? The table below browses (sorts and searches) 50.000 records. Only the records shown are actually loaded. This speeds up the page loadtime (a lot). I found inspiration for this feature <a href="https://datatables.net/forums/discussion/59746/new-classic-asp-server-side-script-for-datatables-1-10-20" target="_blank">here</a> (SlavTheClaw). </p>
+
 <hr>
-<table id="jsExampleSSP" class="table table-striped table-bordered" style="width:100%">
+
+<table id="jsExampleSSP" class="table table-striped" style="width:100%">
 	<thead>
 		<tr>
 			<th style="text-align:center">
@@ -44,7 +46,7 @@
 
 <script>
 function askAspForm (id) {
-	aspAjax ("post","demo.asp?iId=" + id + "&e=postDTT","text",id,getAspForm)
+	aspAjax ("post","demo.asp?iId=" + id + "&e=postDTT","text","",getAspForm)
 }
 
 function getAspForm(data) {
@@ -55,7 +57,7 @@ $(document).ready( function () {
 	
 	$('#jsExampleSSP').DataTable( {	
 
-		"order": [[ 1, "asc" ]],
+		"order": [1,"asc"],
 		"responsive": true,
 		"serverSide": true,
 		"ajax": 'demo.asp?e=json_datatables_data',
@@ -66,10 +68,8 @@ $(document).ready( function () {
 				{targets: 0,className: 'dt-body-center'}
 			],		
 		"columns": [           
-			{  data: "iId", render: function ( data, type, row ) {		
-				
-				return '<button class="btn btn-secondary" style="padding:2px 7px" onclick="askAspForm(' + data + ')">Modify</button>';		
-							
+			{  data: "iId", render: function ( data, type, row ) {				
+				return '<button class="btn btn-secondary" style="padding:2px 14px" onclick="askAspForm(' + data + ')">Modify</button>'							
 				}
 			},			
 			{ "data": "sText"},
