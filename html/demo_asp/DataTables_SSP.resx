@@ -2,8 +2,10 @@
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
-<h3>DataTables sample - JSON data via Server Side Processing</h3>
+<h3>DataTables / Server Side Processing (Classic ASP)</h3>
 
 <hr>
 
@@ -12,7 +14,9 @@
 <table id="jsExampleSSP" class="table table-striped table-bordered" style="width:100%">
 	<thead>
 		<tr>
-			<th>id</th>
+			<th style="text-align:center">
+				<button class="btn btn-info" style="padding:2px 7px" onclick="askAspForm(null)">Add&nbsp;new</button>
+			</th>			
 			<th>text</th>
 			<th>number</th>
 			<th>boolean</th>
@@ -21,21 +25,58 @@
 	</thead>
 </table>
 
+<!-- bootstrap modal window -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modify record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  <div id="editForm"></div>
+    </div>
+  </div>
+</div>
+
 <script>
+function askAspForm (id) {
+	aspAjax ("post","demo.asp?iId=" + id + "&e=postDTT","text",id,getAspForm)
+}
+
+function getAspForm(data) {
+	$('#editForm').html(data);$("#exampleModal").modal()
+}
+
 $(document).ready( function () {	
 	
-	$('#jsExampleSSP').DataTable( {
+	$('#jsExampleSSP').DataTable( {	
+
+		"order": [[ 1, "asc" ]],
+		"responsive": true,
 		"serverSide": true,
 		"ajax": 'demo.asp?e=json_datatables_data',
 		"processing": true,
-		"columnDefs": [{"targets": '_all',"render":$.fn.dataTable.render.text()}],
-		"columns": [
-            { "data": "id" },
-            { "data": "text"},
-            { "data": "number" },
-			{ "data": "boolean" },
-			{ "data": "date" }			
-			]		
+		"columnDefs": [
+				{"targets": '_all',"render":$.fn.dataTable.render.text()},
+				{ "orderable": false, "targets": 0 },
+				{targets: 0,className: 'dt-body-center'}
+			],		
+		"columns": [           
+			{  data: "iId", render: function ( data, type, row ) {		
+				
+				return '<button class="btn btn-secondary" style="padding:2px 7px" onclick="askAspForm(' + data + ')">Modify</button>';		
+							
+				}
+			},			
+			{ "data": "sText"},
+            { "data": "iNumber" },
+			{ "data": "bBoolean" },
+			{ "data": "dDate" }
+			]
 	} );	
 });
 </script>

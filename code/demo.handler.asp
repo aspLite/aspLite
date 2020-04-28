@@ -98,6 +98,8 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "json" : aspL.exec("code/demo_asp/json.asp")
 	
 	case "json2html" : aspL.exec("code/demo_asp/json.asp")
+	
+	case "postdtt" : aspL.exec("code/demo_asp/postdtt.asp")
 		
 	case "sendmail" : aspL.exec("code/demo_asp/mail.asp")		
 	

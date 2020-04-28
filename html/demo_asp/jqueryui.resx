@@ -1,5 +1,3 @@
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <p>Very useful Datepicker by jQuery UI - <a href="https://jqueryui.com/datepicker/" target="_blank"> https://jqueryui.com/datepicker/</a> with lots of options. Check code/demo_asp/jqueryui.asp for the ASP code involved.</p>
 

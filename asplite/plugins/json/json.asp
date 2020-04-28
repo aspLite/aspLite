@@ -229,7 +229,7 @@ class cls_asplite_json
 	'* generateRecordset 
 	'******************************************************************************************************************
 	private sub generateRecordset(val)
-		dim i, curRow
+		dim i, curRow,copyDate
 		write("[")
 		curRow = 0
 		'recordset.pagesize = -1 means it is not paged.
@@ -238,7 +238,13 @@ class cls_asplite_json
 			write("{")
 			for i = 0 to val.fields.count - 1
 				if i > 0 then write(",")
-				toJSON val.fields(i).name, val.fields(i).value, true
+				
+				if isDate(val.fields(i).value) then
+					copyDate=val.fields(i).value
+					toJSON val.fields(i).name, year(copyDate) & "-" & aspl.convert2(month(copyDate)) & "-" & aspl.convert2(day(copyDate)) & "T" & aspl.convert2(hour(copyDate)) & ":" & aspl.convert2(minute(copyDate)) & ":" & aspl.convert2(second(copyDate)), true
+				else
+					toJSON val.fields(i).name, val.fields(i).value, true
+				end if
 			next
 			write("}")
 			val.movenext()

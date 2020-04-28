@@ -30,15 +30,15 @@ strSearch = aspL.getRequest("search[value]")
 'if not empty, then gerenate 'WHERE' Clause. Here you should edjust query to your DB.
 if not aspL.isEmpty(strSearch) then
 
-	strWhere = " where text like '%" & aspl.sqli(strSearch) & "%'"	
+	strWhere = " where sText like '%" & aspl.sqli(strSearch) & "%'"	
 	
 	if aspL.convertNmbr(strSearch)<>0 then
 		'this would only work in Access
-		strWhere=strWhere & " or id="& strSearch
-		strWhere=strWhere & " or number="& strSearch
-		strWhere=strWhere & " or year(date)="& strSearch
-		strWhere=strWhere & " or month(date)="& strSearch
-		strWhere=strWhere & " or day(date)="& strSearch		
+		strWhere=strWhere & " or iId="& strSearch
+		strWhere=strWhere & " or iNumber="& strSearch
+		strWhere=strWhere & " or year(dDate)="& strSearch
+		strWhere=strWhere & " or month(dDate)="& strSearch
+		strWhere=strWhere & " or day(dDate)="& strSearch		
 	end if
 	
 end if
