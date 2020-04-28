@@ -51,7 +51,7 @@
 
 	$('#datepicker').datepicker({
 		inline: true, 
-		dateFormat:"[dateformat]", //this will be replaced with the selected dateformat in /code/demo_asp/jqueryui.asp		
+		dateFormat:"[dateformat]"
 	})
 	
 	$('.ajaxForm').submit(function(e) {
