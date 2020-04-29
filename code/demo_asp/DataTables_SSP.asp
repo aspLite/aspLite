@@ -4,13 +4,14 @@
 on error resume next
 
 OrderCol = aspL.convertNmbr(aspL.getRequest("Order[0][column]"))
-OrderDir =  aspL.getRequest("Order[0][dir]")
+OrderDir =  lcase(aspL.getRequest("Order[0][dir]"))
+
+if OrderDir<>"asc" and OrderDir<>"desc" then OrderDir="asc"
  
 'WHERE clause uses columns number, like e.g: ORDER BY 1 DESC, you may add translations to column names here, like e.g.: OrderCol = Replace(OrderCol,"0","Col1")
 'We are adding 1 here, because DataTables indexes columns starting from 0
-strOrder=" Order By " & OrderCol+1 & " " & aspL.sqli(OrderDir)
+strOrder=" Order By " & OrderCol+1 & " " & OrderDir
  
-'reading numbers sent by DataTables and setting them to defaults in case of empty (which should never happen):
 draw = aspL.convertNmbr(aspL.getRequest("draw"))
  
 StartRecord = aspL.convertNmbr(aspL.getRequest("start"))

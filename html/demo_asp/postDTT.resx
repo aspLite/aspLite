@@ -64,9 +64,9 @@
 	
 	function dttSuccess (data) {
 	
-		if (data.aspLiteResponse.status=="OK") {$('#successAlert').css("display", "block");reloadTable()}
-		if (data.aspLiteResponse.status=="ERR") {$('#warningAlert').css("display", "block")};
-		if (data.aspLiteResponse.status=="DELETE") {reloadTable();$("#exampleModal").modal('toggle')};		
+		if (data.aspL.status=="OK") {$('#successAlert').css("display", "block");reloadTable()}
+		if (data.aspL.status=="ERR") {$('#warningAlert').css("display", "block")};
+		if (data.aspL.status=="DELETE") {reloadTable();$("#exampleModal").modal('toggle')};		
 	}
 	
 </script>

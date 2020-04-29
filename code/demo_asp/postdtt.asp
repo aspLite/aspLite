@@ -42,7 +42,7 @@ if aspl.convertBool(aspl.getRequest("postBack")) then
 	testData.reflectTo(jsonDict)
 	
 	'the Ajax page-execution stops here!
-	aspL.dumpJson jsonObj.toJSON("aspLiteResponse", jsonDict, false)
+	aspL.dumpJson jsonObj.toJSON("aspL", jsonDict, false)
 	
 end if
 
