@@ -1,10 +1,16 @@
 <%
+on error resume next
+
 dim html,titletag,body
 
 titletag="aspLite demo"
 
-'load the template
+'load the template of the demosite
 html=aspL.loadText("html/demo_asp/demo.resx")
+
+'create a json object for all AJAX communication with the client
+'be careful, this object will be used all over this demo site! do not destroy it!
+dim json : set json=aspL.plugin("json")
 
 'here you can typically add some sort of eventhandler (what did the user do exactly?)
 'in general: if the code for dealing with the event is not large, include it here.
@@ -68,28 +74,28 @@ select case lcase(aspL.getRequest("e")) '"event"
 
 		
 	'AJAX handlers
-	'aspl.dump function is often used for AJAX handlers. "dump" basically means "flush" and "stop", 
-	'AJAX calls only need a portion of html/text/json/xml most of the times, not an entire html-document 
+	'json.dump is very often used for AJAX handlers. "dump" basically means "flush" and "stop"	
+	'All communication with the browser is done with JSON.
 		
-	case "ajaxhello" : aspL.dump "Hello " & aspL.sanitize(aspL.getRequest("yourname")) & ".<br><br>Hashed (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>"
+	case "ajaxhello" : json.dump("Hello " & aspL.sanitize(aspL.getRequest("yourname")) & ".<br><br>Hashed (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>")
 
-	case "submit1" : aspL.dump "Form 1 save button was clicked - " & aspL.getrequest("yourname")
+	case "submit1" : json.dump("Form 1 save button was clicked - " & aspL.getrequest("yourname"))
 		
-	case "linksubmit" : aspL.dump "Form 1 submitted by link - " & aspL.getrequest("yourname")
+	case "linksubmit" : json.dump("Form 1 submitted by link - " & aspL.getrequest("yourname"))
 	
-	case "delete1" : aspL.dump "Form 1 delete button was clicked - " & aspL.getrequest("yourname")
+	case "delete1" : json.dump("Form 1 delete button was clicked - " & aspL.getrequest("yourname"))
 		
-	case "submit2" : aspL.dump "Form 2 save button was clicked"
+	case "submit2" : json.dump("Form 2 save button was clicked")
 	
-	case "delete2" : aspL.dump "Form 2 delete button was clicked"
+	case "delete2" : json.dump("Form 2 delete button was clicked")
 		
-	case "buttonclick" : aspL.dump "Regular button was clicked"
+	case "buttonclick" : json.dump("Regular button was clicked")
 		
-	case "clicklink1" : aspL.dump "First link clicked..."
+	case "clicklink1" : json.dump("First link clicked...")
 	
-	case "clicklink2" : aspL.dump "Second link clicked..."	
+	case "clicklink2" : json.dump("Second link clicked...")
 	
-	case "returnbool" : aspL.dump aspL.plugin("randomizer").randomnumber(0,100)>49	
+	case "returnbool" : json.dump(aspl.convertStr(aspL.plugin("randomizer").randomnumber(0,100)>49))
 		
 	case "returndata" : aspL.exec("code/demo_asp/datatable.asp")	
 	
@@ -103,27 +109,19 @@ select case lcase(aspL.getRequest("e")) '"event"
 		
 	case "sendmail" : aspL.exec("code/demo_asp/mail.asp")		
 	
-	case "atom" : aspL.dump aspL.plugin("atom").read("https://github.com/timeline")	
+	case "atom" : json.dump(aspL.plugin("atom").read("https://github.com/timeline"))
 
-	case "rss" : aspL.dump aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss")
+	case "rss" : json.dump(aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss"))
 		
 	case "jpg" : aspL.exec("code/demo_asp/jpg.asp")	
 	
-	case "uploadjquery" : aspL.dump(aspL.loadText("html/demo_asp/uploadjquery.resx")) 'screen
+	case "uploadjquery" : json.dump(aspL.loadText("html/demo_asp/uploadjquery.resx"))
 	
 	case "uploadfilejquery" : aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
 	
 	case "rate" : aspL.exec("code/demo_asp/rate.asp")	
-		
-	case "jscript" : server.execute("code/demo_asp/jscript.asp") : aspL.die		
-	
-		'server.execute executes a remote asp(-only) page that resides on the same server
-		'that asp page has access to the response and request collection
-		'the remote asp page has however no access to the aspL object 
-		'or any other object that was created so far
-		'in this case, a JScript sample page was loaded.
 			
-	case "onload" :	aspL.dump "Hello world, Καλημέρα κόσμε (utf8-ready)" 'default content for AJAX handler	
+	case "onload" :	json.dump("Hello world, Καλημέρα κόσμε (utf8-ready)")		
 		
 	case else body="No (known) action was detected. Initial load." 'default content for REGULAR handler
 			
@@ -131,5 +129,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 		aspL.exec("code/demo_asp/404handler.asp")		
 		
 end select
+
+on error goto 0
 
 %>

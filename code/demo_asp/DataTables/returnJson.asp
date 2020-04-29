@@ -8,6 +8,8 @@ class cls_dt_returnJson
 
 	Private Sub Class_Initialize()
 	
+		on error resume next
+	
 		'connect to the database - in this case an access database (dbpath)
 		set db=aspL.plugin("database")
 		db.path="db/sample.mdb"
@@ -30,7 +32,7 @@ class cls_dt_returnJson
 		StartRecord = aspL.convertNmbr(aspL.getRequest("start"))
 		
 		if StartRecord = 0 then 
-			StartRecord=1 'Absolutepage (see dumpjson) cannot be 0
+			StartRecord=1 'Absolutepage cannot be 0
 		else
 			StartRecord=StartRecord+1
 		end if
@@ -41,10 +43,16 @@ class cls_dt_returnJson
 		 
 		'reading search phrase - this one may be empty
 		strSearch = trim(aspL.getRequest("search[value]"))	
+		
+		aspL.aspError("cls_dt_returnJson.Class_Initialize")
+		
+		on error goto 0
 	
 	end sub
 	
 	public sub dumpJson
+	
+		on error resume next
 		
 		'the recordset rs expects an open database connection (db)
 		'this is a very basic SQL implementation. 
@@ -63,9 +71,9 @@ class cls_dt_returnJson
 			rs.pagesize=RowsPerPage
 		end if
 
-		'prepare JSON return - this class takes care of the recordset paging! - see jsonObj.recordsetPaging
-		dim jsonObj : set jsonObj=aspL.plugin("json") : jsonObj.recordsetPaging=true
-		JsonAnswer=jsonObj.toJSON("data", rs, false) 
+		'prepare JSON return - this class takes care of the recordset paging! - see json.recordsetPaging
+		json.recordsetPaging=true
+		JsonAnswer=json("data", rs, false) 
 
 		'finalizing JSON response - preparing header:
 		JsonHeader = "{ ""draw"": "& draw &", "& vbcrlf
@@ -76,10 +84,14 @@ class cls_dt_returnJson
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
 		JsonAnswer = JsonHeader & JsonAnswer
 
-		set db=nothing : set rs=nothing : set jsonObj=nothing
+		set db=nothing : set rs=nothing
 		 
+		aspL.aspError("cls_dt_returnJson.dumpJson")
+		
 		'writing a response and stop executing page
-		aspL.dumpJson(JsonAnswer)	
+		aspL.dumpJson JsonAnswer
+		
+		on error goto 0
 	
 	end sub
 	

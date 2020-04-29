@@ -35,7 +35,7 @@ jpg.square=1
 
 aspL.asperror("jpghandler")
 
-aspL.dump "<div class=""card-columns"">" & specialeffects & "</div>"
+json.dump("<div class=""card-columns"">" & specialeffects & "</div>")
 
 on error goto 0
 %>

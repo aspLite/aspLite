@@ -64,7 +64,7 @@
 	
 	$('.ajaxForm').submit(function(e) {
 		e.preventDefault()
-		aspAjax('POST',aspAjaxUrl,'json',$(this).serialize(),dttSuccess)
+		aspAjax('POST',aspAjaxUrl,$(this).serialize(),dttSuccess)
 	})
 	
 	function reloadTable() {
@@ -73,18 +73,18 @@
 	
 	function dttSuccess (data) {
 	
-		if (data.aspL.status=="OK") {
+		if (data.aspl.status=="OK") {
 			$('#warningAlert').css("display", "none")
 			$('#successAlert').css("display", "block")
 			reloadTable()
 			}
 			
-		if (data.aspL.status=="ERR") {
+		if (data.aspl.status=="ERR") {
 			$('#warningAlert').css("display", "block")
 			$('#successAlert').css("display", "none")			
 			}
 			
-		if (data.aspL.status=="DELETE") {
+		if (data.aspl.status=="DELETE") {
 			reloadTable()
 			$("#exampleModal").modal('toggle')
 		}		

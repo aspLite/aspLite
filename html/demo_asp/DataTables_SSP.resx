@@ -1,4 +1,5 @@
 <p>See <a target="_blank" href="https://datatables.net/">DataTables</a> jQuery plugin</p>
+
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
@@ -52,11 +53,11 @@ font-size: 1em;
 
 <script>
 function askAspForm (id) {
-	aspAjax ("post","demo.asp?iId=" + id + "&e=postdtt","text","",getAspForm)
+	aspAjax ("post","demo.asp?iId=" + id + "&e=postdtt","",getAspForm)
 }
 
 function getAspForm(data) {
-	$('#editForm').html(data)
+	$('#editForm').html(data.aspl)
 	$("#exampleModal").modal()
 }
 

@@ -136,6 +136,24 @@ class cls_asplite_json
 	end function
 	
 	'******************************************************************************************************************
+	'' Added by Pieter Cooreman, developer aspLite
+	'' I added this function to have a very easy way to return single level values named "aspl"
+	'' Val can be of all types (string, arrays, objects, recordset) - see toJSON
+	'******************************************************************************************************************
+	public sub dump(val)	
+		
+		write("{""aspl"": ")
+		generateValue(val)
+		write("}")	
+		
+		Response.ContentType = "application/json"
+		response.clear
+		response.write output
+		response.end 		
+		
+	end sub
+	
+	'******************************************************************************************************************
 	'* generate 
 	'******************************************************************************************************************
 	private function generateValue(val)

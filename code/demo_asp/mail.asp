@@ -11,5 +11,5 @@ mail.fromemail="info@quickersite.com"
 
 set mail=nothing
 
-aspL.dump "Mail sent"
+json.dump("Mail sent")
 %>

@@ -19,6 +19,5 @@ template=replace(template,"[sha256]",sha256,1,-1,1)
 
 aspL.aspError("hashing")
 		
-aspL.dump template
-
+json.dump(template)
 %>

@@ -1,4 +1,6 @@
 <%
+on error resume next
+
 'load the cls_dt_returnJson class that will return the Json at the end 
 'an object returnJson is already created in that asp file
 aspL.exec("code/demo_asp/datatables/returnJson.asp")
@@ -38,6 +40,8 @@ if not aspL.isEmpty(returnJson.strSearch) then
 	returnJson.strWhere=strWhere
 	
 end if
+
+aspL.aspError("datatables server-side-processing")
 
 'finally return the JSon object to DataTables - here stops the page execution
 returnJson.dumpJson()

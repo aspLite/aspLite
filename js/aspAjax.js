@@ -1,9 +1,9 @@
-function aspAjax (type,url,dataType,data,success) {	
+function aspAjax (type,url,data,success) {	
 
 	$.ajax({		
 		type: type,
 		url: url,
-		dataType: dataType,
+		dataType: 'json',
 		data: data,
 		success: success,
 		error: aspAjaxError

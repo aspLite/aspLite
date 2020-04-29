@@ -21,6 +21,6 @@ end if
 
 aspl.asperror("rating")
 
-aspL.dump body
+json.dump(body)
 
 %>

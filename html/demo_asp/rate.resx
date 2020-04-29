@@ -1,4 +1,4 @@
-<form id="ratingform" method="post" action="">
+<form id="ratingform">
 	<input type="hidden" name="e" value="rate">
 
 	<p>How would you rate aspLite so far?</p>
@@ -13,7 +13,7 @@
 $("#ratingform").submit(function(e){
 
 	e.preventDefault()
-	aspAjax('POST','demo.asp','text',$(this).serialize(),aspAjaxSuccess)
+	aspAjax('POST','demo.asp',$(this).serialize(),aspAjaxSuccess)
 	
 })
 </script>

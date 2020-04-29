@@ -12,8 +12,7 @@ contact.pick(aspL.getRequest("iId"))
 'catch ajax call!
 if aspl.convertBool(aspl.getRequest("postBack")) then
 
-	'prepare JSON answer
-	dim jsonObj : set jsonObj=aspL.plugin("json")
+	'prepare JSON answer	
 	dim jsonDict : set jsonDict=aspL.dict
 	jsonDict.add "iId",contact.iId
 
@@ -44,7 +43,7 @@ if aspl.convertBool(aspl.getRequest("postBack")) then
 	contact.reflectTo(jsonDict)
 	
 	'the Ajax page-execution stops here!
-	aspL.dumpJson jsonObj.toJSON("aspL", jsonDict, false)
+	json.dump(jsonDict)
 	
 end if
 
@@ -74,5 +73,5 @@ form=replace(form,"[countryList]",countryList.showSelected("option",aspL.sanitiz
 set contact=nothing
 set booleanlist=nothing
 
-aspL.dump form
+json.dump(form)
 %>
