@@ -39,13 +39,7 @@ font-size: 1em;
 <!-- bootstrap modal window -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modify record</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+    <div class="modal-content">      
 	  <div id="editForm"></div>
     </div>
   </div>
@@ -53,7 +47,7 @@ font-size: 1em;
 
 <script>
 function askAspForm (id) {
-	aspAjax ("post","demo.asp?iId=" + id + "&e=postdtt","",getAspForm)
+	aspAjax ("post","demo.asp","iId=" + id + "&e=postdtt",getAspForm)
 }
 
 function getAspForm(data) {

@@ -40,6 +40,7 @@ class cls_dt_returnJson
 		'how many rows per page? 
 		RowsPerPage = aspL.convertNmbr(aspL.getRequest("length"))
 		if RowsPerPage = 0 then RowsPerPage=10
+		if RowsPerPage>100 then RowsPerPage=10
 		 
 		'reading search phrase - this one may be empty
 		strSearch = trim(aspL.getRequest("search[value]"))	
