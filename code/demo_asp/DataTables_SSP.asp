@@ -1,16 +1,13 @@
 <%
-on error resume next
-
-'load the cls_dt_returnJson class that will return the Json in the end 
+'load the cls_dt_returnJson class that will return the Json at the end 
+'an object returnJson is already created in that asp file
 aspL.exec("code/demo_asp/datatables/returnJson.asp")
 
-dim returnJson : set returnJson=new cls_dt_returnJson
-
-'pass the selectClause to returnJson
+'pass the selectClause to the returnJson object
 returnJson.strSelect="select * from testbigdata "
 
 'if a searchstring is entered, you have to decide on what to search for exactly
-'make sure to use aspl.sqli!!! (prevents SQLinjection)
+'make sure to ALWAYS use aspl.sqli!!! (or anything else to prevent SQLinjection)
 if not aspL.isEmpty(returnJson.strSearch) then
 
 	strWhere = " where sText like '%" & aspl.sqli(returnJson.strSearch) & "%' "	
@@ -32,11 +29,7 @@ if not aspL.isEmpty(returnJson.strSearch) then
 	
 end if
 
-'connect to the database- in this case an access database (dbpath)
-set returnJson.db=aspL.plugin("database")
-returnJson.db.path="db/sample.mdb"
-
-'finally return the JSon object to DataTables
+'finally return the JSon object to DataTables - here stops the page execution
 returnJson.dumpJson()
 
 %>
