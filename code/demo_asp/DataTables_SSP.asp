@@ -11,6 +11,7 @@ aspL.exec("code/demo_asp/datatables/returnJson.asp")
 strSelect="SELECT contact.iId, contact.sText, contact.iNumber, contact.bBoolean, contact.dDate, country.sText as countryName "
 strSelect=strSelect & "FROM contact LEFT JOIN country ON contact.iCountryID = country.iId"
 
+'pass the selectClause to the returnJson object
 returnJson.strSelect=strSelect
 
 'if a searchstring is entered, you have to decide on what to search for exactly
@@ -19,12 +20,12 @@ if not aspL.isEmpty(returnJson.strSearch) then
 
 	'search in the contact-table
 	strWhere = " where contact.sText like '%" & aspl.sqli(returnJson.strSearch) & "%' "	
+	
 	'but also in the country table
 	strWhere = strWhere & " or country.sText like '%" & aspl.sqli(returnJson.strSearch) & "%' "
 		
 	'in this case I would like to search on numeric/date fields as well
-	'but first check if strSearch is numeric with aspL.isNumber
-	
+	'but first check if strSearch is numeric with aspL.isNumber	
 	if aspL.isNumber(returnJson.strSearch) then
 		'this would only work in Access (the date functions)		
 		strWhere=strWhere & " or contact.iNumber="& returnJson.strSearch

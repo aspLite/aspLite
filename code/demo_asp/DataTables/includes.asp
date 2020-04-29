@@ -174,6 +174,8 @@ Class cls_countryList
 			rs.movenext
 		wend
 		
+		set db=nothing : set rs = nothing
+		
 	End Sub
 	
 	Private Sub Class_Terminate
