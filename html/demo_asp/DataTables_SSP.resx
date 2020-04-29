@@ -16,7 +16,7 @@ font-size: 1em;
 
 <hr>
 
-<p>Loading some dozens or even hundreds of records at once works fine. But what if you want to browse 10000's? The table below browses (sorts and searches) 50.000 records. Only the records shown are actually loaded. This speeds up the page loadtime (a lot). I found inspiration for this feature <a href="https://datatables.net/forums/discussion/59746/new-classic-asp-server-side-script-for-datatables-1-10-20" target="_blank">here</a> (SlavTheClaw). </p>
+<p>Loading some dozens or even hundreds of records at once works fine. But what if you want to browse 1000's? The table below browses (sorts and searches) 10.000 records. Only the records shown are actually loaded. This speeds up the page loadtime (a lot). I found inspiration for this feature <a href="https://datatables.net/forums/discussion/59746/new-classic-asp-server-side-script-for-datatables-1-10-20" target="_blank">here</a> (SlavTheClaw). </p>
 
 <hr>
 
@@ -28,8 +28,9 @@ font-size: 1em;
 			</th>			
 			<th>text</th>
 			<th>number</th>
-			<th>boolean</th>
+			<th>boolean</th>	
 			<th>date</th>			
+			<th>country</th>				
 		</tr>
 	</thead>
 </table>
@@ -70,8 +71,8 @@ $(document).ready( function () {
 		"processing": true,
 		"columnDefs": [
 				{"targets": '_all',"render":$.fn.dataTable.render.text()},
-				{ "orderable": false, "targets": 0 },
-				{targets: 0,className: 'dt-body-center'}
+				{"orderable": false, "targets": 0 },
+				{"targets": 0,"className": 'dt-body-center'}
 			],		
 		"columns": [           
 			{  data: "iId", render: function ( data, type, row ) {				
@@ -81,7 +82,8 @@ $(document).ready( function () {
 			{ "data": "sText"},
             { "data": "iNumber" },
 			{ "data": "bBoolean" },
-			{ "data": "dDate" }
+			{ "data": "dDate" },				
+			{ "data": "countryName" }
 			]
 	} );	
 });

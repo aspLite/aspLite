@@ -688,7 +688,7 @@ class cls_asplite
 		for i = 1 to n : clone = clone & str : next
 	end function
 		
-	Function IsAlphaNumeric(byVal str)
+	public Function IsAlphaNumeric(byVal str)
 	
 		If IsNull(str) Then str = ""
 		
@@ -701,8 +701,22 @@ class cls_asplite
 		
 		Set ianRegEx=nothing
 		
-	End Function
-
+	End Function	
+	
+	'proper case -> first character will convert to uppercase, others to lowercase
+	public function pCase(value)
+	
+		value=trim(convertStr(value))
+		
+		if value="" then pCase=value : exit function
+	
+		dim firstLetter,otherLetters
+		
+		firstLetter=UCase(Left(value,1))
+		otherLetters=LCase(Right(value,Len(value)-1))
+		pCase=firstLetter & otherLetters
+	
+	end function
 	
 end class
 %>
