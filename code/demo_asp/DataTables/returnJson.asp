@@ -17,6 +17,7 @@ class cls_dt_returnJson
 		
 		'asc or desc?
 		OrderDir =  trim(lcase(aspL.getRequest("Order[0][dir]")))
+		'prevent SQLinjection
 		if OrderDir<>"asc" and OrderDir<>"desc" then OrderDir="asc"
 		 
 		'WHERE clause uses columns number, like e.g: ORDER BY 1 DESC, you may add translations to column names here, like e.g.: OrderCol = Replace(OrderCol,"0","Col1")
@@ -25,12 +26,11 @@ class cls_dt_returnJson
 		 
 		draw = aspL.convertNmbr(aspL.getRequest("draw"))
 		
-		'where exactly are in the table?
+		'where exactly are we in the table?
 		StartRecord = aspL.convertNmbr(aspL.getRequest("start"))
-
 		
 		if StartRecord = 0 then 
-			StartRecord=1
+			StartRecord=1 'Absolutepage (see dumpjson) cannot be 0
 		else
 			StartRecord=StartRecord+1
 		end if
@@ -56,14 +56,14 @@ class cls_dt_returnJson
 		
 		'we only want a portion of the recordset 
 		'starting from the startrecord (AbsolutePosition), and the next x rows (pagesize) only
-		'if there are no records returned at all, we do not set AbsolutePosition as this raises an error
+		'if there are no records returned at all, do not set AbsolutePosition as this raises an error
 		'no need for pagesize either in that case
 		if rTotal>0 then
 			rs.AbsolutePosition=StartRecord
 			rs.pagesize=RowsPerPage
 		end if
 
-		'prepare JSON return - this class takes care of the paging! - see jsonObj.recordsetPaging
+		'prepare JSON return - this class takes care of the recordset paging! - see jsonObj.recordsetPaging
 		dim jsonObj : set jsonObj=aspL.plugin("json") : jsonObj.recordsetPaging=true
 		JsonAnswer=jsonObj.toJSON("data", rs, false) 
 
