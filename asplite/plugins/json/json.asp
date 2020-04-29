@@ -152,7 +152,7 @@ class cls_asplite_json
 			elseif tName = "Recordset" then
 				generateRecordset(val)
 			elseif tName = "IRequest" then
-				set req = server.createObject("scripting.dictionary")
+				set req = aspL.dict
 				req.add "clientcertificate", val.ClientCertificate
 				req.add "cookies", val.cookies
 				req.add "form", val.form
@@ -173,17 +173,19 @@ class cls_asplite_json
 			'bool
 			dim varTyp
 			varTyp = varType(val)
-			if varTyp = 11 then
-				if val then write("true") else write("false")
-			'int, long, byte
-			elseif varTyp = 2 or varTyp = 3 or varTyp = 17 or varTyp = 19 then
-				write(cLng(val))
-			'single, double, currency
-			elseif varTyp = 4 or varTyp = 5 or varTyp = 6 or varTyp = 14 then
-				write(replace(cDbl(val), ",", "."))
-			else
-				write("""" & escape(val & "") & """")
-			end if
+			
+			select case aspL.convertNmbr(varTyp)
+			
+				case 11 : if val then write("true") else write("false") 'bool
+				
+				case 2,3,17,19 : write(cLng(val))
+			
+				case 4,5,6,14 : write(replace(cDbl(val), ",", "."))
+				
+				case else :	write("""" & escape(val & "") & """")
+				
+			end select 
+			
 		end if
 		generateValue = output
 	end function
@@ -241,7 +243,7 @@ class cls_asplite_json
 				
 				if isDate(val.fields(i).value) then
 					copyDate=val.fields(i).value
-					toJSON val.fields(i).name, year(copyDate) & "-" & aspl.convert2(month(copyDate)) & "-" & aspl.convert2(day(copyDate)) & "T" & aspl.convert2(hour(copyDate)) & ":" & aspl.convert2(minute(copyDate)) & ":" & aspl.convert2(second(copyDate)), true
+					toJSON val.fields(i).name, year(copyDate) & "-" & padLeft(month(copyDate),2,0) & "-" & padLeft(day(copyDate),2,0) & "T" & padLeft(hour(copyDate),2,0) & ":" & padLeft(minute(copyDate),2,0) & ":" & padLeft(second(copyDate),2,0), true
 				else
 					toJSON val.fields(i).name, val.fields(i).value, true
 				end if

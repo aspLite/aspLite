@@ -673,13 +673,20 @@ class cls_asplite
 		end if
 	end function	
 
-	public function convert2 (byref getal)
-		if len(getal)=1 then 
-			convert2="0"&getal
-		else
-			convert2=getal
-		end if
-	end function	
+	'******************************************************************************************
+	'* padLeft - copied from Ajaxed Library
+	'******************************************************************************************
+	public function padLeft(value, totalLength, paddingChar)
+		padLeft = right(clone(paddingChar, totalLength) & value, totalLength)
+	end function
+	
+	'******************************************************************************************
+	'* clone - copied from Ajaxed Library
+	'******************************************************************************************
+	public function clone(byVal str, n)
+		dim i
+		for i = 1 to n : clone = clone & str : next
+	end function
 		
 	Function IsAlphaNumeric(byVal str)
 	

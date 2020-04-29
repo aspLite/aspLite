@@ -5,6 +5,7 @@ aspl.exec("code/demo_asp/functions.asp")
 'load includes (classes) for this particular example
 aspl.exec("code/demo_asp/datatables/includes.asp")
 
+'create an instance of the testData class
 dim testData : set testData = new cls_testData
 testData.pick(aspL.getRequest("iId"))
 
@@ -46,29 +47,29 @@ if aspl.convertBool(aspl.getRequest("postBack")) then
 	
 end if
 
-dim template : template=aspL.loadText("html/demo_asp/postdtt.resx")
+dim form : form=aspL.loadText("html/demo_asp/postdtt.resx")
 
 'set the dateformat for jQuery UI DatePicker
-template=replace(template,"[dateformat]",dateformat,1,-1,1)
+form=replace(form,"[dateformat]",dateformat,1,-1,1)
 
 'hide or show the delete button
 if aspl.convertNmbr(testData.iId)=0 then 'new record!
-	template=replace(template,"[display]"," style=""display:none"" ",1,-1,1)
+	form=replace(form,"[display]"," style=""display:none"" ",1,-1,1)
 else
-	template=replace(template,"[display]","",1,-1,1)
+	form=replace(form,"[display]","",1,-1,1)
 end if
 
 dim booleanlist : set booleanlist=new cls_booleanlist
 
-'template replacements
-template=replace(template,"[iId]",aspL.sanitize(testData.iId),1,-1,1)
-template=replace(template,"[sText]",aspL.sanitize(testData.sText),1,-1,1)
-template=replace(template,"[iNumber]",aspL.sanitize(testData.iNumber),1,-1,1)
-template=replace(template,"[booleanlist]",booleanlist.showSelected("option",aspL.sanitize(testData.bBoolean)),1,-1,1)
-template=replace(template,"[dDate]",aspL.sanitize(dateToPicker(testData.dDate)),1,-1,1)
+'form replacements
+form=replace(form,"[iId]",aspL.sanitize(testData.iId),1,-1,1)
+form=replace(form,"[sText]",aspL.sanitize(testData.sText),1,-1,1)
+form=replace(form,"[iNumber]",aspL.sanitize(testData.iNumber),1,-1,1)
+form=replace(form,"[booleanlist]",booleanlist.showSelected("option",aspL.sanitize(testData.bBoolean)),1,-1,1)
+form=replace(form,"[dDate]",aspL.sanitize(dateToPicker(testData.dDate)),1,-1,1)
 
 set testData=nothing
 set booleanlist=nothing
 
-aspL.dump template
+aspL.dump form
 %>

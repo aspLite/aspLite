@@ -47,7 +47,7 @@ class cls_testData
 		if aspL.isEmpty(sText) then 		check=false : exit function
 		if not aspL.isNumber(iNumber) then 	check=false : exit function
 		if aspL.isEmpty(bBoolean) then 		check=false : exit function		
-		if aspL.isEmpty(dDate) then 		check=false : exit function		
+		if not isDate(dDate) then 			check=false : exit function		
 		
 	
 	end function

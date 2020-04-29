@@ -64,10 +64,21 @@
 	
 	function dttSuccess (data) {
 	
-		if (data.aspL.status=="OK") {$('#successAlert').css("display", "block");reloadTable()}
-		if (data.aspL.status=="ERR") {$('#warningAlert').css("display", "block")};
-		if (data.aspL.status=="DELETE") {reloadTable();$("#exampleModal").modal('toggle')};		
-	}
-	
+		if (data.aspL.status=="OK") {
+			$('#warningAlert').css("display", "none")
+			$('#successAlert').css("display", "block")
+			reloadTable()
+			}
+			
+		if (data.aspL.status=="ERR") {
+			$('#warningAlert').css("display", "block")
+			$('#successAlert').css("display", "none")			
+			}
+			
+		if (data.aspL.status=="DELETE") {
+			reloadTable()
+			$("#exampleModal").modal('toggle')
+		}		
+	}	
 </script>
 
