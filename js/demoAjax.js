@@ -11,6 +11,12 @@ $('.aspAjax').click(function(e) {
 	scroll()		
 })
 
+$('.aspForm').click(function(e) {
+	e.preventDefault()
+	aspAjax('GET',aspAjaxUrl,'e=' + this.id,aspForm)	
+	scroll()		
+})
+
 $('.ajaxForm').submit(function(e) {	
 	e.preventDefault()
 	aspAjax('POST',aspAjaxUrl,$(this).serialize(),aspAjaxSuccess)	
@@ -84,5 +90,72 @@ function jsonToHTML(data) {
 	output+='</ul>'	
 	
 	$('#body').html(output)	
+	scroll()
+}
+
+function aspForm(data) {
+
+	var aspForm=$('<form>').attr({
+		"onsubmit":"ajaxSubmit(this);return false;"
+		})
+
+	for(var i = 0; i < data.aspl.length; i++) {	
+	
+		var field=data.aspl[i]
+	
+		if (field.type=="hidden") {
+			$('<input>').attr({
+				"type": field.type,
+				"value": field.value,				
+				"name": field.name				
+			}).appendTo(aspForm)
+			
+			continue
+		}
+		
+		if (field.type=="comment") {			
+			$('<' + field.tag + '>').html(field.html).attr({
+				"class": field.class,
+				"style": field.style
+			}).appendTo(aspForm)
+			
+			continue
+		}		
+	
+		var formgroup=$('<div>').attr({ 
+			"class": "formgroup" 
+			}).appendTo(aspForm)		
+		
+		var label=$('<label>').html(field.label).attr({ 
+			"for": field.id		
+		}).appendTo(formgroup)	
+
+		if (field.required)  {
+			$('<span>').html(" *").attr ({
+					"style":"color:Red"
+					}).appendTo(label)	
+		}
+		
+	
+		$('<input>').attr({
+			"type": field.type,
+			"value": field.value,			
+			"name": field.name,
+			"class": field.class,
+			"onclick": field.onclick,
+			"required": field.required
+			
+		}).appendTo(formgroup)
+			
+	}	
+	
+	$('<span>').html(' * required fields').appendTo(aspForm)
+
+	$('#body').html(aspForm)
+	
+}
+
+function ajaxSubmit(form) {
+	aspAjax('POST','',$(form).serialize(),aspForm)
 	scroll()
 }

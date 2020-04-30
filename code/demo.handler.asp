@@ -119,7 +119,9 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "uploadfilejquery" : aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
 	
-	case "rate" : aspL.exec("code/demo_asp/rate.asp")	
+	case "rate" : aspL.exec("code/demo_asp/rate.asp")
+	
+	case "aspform" : aspL.exec("code/demo_asp/aspform.asp")
 			
 	case "onload" :	json.dump("Hello world, Καλημέρα κόσμε (utf8-ready)")		
 		
