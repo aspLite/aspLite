@@ -11,9 +11,9 @@ $('.aspAjax').click(function(e) {
 	scroll()		
 })
 
-$('.ajaxForm').submit(function(e) {
+$('.ajaxForm').submit(function(e) {	
 	e.preventDefault()
-	aspAjax('POST',aspAjaxUrl,$(this).serialize(),aspAjaxSuccess)
+	aspAjax('POST',aspAjaxUrl,$(this).serialize(),aspAjaxSuccess)	
 	scroll()
 })
 

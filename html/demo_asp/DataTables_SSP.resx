@@ -70,7 +70,7 @@ $(document).ready( function () {
 				{"targets": 0,"className": 'dt-body-center'}
 			],		
 		"columns": [           
-			{  data: "iId", render: function ( data, type, row ) {				
+			{  "data": "iId", render: function ( data, type, row ) {				
 				return '<button class="btn btn-secondary" style="padding:2px 14px" onclick="askAspForm(' + data + ')">Modify</button>'							
 				}
 			},			

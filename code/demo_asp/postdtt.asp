@@ -34,7 +34,7 @@ if aspl.convertBool(aspl.getRequest("postBack")) then
 		
 		case "delete"
 		
-			contact.delete			
+			contact.delete
 			jsonDict.add "status","DELETE"	
 	
 	end select 
