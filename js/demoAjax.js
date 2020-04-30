@@ -108,8 +108,7 @@ function aspForm(data) {
 				"type": field.type,
 				"value": field.value,				
 				"name": field.name				
-			}).appendTo(aspForm)
-			
+			}).appendTo(aspForm)			
 			continue
 		}
 		
@@ -117,8 +116,7 @@ function aspForm(data) {
 			$('<' + field.tag + '>').html(field.html).attr({
 				"class": field.class,
 				"style": field.style
-			}).appendTo(aspForm)
-			
+			}).appendTo(aspForm)			
 			continue
 		}		
 	
@@ -137,13 +135,13 @@ function aspForm(data) {
 		}
 		
 		if (field.type=="textarea") {			
-				$('<textarea>').attr({
-					"cols": field.cols,
-					"rows": field.rows,			
-					"name": field.name,
-					"class": field.class,					
-					"required": field.required					
-				}).val(field.value).appendTo(formgroup)		
+			$('<textarea>').attr({
+				"cols": field.cols,
+				"rows": field.rows,			
+				"name": field.name,
+				"class": field.class,					
+				"required": field.required					
+			}).val(field.value).appendTo(formgroup)		
 			continue
 		}		
 		

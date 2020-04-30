@@ -1,10 +1,10 @@
 <%
-'This is a very basic ASP AJAX formbuilder plugin. The list of formfields is returned as a Json array, and turned
+'This is a very basic ASP AJAX formbuilder application. The list of formfields is returned as a Json array, and turned
 'into an html form by aspForm in /js/demoAjax.js. The built-in html5 input-types text, email, date, number and email are used.
 'The form submission is also taken care of on this page (by reading out the postBack-hidden field)
 'This is just an experiment. It needs a lot of development to make this a robust formbuilder. This is just a quick prototype.
 
-class cls_asplite_formbuilder
+class cls_formbuilder
 
 	private allFields, counter
 	public postback

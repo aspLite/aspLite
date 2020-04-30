@@ -1,7 +1,7 @@
 <%
 'formbuilder sample - built on bootstrap css
-
-dim form : set form=aspl.plugin("formbuilder")
+aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
+dim form : set form=new cls_formbuilder
 
 'form-submitted
 if form.postback then
