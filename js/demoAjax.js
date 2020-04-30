@@ -136,6 +136,17 @@ function aspForm(data) {
 					}).appendTo(label)	
 		}
 		
+		if (field.type=="textarea") {			
+				$('<textarea>').attr({
+					"cols": field.cols,
+					"rows": field.rows,			
+					"name": field.name,
+					"class": field.class,					
+					"required": field.required					
+				}).val(field.value).appendTo(formgroup)		
+			continue
+		}		
+		
 	
 		$('<input>').attr({
 			"type": field.type,
@@ -143,6 +154,7 @@ function aspForm(data) {
 			"name": field.name,
 			"class": field.class,
 			"onclick": field.onclick,
+			"maxlength": field.maxlength,
 			"required": field.required
 			
 		}).appendTo(formgroup)

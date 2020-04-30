@@ -54,6 +54,7 @@ firstname.add "label","First name:"
 firstname.add "type","text"
 firstname.add "name","firstname"
 firstname.add "class","form-control"
+firstname.add "maxlength",50
 firstname.add "required",true
 
 form.addField(firstname)
@@ -63,6 +64,7 @@ lastname.add "label","Last name:"
 lastname.add "type","text"
 lastname.add "name","lastname"
 lastname.add "class","form-control"
+lastname.add "maxlength",50
 lastname.add "required",true
 
 form.addField(lastname)
@@ -84,7 +86,16 @@ aspyears.add "class","form-control"
 
 form.addField(aspyears)
 
-'a another comment
+dim usercomments : set usercomments=aspl.dict
+usercomments.add "label","Additional user comments (if any)"
+usercomments.add "type","textarea"
+usercomments.add "name","usercomments"
+usercomments.add "rows",3
+usercomments.add "class","form-control"
+
+form.addField(usercomments)
+
+' another comment
 dim anothercomment : set anothercomment=aspl.dict
 anothercomment.add "html","Yet another comment."
 anothercomment.add "type","comment"
