@@ -125,10 +125,10 @@ function aspForm(data) {
 		
 		var label=$('<label>').html(field.label).attr({ 
 			"for": field.id		
-		}).appendTo(formgroup)	
+		}).appendTo(formgroup)		
 
 		if (field.required)  {
-			$('<span>').html(field.requiredStar).appendTo(label)	
+			$('<span>').html(data.requiredStar).appendTo(label)	
 		}
 		
 		if (field.type=="textarea") {			
@@ -256,9 +256,9 @@ function aspForm(data) {
 			
 	}	
 	
-	//set label "required"
-	if(data.required!='') {
-		$('<span>').html(data.required).appendTo(aspForm)
+	//set label "requiredLegend"
+	if(data.requiredLegend!='') {
+		$('<span>').html(data.requiredLegend).appendTo(aspForm)
 	}
 
 	//set targetDiv (div containing the form)

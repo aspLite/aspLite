@@ -30,7 +30,7 @@ if form.postback then
 	
 	'rather than return the complete form in case of a successful submit, 
 	'you can also build it here already. This will stop further exection
-	'form.required=""
+	'form.requiredLegend=""
 	'form.build()
 
 end if	

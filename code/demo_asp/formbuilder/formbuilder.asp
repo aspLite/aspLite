@@ -24,14 +24,14 @@
 class cls_formbuilder
 
 	private allFields, counter
-	public postback,targetDiv,required,offSet,requiredStar,doScroll
+	public postback,targetDiv,requiredLegend,offSet,requiredStar,doScroll
 	
 	private sub class_initialize()
 	
 		set allFields	= aspl.dict
 		counter			= 0
-		requiredStar	= "<span style=""color:red""> *</span>"
-		required		= " * required fields"
+		requiredStar	= " *"
+		requiredLegend	= " * required fields"
 		offSet			= 100
 		doScroll		= true 'true or false		
 		
@@ -52,7 +52,7 @@ class cls_formbuilder
 		
 	end sub	
 	
-	public sub addField(dict)
+	public sub addField(dict)	
 	
 		allFields.add counter,dict
 		counter=counter+1
@@ -91,8 +91,9 @@ class cls_formbuilder
 			JsonHeader = JsonHeader & """doScroll"":false,"
 		end if		
 		
-		JsonHeader = JsonHeader & """required"":""" & json.escape(required) & ""","
-		  
+		JsonHeader = JsonHeader & """requiredLegend"":""" & json.escape(requiredLegend) & ""","
+		JsonHeader = JsonHeader & """requiredStar"":""" & json.escape(requiredStar) & ""","
+				  
 		'removing from generated JSON initial bracket { and concatenating all together.
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
 		JsonAnswer = JsonHeader & JsonAnswer		 		

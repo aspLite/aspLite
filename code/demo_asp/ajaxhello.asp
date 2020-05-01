@@ -4,7 +4,7 @@
 aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
 dim form : set form=new cls_formbuilder
 form.targetDiv="ajaxhello"
-form.required=""
+form.requiredLegend=""
 form.requiredStar=""
 form.doScroll=false
 
