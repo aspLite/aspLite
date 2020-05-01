@@ -30,8 +30,8 @@ if form.postback then
 	
 	'rather than return the complete form in case of a successful submit, 
 	'you can also build it here already. This will stop further exection
-	form.required=""
-	form.build()
+	'form.required=""
+	'form.build()
 
 end if	
 
@@ -112,6 +112,22 @@ radio.add "name","radio"
 radio.add "options",Array(Array(0,"Beginner"),Array(1,"Intermediate"), Array(2,"Advanced"))
 
 form.addField(radio)
+
+'let's recycle the country list we already use in the DataTables sample
+aspl.exec("code/demo_asp/datatables/includes.asp")
+dim countrylist : set countrylist=new cls_countrylist
+set countrylist=countrylist.list
+
+dim countries : set countries=aspl.dict
+countries.add "label","Where do you live?"
+countries.add "type","select"
+countries.add "id","countries"
+countries.add "name","countries"
+countries.add "class","form-control"
+'VBScript dictionary (key: (option)value, pair: (option)text)
+countries.add "options",countrylist 
+
+form.addField(countries)
 
 dim usercomments : set usercomments=aspl.dict
 usercomments.add "label","Additional user comments (if any)"

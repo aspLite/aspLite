@@ -160,12 +160,32 @@ function aspForm(data) {
 			//add the options
 			var options=field.options
 			
-			for(var j = 0; j < options.length; j++) {	
-				$('<option>').attr({
+			if($.isArray(options)){
+			
+				//treat as array				
+				for(var j = 0; j < options.length; j++) {	
+				
+					$('<option>').attr({
+						
+						"value":options[j][0]
+						
+					}).text(options[j][1]).appendTo(selectBox)
+				}				
+			}
+				
+			else
+				
+			{		
+				//treat as JSON object (vbscript dictionary)
+				for (var key in options) {						
+						
+					$('<option>').attr({
+						
+						"value":key
+						
+					}).text(options[key]).appendTo(selectBox)						
 					
-					"value":options[j][0]
-					
-				}).text(options[j][1]).appendTo(selectBox)
+				}				
 			}
 
 			//selected value
@@ -231,7 +251,7 @@ function aspForm(data) {
 	//set targetDiv (div containing the form)
 	$('#' + data.targetDiv).html(aspForm)
 	
-	//scroll to the top of the containing div (offset is used to correct offset from the top of the pag
+	//scroll to the top of the containing div (offset is used to correct offset from the top of the page, if needed
 	$('html,body').animate({scrollTop: $('#' + data.targetDiv).offset().top-data.offSet}, 'slow')	
 	
 }
