@@ -163,13 +163,28 @@ function aspForm(data) {
 			if($.isArray(options)){
 			
 				//treat as array				
-				for(var j = 0; j < options.length; j++) {	
+				for(var j = 0; j < options.length; j++) {
+
+					
+					if ($.isArray(options[j])){
+						//array of arrays
 				
-					$('<option>').attr({
+						$('<option>').attr({
+							
+							"value":options[j][0]
+							
+						}).text(options[j][1]).appendTo(selectBox)
+					}
+					else
+						//array of objects - keyV and pairV expected!
+					{
+						$('<option>').attr({
 						
-						"value":options[j][0]
+						"value":options[j].keyV
 						
-					}).text(options[j][1]).appendTo(selectBox)
+						}).text(options[j].pairV).appendTo(selectBox)		
+						
+					}
 				}				
 			}
 				

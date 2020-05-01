@@ -14,7 +14,7 @@
 ' dict.add "required",true/false
 ' dict.add "style","color:Red"
 ' dict.add "value", the default value for a field
-' dict.add "options",array of arrays!! (or a VBScript dictionary in case of selectboxes)
+' dict.add "options",array of arrays!! (or a VBScript dictionary/ADO recordset in case of selectboxes)
 
 'The list of formfields is returned as a Json array in "build()", and turned
 'into an html form in /js/demoAjax.js. The built-in html5 input-types text, email, date, number and email are used.
