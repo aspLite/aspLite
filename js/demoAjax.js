@@ -252,7 +252,8 @@ function aspForm(data) {
 			"maxlength"		: field.maxlength,
 			"id"			: field.id,	
 			"style"			: field.style,	
-			"required"		: field.required			
+			"required"		: field.required,
+			"onchange"		: field.onchange			
 		}).appendTo(formgroup)
 			
 	}	
