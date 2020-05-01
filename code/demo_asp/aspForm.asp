@@ -191,12 +191,23 @@ form.addField(anothercomment)
 
 dim birthdate : set birthdate=aspl.dict
 birthdate.add "label","Birthday:"
-birthdate.add "type","date"
+birthdate.add "type","text"
 birthdate.add "name","birthdate"
-birthdate.add "id","bDate"
+birthdate.add "id","datepicker"
 birthdate.add "class","form-control"
 
 form.addField(birthdate)
+
+'add the jQuery UI DatePicker script block over here
+'dateformat is set in functions.asp 
+aspl.exec("code/demo_asp/functions.asp")
+
+dim scriptDP : set scriptDP=aspl.dict
+scriptDP.add "html","$('#datepicker').datepicker({inline: true, dateFormat:'" & dateformat &"'})"
+scriptDP.add "type","comment"
+scriptDP.add "tag","script"
+
+form.addField(scriptDP)
 
 '##########################################################################################
 

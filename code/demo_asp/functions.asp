@@ -1,5 +1,4 @@
 <%
-
 'the functions below are not part of aspLite. But they are used in code/demo_asp/jqueryui.asp (jQuery IO Datepicker)
 'they are rather specific to use with the jQuery Datepicker. You can extend this list of functions as you wish.
 
