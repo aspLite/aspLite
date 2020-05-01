@@ -13,8 +13,7 @@ $('.aspAjax').click(function(e) {
 
 $('.aspForm').click(function(e) {
 	e.preventDefault()
-	aspAjax('GET',aspAjaxUrl,'e=' + this.id,aspForm)	
-	scroll()		
+	aspAjax('GET',aspAjaxUrl,'e=' + this.id,aspForm)		
 })
 
 $('.ajaxForm').submit(function(e) {	
@@ -96,17 +95,19 @@ function jsonToHTML(data) {
 function aspForm(data) {
 
 	var aspForm=$('<form>').attr({
-		"onsubmit":"ajaxSubmit(this);return false;"
+		"onsubmit":"aspAjax('POST','',$(this).serialize(),aspForm);return false;",
+		"style":"margin: 0;padding: 0;"
 		})
 
-	for(var i = 0; i < data.aspl.length; i++) {	
+	for(var i = 0; i < data.aspForm.length; i++) {	
 	
-		var field=data.aspl[i]
+		var field=data.aspForm[i]
 	
 		if (field.type=="hidden") {
 			$('<input>').attr({
 				"type": field.type,
-				"value": field.value,				
+				"value": field.value,
+				"id": field.id,				
 				"name": field.name				
 			}).appendTo(aspForm)			
 			continue
@@ -115,6 +116,7 @@ function aspForm(data) {
 		if (field.type=="comment") {			
 			$('<' + field.tag + '>').html(field.html).attr({
 				"class": field.class,
+				"id": field.id,	
 				"style": field.style
 			}).appendTo(aspForm)			
 			continue
@@ -137,11 +139,72 @@ function aspForm(data) {
 		if (field.type=="textarea") {			
 			$('<textarea>').attr({
 				"cols": field.cols,
-				"rows": field.rows,			
+				"rows": field.rows,
+				"id": field.id,	
 				"name": field.name,
 				"class": field.class,					
 				"required": field.required					
 			}).val(field.value).appendTo(formgroup)		
+			continue
+		}		
+		
+		if (field.type=="select") {	
+			
+			var selectBox=$('<select>').attr({				
+				"id": field.id,	
+				"name": field.name,
+				"class": field.class,					
+				"required": field.required					
+			}).val(field.value).appendTo(formgroup)	
+	
+			//add the options
+			var options=field.options
+			
+			for(var j = 0; j < options.length; j++) {	
+				$('<option>').attr({
+					
+					"value":options[j][0]
+					
+				}).text(options[j][1]).appendTo(selectBox)
+			}
+
+			//selected value
+			selectBox.val(field.value)
+			
+			continue
+		}	
+		
+		if (field.type=="radio") {	
+			
+			//add the options
+			var options=field.options
+			
+			var list=$('<ul>').attr({
+				
+				"style":"list-style:none"
+				
+			});
+			
+			for(var j = 0; j < options.length; j++) {	
+				
+				var item=$('<li>')
+				
+				var radioB=$('<input>').attr({					
+					"type": "radio",
+					"name": field.name,
+					"class": field.class,
+					"value": options[j][0]					
+				}).prop("checked", (field.value==options[j][0])).appendTo(item)
+				
+				//add label
+				$('<span>').html(" " + options[j][1]).appendTo(item)	
+				
+				item.appendTo(list)
+				
+			}
+			
+			list.appendTo(formgroup)
+			
 			continue
 		}		
 		
@@ -153,19 +216,22 @@ function aspForm(data) {
 			"class": field.class,
 			"onclick": field.onclick,
 			"maxlength": field.maxlength,
+			"id": field.id,	
 			"required": field.required
 			
 		}).appendTo(formgroup)
 			
 	}	
 	
-	$('<span>').html(' * required fields').appendTo(aspForm)
+	//set label "required"
+	if(data.required!='') {
+		$('<span>').html(data.required).appendTo(aspForm)
+	}
 
-	$('#body').html(aspForm)
+	//set targetDiv (div containing the form)
+	$('#' + data.targetDiv).html(aspForm)
 	
-}
-
-function ajaxSubmit(form) {
-	aspAjax('POST','',$(form).serialize(),aspForm)
-	scroll()
+	//scroll to the top of the containing div (offset is used to correct offset from the top of the pag
+	$('html,body').animate({scrollTop: $('#' + data.targetDiv).offset().top-data.offSet}, 'slow')	
+	
 }
