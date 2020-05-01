@@ -27,8 +27,6 @@
 		}
 	</style>
 	
-
-	
   </head>
   <body>
   
@@ -76,7 +74,9 @@
 		   <div class="row">
 				<div class="col-sm">
 				
-					<h5>regular actions (page reload)</h5>										
+					<h5>regular actions (page reload)</h5>	
+
+					<hr>
 				   
 					<ul>
 						<li><a href="demo.asp">no action</a></li>
@@ -110,14 +110,10 @@
 				<div class="col-sm">	
 
 					<h5>ajax actions (no page reload)</h5>
+					
+					<hr>
 										
-					<form class="ajaxForm">
-						<div class="input-group mb-3">
-							<input type="hidden" name="e" value="ajaxhello" />							
-							<input placeholder="Your name" id="yourname" class="form-control" name="yourname" type="text" />
-							<input type="submit" class="btn btn-primary" value="AJAX" />
-						</div>							
-					</form>	
+					<div id="ajaxhello"></div>
 					
 					<hr>
 					
@@ -188,8 +184,6 @@
 <!-- AJAX functions for demo.asp -->
 <script src="js/demoAjax.js"></script>	
 <script src="js/aspAjax.js"></script>
-
-
 
  <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

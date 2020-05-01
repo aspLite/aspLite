@@ -24,14 +24,16 @@
 class cls_formbuilder
 
 	private allFields, counter
-	public postback,targetDiv,required,offSet
+	public postback,targetDiv,required,offSet,requiredStar,doScroll
 	
 	private sub class_initialize()
 	
-		set allFields=aspl.dict
-		counter=0
-		required=" * required fields"
-		offSet=100
+		set allFields	= aspl.dict
+		counter			= 0
+		requiredStar	= "<span style=""color:red""> *</span>"
+		required		= " * required fields"
+		offSet			= 100
+		doScroll		= true 'true or false		
 		
 		'by default, a hidden field named "postback" is added to the collection of forms
 		dim postBackHF : set postBackHF=aspl.dict
@@ -80,17 +82,23 @@ class cls_formbuilder
 		JsonAnswer=json("aspForm", arr, false) 
 
 		'finalizing JSON response - preparing header:
-		JsonHeader = "{ ""targetDiv"": """& targetDiv &""", "
-		JsonHeader = JsonHeader & """offSet"": " & offSet &", "& vbcrlf
-		JsonHeader = JsonHeader & """required"": """ & json.escape(required) &""", "& vbcrlf
+		JsonHeader = "{""targetDiv"":"""& targetDiv & ""","
+		JsonHeader = JsonHeader & """offSet"":" & offSet & ","
+		
+		if doScroll then
+			JsonHeader = JsonHeader & """doScroll"":true,"
+		else
+			JsonHeader = JsonHeader & """doScroll"":false,"
+		end if		
+		
+		JsonHeader = JsonHeader & """required"":""" & json.escape(required) & ""","
 		  
 		'removing from generated JSON initial bracket { and concatenating all together.
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
 		JsonAnswer = JsonHeader & JsonAnswer		 		
 		
 		'writing a response and stop executing page
-		aspL.dumpJson JsonAnswer	
-		
+		aspL.dumpJson JsonAnswer		
 	
 	end sub
 

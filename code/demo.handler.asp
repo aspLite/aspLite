@@ -77,7 +77,7 @@ select case lcase(aspL.getRequest("e")) '"event"
 	'json.dump is very often used for AJAX handlers. "dump" basically means "flush" and "stop"	
 	'All communication with the browser is done with JSON.
 		
-	case "ajaxhello" : json.dump("Hello " & aspL.sanitize(aspL.getRequest("yourname")) & ".<br><br>Hashed (sha256):<br><br><textarea class=""form-control"">" & aspL.plugin("sha256").sha256(aspL.getRequest("yourname")) & "</textarea>")
+	case "ajaxhello" : aspL.exec("code/demo_asp/ajaxhello.asp")
 
 	case "submit1" : json.dump("Form 1 save button was clicked - " & aspL.getrequest("yourname"))
 		

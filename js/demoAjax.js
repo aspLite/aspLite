@@ -1,8 +1,7 @@
 var aspAjaxUrl='demo.asp'
 
 $(document).ready(function(e) {	
-	//commented out as this would clash with the default regular handler
-	//onPageLoad()
+	aspAjax('GET',aspAjaxUrl,'e=ajaxhello',aspForm)	
 })
 
 $('.aspAjax').click(function(e) {
@@ -96,7 +95,7 @@ function aspForm(data) {
 
 	var aspForm=$('<form>').attr({
 		"onsubmit":"aspAjax('POST','',$(this).serialize(),aspForm);return false;",
-		"style":"margin: 0;padding: 0;"
+		"style":"margin: 0;padding: 0"
 		})
 
 	for(var i = 0; i < data.aspForm.length; i++) {	
@@ -105,10 +104,10 @@ function aspForm(data) {
 	
 		if (field.type=="hidden") {
 			$('<input>').attr({
-				"type": field.type,
-				"value": field.value,
-				"id": field.id,				
-				"name": field.name				
+				"type"	: field.type,
+				"value"	: field.value,
+				"id"	: field.id,				
+				"name"	: field.name				
 			}).appendTo(aspForm)			
 			continue
 		}
@@ -122,28 +121,25 @@ function aspForm(data) {
 			continue
 		}		
 	
-		var formgroup=$('<div>').attr({ 
-			"class": "formgroup" 
-			}).appendTo(aspForm)		
+		var formgroup=$('<div>').attr({"class": "formgroup"}).appendTo(aspForm)			
 		
 		var label=$('<label>').html(field.label).attr({ 
 			"for": field.id		
 		}).appendTo(formgroup)	
 
 		if (field.required)  {
-			$('<span>').html(" *").attr ({
-					"style":"color:Red"
-					}).appendTo(label)	
+			$('<span>').html(field.requiredStar).appendTo(label)	
 		}
 		
 		if (field.type=="textarea") {			
 			$('<textarea>').attr({
-				"cols": field.cols,
-				"rows": field.rows,
-				"id": field.id,	
-				"name": field.name,
-				"class": field.class,					
-				"required": field.required					
+				"cols"		: field.cols,
+				"rows"		: field.rows,
+				"id"		: field.id,	
+				"name"		: field.name,
+				"class"		: field.class,	
+				"style"		: field.style,
+				"required"	: field.required					
 			}).val(field.value).appendTo(formgroup)		
 			continue
 		}		
@@ -151,10 +147,11 @@ function aspForm(data) {
 		if (field.type=="select") {	
 			
 			var selectBox=$('<select>').attr({				
-				"id": field.id,	
-				"name": field.name,
-				"class": field.class,					
-				"required": field.required					
+				"id"		: field.id,	
+				"name"		: field.name,
+				"class"		: field.class,
+				"style"		: field.style,
+				"required"	: field.required					
 			}).val(field.value).appendTo(formgroup)	
 	
 			//add the options
@@ -225,10 +222,11 @@ function aspForm(data) {
 				var item=$('<li>')
 				
 				var radioB=$('<input>').attr({					
-					"type": "radio",
-					"name": field.name,
-					"class": field.class,
-					"value": options[j][0]					
+					"type"	: "radio",
+					"name"	: field.name,
+					"class"	: field.class,
+					"style"	: field.style,
+					"value"	: options[j][0]					
 				}).prop("checked", (field.value==options[j][0])).appendTo(item)
 				
 				//add label
@@ -242,18 +240,18 @@ function aspForm(data) {
 			
 			continue
 		}		
-		
 	
 		$('<input>').attr({
-			"type": field.type,
-			"value": field.value,			
-			"name": field.name,
-			"class": field.class,
-			"onclick": field.onclick,
-			"maxlength": field.maxlength,
-			"id": field.id,	
-			"required": field.required
-			
+			"type"			: field.type,
+			"value"			: field.value,			
+			"name"			: field.name,
+			"class"			: field.class,
+			"placeholder"	: field.placeholder,
+			"onclick"		: field.onclick,
+			"maxlength"		: field.maxlength,
+			"id"			: field.id,	
+			"style"			: field.style,	
+			"required"		: field.required			
 		}).appendTo(formgroup)
 			
 	}	
@@ -267,6 +265,8 @@ function aspForm(data) {
 	$('#' + data.targetDiv).html(aspForm)
 	
 	//scroll to the top of the containing div (offset is used to correct offset from the top of the page, if needed
-	$('html,body').animate({scrollTop: $('#' + data.targetDiv).offset().top-data.offSet}, 'slow')	
+	if (data.doScroll) {
+		$('html,body').animate({scrollTop: $('#' + data.targetDiv).offset().top-data.offSet}, 'slow')
+	}
 	
 }
