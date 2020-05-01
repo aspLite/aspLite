@@ -24,7 +24,7 @@
 class cls_formbuilder
 
 	private allFields, counter
-	public postback,targetDiv,requiredLegend,offSet,requiredStar,doScroll
+	public postback,targetDiv,requiredLegend,offSet,requiredStar,doScroll,id
 	
 	private sub class_initialize()
 	
@@ -93,6 +93,7 @@ class cls_formbuilder
 		
 		JsonHeader = JsonHeader & """requiredLegend"":""" & json.escape(requiredLegend) & ""","
 		JsonHeader = JsonHeader & """requiredStar"":""" & json.escape(requiredStar) & ""","
+		JsonHeader = JsonHeader & """id"":""" & json.escape(id) & ""","
 				  
 		'removing from generated JSON initial bracket { and concatenating all together.
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)

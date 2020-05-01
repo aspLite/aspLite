@@ -95,7 +95,8 @@ function aspForm(data) {
 
 	var aspForm=$('<form>').attr({
 		"onsubmit":"aspAjax('POST','',$(this).serialize(),aspForm);return false;",
-		"style":"margin: 0;padding: 0"
+		"style":"margin: 0;padding: 0",
+		"id":data.id
 		})
 
 	for(var i = 0; i < data.aspForm.length; i++) {	
@@ -151,17 +152,17 @@ function aspForm(data) {
 				"name"		: field.name,
 				"class"		: field.class,
 				"style"		: field.style,
+				"onchange"	: field.onchange,				
 				"required"	: field.required					
 			}).val(field.value).appendTo(formgroup)	
 	
 			//add the options
 			var options=field.options
-			
+						
 			if($.isArray(options)){
 			
 				//treat as array				
 				for(var j = 0; j < options.length; j++) {
-
 					
 					if ($.isArray(options[j])){
 						//array of arrays

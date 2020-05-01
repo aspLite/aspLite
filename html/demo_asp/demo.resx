@@ -54,7 +54,7 @@
 							<a class="aspAjax dropdown-item" id="rss" href="#">CNN news (RSS)</a>	
 							<a class="aspAjax dropdown-item" id="atom" href="#">GitHub Timeline (Atom)</a>					
 							<a class="aspAjax dropdown-item" id="hash" href="#">Hashing</a>							
-							<a class="aspAjax dropdown-item" id="rate" href="#">Rate</a>							
+							<a class="aspForm dropdown-item" id="rate" href="#">Rate</a>							
 							<a class="aspAjax dropdown-item" id="onload" href="#">Reset</a>	
 						</div>
 					  </li>
