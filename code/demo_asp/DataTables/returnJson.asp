@@ -4,15 +4,11 @@ dim returnJson : set returnJson=new cls_dt_returnJson
 class cls_dt_returnJson
 
 	private OrderCol,OrderDir,strOrder,draw,StartRecord,RowsPerPage,JsonAnswer,JsonHeader
-	public strSearch, strWhere, dbPath, strSelect, db
+	public strSearch, strWhere, dbPath, strSelect
 
 	Private Sub Class_Initialize()
 	
-		on error resume next
-	
-		'connect to the database - in this case an access database (dbpath)
-		set db=aspL.plugin("database")
-		db.path="db/sample.mdb"
+		on error resume next		
 	
 		'which column will have to be sorted on ?
 		OrderCol = aspL.convertNmbr(aspL.getRequest("Order[0][column]"))
@@ -85,7 +81,7 @@ class cls_dt_returnJson
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
 		JsonAnswer = JsonHeader & JsonAnswer
 
-		set db=nothing : set rs=nothing
+		set rs=nothing
 		 
 		aspL.aspError("cls_dt_returnJson.dumpJson")
 		

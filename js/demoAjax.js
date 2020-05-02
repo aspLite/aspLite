@@ -144,17 +144,26 @@ function aspForm(data) {
 			continue			
 		}
 	
-		var formgroup=$('<div>').attr({"class": field.divclass}).appendTo(aspForm)			
+		if (field.container!="") {
+			var formgroup=$('<' + field.container + '>').attr({
+				"class": field.containerclass,
+				"style": field.containerstyle				
+				}).appendTo(aspForm)
+		}
+		else
+		{		
+			var formgroup=$('<div>').attr({
+				"class": field.containerclass,
+				"style": field.containerstyle				
+				}).appendTo(aspForm)
+		}
 		
 		if (field.label!=''){
 			
 			var label=$('<label>').html(field.label).attr({ 
 				"for": field.id		
-			}).appendTo(formgroup)	
-			
-			if (field.required)  {
-				$('<span>').html(data.requiredStar).appendTo(label)	
-			}			
+			}).appendTo(formgroup)
+				
 		}		
 		
 		if (field.type=="textarea") {			
@@ -283,11 +292,6 @@ function aspForm(data) {
 		}).appendTo(formgroup)
 			
 	}	
-	
-	//set label "requiredLegend"
-	if(data.requiredLegend!='') {
-		$('<span>').html(data.requiredLegend).appendTo(aspForm)
-	}
 
 	//set targetDiv (div containing the form)
 	$('#' + data.targetDiv).html(aspForm)

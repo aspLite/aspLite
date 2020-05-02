@@ -1,6 +1,4 @@
 <%
-'on error resume next
-
 dim html,titletag,body
 
 titletag="aspLite demo"
@@ -8,9 +6,12 @@ titletag="aspLite demo"
 'load the template of the demosite
 html=aspL.loadText("html/demo_asp/demo.resx")
 
-'create a json object for all AJAX communication with the client
+'create a json object for all AJAX communications with the client
 'be careful, this object will be used all over this demo site! do not destroy it!
 dim json : set json=aspL.plugin("json")
+
+'create a database object. It will also be used in the demo site all over the place.
+dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
 
 'here you can typically add some sort of eventhandler (what did the user do exactly?)
 'in general: if the code for dealing with the event is not large, include it here.
@@ -75,53 +76,53 @@ select case lcase(aspL.getRequest("e")) '"event"
 	'json.dump is very often used for AJAX handlers. "dump" basically means "flush" and "stop"	
 	'All communication with the browser is done with JSON.
 		
-	case "ajaxhello" 			: aspL.exec("code/demo_asp/ajaxhello.asp")
+	case "ajaxhello" 				: aspL.exec("code/demo_asp/ajaxhello.asp")
 
-	case "submit1" 				: json.dump("Form 1 save button was clicked - " & aspL.getrequest("yourname"))
+	case "submit1" 					: json.dump("Form 1 save button was clicked - " & aspL.getrequest("yourname"))
 		
-	case "linksubmit" 			: json.dump("Form 1 submitted by link - " & aspL.getrequest("yourname"))
+	case "linksubmit" 				: json.dump("Form 1 submitted by link - " & aspL.getrequest("yourname"))
 	
-	case "delete1" 				: json.dump("Form 1 delete button was clicked - " & aspL.getrequest("yourname"))
+	case "delete1" 					: json.dump("Form 1 delete button was clicked - " & aspL.getrequest("yourname"))
 		
-	case "submit2" 				: json.dump("Form 2 save button was clicked")
+	case "submit2" 					: json.dump("Form 2 save button was clicked")
 	
-	case "delete2" 				: json.dump("Form 2 delete button was clicked")
+	case "delete2" 					: json.dump("Form 2 delete button was clicked")
 		
-	case "buttonclick" 			: json.dump("Regular button was clicked")
+	case "buttonclick" 				: json.dump("Regular button was clicked")
 		
-	case "clicklink1" 			: json.dump("First link clicked...")
+	case "clicklink1" 				: json.dump("First link clicked...")
 	
-	case "clicklink2" 			: json.dump("Second link clicked...")
+	case "clicklink2" 				: json.dump("Second link clicked...")
 	
-	case "returnbool" 			: json.dump(aspl.convertStr(aspL.plugin("randomizer").randomnumber(0,100)>49))
+	case "returnbool" 				: json.dump(aspl.convertStr(aspL.plugin("randomizer").randomnumber(0,100)>49))
 		
-	case "returndata" 			: aspL.exec("code/demo_asp/datatable.asp")	
+	case "returndata" 				: aspL.exec("code/demo_asp/datatable.asp")	
 	
-	case "hash" 				: aspL.exec("code/demo_asp/hash.asp")	
+	case "hash" 					: aspL.exec("code/demo_asp/hash.asp")	
 		
-	case "json" 				: aspL.exec("code/demo_asp/json.asp")
+	case "json" 					: aspL.exec("code/demo_asp/json.asp")
 	
-	case "json2html" 			: aspL.exec("code/demo_asp/json.asp")
+	case "json2html" 				: aspL.exec("code/demo_asp/json.asp")
 	
-	case "postdtt" 				: aspL.exec("code/demo_asp/postdtt.asp")
+	case "postdtt" 					: aspL.exec("code/demo_asp/postdtt.asp")
 		
-	case "sendmail" 			: aspL.exec("code/demo_asp/mail.asp")		
+	case "sendmail" 				: aspL.exec("code/demo_asp/mail.asp")		
 	
-	case "atom" 				: json.dump(aspL.plugin("atom").read("https://github.com/timeline"))
+	case "atom" 					: json.dump(aspL.plugin("atom").read("https://github.com/timeline"))
 
-	case "rss" 					: json.dump(aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss"))
+	case "rss" 						: json.dump(aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss"))
 		
-	case "jpg" 					: aspL.exec("code/demo_asp/jpg.asp")	
+	case "jpg" 						: aspL.exec("code/demo_asp/jpg.asp")	
 	
-	case "uploadjquery" 		: json.dump(aspL.loadText("html/demo_asp/uploadjquery.resx"))
+	case "uploadjquery" 			: json.dump(aspL.loadText("html/demo_asp/uploadjquery.resx"))
 	
-	case "uploadfilejquery" 	: aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
+	case "uploadfilejquery" 		: aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
 	
-	case "rate" 				: aspL.exec("code/demo_asp/rate.asp")
+	case "rate" 					: aspL.exec("code/demo_asp/rate.asp")
 	
-	case "aspform" 				: aspL.exec("code/demo_asp/aspform.asp")
+	case "aspform" 					: aspL.exec("code/demo_asp/aspform.asp")
 			
-	case "onload" 				: json.dump("Hello world, Καλημέρα κόσμε (utf8-ready)")		
+	case "onload" 					: json.dump("Hello world, Καλημέρα κόσμε (utf8-ready)")		
 		
 	case else body="No (known) action was detected. Initial load." 'default content
 			

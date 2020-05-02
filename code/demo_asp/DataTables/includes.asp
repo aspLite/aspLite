@@ -1,22 +1,15 @@
 <%
 class cls_contact
 
-	private db, rs
+	private rs
 	public iId, sText, iNumber, bBoolean, dDate, iCountryID
 	public reflection
 	
-	Private Sub Class_Initialize
-	
-		set db=aspl.plugin("database") : db.path="db/sample.mdb"
+	Private Sub Class_Initialize	
+		
 		reflection = Array("iId","sText","iNumber","bBoolean","dDate","iCountryID")
 		
-	End Sub
-	
-	Private Sub Class_Terminate
-	
-		Set db = nothing
-		
-	End Sub
+	End Sub	
 
 	public function pick(id)
 	
@@ -158,13 +151,12 @@ End class
 Class cls_countryList
 	
 	Public list
-	private db,rs
+	private rs
 	
 	Private Sub Class_Initialize
 	
-		Set list = aspL.dict
+		Set list = aspL.dict		
 		
-		set db=aspl.plugin("database") : db.path="db/sample.mdb"
 		set rs=db.execute("select * from country")
 		
 		while not rs.eof
@@ -174,7 +166,7 @@ Class cls_countryList
 			rs.movenext
 		wend
 		
-		set db=nothing : set rs = nothing
+		set rs = nothing
 		
 	End Sub
 	

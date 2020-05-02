@@ -1,8 +1,6 @@
 <%
-dim db,rs,field,datatable
+dim rs,field,datatable
 	
-set db=aspL.plugin("database")
-db.path="db/sample.mdb"
 set rs=db.rs : rs.open ("select * from person")
 
 datatable="<tr>"
@@ -28,7 +26,6 @@ while not rs.eof
 
 wend
 
-set db=nothing
 set rs=nothing
 
 json.dump("<table class=""table table-striped""><tbody>" & datatable & "</tbody></table>")

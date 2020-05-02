@@ -1,8 +1,6 @@
 <%
 'This is a prototype, a sample application facilitated by aspLite
 
-'The function addField expects a dictionary with one or more of the following key-item pairs:
-
 ' set dict=aspL.dict
 ' dict.add "type","XXX" - MANDATORY (possible values: text, email, date, number, submit, comment, select, radio, textarea)
 ' dict.add "name","firstname" - MANDATORY (except for comments)
@@ -24,7 +22,7 @@
 class cls_formbuilder
 
 	private allFields, counter, eventListener
-	public postback,targetDiv,requiredLegend,offSet,requiredStar,doScroll,id
+	public postback,targetDiv,offSet,doScroll,id
 	
 	private sub class_initialize()
 	
@@ -32,19 +30,15 @@ class cls_formbuilder
 		set eventListener	= aspl.dict
 		eventListener.add "type","hidden"
 		
-		counter				= 0
-		requiredStar		= " *"
-		requiredLegend		= " * required fields"
+		counter				= 0	
 		offSet				= 100
 		doScroll			= true 'true or false		
 		
 		'by default, a hidden field named "postback" is added to the collection of forms
-		dim postBackHF : set postBackHF=aspl.dict
+		dim postBackHF : set postBackHF=field
 		postBackHF.add "type","hidden"
 		postBackHF.add "name","postBack"
-		postBackHF.add "value","true"
-
-		addField(postBackHF)	
+		postBackHF.add "value","true"	
 		
 		'postback=true in case the form has been submitted 
 		if aspl.convertBool(aspL.getRequest("postBack")) then
@@ -55,12 +49,13 @@ class cls_formbuilder
 		
 	end sub	
 	
-	public sub addField(dict)	
+	public function field
 	
-		allFields.add counter,dict
+		set field=aspl.dict
+		allFields.add counter,field
 		counter=counter+1
 		
-	end sub
+	end function
 	
 	public sub listenTo(eventName,eventValue)		
 		
@@ -74,16 +69,16 @@ class cls_formbuilder
 		Dim arr : arr = Array()
 		ReDim arr(allFields.count)	
 
-		for each field in allFields
+		for each fieldkey in allFields
 			
 			'set the values of the input fields with the request-values in the submitted form
-			if allfields(field).exists("name") then
-				if not aspl.isEmpty(aspL.getRequest(allFields(field)("name"))) then
-					allFields(field)("value")=aspL.getRequest(allFields(field)("name"))
+			if allfields(fieldkey).exists("name") then
+				if not aspl.isEmpty(aspL.getRequest(allFields(fieldkey)("name"))) then
+					allFields(fieldkey)("value")=aspL.getRequest(allFields(fieldkey)("name"))
 				end if
 			end if
 			
-			set arr(field)=allFields(field)
+			set arr(fieldkey)=allFields(fieldkey)
 			
 		next
 		
@@ -104,8 +99,6 @@ class cls_formbuilder
 			JsonHeader = JsonHeader & """doScroll"":false,"
 		end if		
 		
-		JsonHeader = JsonHeader & """requiredLegend"":""" & json.escape(requiredLegend) & ""","
-		JsonHeader = JsonHeader & """requiredStar"":""" & json.escape(requiredStar) & ""","
 		JsonHeader = JsonHeader & """id"":""" & json.escape(id) & ""","
 				  
 		'removing from generated JSON initial bracket { and concatenating all together.
