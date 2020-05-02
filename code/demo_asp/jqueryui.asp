@@ -5,6 +5,7 @@ aspL.exec("code/demo_asp/functions.asp")
 aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
 
 dim form : set form=new cls_formbuilder
+form.listenTo "e","jqueryui"
 form.targetDiv="body"
 form.requiredLegend=""
 form.requiredStar=""
@@ -12,8 +13,8 @@ form.id="dateForm"
 
 dim intro : set intro=aspl.dict
 intro.add "type","comment"
-intro.add "tag","div"
-intro.add "html",aspL.loadText("html/demo_asp/jqueryui.resx")
+intro.add "tag","p"
+intro.add "html","Very useful Datepicker by jQuery UI - <a href=""https://jqueryui.com/datepicker/"" target=""_blank""> https://jqueryui.com/datepicker/</a> with lots of options. Check code/demo_asp/jqueryui.asp for the ASP code involved."
 form.addField(intro)
 
 'form-submitted
@@ -31,13 +32,6 @@ if form.postback then
 
 end if
 
-'this hidden field is required in this demo, as the "e"-event is used in the event-handler
-dim hidden : set hidden=aspl.dict
-hidden.add "type","hidden"
-hidden.add "name","e"
-hidden.add "value","jqueryui"
-
-form.addField(hidden)
 
 dim today : set today=aspl.dict
 today.add "label","Select a date"
@@ -51,9 +45,8 @@ today.add "value",dateToPicker(date)
 form.addField(today)
 
 dim script : set script=aspl.dict
-script.add "type","comment"
-script.add "tag","script"
-script.add "html","$('#dp').datepicker({inline: true, dateFormat:'" & dateformat & "',onSelect: function(){$('#" & form.id & "').submit()}})"
+script.add "type","script"
+script.add "text","$('#dp').datepicker({inline: true, dateFormat:'" & dateformat & "',onSelect: function(){$('#" & form.id & "').submit()}})"
 	
 form.addField(script)
 

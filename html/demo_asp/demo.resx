@@ -42,9 +42,13 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
 						<a class="nav-link" href="default.asp">back</a>
-					</li>			
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="demo.asp">reset</a>
+					</li>					
 					  
-					  <li class="nav-item active dropdown">
+					<li class="nav-item active dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">AJAX Event Handler</a>
 						<div class="dropdown-menu"  aria-labelledby="dropdown01">
 							<a class="aspAjax dropdown-item" id="clicklink1" href="#">Click a first link</a>
@@ -53,12 +57,9 @@
 							<a class="aspAjax dropdown-item" id="returnbool" href="#">Get random boolean from server</a>
 							<a class="aspAjax dropdown-item" id="rss" href="#">CNN news (RSS)</a>	
 							<a class="aspAjax dropdown-item" id="atom" href="#">GitHub Timeline (Atom)</a>					
-							<a class="aspAjax dropdown-item" id="hash" href="#">Hashing</a>							
-							<a class="aspForm dropdown-item" id="rate" href="#">Rate</a>
-							<a class="aspForm dropdown-item" id="jqueryui" href="#">jQuery UI Datepicker</a>						
-							<a class="aspAjax dropdown-item" id="onload" href="#">Reset</a>	
+							<a class="aspAjax dropdown-item" id="hash" href="#">Hashing</a>												
 						</div>
-					  </li>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -94,9 +95,7 @@
 						<li><a href="customurl">userfriendly urls?</a> (<a target="_blank" href="https://asplite.com">not working?</a>)</li>
 						<li><a href="demo.asp?e=db">Access DB plugin</a></li>	
 						<li><a href="demo.asp?e=datatables">DataTables (jQuery plugin)</a> - See <a target="_blank" href="https://datatables.net/">DataTables</a> jQuery plugin</li>						
-						<li><a href="demo.asp?e=datatables_ssp">DataTables - Server Side (ASP) Processing</a></li>						
-						<li><a href="demo.asp?e=ckeditor">CKEditor 4 (WYSIWYG editor)</a></li>
-						<li><a href="demo.asp?e=ckeditor5">CKEditor 5 (WYSIWYG editor)</a></li>											
+						<li><a href="demo.asp?e=datatables_ssp">DataTables - Server Side (ASP) Processing</a></li>																					
 						<li><a href="demo.asp?e=upload">upload single file</a></li>
 						<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>
 					</ul>				   
@@ -137,6 +136,9 @@
 					<p>ASP Ajax Forms</p>
 					<ul>
 						<li><a class="aspForm" id="aspform" href="#">aspForm</a> - a basic Ajax formbuilder</li>
+						<li><a class="aspForm" id="ckeditor" href="#">CKEditor 4 (WYSIWYG editor)</a></li>	
+						<li><a class="aspForm" id="rate" href="#">Rating form</a></li>	
+						<li><a class="aspForm" id="jqueryui" href="#">jQuery UI DatePicker</a></li>	
 					</ul>
 					
 					<hr>
@@ -182,7 +184,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.4.0/json2html.min.js"></script>
 
 <!-- AJAX functions for demo.asp -->
-<script src="js/demoAjax.js"></script>	
+<script src="js/demoAjax.js"></script>
 <script src="js/aspAjax.js"></script>
 
  <!-- Bootstrap JS -->

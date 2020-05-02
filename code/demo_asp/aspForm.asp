@@ -1,8 +1,11 @@
 <%
 'formbuilder sample - built on bootstrap css
 aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
+
 dim form : set form=new cls_formbuilder
+form.listenTo "e","aspform"
 form.targetDiv="body"
+form.id="sampleForm"
 
 'form-submitted
 if form.postback then
@@ -34,14 +37,6 @@ if form.postback then
 	'form.build()
 
 end if	
-
-'this hidden field is required in this demo, as the "e"-event is used in the event-handler
-dim hidden : set hidden=aspl.dict
-hidden.add "type","hidden"
-hidden.add "name","e"
-hidden.add "value","aspform"
-
-form.addField(hidden)
 
 '##########################################################################################
 
@@ -198,25 +193,24 @@ birthdate.add "class","form-control"
 
 form.addField(birthdate)
 
-'add the jQuery UI DatePicker script block over here
+'add the jQuery UI DatePicker script over here
 'dateformat is set in functions.asp 
 aspl.exec("code/demo_asp/functions.asp")
 
 dim scriptDP : set scriptDP=aspl.dict
-scriptDP.add "html","$('#datepicker').datepicker({inline: true, dateFormat:'" & dateformat &"'})"
-scriptDP.add "type","comment"
-scriptDP.add "tag","script"
+scriptDP.add "type","script"
+scriptDP.add "text","$('#datepicker').datepicker({inline: true, dateFormat:'" & dateformat &"'})"
 
 form.addField(scriptDP)
 
 '##########################################################################################
 
 dim submit : set submit=aspl.dict
-submit.add "label","<br><br>"
 submit.add "type","submit"
 submit.add "name","btnAction"
 submit.add "id","btnAction"
 submit.add "value","Submit"
+submit.add "style","margin-top:15px"
 submit.add "class","btn btn-primary"
 
 form.addField(submit)

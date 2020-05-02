@@ -23,17 +23,20 @@
 
 class cls_formbuilder
 
-	private allFields, counter
+	private allFields, counter, eventListener
 	public postback,targetDiv,requiredLegend,offSet,requiredStar,doScroll,id
 	
 	private sub class_initialize()
 	
-		set allFields	= aspl.dict
-		counter			= 0
-		requiredStar	= " *"
-		requiredLegend	= " * required fields"
-		offSet			= 100
-		doScroll		= true 'true or false		
+		set allFields		= aspl.dict
+		set eventListener	= aspl.dict
+		eventListener.add "type","hidden"
+		
+		counter				= 0
+		requiredStar		= " *"
+		requiredLegend		= " * required fields"
+		offSet				= 100
+		doScroll			= true 'true or false		
 		
 		'by default, a hidden field named "postback" is added to the collection of forms
 		dim postBackHF : set postBackHF=aspl.dict
@@ -59,10 +62,17 @@ class cls_formbuilder
 		
 	end sub
 	
+	public sub listenTo(eventName,eventValue)		
+		
+		eventListener.add "name",eventName
+		eventListener.add "value",eventValue		
+	
+	end sub
+	
 	public sub build()
 	
 		Dim arr : arr = Array()
-		ReDim arr(allFields.count-1)	
+		ReDim arr(allFields.count)	
 
 		for each field in allFields
 			
@@ -76,6 +86,9 @@ class cls_formbuilder
 			set arr(field)=allFields(field)
 			
 		next
+		
+		'pass the event listener
+		set arr(allFields.count)=eventListener
 		
 		set allFields=nothing
 

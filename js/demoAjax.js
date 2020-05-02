@@ -92,16 +92,24 @@ function jsonToHTML(data) {
 }
 
 function aspForm(data) {
+	
+	//avoid double id's
+	if (data.id!="") {
+		$('#' + data.id ).remove()	
+	}	
 
 	var aspForm=$('<form>').attr({
 		"onsubmit":"aspAjax('POST','',$(this).serialize(),aspForm);return false;",
 		"style":"margin: 0;padding: 0",
-		"id":data.id
+		"id":data.id,
+		"method":"post"
 		})
 
-	for(var i = 0; i < data.aspForm.length; i++) {	
+	for(var i = 0; i < data.aspForm.length; i++) {		
 	
 		var field=data.aspForm[i]
+		
+		//console.log(field.type + ' ' + field.name + ' ' + field.value)
 	
 		if (field.type=="hidden") {
 			$('<input>').attr({
@@ -120,17 +128,34 @@ function aspForm(data) {
 				"style": field.style
 			}).appendTo(aspForm)			
 			continue
-		}		
-	
-		var formgroup=$('<div>').attr({"class": "formgroup"}).appendTo(aspForm)			
+		}	
 		
-		var label=$('<label>').html(field.label).attr({ 
-			"for": field.id		
-		}).appendTo(formgroup)		
-
-		if (field.required)  {
-			$('<span>').html(data.requiredStar).appendTo(label)	
+		if (field.type=="script") {
+			if (field.text!="") {
+				$('<script>').text(field.text).appendTo(aspForm)
+			}
+			else
+			{
+				$('<script>').attr({
+					"src":field.src
+				}).appendTo(aspForm)
+				
+			}
+			continue			
 		}
+	
+		var formgroup=$('<div>').attr({"class": field.divclass}).appendTo(aspForm)			
+		
+		if (field.label!=''){
+			
+			var label=$('<label>').html(field.label).attr({ 
+				"for": field.id		
+			}).appendTo(formgroup)	
+			
+			if (field.required)  {
+				$('<span>').html(data.requiredStar).appendTo(label)	
+			}			
+		}		
 		
 		if (field.type=="textarea") {			
 			$('<textarea>').attr({
@@ -253,7 +278,8 @@ function aspForm(data) {
 			"id"			: field.id,	
 			"style"			: field.style,	
 			"required"		: field.required,
-			"onchange"		: field.onchange			
+			"onchange"		: field.onchange,
+			"onclick"		: field.onclick			
 		}).appendTo(formgroup)
 			
 	}	

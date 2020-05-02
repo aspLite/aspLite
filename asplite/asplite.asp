@@ -176,11 +176,13 @@ class cls_asplite
 	public function getRequest(value)
 	
 		on error resume next
+		
+		err.clear()
 	
-		if not [isEmpty](request.querystring(value)) then
-			getRequest=request.querystring(value)
-		elseif [isEmpty](request.form(value)) then
+		if not [isEmpty](request.form(value)) then
 			getRequest=request.form(value)
+		elseif [isEmpty](request.querystring(value)) then
+			getRequest=request.querystring(value)
 		else
 			getRequest=request(value)
 		end if

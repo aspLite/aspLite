@@ -1,8 +1,9 @@
 <%
 'formbuilder sample - built on bootstrap css
-
 aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
+
 dim form : set form=new cls_formbuilder
+form.listenTo "e","rate"
 form.targetDiv="body"
 form.requiredLegend=""
 form.requiredStar=""
@@ -22,14 +23,6 @@ if form.postback then
 	form.build()
 
 end if	
-
-'this hidden field is required in this demo, as the "e"-event is used in the event-handler
-dim hidden : set hidden=aspl.dict
-hidden.add "type","hidden"
-hidden.add "name","e"
-hidden.add "value","rate"
-
-form.addField(hidden)
 
 '##########################################################################################
 
