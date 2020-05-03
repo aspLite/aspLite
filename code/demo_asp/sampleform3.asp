@@ -5,17 +5,19 @@ aspL.exec("code/demo_asp/functions.asp")
 aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
 
 dim form : set form=new cls_formbuilder
-form.listenTo "e","jqueryui"
-form.targetDiv="body"
+form.listenTo "e","sampleform3"
+form.targetDiv="sampleform3"
 form.id="dateForm"
 
 dim intro : set intro=form.field
 intro.add "type","comment"
 intro.add "tag","p"
-intro.add "html","Very useful Datepicker by jQuery UI - <a href=""https://jqueryui.com/datepicker/"" target=""_blank""> https://jqueryui.com/datepicker/</a> with lots of options. Check code/demo_asp/jqueryui.asp for the ASP code involved."
+intro.add "html","<a href=""https://jqueryui.com/datepicker/"" target=""_blank""> https://jqueryui.com/datepicker/</a>"
 
 'form-submitted
 if form.postback then
+
+	form.doScroll=true
 	
 	'feedback
 	dim feedback : set feedback=form.field
@@ -27,7 +29,6 @@ if form.postback then
 	form.build()
 
 end if
-
 
 dim today : set today=form.field
 today.add "label","Select a date"

@@ -1,5 +1,5 @@
 <%
-dim html,titletag,body
+dim html,titletag,body,pagetitle
 
 titletag="aspLite demo"
 
@@ -17,42 +17,19 @@ dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
 'in general: if the code for dealing with the event is not large, include it here.
 'if the code is getting complex, use yet another codebehind file, like in the examples below (helloworld, mail, json, etc)
 
-select case lcase(aspL.getRequest("e")) '"event"
-		
-	case "clicklink" 			: body="Link was clicked"		
-		
-	case "clickbutton" 			: body="Regular form was submitted"		
-		
-	case "loadclass"
-	
-		'CONDITIONAL load of asp page = include file
-		aspL.exec("code/demo_asp/class.asp")	
-		
-		dim testObj
-		set testObj=new cls_test
-		body=testObj.hello
-		set testObj=nothing	
-		
+select case lcase(aspL.getRequest("e")) '"event"	
 	
 	case "downloadlargefile" 		: aspL.dumpBinary("html/demo_asp/largefile.jpg")
 	
 	case "downloadsmallfile" 		: aspL.dumpBinary("html/demo_asp/smallfile.jpg")
 	
-	case "helloworld" 				: aspL.exec("code/demo_asp/helloworld.asp")	
-		
-	case "randomizer" 				: aspL.exec("code/demo_asp/randomtext.asp")		
-		
-	case "db" 						: aspL.exec("code/demo_asp/datasample.asp")	
-		
-	case "datatables" 				: aspL.exec("code/demo_asp/datatables.asp")
+	case "datatables_ssp"			: body=aspL.loadText("html/demo_asp/datatables_ssp.resx")
 	
-	case "datatables_ssp"			: body=aspL.loadText("html/demo_asp/datatables_ssp.resx")	
+	case "datatables" 				: body=aspL.loadText("html/demo_asp/datatables.resx")
 
 	case "json_datatables_data" 	: aspL.exec("code/demo_asp/datatables_ssp.asp")	
 	
-	case "json_datatables" 			: aspL.exec("code/demo_asp/json_datatables.asp")
-		
-	case "ckeditor" 				: aspL.exec("code/demo_asp/ckeditor.asp")	
+	case "json_datatables" 			: aspL.exec("code/demo_asp/json_datatables.asp")	
 				
 	case "upload" 					: body=aspL.loadText("html/demo_asp/singleupload.resx")
 		
@@ -65,66 +42,44 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "jspdf"					: body=aspL.loadText("html/demo_asp/jspdf.resx")
 	
 	case "codemirror" 				: aspL.exec("code/demo_asp/codemirror.asp")	
-	
-	case "jqueryui"					: aspL.exec("code/demo_asp/jqueryui.asp")
-		
-	case "login" 					: html=aspL.loadText("html/demo_asp/login.resx")	
-		'this will load a completely different template because we override the html variable
-
 		
 	'AJAX handlers
 	'json.dump is very often used for AJAX handlers. "dump" basically means "flush" and "stop"	
 	'All communication with the browser is done with JSON.
 		
-	case "ajaxhello" 				: aspL.exec("code/demo_asp/ajaxhello.asp")
+	case "sampleform1" 				: aspL.exec("code/demo_asp/sampleform1.asp")
+	
+	case "sampleform2" 				: aspL.exec("code/demo_asp/sampleform2.asp")
+	
+	case "sampleform3"				: aspL.exec("code/demo_asp/sampleform3.asp")
+	
+	case "sampleform4" 				: aspL.exec("code/demo_asp/sampleform4.asp")	
+	
+	case "sampleform5" 				: aspL.exec("code/demo_asp/sampleform5.asp")
+	
+	case "sampleform6" 				: aspL.exec("code/demo_asp/sampleform6.asp")	
+	
+	case "sampleform7" 				: aspL.exec("code/demo_asp/sampleform7.asp")
+	
+	case "sampleform8" 				: aspL.exec("code/demo_asp/sampleform8.asp")
+	
+	case "sampleform9" 				: aspL.exec("code/demo_asp/sampleform9.asp")
+	
+	case "sampleform10" 			: aspL.exec("code/demo_asp/sampleform10.asp")
+	
+	case "sampleform11" 			: aspL.exec("code/demo_asp/sampleform11.asp")
 
-	case "submit1" 					: json.dump("Form 1 save button was clicked - " & aspL.getrequest("yourname"))
+	case "sampleform12" 			: aspL.exec("code/demo_asp/sampleform12.asp")
+	
+	case "sampleform13" 			: aspL.exec("code/demo_asp/sampleform13.asp")	
+	
+	case "postdtt" 					: aspL.exec("code/demo_asp/postdtt.asp")	
 		
-	case "linksubmit" 				: json.dump("Form 1 submitted by link - " & aspL.getrequest("yourname"))
-	
-	case "delete1" 					: json.dump("Form 1 delete button was clicked - " & aspL.getrequest("yourname"))
-		
-	case "submit2" 					: json.dump("Form 2 save button was clicked")
-	
-	case "delete2" 					: json.dump("Form 2 delete button was clicked")
-		
-	case "buttonclick" 				: json.dump("Regular button was clicked")
-		
-	case "clicklink1" 				: json.dump("First link clicked...")
-	
-	case "clicklink2" 				: json.dump("Second link clicked...")
-	
-	case "returnbool" 				: json.dump(aspl.convertStr(aspL.plugin("randomizer").randomnumber(0,100)>49))
-		
-	case "returndata" 				: aspL.exec("code/demo_asp/datatable.asp")	
-	
-	case "hash" 					: aspL.exec("code/demo_asp/hash.asp")	
-		
-	case "json" 					: aspL.exec("code/demo_asp/json.asp")
-	
-	case "json2html" 				: aspL.exec("code/demo_asp/json.asp")
-	
-	case "postdtt" 					: aspL.exec("code/demo_asp/postdtt.asp")
-		
-	case "sendmail" 				: aspL.exec("code/demo_asp/mail.asp")		
-	
-	case "atom" 					: json.dump(aspL.plugin("atom").read("https://github.com/timeline"))
-
-	case "rss" 						: json.dump(aspL.plugin("rss").read("http://rss.cnn.com/rss/cnn_topstories.rss"))
-		
-	case "jpg" 						: aspL.exec("code/demo_asp/jpg.asp")	
-	
 	case "uploadjquery" 			: json.dump(aspL.loadText("html/demo_asp/uploadjquery.resx"))
 	
 	case "uploadfilejquery" 		: aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
-	
-	case "rate" 					: aspL.exec("code/demo_asp/rate.asp")
-	
-	case "aspform" 					: aspL.exec("code/demo_asp/aspform.asp")
-			
-	case "onload" 					: json.dump("Hello world, Καλημέρα κόσμε (utf8-ready)")		
 		
-	case else body="No (known) action was detected. Initial load." 'default content
+	case else body="This is the demo of aspLite. The various sample forms, plugins and utilities are showcased over here. The location of the ASP involved is displayed each time. Have fun while discovering the bits and bytes of this demo!" 'default content
 			
 		'get userfriendly url, if any (and launch a new handler-instance!)
 		aspL.exec("code/demo_asp/404handler.asp")		

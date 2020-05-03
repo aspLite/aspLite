@@ -3,13 +3,15 @@
 aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
 
 dim form : set form=new cls_formbuilder
-form.listenTo "e","aspform"
-form.targetDiv="body"
+form.listenTo "e","sampleform5"
+form.targetDiv="sampleform5"
 form.id="sampleForm"
 
 'form-submitted
 if form.postback then
 
+	form.doScroll=true
+	
 	'here you would typically perform additional validations, return error messages, and finally save to a database (or delete)
 	'below I add a feedback message as a comment to the form
 		
@@ -45,40 +47,10 @@ end if
 
 '##########################################################################################
 
-'a comment
-dim comment : set comment=form.field
-comment.add "html","<h3>Ajax Form Builder</h3><hr><p class=""lead"">This ASP Ajax formbuilder makes creating Ajax forms in ASP very easy. The asp file ""code/demo_asp/aspform.asp"" returns the JSON data JavaScript (jQuery) needs to create a form.</p>"
-comment.add "type","comment"
-comment.add "tag","div"
-
-'##########################################################################################
-
 dim aspFormAction : set aspFormAction=form.field
 aspFormAction.add "type","hidden"
 aspFormAction.add "name","aspFormAction"
 aspFormAction.add "id","aspFormAction"
-
-'##########################################################################################
-
-dim firstname : set firstname=form.field
-firstname.add "label","First name:"
-firstname.add "type","text"
-firstname.add "name","firstname"
-firstname.add "id","fname"
-firstname.add "class","form-control"
-firstname.add "maxlength",50
-firstname.add "required",true
-
-'##########################################################################################
-
-dim lastname : : set lastname=form.field
-lastname.add "label","Last name:"
-lastname.add "type","text"
-lastname.add "name","lastname"
-lastname.add "id","lname"
-lastname.add "class","form-control"
-lastname.add "maxlength",50
-lastname.add "required",true
 
 '##########################################################################################
 
@@ -152,48 +124,9 @@ persons.add "options",rs
 
 '##########################################################################################
 
-dim usercomments : set usercomments=form.field
-usercomments.add "label","Additional user comments (if any)"
-usercomments.add "type","textarea"
-usercomments.add "name","usercomments"
-usercomments.add "id","usercomments"
-usercomments.add "rows",3
-usercomments.add "class","form-control"
-
-
-'##########################################################################################
-' another comment
-
-dim anothercomment : set anothercomment=form.field
-anothercomment.add "html","Yet another comment."
-anothercomment.add "type","comment"
-anothercomment.add "tag","div"
-anothercomment.add "class","alert alert-warning"
-anothercomment.add "style","margin-top:20px"
-
-'##########################################################################################
-
-dim birthdate : set birthdate=form.field
-birthdate.add "label","Birthday:"
-birthdate.add "type","text"
-birthdate.add "name","birthdate"
-birthdate.add "id","datepicker"
-birthdate.add "class","form-control"
-
-'add the jQuery UI DatePicker script over here
-'dateformat is set in functions.asp 
-aspl.exec("code/demo_asp/functions.asp")
-
-dim scriptDP : set scriptDP=form.field
-scriptDP.add "type","script"
-scriptDP.add "text","$('#datepicker').datepicker({inline: true, dateFormat:'" & dateformat &"'})"
-
-'##########################################################################################
-
 dim submit : set submit=form.field
 submit.add "type","submit"
 submit.add "name","btnSave"
-submit.add "id","btnSave"
 submit.add "value","Submit"
 submit.add "style","margin-top:15px"
 submit.add "class","btn btn-primary"
@@ -203,7 +136,6 @@ submit.add "onclick","$('#aspFormAction').val('save')"
 dim delete : set delete=form.field
 delete.add "type","submit"
 delete.add "name","btnDelete"
-delete.add "id","btnDelete"
 delete.add "value","Delete"
 delete.add "style","margin-top:15px"
 delete.add "class","btn btn-danger"

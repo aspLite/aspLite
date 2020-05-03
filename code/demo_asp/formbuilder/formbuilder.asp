@@ -31,8 +31,8 @@ class cls_formbuilder
 		eventListener.add "type","hidden"
 		
 		counter				= 0	
-		offSet				= 100
-		doScroll			= true 'true or false		
+		offSet				= 150
+		doScroll			= false 'true or false		
 		
 		'by default, a hidden field named "postback" is added to the collection of forms
 		dim postBackHF : set postBackHF=field

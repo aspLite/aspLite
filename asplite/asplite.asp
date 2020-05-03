@@ -10,6 +10,7 @@ set aspL=new cls_asplite
 class cls_asplite
 
 	private debug,startTime,stopTime,plugins,p_fso,cacheprefix
+	private Request_ServerVariables
 	
 	Private Sub Class_Initialize()
 	
@@ -17,6 +18,7 @@ class cls_asplite
 	
 		startTime=Timer()
 		debug						= aspL_debug 
+		Request_ServerVariables		= Request.ServerVariables("HTTP_CONTENT_TYPE")
 		
 		'IMPORTANT
 		'no matter which language you speak or what you're up to in classic ASP,
@@ -24,7 +26,7 @@ class cls_asplite
 		'and option explicit statements - see above
 		'-------------------------------------------
 		Response.Buffer				= true		
-		Response.CharSet			= "utf-8" 'does not work on IIS5 (Windows 2000 Servers)
+		Response.CharSet			= "utf-8" 'does not work on IIS5 (Windows 2000 Servers) - comment it out when IIS5 is used!
 		Response.ContentType		= "text/html"
 		Response.CacheControl		= "no-cache"
 		Response.AddHeader "pragma", "no-cache"
@@ -177,15 +179,27 @@ class cls_asplite
 	
 		on error resume next
 		
-		err.clear()
-	
-		if not [isEmpty](request.form(value)) then
-			getRequest=request.form(value)
-		elseif [isEmpty](request.querystring(value)) then
+		err.clear()	
+		
+		If InStr(Request_ServerVariables, "multipart")<>0 Then
+		
+			'binary data was submitted with enctype=multipart/form-data
+			'in this case, the request.form collecion cannot be used and even raises an error
+			'aspLite only returns the querystring in this case
+		
 			getRequest=request.querystring(value)
-		else
-			getRequest=request(value)
-		end if
+			
+		Else
+		
+			if not [isEmpty](request.form(value)) then
+				getRequest=request.form(value)
+			elseif [isEmpty](request.querystring(value)) then
+				getRequest=request.querystring(value)
+			else
+				getRequest=request(value)				
+			end if
+			
+		End If
 		
 		on error goto 0	
 	

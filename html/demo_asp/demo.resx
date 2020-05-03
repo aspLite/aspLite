@@ -40,148 +40,211 @@
 
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="default.asp">back</a>
 					</li>
 					
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="demo.asp">reset</a>
-					</li>					
-					  
-					<li class="nav-item active dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">AJAX Event Handler</a>
-						<div class="dropdown-menu"  aria-labelledby="dropdown01">
-							<a class="aspAjax dropdown-item" id="clicklink1" href="#">Click a first link</a>
-							<a class="aspAjax dropdown-item" id="clicklink2" href="#">Click a second link</a>
-							<a class="aspAjax dropdown-item" id="jpg" href="#">Get images from server</a>						  
-							<a class="aspAjax dropdown-item" id="returnbool" href="#">Get random boolean from server</a>
-							<a class="aspAjax dropdown-item" id="rss" href="#">CNN news (RSS)</a>	
-							<a class="aspAjax dropdown-item" id="atom" href="#">GitHub Timeline (Atom)</a>					
-							<a class="aspAjax dropdown-item" id="hash" href="#">Hashing</a>												
-						</div>
 					</li>
+					
 				</ul>
 			</div>
 		</nav>
 
 		<main role="main" class="container">
 
-			<div class="row">
-				<div class="col-sm">
-					<h5 id="ajaxhandler">Output handler:</h5>
-					<div class="alert alert-success" id="body" role="alert">[BODY]</div>
+			<div class="row">			
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">[PAGETITLE]</h5>
+						<div id="body">[BODY]</div>
+						<div id="ajax"></div>
+					</div>	
 				</div>
-			</div>		
-		  
-		   <div class="row">
-				<div class="col-sm">
+			</div>
+			
+			<br>
+			
+			<div class="row">	
+			
+				<div class="card-columns">
 				
-					<h5>regular actions (page reload)</h5>	
+					<div class="card">
+						<div class="card-header">
+						Hello
+						</div>
+						<div class="card-body">
+							<div class="aspForm card-text" id="sampleform1"></div>
+							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform1.asp</small></p>						
+						</div>
+					</div>
 
-					<hr>
-				   
-					<ul>
-						<li><a href="demo.asp">no action</a></li>
-						<li><a href="demo.asp?e=login">login</a></li>
-						<li><a href="demo.asp?e=clicklink">clink link</a></li>
-						<li><a href="demo.asp?e=loadclass">conditionally load asp file</a></li>
-						<li><a href="demo.asp?e=jszip">create ZIP file</a></li>	
-						<li><a href="demo.asp?e=jspdf">create PDF file</a></li>	
-						<li><a href="demo.asp?e=codemirror">CodeMirror</a></li>												
-						<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a></li>
-						<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a></li>
-						<li><a href="demo.asp?e=helloworld">hello world plugin</a></li>
-						<li><a href="demo.asp?e=randomizer">randomizer plugin</a></li>
-						<li><a href="customurl">userfriendly urls?</a> (<a target="_blank" href="https://asplite.com">not working?</a>)</li>
-						<li><a href="demo.asp?e=db">Access DB plugin</a></li>	
-						<li><a href="demo.asp?e=datatables">DataTables (jQuery plugin)</a> - See <a target="_blank" href="https://datatables.net/">DataTables</a> jQuery plugin</li>						
-						<li><a href="demo.asp?e=datatables_ssp">DataTables - Server Side (ASP) Processing</a></li>																					
-						<li><a href="demo.asp?e=upload">upload single file</a></li>
-						<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>
-					</ul>				   
-				   
-				   <form action="demo.asp" method="post">						
-						<button class="btn btn-danger" type="submit" value="clickbutton" name="e">click button</button>		
-					</form>	
-				   <br /><br />
-				   
-				</div>
-				<div class="col-sm">	
+					<div class="card" >
+						<div class="card-header">
+							Rating form
+						 </div>
+						<div class="card-body">							
+							<div class="aspForm card-text" id="sampleform2"></div>	
+							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform2.asp</small></p>	
+						</div>
+					</div>
 
-					<h5>ajax actions (no page reload)</h5>
-					
-					<hr>
-										
-					<div id="ajaxhello"></div>
-					
-					<hr>
-					
-					<p>jQuery AJAX multifile uploader</p>					
-					<ul>
-						<li><a class="aspAjax" href="#" id="uploadjquery">jQuery multiple file upload</a></li>	
-					</ul>
-					
-					<hr>
-					
-					<p>Database</p>
-					<ul>
-						<li><a class="aspAjax" href="#" id="returndata">Get some data (from database)</a></li>					
-						<li><a class="aspAjaxJSON" href="#" id="json">Get JSON data  (from database)</a></li>
-						<li><a class="aspAjaxJSON2html" href="#" id="json2html">json2html</a> (see <a target="_blank" href="http://json2html.com/">http://json2html.com/</a>)</li>						
-						
-					</ul>
-					
-					<hr>
-					
-					<p>ASP Ajax Forms</p>
-					<ul>
-						<li><a class="aspForm" id="aspform" href="#">aspForm</a> - a basic Ajax formbuilder</li>
-						<li><a class="aspForm" id="ckeditor" href="#">CKEditor 4 (WYSIWYG editor)</a></li>	
-						<li><a class="aspForm" id="rate" href="#">Rating form</a></li>	
-						<li><a class="aspForm" id="jqueryui" href="#">jQuery UI DatePicker</a></li>	
-					</ul>
-					
-					<hr>
-
-					<p>Form 1</p>
-					<form class="ajaxForm" id="form1" action="#" method="post">	
-						<input type="hidden" id="ajaxaction" name="e" value="">
-						
-						<div class="form-group">
-							<input type="text" class="form-control" name="yourname" placeholder="utf8" value="Hello world, Καλημέρα κόσμε, コンニチハ" />
+					<div class="card">
+						<div class="card-header">
+							jQuery UI DatePicker
+						 </div>
+						<div class="card-body">							
+							<div class="aspForm  card-text" id="sampleform3"></div>	
+							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform3.asp</small></p>	
 						</div>
 						
-						<input onclick="$('#ajaxaction').val('submit1')" class="btn btn-success" type="submit" value="Save">
-						<input onclick="$('#ajaxaction').val('delete1')" class="btn btn-info" type="submit" value="Delete">
-						<a class="btn btn-dark" href="#" onclick="$('#ajaxaction').val('linksubmit');$('#form1').submit();return false">Submit link</a>
-					</form>
-					
-					<hr>
+					</div>
 
-					<p>Form 2</p>
-					<form class="ajaxForm" action="#" method="post">
-						<input type="hidden" id="ajaxaction2" name="e" value="">
-						<input onclick="$('#ajaxaction2').val('submit2')" class="btn btn-secondary" type="submit" value="Save">
-						<input onclick="$('#ajaxaction2').val('delete2')" class="btn btn-warning" type="submit" value="Delete">
-					</form>
+					<div class="card">
+						<div class="card-header">
+							CKEditor 4
+						 </div>
+						<div class="card-body">							
+							<div class="aspForm card-text" id="sampleform4"></div>	
+							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform4.asp</small></p>	
+						</div>
+					</div>
 					
-					<hr>
+					<div class="card">
+						<div class="card-header">
+							Hash functions
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform7"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform7.asp</small></p>	
+						</div>
+					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							aspLite Ajax formbuilder
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform5"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform5.asp</small></p>	
+						</div>
+					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							Multiple buttons
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform6"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform6.asp</small></p>	
+						</div>
+					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							Table
+						 </div>
+						<div class="card-body">
+						
+						<div class="aspForm card-text" id="sampleform8"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform8.asp</small></p>	
+						</div>
+					</div>	
+					
+					<div class="card">
+						<div class="card-header">
+							Hello World
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform9"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform9.asp</small></p>	
+						</div>
+					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							Conditional include
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform10"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform10.asp</small></p>	
+						</div>
+					</div>	
+					
+					<div class="card">
+						<div class="card-header">
+							Randomizer
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform11"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform11.asp</small></p>	
+						</div>
+					</div>	
+					
+					<div class="card">
+						<div class="card-header">
+							CNN News
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform12"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform12.asp</small></p>	
+						</div>
+					</div>	
 
-					<p>Button</p>
-					<button class="aspAjax btn btn-primary" id="buttonclick" type="button">Click Me!</button>
-										
-					<hr>									
+					<div class="card">
+						<div class="card-header">
+							Image from server
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform13"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform13.asp</small></p>	
+						</div>
+					</div>	
+
+					<div class="card">
+						<div class="card-header">
+							Binary uploads
+						 </div>
+						<div class="card-body">
+							
+							<div class="card-text">						
+								<ul>
+									<li><a href="demo.asp?e=upload">upload single file</a></li>
+									<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>
+									<li><a class="aspAjax" href="#" id="uploadjquery">jQuery multiple file upload</a></li>
+								</ul>	
+							</div>						
+						</div>
+					</div>	
+
+					<div class="card">
+						<div class="card-header">
+							Utilities
+						 </div>
+						<div class="card-body">
+							
+							<div class="card-text">						
+								<ul>						
+									<li><a href="demo.asp?e=jszip">create ZIP file</a><br><small class="text-muted">see code/demo_asp/jszip.asp</small></li>	
+									<li><a href="demo.asp?e=jspdf">create PDF file</a><br><small class="text-muted">see code/demo_asp/jspdf.asp</small></li>	
+									<li><a href="demo.asp?e=codemirror">CodeMirror</a><br><small class="text-muted">see code/demo_asp/codemirror.asp</small></li>												
+									<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>
+									<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>						
+									<li><a href="customurl">userfriendly urls?</a> - <small class="text-muted"><a target="_blank" href="https://asplite.com">not working?</a></small></li>
+									<li><a href="demo.asp?e=datatables">DataTables (jQuery plugin)</a><br><small class="text-muted">see html/demo_asp/datatables.resx</small></li>						
+									<li><a href="demo.asp?e=datatables_ssp">DataTables - ASP</a><br><small class="text-muted">see code/demo_asp/datatables_ssp.asp</small></li>						
+								</ul>			
+							</div>						
+						</div>
+					</div>	
 					
-				</div>
-				
-			</div>  
+				</div>	
+			</div>			
 
 		</main>
 
 <!-- /.container --> 
-
-<!-- json2html -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.4.0/json2html.min.js"></script>
 
 <!-- AJAX functions for demo.asp -->
 <script src="js/demoAjax.js"></script>

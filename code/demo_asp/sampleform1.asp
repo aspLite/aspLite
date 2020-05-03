@@ -3,10 +3,9 @@
 aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
 
 dim form : set form=new cls_formbuilder
-form.listenTo "e","ajaxhello"
-form.targetDiv="ajaxhello"
+form.listenTo "e","sampleform1"
+form.targetDiv="sampleform1"
 form.id="helloForm"
-form.doScroll=false
 
 'form-submitted
 if form.postback then
@@ -16,10 +15,9 @@ if form.postback then
 	'feedback
 	dim feedback : set feedback=form.field
 	feedback.add "type","comment"
-	feedback.add "html","Hello " & aspL.sanitize(aspL.getRequest("yourname")) & "! Check /code/demo_asp/ajaxhello.asp!"
+	feedback.add "html","Hello " & aspL.sanitize(aspL.getRequest("yourname")) & "!"
 	feedback.add "tag","div"
-	feedback.add "class","alert alert-warning"
-	
+	feedback.add "class","alert alert-warning"	
 	
 	'you can build it here already. This will stop further exection	
 	form.build()
@@ -32,7 +30,6 @@ dim yourname : set yourname=form.field
 yourname.add "placeholder","Your name:"
 yourname.add "type","text"
 yourname.add "name","yourname"
-yourname.add "id","yourname"
 yourname.add "class","form-control"
 yourname.add "maxlength",50
 yourname.add "required",true

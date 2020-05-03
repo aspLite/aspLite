@@ -6,7 +6,7 @@ aspL.exec("code/demo.handler.asp") 'event-handler
 html=replace (html,"[TITLETAG]",titletag,1,-1,1)
 
 'title
-html=replace (html,"[PAGETITLE]",titletag,1,-1,1)
+html=replace (html,"[PAGETITLE]",pagetitle,1,-1,1)
 
 'body
 html=replace (html,"[BODY]",body,1,-1,1)

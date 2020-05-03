@@ -1,6 +1,5 @@
 <%
-dim rs,field,datatable
-	
+dim rs,field,datatable	
 set rs=db.rs : rs.open ("select * from person")
 
 datatable="<tr>"
@@ -28,6 +27,20 @@ wend
 
 set rs=nothing
 
-json.dump("<table class=""table table-striped""><tbody>" & datatable & "</tbody></table>")
+'formbuilder sample - built on bootstrap css
+aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
+
+dim form : set form=new cls_formbuilder
+form.listenTo "e","sampleform8"
+form.targetDiv="sampleform8"
+form.id="datatable"
+	
+'result
+dim feedback : set feedback=form.field
+feedback.add "type","comment"
+feedback.add "html","<table class=""table table-striped""><tbody>" & datatable & "</tbody></table>"
+feedback.add "tag","div"
+
+form.build()
 
 %>

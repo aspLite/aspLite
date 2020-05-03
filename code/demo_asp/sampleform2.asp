@@ -3,12 +3,14 @@
 aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
 
 dim form : set form=new cls_formbuilder
-form.listenTo "e","rate"
-form.targetDiv="body"
+form.listenTo "e","sampleform2"
+form.targetDiv="sampleform2"
 form.id="rateForm"
 
 'form-submitted
 if form.postback then
+
+	form.doScroll=true
 	
 	'feedback
 	dim feedback : set feedback=form.field
@@ -34,8 +36,8 @@ dim score : set score=form.field
 score.add "label","How would you rate aspLite so far?"
 score.add "type","select"
 score.add "name","score"
-score.add "class","form-control"
 score.add "id","score"
+score.add "class","form-control"
 score.add "options",stars
 score.add "onchange","$('#" & form.id & "').submit();"
 

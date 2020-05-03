@@ -1,7 +1,7 @@
 <script src="js/jszip.min.js"></script>
 <script src="js/filesaver.min.js"></script>
 
-<p><strong>JSZip</strong> experiment - <a target="_blank" href="https://stuk.github.io/jszip/">https://stuk.github.io/jszip/</a></p>
+<p><strong>JSZip</strong> experiment - <a target="_blank" href="https://stuk.github.io/jszip/">https://stuk.github.io/jszip/</a>. JSZip is a javascript library for creating, reading and editing .zip files, with a lovely and simple API. See /code/demo_asp/jszip.asp</p>
 
 <button id="blob" class="btn btn-primary">click to download zip</button>
 

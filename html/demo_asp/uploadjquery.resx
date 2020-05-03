@@ -1,6 +1,6 @@
 <p>Select multiple files:</p>
 
-<form method="post" enctype="multipart/form-data" id="uploadForm" action=""> 
+<form id="uploadForm"> 
  
 	<div class="form-group">
 		<div class="custom-file">
@@ -56,10 +56,7 @@ $("#uploadForm").submit(function(e){
 		
 		if (files.length>0) {jQueryUpload()}
 		
-		})	
-	
-		
-	
+	})
 	
 });
 
@@ -87,8 +84,10 @@ function ajax(fd,file) {
 
 	$.ajax({		
 		type: "post",
+		method: "post",
 		url: "demo.asp?e=uploadfilejquery",
 		dataType: "text",
+		contentType: false,
 		data: fd,
 		processData: false, 
 		success: function (data) {			

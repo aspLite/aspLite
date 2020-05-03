@@ -2,6 +2,7 @@
 on error resume next
 
 'load template
+pagetitle="CodeMirror Example"
 body=aspL.loadText("html/demo_asp/codemirror.resx")
 
 dim somecode
