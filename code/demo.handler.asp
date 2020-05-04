@@ -77,13 +77,11 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "uploadfilejquery" 		: aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
 		
-	case else body="This is the demo of aspLite. The various sample forms, plugins and utilities are showcased over here. The location of the ASP involved is displayed each time. Have fun while discovering the bits and bytes of this demo!" 'default content
+	case else body="This is a demo SPA (Single Page Application) making use of <strong>aspLite</strong>. Various sample forms, plugins and utilities are showcased over here. The location of the ASP-code involved, is displayed each time. Have fun while discovering the bits and bytes of this demo!" 'default content
 			
 		'get userfriendly url, if any (and launch a new handler-instance!)
 		aspL.exec("code/demo_asp/404handler.asp")		
 		
 end select
-
-on error goto 0
 
 %>

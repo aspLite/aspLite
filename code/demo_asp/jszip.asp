@@ -1,4 +1,5 @@
 <%
+pagetitle="jsZip Example"
 
 'this folder will be zipped by the browser!
 dim folderToZip

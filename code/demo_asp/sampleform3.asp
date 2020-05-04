@@ -23,10 +23,8 @@ if form.postback then
 	dim feedback : set feedback=form.field
 	feedback.add "html","<p>You selected <strong>" & FormatDateTime(dateFromPicker(aspl.getRequest("dp")),1) & "</strong> (vbLongDate)</p>"
 	feedback.add "type","comment"
-	feedback.add "tag","div"	
-	
-	'you can build it here already. This will stop further exection	
-	form.build()
+	feedback.add "tag","div"
+	feedback.add "class","alert alert-success"
 
 end if
 

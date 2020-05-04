@@ -14,7 +14,7 @@ if form.postback then
 	
 	'feedback
 	dim feedback : set feedback=form.field
-	feedback.add "html","Thanks so much for your " & aspL.sanitize(aspL.getRequest("score")) & " stars!"
+	feedback.add "html","Thanks so much for your <strong>" & aspL.convertNmbr(aspL.getRequest("score")) & " stars</strong>!"
 	feedback.add "type","comment"
 	feedback.add "tag","div"
 	
