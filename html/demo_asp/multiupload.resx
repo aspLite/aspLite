@@ -1,7 +1,7 @@
 <p>Select multiple files:</p>
-<form method="post" enctype="multipart/form-data" id="uploadForm" action="demo.asp?e=uploadfile"> 
+<form method="post" enctype="multipart/form-data" id="multiUpload" action="demo.asp?e=uploadfile"> 
  <div class="custom-file">
-    <input type="file" class="custom-file-input" name="files" id="files" multiple onchange="$('#uploadForm').submit()">
+    <input type="file" class="custom-file-input" name="files" id="files" multiple onchange="$('#multiUpload').submit()">
     <label class="custom-file-label" for="customFile">Choose files</label>
   </div>
 </form>

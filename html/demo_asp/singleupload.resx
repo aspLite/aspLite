@@ -1,7 +1,7 @@
 <p>Select a single file:</p>
-<form method="post" enctype="multipart/form-data" id="uploadForm" action="demo.asp?e=uploadfile"> 
+<form method="post" enctype="multipart/form-data" id="singleUpload" action="demo.asp?e=uploadfile"> 
   <div class="custom-file">
-    <input type="file" class="custom-file-input" name="customFile" id="customFile" onchange="$('#uploadForm').submit()">
+    <input type="file" class="custom-file-input" name="customFile" id="customFile" onchange="$('#singleUpload').submit()">
     <label class="custom-file-label" for="customFile">Choose file</label>
   </div>
 </form>
