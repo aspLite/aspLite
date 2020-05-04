@@ -322,7 +322,7 @@
 						<div class="card-body">				
 							
 							<p class="card-text">	
-							Offer downloads, without exposing filenames to the visitor. aspLite's functions dumpBinary() takes care.							
+							Offer downloads, without exposing filenames to the visitor. aspLite's function dumpBinary() takes care.							
 								<ul>
 									<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>
 									<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>		
