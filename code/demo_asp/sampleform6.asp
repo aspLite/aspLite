@@ -7,6 +7,9 @@ form.listenTo "e","sampleform6"
 form.targetDiv="sampleform6"
 form.id="multiButtons"
 
+'feedback
+dim feedback : set feedback=form.field
+
 'form-submitted
 if form.postback then
 
@@ -15,9 +18,6 @@ if form.postback then
 	'here you would typically perform additional validations, return error messages, and finally save to a database (or delete)
 	'below I add a feedback message as a comment to the form
 		
-	'feedback
-	dim feedback : set feedback=form.field
-	
 	select case aspl.getRequest("mb_aspFormAction")
 	
 		case "save"
@@ -54,6 +54,16 @@ if form.postback then
 	'rather than return the complete form in case of a successful submit, 
 	'you can also build it here already. This will stop further exection
 	'form.build()
+
+else
+
+	'form is not in "postback"-state yet.
+	'let's reuse the feedback field to return an initial intro message
+
+	feedback.add "html","Form is not yet submitted"
+	feedback.add "type","comment"
+	feedback.add "tag","div"
+	feedback.add "class","alert alert-dark"
 
 end if	
 
