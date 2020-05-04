@@ -226,12 +226,11 @@
 							
 							<div class="card-text">						
 								<ul>						
-									<li><a href="demo.asp?e=jszip">create ZIP file</a><br><small class="text-muted">see code/demo_asp/jszip.asp</small></li>	
-									<li><a href="demo.asp?e=jspdf">create PDF file</a><br><small class="text-muted">see code/demo_asp/jspdf.asp</small></li>	
+									<li><a href="demo.asp?e=jszip">create ZIP file</a><br><small class="text-muted">see code/demo_asp/jszip.asp</small></li>									
 									<li><a href="demo.asp?e=codemirror">CodeMirror</a><br><small class="text-muted">see code/demo_asp/codemirror.asp</small></li>												
 									<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>
 									<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>						
-									<li><a href="customurl">userfriendly urls?</a> - <small class="text-muted"><a target="_blank" href="https://asplite.com">not working?</a></small></li>
+									<li><a href="customurl">userfriendly urls?</a> - <small class="text-muted"><a target="_blank" href="https://asplite.com/index.html#custom404">not working?</a></small></li>
 									<li><a href="demo.asp?e=datatables">DataTables (jQuery plugin)</a><br><small class="text-muted">see html/demo_asp/datatables.resx</small></li>						
 									<li><a href="demo.asp?e=datatables_ssp">DataTables - ASP</a><br><small class="text-muted">see code/demo_asp/datatables_ssp.asp</small></li>						
 								</ul>			

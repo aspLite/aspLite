@@ -38,8 +38,6 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "uploadmulti" 				: body=aspL.loadText("html/demo_asp/multiupload.resx")		
 	
 	case "jszip" 					: aspL.exec("code/demo_asp/jszip.asp")	
-		
-	case "jspdf"					: body=aspL.loadText("html/demo_asp/jspdf.resx")
 	
 	case "codemirror" 				: aspL.exec("code/demo_asp/codemirror.asp")	
 		
