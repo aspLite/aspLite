@@ -1,7 +1,14 @@
 var aspAjaxUrl='demo.asp'
 
 $(document).ready(function(e) {	
-	$(".aspForm").each(function(){		
+
+	var spinner="<div class='text-center'>"
+	spinner+="<div class='spinner-border text-secondary spinner-border-sm' role='status'><span class='sr-only'>Loading...</span> </div>"
+	spinner+="</div>"
+	
+	$(".aspForm").each(function(){	
+		//initialize with spinners
+		$(this).html(spinner)	
 		aspAjax('GET',aspAjaxUrl,'e=' + $(this).attr('id'),aspForm)
 	})	
 })
@@ -43,8 +50,6 @@ function aspForm(data) {
 	for(var i = 0; i < data.aspForm.length; i++) {		
 	
 		var field=data.aspForm[i]
-		
-		//console.log(field.type + ' ' + field.name + ' ' + field.value)
 	
 		if (field.type=="hidden") {
 			$('<input>').attr({
