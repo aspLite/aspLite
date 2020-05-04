@@ -1,11 +1,10 @@
 <%
 'randomizer plugin example
-dim i, randomizer
-set randomizer=aspL.plugin("randomizer")
+dim i
 
 for i=1 to 10
 	'generate some random words with random lengths (10-20)
-	body=body & randomizer.randomtext(randomizer.randomnumber(5,10)) & " "
+	body=body & aspL.plugin("randomizer").randomtext(aspL.plugin("randomizer").randomnumber(5,10)) & " "
 next
 
 'formbuilder sample - built on bootstrap css

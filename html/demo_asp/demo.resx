@@ -318,7 +318,7 @@
 							aspLite ships with a classic ASP implementation of <a href="https://datatables.net/" target="_blank">DataTables</a> (jQuery plugin). DataTables turns any html table into a powerful widget with sorting, paging and searching functions.
 								<ul>
 									<li><a href="demo.asp?e=datatables">DataTables (Json)</a><br><small class="text-muted">see html/demo_asp/datatables.resx</small></li>						
-									<li><a href="demo.asp?e=datatables_ssp">DataTables - ASP</a><br><small class="text-muted">see code/demo_asp/datatables_ssp.asp</small></li>		
+									<li><a href="demo.asp?e=datatables_ssp">DataTables (ASP)</a><br><small class="text-muted">see code/demo_asp/datatables_ssp.asp</small></li>		
 								</ul>	
 							</p>						
 						</div>
