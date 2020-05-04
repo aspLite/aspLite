@@ -72,9 +72,10 @@
 				
 					<div class="card">
 						<div class="card-header">
-						Hello
+						Hello (Ajax form)
 						</div>
 						<div class="card-body">
+						<p class="card-text">Let's get this started. aspLite includes a powerful Ajax formbuilder. Not only you can create forms, you can also use it to simply bind ay html element. This first sample does both. Try it out!</p>
 							<div class="aspForm card-text" id="sampleform1"></div>
 							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform1.asp</small></p>						
 						</div>
@@ -113,16 +114,6 @@
 					
 					<div class="card">
 						<div class="card-header">
-							Hash functions
-						 </div>
-						<div class="card-body">						
-						<div class="aspForm card-text" id="sampleform7"></div>	
-						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform7.asp</small></p>	
-						</div>
-					</div>
-					
-					<div class="card">
-						<div class="card-header">
 							aspLite Ajax formbuilder
 						 </div>
 						<div class="card-body">						
@@ -140,6 +131,16 @@
 						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform6.asp</small></p>	
 						</div>
 					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							Hash functions
+						 </div>
+						<div class="card-body">						
+						<div class="aspForm card-text" id="sampleform7"></div>	
+						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform7.asp</small></p>	
+						</div>
+					</div>					
 					
 					<div class="card">
 						<div class="card-header">
@@ -200,6 +201,35 @@
 						<div class="aspForm card-text" id="sampleform13"></div>	
 						<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform13.asp</small></p>	
 						</div>
+					</div>
+					
+					
+					<div class="card">
+						<div class="card-header">
+							Custom 404 handling
+						 </div>
+						<div class="card-body">						
+						<p class="card-text">
+						aspLite comes with a function (pathinfo) that relies on custom 404 handling. If the examples below do not work, checkout the <a target="_blank" href="https://asplite.com/index.html#custom404">documentation</a>. It's all about the web.config file in the root of your site.
+						
+						 
+							<ul>
+								<li><a href="customurl">customurl</a></li>
+								<li><a href="about">about</a></li>
+								<li><a href="contact">contact</a></li>
+								<li><a href="getCode">getCode</a></li>
+								<li><a href="learn-more">learn-more</a></li>								
+							</ul>
+						
+						</p>	
+						<p class="card-text"><small class="text-muted">
+							/code/demo_asp/404handler.asp
+							<br>
+							/asplite/asplite.asp (pathinfo)
+							</small>
+						
+						</p>	
+						</div>
 					</div>	
 
 					<div class="card">
@@ -208,33 +238,65 @@
 						 </div>
 						<div class="card-body">
 							
-							<div class="card-text">						
+							<p class="card-text">
+							
+							aspLite comes with very useful file-upload samples, including a jQuery multifile uploader with built-in JavaScript image-resizing capabilities. Check it out!
+							
 								<ul>
 									<li><a href="demo.asp?e=upload">upload single file</a></li>
 									<li><a href="demo.asp?e=uploadmulti">upload multiple files</a></li>
-									<li><a class="aspAjax" href="#" id="uploadjquery">jQuery multiple file upload</a></li>
+									<li><a class="ajaxLink" href="#" id="uploadjquery">jQuery multiple file upload</a></li>
 								</ul>	
-							</div>						
+							</p>						
+						</div>
+					</div>	
+					
+					<div class="card">
+						<div class="card-header">
+							Binary downloads
+						 </div>
+						<div class="card-body">				
+							
+							<p class="card-text">	
+Sometimes it's useful to be able to offer downloads, without exposing file names (and urls) to the visitor. aspLite's functions dumpBinary() takes care of that.							
+								<ul>
+									<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>
+									<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>		
+								</ul>	
+							</p>						
+						</div>
+					</div>	
+					
+					
+					<div class="card">
+						<div class="card-header">
+							DataTables - jQuery plugin
+						 </div>
+						<div class="card-body">
+							
+							<p class="card-text">	
+							aspLite ships with a classic ASP implementation of <a href="https://datatables.net/" target="_blank">DataTables</a> jQuery plugin. DataTables turns any html table into a powerful widget with sorting, paging and searching functions.
+								<ul>
+									<li><a href="demo.asp?e=datatables">DataTables (Json)</a><br><small class="text-muted">see html/demo_asp/datatables.resx</small></li>						
+									<li><a href="demo.asp?e=datatables_ssp">DataTables - ASP</a><br><small class="text-muted">see code/demo_asp/datatables_ssp.asp</small></li>		
+								</ul>	
+							</p>						
 						</div>
 					</div>	
 
 					<div class="card">
 						<div class="card-header">
-							Utilities
+							Other utilities
 						 </div>
 						<div class="card-body">
 							
-							<div class="card-text">						
+							<p class="card-text">						
 								<ul>						
 									<li><a href="demo.asp?e=jszip">create ZIP file</a><br><small class="text-muted">see code/demo_asp/jszip.asp</small></li>									
 									<li><a href="demo.asp?e=codemirror">CodeMirror</a><br><small class="text-muted">see code/demo_asp/codemirror.asp</small></li>												
-									<li><a href="demo.asp?e=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>
-									<li><a href="demo.asp?e=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see code/demo.handler.asp</small></li>						
-									<li><a href="customurl">userfriendly urls?</a> - <small class="text-muted"><a target="_blank" href="https://asplite.com/index.html#custom404">not working?</a></small></li>
-									<li><a href="demo.asp?e=datatables">DataTables (jQuery plugin)</a><br><small class="text-muted">see html/demo_asp/datatables.resx</small></li>						
-									<li><a href="demo.asp?e=datatables_ssp">DataTables - ASP</a><br><small class="text-muted">see code/demo_asp/datatables_ssp.asp</small></li>						
+																			
 								</ul>			
-							</div>						
+							</p>						
 						</div>
 					</div>	
 					

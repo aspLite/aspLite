@@ -6,14 +6,13 @@
 
 <!-- also check /code/demo_asp/codemirror.asp -->
 <form action="demo.asp" method="post">
-<input type="hidden" name="e" value="codemirror" />
-<input type="hidden" name="saveCodemirror" value="true" />
+	<input type="hidden" name="e" value="codemirror" />
+	<input type="hidden" name="saveCodemirror" value="true" />
 
-<textarea class="form-control" name="codemirror" id="codemirror">[somecode]</textarea>
-<br>
-<input type=submit value=Save class="btn btn-success" />
-[savesuccess]
-
+	<textarea class="form-control" name="codemirror" id="codemirror">[somecode]</textarea>
+	<br>
+	<input type=submit value=Save class="btn btn-success" />
+	[savesuccess]
 </form>
 <style>
 .CodeMirror {

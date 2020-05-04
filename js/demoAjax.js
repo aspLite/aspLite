@@ -6,7 +6,7 @@ $(document).ready(function(e) {
 	})	
 })
 
-$('.aspAjax').click(function(e) {
+$('.ajaxLink').click(function(e) {
 	e.preventDefault()
 	aspAjax('GET',aspAjaxUrl,'e=' + this.id,aspAjaxSuccess)	
 	scroll()		
@@ -23,7 +23,7 @@ function aspAjaxSuccess(data) {
 }
 
 function scroll() {
-	$('html,body').animate({scrollTop: $("#ajax")}, 'slow')	
+	$('html,body').animate({scrollTop: $("#ajax").offset()}, 'slow')	
 }
     
 function aspForm(data) {	
