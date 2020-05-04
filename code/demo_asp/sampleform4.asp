@@ -11,9 +11,14 @@ dim intro : set intro=form.field
 intro.add "type","comment"
 intro.add "html","<a target=""_blank"" href=""https://ckeditor.com/ckeditor-4/"">https://ckeditor.com/ckeditor-4/</a>"
 intro.add "tag","div"
+
+dim defaultValue
+defaultValue="<p><strong>CKEditor4: Smart WYSIWYG HTML editor</strong></p><p>Approved by millions. Fully customizable. Number #1 rich text editor with the most features.</p>"
 	
 'form-submitted
 if form.postback then
+
+	defaultValue=aspl.getRequest("mNotes1")
 	
 	'feedback
 	dim feedback : set feedback=form.field
@@ -33,7 +38,7 @@ dim mNotes1 : set mNotes1=form.field
 mNotes1.add "type","textarea"
 mNotes1.add "name","mNotes1"
 mNotes1.add "id","mNotes1"
-mNotes1.add "value",aspl.getRequest("mNotes1")
+mNotes1.add "value",defaultValue
 
 dim scriptSrc : set scriptSrc=form.field
 scriptSrc.add "type","script"

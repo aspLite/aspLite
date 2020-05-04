@@ -28,9 +28,9 @@ if not aspL.isEmpty(returnJson.strSearch) then
 		
 	'in this case I would like to search on numeric/date fields as well
 	'but first check if strSearch is numeric with aspL.isNumber	
-	if aspL.isNumber(returnJson.strSearch) then
-		'this would only work in Access (the date functions)		
+	if aspL.isNumber(returnJson.strSearch) then			
 		strWhere=strWhere & " or contact.iNumber="& returnJson.strSearch
+		'this would only work in Access (the date functions)	
 		strWhere=strWhere & " or year(contact.dDate)="& returnJson.strSearch
 		strWhere=strWhere & " or month(contact.dDate)="& returnJson.strSearch
 		strWhere=strWhere & " or day(contact.dDate)="& returnJson.strSearch		

@@ -2,21 +2,16 @@ var aspAjaxUrl='demo.asp'
 
 $(document).ready(function(e) {	
 
+	//bootstrap spinner
 	var spinner="<div class='text-center'>"
 	spinner+="<div class='spinner-border text-secondary spinner-border-sm' role='status'><span class='sr-only'>Loading...</span> </div>"
 	spinner+="</div>"
 	
 	$(".aspForm").each(function(){	
-		//initialize with spinners
+		//initialize with bootstrap spinners
 		$(this).html(spinner)	
 		aspAjax('GET',aspAjaxUrl,'e=' + $(this).attr('id'),aspForm)
 	})	
-})
-
-$('.ajaxLink').click(function(e) {
-	e.preventDefault()
-	aspAjax('GET',aspAjaxUrl,'e=' + this.id,aspAjaxSuccess)	
-	scroll()		
 })
 
 $('.ajaxForm').submit(function(e) {	
@@ -36,15 +31,15 @@ function scroll() {
 function aspForm(data) {	
 			
 	//avoid double id's
-	if (data.id!="") {
+	if (typeof data.id != 'undefined') {
 		$('#' + data.id ).remove()	
 	}	
 
 	var aspForm=$('<form>').attr({
-		"onsubmit":"aspAjax('POST','',$(this).serialize(),aspForm);return false;",
-		"style":"margin: 0;padding: 0",
-		"id":data.id,
-		"method":"post"
+		"onsubmit"	: data.onSubmit,
+		"style"		: "margin: 0;padding: 0",
+		"id"		: data.id,
+		"method"	: "post"
 		})
 
 	for(var i = 0; i < data.aspForm.length; i++) {		
@@ -72,7 +67,7 @@ function aspForm(data) {
 		}	
 		
 		if (field.type=="script") {
-			if (field.text!="") {
+			if (typeof field.text != 'undefined') {
 				$('<script>').text(field.text).appendTo(aspForm)
 			}
 			else
@@ -85,7 +80,7 @@ function aspForm(data) {
 			continue			
 		}
 	
-		if (field.container!="") {
+		if (typeof field.container != 'undefined') {
 			var formgroup=$('<' + field.container + '>').attr({
 				"class": field.containerclass,
 				"style": field.containerstyle				
@@ -99,7 +94,7 @@ function aspForm(data) {
 				}).appendTo(aspForm)
 		}
 		
-		if (field.label!=''){
+		if (typeof field.label != 'undefined') {		
 			
 			var label=$('<label>').html(field.label).attr({ 
 				"for": field.id		
@@ -128,57 +123,29 @@ function aspForm(data) {
 				"class"		: field.class,
 				"style"		: field.style,
 				"onchange"	: field.onchange,				
-				"required"	: field.required					
+				"required"	: field.required,
+				"multiple"	: field.multiple,
+				"size"		: field.size
 			}).val(field.value).appendTo(formgroup)	
 	
 			//add the options
-			var options=field.options
-						
-			if($.isArray(options)){
+			var options=field.options						
 			
-				//treat as array				
-				for(var j = 0; j < options.length; j++) {
+			//treat as JSON object (vbscript dictionary)
+			for (var key in options) {						
 					
-					if ($.isArray(options[j])){
-						//array of arrays
-				
-						$('<option>').attr({
-							
-							"value":options[j][0]
-							
-						}).text(options[j][1]).appendTo(selectBox)
-					}
-					else
-						//array of objects - keyV and pairV expected!
-					{
-						$('<option>').attr({
-						
-						"value":options[j].keyV
-						
-						}).text(options[j].pairV).appendTo(selectBox)		
-						
-					}
-				}				
-			}
-				
-			else
-				
-			{		
-				//treat as JSON object (vbscript dictionary)
-				for (var key in options) {						
-						
-					$('<option>').attr({
-						
-						"value":key
-						
-					}).text(options[key]).appendTo(selectBox)						
+				$('<option>').attr({
 					
-				}				
+					"value":key
+					
+				}).text(options[key]).appendTo(selectBox)						
+					
 			}
 
-			//selected value
-			selectBox.val(field.value)
-			
+			//selected value - array of selected values
+			if (typeof field.value != 'undefined') {
+				selectBox.val(field.value.split(', '))
+			}			
 			continue
 		}	
 		
@@ -187,30 +154,75 @@ function aspForm(data) {
 			//add the options
 			var options=field.options
 			
-			var list=$('<ul>').attr({
-				
-				"style":"list-style:none"
-				
-			});
+			var list=$('<ul>').attr({				
+				"style":"list-style:none"				
+			});			
 			
-			for(var j = 0; j < options.length; j++) {	
+			//treat as JSON object (vbscript dictionary)		
+			
+			for (var key in options) {	
 				
 				var item=$('<li>')
 				
 				var radioB=$('<input>').attr({					
-					"type"	: "radio",
-					"name"	: field.name,
-					"class"	: field.class,
-					"style"	: field.style,
-					"value"	: options[j][0]					
-				}).prop("checked", (field.value==options[j][0])).appendTo(item)
+					"type"		: "radio",
+					"name"		: field.name,
+					"class"		: field.class,
+					"style"		: field.style,
+					"required"	: field.required,
+					"value"		: key				
+				}).prop("checked", (field.value==key)).appendTo(item)
 				
 				//add label
-				$('<span>').html(" " + options[j][1]).appendTo(item)	
+				$('<span>').html(" " + options[key]).appendTo(item)	
 				
 				item.appendTo(list)
 				
 			}
+			
+			list.appendTo(formgroup)
+			
+			continue
+		}		
+		
+		if (field.type=="checkbox") {	
+			
+			//add the options
+			var options=field.options
+			
+			var list=$('<ul>').attr({				
+				"style":"list-style:none"				
+			});
+			
+			//treat as JSON object (vbscript dictionary)
+			
+			for (var key in options) {	
+				
+				var item=$('<li>')
+				
+				var radioB=$('<input>').attr({					
+					"type"	: "checkbox",
+					"name"	: field.name,
+					"class"	: field.class,
+					"style"	: field.style,
+					"required"	: field.required,
+					"value"	: key				
+				}).appendTo(item)
+				
+				if (typeof field.value != 'undefined') {						
+					radioB.prop("checked", $.inArray(key.toString(),field.value.split(', '))>=0)
+				}				
+				
+				//add label
+				$('<span>').html(" " + options[key]).appendTo(item)	
+				
+				item.appendTo(list)
+				
+			}
+			
+			if (typeof field.value != 'undefined') {
+				list.val(field.value.split(', '))
+			}	
 			
 			list.appendTo(formgroup)
 			

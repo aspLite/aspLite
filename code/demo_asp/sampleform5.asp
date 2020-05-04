@@ -72,55 +72,47 @@ aspyears.add "name","aspyears"
 aspyears.add "class","form-control"
 
 '##########################################################################################
+dim reasons: set reasons=aspl.dict
+reasons.add 0,"I don't like ASP.NET"
+reasons.add 1,"I simply prefer ASP"
+reasons.add 2,"Don't know"
 
 dim yesno : set yesno=form.field
-yesno.add "label","Are you still coding ASP?"
+yesno.add "label","Why are you still developing in ASP/VBScript? (multiple selections)"
+yesno.add "multiple",true
+yesno.add "size",3
 yesno.add "type","select"
 yesno.add "id","yesno"
 yesno.add "name","yesno"
 yesno.add "class","form-control"
-'in case of multiple options (like selectboxes, radiobuttons, etc), use an array of arrays
-yesno.add "options",Array(Array("","Please select"),Array("true","Yes"), Array("false","No"), Array("dunno","Don't know"))
+yesno.add "options",reasons 'VBSscript dictionary!
 
 '##########################################################################################
+
+dim activities : set activities=aspl.dict
+activities.add 0,"web design"
+activities.add 1,"web hosting"
+activities.add 2,"web development"
+
+dim checkbox : set checkbox=form.field
+checkbox.add "label","I am active in"
+checkbox.add "type","checkbox"
+checkbox.add "name","checkbox"
+checkbox.add "options",activities 'VBSscript dictionary!
+
+'##########################################################################################
+
+dim radios : set radios=aspl.dict
+radios.add 0,"Beginner"
+radios.add 1,"Intermediate"
+radios.add 2,"Advanced"
 
 dim radio : set radio=form.field
 radio.add "label","How would you rate yourself as a developer?"
 radio.add "type","radio"
 radio.add "id","radio"
 radio.add "name","radio"
-'in case of multiple options (like selectboxes, radiobuttons, etc), use an array of arrays
-radio.add "options",Array(Array(0,"Beginner"),Array(1,"Intermediate"), Array(2,"Advanced"))
-
-'##########################################################################################
-'let's recycle the country list we already use in the DataTables sample
-
-aspl.exec("code/demo_asp/datatables/includes.asp")
-dim countrylist : set countrylist=new cls_countrylist
-set countrylist=countrylist.list
-
-dim countries : set countries=form.field
-countries.add "label","Where do you live?"
-countries.add "type","select"
-countries.add "id","countries"
-countries.add "name","countries"
-countries.add "class","form-control"
-'VBScript dictionary (key: (option)value, pair: (option)text)
-countries.add "options",countrylist 
-
-'##########################################################################################
-'let's add a recordset directly as well
-'always alias to keyV & pairV
-'ADO recordset rs(0): keyV | rs(1): pairV
-set rs=db.execute("select iId as keyV, sName as pairV from person order by sName asc")
-
-dim persons : set persons=form.field
-persons.add "label","Who is your favorite?"
-persons.add "type","select"
-persons.add "id","persons"
-persons.add "name","persons"
-persons.add "class","form-control"
-persons.add "options",rs
+radio.add "options",radios 'VBSscript dictionary!
 
 '##########################################################################################
 

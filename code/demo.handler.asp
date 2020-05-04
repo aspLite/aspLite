@@ -71,9 +71,9 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "sampleform13" 			: aspL.exec("code/demo_asp/sampleform13.asp")	
 	
+	case "sampleform14" 			: aspL.exec("code/demo_asp/sampleform14.asp")	
+	
 	case "postdtt" 					: aspL.exec("code/demo_asp/postdtt.asp")	
-		
-	case "uploadjquery" 			: json.dump(aspL.loadText("html/demo_asp/uploadjquery.resx"))
 	
 	case "uploadfilejquery" 		: aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
 		

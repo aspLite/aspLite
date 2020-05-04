@@ -38,7 +38,7 @@ score.add "type","select"
 score.add "name","score"
 score.add "id","score"
 score.add "class","form-control"
-score.add "options",stars
+score.add "options",stars 'VBSscript dictionary!
 score.add "onchange","$('#" & form.id & "').submit();"
 
 '##########################################################################################

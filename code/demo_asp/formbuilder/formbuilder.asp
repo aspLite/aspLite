@@ -12,7 +12,7 @@
 ' dict.add "required",true/false
 ' dict.add "style","color:Red"
 ' dict.add "value", the default value for a field
-' dict.add "options",array of arrays!! (or a VBScript dictionary/ADO recordset in case of selectboxes)
+' dict.add "options", VBScript dictionary
 
 'The list of formfields is returned as a Json array in "build()", and turned
 'into an html form in /js/demoAjax.js. The built-in html5 input-types text, email, date, number and email are used.
@@ -22,13 +22,14 @@
 class cls_formbuilder
 
 	private allFields, counter, eventListener
-	public postback,targetDiv,offSet,doScroll,id
+	public postback,targetDiv,offSet,doScroll,id,onSubmit
 	
 	private sub class_initialize()
 	
 		set allFields		= aspl.dict
 		set eventListener	= aspl.dict
 		eventListener.add "type","hidden"
+		onSubmit			= "aspAjax('POST','',$(this).serialize(),aspForm);return false;"
 		
 		counter				= 0	
 		offSet				= 150
@@ -100,6 +101,7 @@ class cls_formbuilder
 		end if		
 		
 		JsonHeader = JsonHeader & """id"":""" & json.escape(id) & ""","
+		JsonHeader = JsonHeader & """onSubmit"":""" & json.escape(onSubmit) & ""","
 				  
 		'removing from generated JSON initial bracket { and concatenating all together.
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)

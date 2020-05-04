@@ -75,7 +75,7 @@
 						Hello (Ajax form)
 						</div>
 						<div class="card-body">
-						<p class="card-text">Let's get this started. aspLite includes a powerful Ajax formbuilder. Not only you can create forms, you can also use it to simply bind any html element. This first sample does both. Try it out!</p>
+						<p class="card-text">Let's get this started. This demo includes a powerful Ajax formbuilder. Not only you can create forms, you can also use it to simply bind any html element. This first sample does both. Try it out!</p>
 							<div class="aspForm card-text" id="sampleform1"></div>
 							<hr>
 							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform1.asp</small></p>						
@@ -105,6 +105,25 @@
 						</div>
 						
 					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							jQuery multifile uploader
+						 </div>
+						<div class="card-body">							
+							<div class="aspForm card-text" id="sampleform14"></div>	
+							<hr>
+							<p class="card-text">
+								<small class="text-muted">
+								/code/demo_asp/sampleform14.asp
+								<br>							
+								/html/demo_asp/uploadjquery.resx
+								<br>
+								/code/demo_asp/uploadfile.asp
+								</small>						
+							</p>	
+						</div>
+					</div>
 
 					<div class="card">
 						<div class="card-header">
@@ -119,14 +138,15 @@
 					
 					<div class="card">
 						<div class="card-header">
-							aspLite Ajax formbuilder
+							Sample form
 						 </div>
 						<div class="card-body">						
 							<div class="aspForm card-text" id="sampleform5"></div>
 							<hr>
 							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform5.asp</small></p>	
 						</div>
-					</div>
+					</div>				
+					
 					
 					<div class="card">
 						<div class="card-header">
@@ -138,6 +158,22 @@
 							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform6.asp</small></p>	
 						</div>
 					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							DataTables - jQuery plugin
+						 </div>
+						<div class="card-body">
+							
+							<p class="card-text">	
+							A classic ASP implementation of <a href="https://datatables.net/" target="_blank">DataTables</a> (jQuery plugin). DataTables turns any html table into a powerful widget with sorting, paging and searching functions.
+								<ul>
+									<li><a href="demo.asp?e=datatables">DataTables (Json)</a><br><small class="text-muted">see html/demo_asp/datatables.resx</small></li>						
+									<li><a href="demo.asp?e=datatables_ssp">DataTables (ASP)</a><br><small class="text-muted">see code/demo_asp/datatables_ssp.asp</small></li>		
+								</ul>	
+							</p>						
+						</div>
+					</div>	
 					
 					<div class="card">
 						<div class="card-header">
@@ -153,7 +189,7 @@
 					
 					<div class="card">
 						<div class="card-header">
-							Table
+							Table with data
 						 </div>
 						<div class="card-body">	
 							<p class="card-text">Basic database (Access) plugin example</p>
@@ -219,8 +255,7 @@
 							<hr>
 							<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform13.asp</small></p>	
 						</div>
-					</div>
-					
+					</div>					
 					
 					<div class="card">
 						<div class="card-header">
@@ -253,41 +288,30 @@
 						<div class="card-header">
 							Binary uploads
 						 </div>
-						<div class="card-body">
+						<div class="card-body">							
 							
-							<p class="card-text">							
-							aspLite comes with various file-upload samples, including a jQuery multifile uploader with built-in JavaScript image-resizing capabilities. Check it out!
-							
-								<ul>
-									<li><a href="demo.asp?e=upload">upload single file</a>
-										<p class="card-text">
-											<small class="text-muted">
-											/html/demo_asp/singleupload.resx
-											<br>
-											/code/demo_asp/uploadfile.asp
-											</small>							
-										</p>									
-									</li>
-									<li><a href="demo.asp?e=uploadmulti">upload multiple files</a>
-										<p class="card-text">
-											<small class="text-muted">
-											/html/demo_asp/multiupload.resx
-											<br>
-											/code/demo_asp/uploadfile.asp
-											</small>							
-										</p>									
-									</li>
-									<li><a class="ajaxLink" href="#" id="uploadjquery">jQuery multiple file upload</a>
-										<p class="card-text">
-											<small class="text-muted">
-											/html/demo_asp/uploadjquery.resx
-											<br>
-											/code/demo_asp/uploadfile.asp
-											</small>							
-										</p>									
-									</li>
-								</ul>	
-							</p>						
+							<ul>
+								<li><a href="demo.asp?e=upload">upload single file</a>
+									<p class="card-text">
+										<small class="text-muted">
+										/html/demo_asp/singleupload.resx
+										<br>
+										/code/demo_asp/uploadfile.asp
+										</small>							
+									</p>									
+								</li>
+								<li><a href="demo.asp?e=uploadmulti">upload multiple files</a>
+									<p class="card-text">
+										<small class="text-muted">
+										/html/demo_asp/multiupload.resx
+										<br>
+										/code/demo_asp/uploadfile.asp
+										</small>							
+									</p>									
+								</li>
+
+							</ul>	
+												
 						</div>
 					</div>	
 					
@@ -305,24 +329,8 @@
 								</ul>	
 							</p>						
 						</div>
-					</div>	
+					</div>				
 					
-					
-					<div class="card">
-						<div class="card-header">
-							DataTables - jQuery plugin
-						 </div>
-						<div class="card-body">
-							
-							<p class="card-text">	
-							aspLite ships with a classic ASP implementation of <a href="https://datatables.net/" target="_blank">DataTables</a> (jQuery plugin). DataTables turns any html table into a powerful widget with sorting, paging and searching functions.
-								<ul>
-									<li><a href="demo.asp?e=datatables">DataTables (Json)</a><br><small class="text-muted">see html/demo_asp/datatables.resx</small></li>						
-									<li><a href="demo.asp?e=datatables_ssp">DataTables (ASP)</a><br><small class="text-muted">see code/demo_asp/datatables_ssp.asp</small></li>		
-								</ul>	
-							</p>						
-						</div>
-					</div>	
 
 					<div class="card">
 						<div class="card-header">

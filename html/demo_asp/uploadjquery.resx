@@ -1,36 +1,30 @@
-<p>Select multiple files:</p>
 
-<form id="uploadForm"> 
- 
-	<div class="form-group">
-		<div class="custom-file">
-		
-		<input type="file" class="custom-file-input" name="files" id="files" multiple onchange="$('#uploadForm').submit();return false;">
-		<label class="custom-file-label" id="customFileLabel" for="customFile">Choose or drop files here</label>
+<div class="form-group">
+	<div class="custom-file">
+	
+	<input type="file" class="custom-file-input" name="files" id="files" multiple onchange="$('#uploadForm').submit();return false;">
+	<label class="custom-file-label" id="customFileLabel" for="customFile">Choose or drop files here</label>
 
-		</div>
 	</div>
+</div>
+
+<div style="display:none" id="alert" class="alert alert-primary" role="alert">
 	
-	<div style="display:none" id="alert" class="alert alert-primary" role="alert">
-		
-		
-		<div id="loading" class="spinner-border" style="float:right;width: 1.5rem; height: 1.5rem;" role="status">
-		  <span class="sr-only">Loading...</span>		  
-		</div>			
-		<div id="uploadFBS"></div>
-		<div id="uploadFB" style="font-size:0.8em"></div>		
 	
-	</div>
-  
-</form>
+	<div id="loading" class="spinner-border" style="float:right;width: 1.5rem; height: 1.5rem;" role="status">
+	  <span class="sr-only">Loading...</span>		  
+	</div>			
+	<div id="uploadFBS"></div>
+	<div id="uploadFB" style="font-size:0.8em"></div>		
+
+</div>
 
 <div class="alert alert-warning" role="alert">
- Image files are resized to 1200px before uploading (optional, see resizeImagesToPx)
+ Images are resized to 1200px before uploading (optional, see resizeImagesToPx)
 </div>
 
 <div class="alert alert-danger" role="alert">
-  Security alert: this script uploads the selected file(s) in the /uploads folder. However,
-  for security reasons, they are deleted right after. Check /code/demo_asp/uploadfile.asp.
+  Security alert: this script uploads the selected file(s) in the /uploads folder. For security reasons, they are deleted right after. Check /code/demo_asp/uploadfile.asp.
 </div>
 
 <script>
