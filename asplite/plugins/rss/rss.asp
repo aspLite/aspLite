@@ -60,6 +60,9 @@ class cls_asplite_rss
 			'fix missing pubdate
 			templateItem=replace(templateItem,"[PUBDATE]","",1,-1,1)
 			
+			'fixing potential SSL-issues
+			templateItem=replace(templateItem,"src=""http://","src=""//",1,-1,1)		
+			
 			read=read & templateItem
 			
 			if aspL.convertNmbr(breakpoint)<>0 then				
