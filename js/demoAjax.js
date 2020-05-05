@@ -85,7 +85,7 @@ function aspForm(data) {
 		
 		if (field.type=="style") {
 			var style=$('<style>').attr({
-				"type"	: "text/css",
+				"type"	: "text/css"
 			}).html(field.text).appendTo('head')			
 			continue
 		}
