@@ -2,8 +2,8 @@
 'This is a prototype, a sample application facilitated by aspLite
 
 ' set dict=aspL.dict
-' dict.add "type","XXX" - MANDATORY (possible values: text, email, date, number, submit, comment, select, radio, textarea)
-' dict.add "name","firstname" - MANDATORY (except for comments)
+' dict.add "type","XXX" - MANDATORY (possible values: text, email, date, number, submit, element, select, radio, textarea, script, button)
+' dict.add "name","firstname"
 ' dict.add "html", "<strong>regular html</strong>", only used  for comments
 ' dict.add "label","First name:"
 ' dict.add "id","fname"
