@@ -13,7 +13,7 @@ form.id="randomizer"
 	
 'result
 dim feedback : set feedback=form.field
-feedback.add "type","comment"
+feedback.add "type","element"
 feedback.add "html",body
 feedback.add "tag","div"
 

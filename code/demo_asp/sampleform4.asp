@@ -6,7 +6,7 @@ form.targetDiv="sampleform4"
 form.id="ckeditor4"
 
 dim intro : set intro=form.field
-intro.add "type","comment"
+intro.add "type","element"
 intro.add "html","<a target=""_blank"" href=""https://ckeditor.com/ckeditor-4/"">https://ckeditor.com/ckeditor-4/</a>"
 intro.add "tag","p"
 
@@ -20,7 +20,7 @@ if form.postback then
 	
 	'feedback
 	dim feedback : set feedback=form.field
-	feedback.add "type","comment"
+	feedback.add "type","element"
 	feedback.add "html","Saved!"
 	feedback.add "tag","div"
 	feedback.add "class","alert alert-info"		

@@ -12,7 +12,7 @@ if form.postback then
 	
 	'feedback
 	dim feedback : set feedback=form.field
-	feedback.add "type","comment"
+	feedback.add "type","element"
 	feedback.add "html","Hello " & aspL.sanitize(aspL.getRequest("yourname")) & "!"
 	feedback.add "tag","div"
 	feedback.add "class","alert alert-warning"	

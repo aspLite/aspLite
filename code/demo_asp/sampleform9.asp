@@ -9,7 +9,7 @@ form.id="helloworld"
 	
 'result
 dim feedback : set feedback=form.field
-feedback.add "type","comment"
+feedback.add "type","element"
 feedback.add "html",helloworld.hw()
 feedback.add "tag","div"
 

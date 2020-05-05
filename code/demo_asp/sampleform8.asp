@@ -33,7 +33,7 @@ form.id="datatable"
 	
 'result
 dim feedback : set feedback=form.field
-feedback.add "type","comment"
+feedback.add "type","element"
 feedback.add "html","<table class=""table table-striped""><tbody>" & datatable & "</tbody></table>"
 feedback.add "tag","div"
 

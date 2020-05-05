@@ -88,8 +88,10 @@ function aspForm(data) {
 
 		if (field.type=="button") {
 			$('<button>').attr({
-				"id"	: field.id,
-				"class"	: field.class			
+				"id"		: field.id,
+				"class"		: field.class,
+				"style"		: field.style,
+				"onclick"	: field.onclick				
 			}).html(field.html).appendTo(aspForm)			
 			continue
 		}			
@@ -101,7 +103,7 @@ function aspForm(data) {
 			continue
 		}
 		
-		if (field.type=="comment") {			
+		if (field.type=="element") {			
 			$('<' + field.tag + '>').html(field.html).attr({
 				"class": field.class,
 				"id": field.id,	

@@ -20,7 +20,7 @@ form.id="jpg"
 	
 'result
 dim feedback : set feedback=form.field
-feedback.add "type","comment"
+feedback.add "type","element"
 feedback.add "html",output
 feedback.add "tag","div"
 

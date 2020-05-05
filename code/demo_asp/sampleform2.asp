@@ -13,7 +13,7 @@ if form.postback then
 	'feedback
 	dim feedback : set feedback=form.field
 	feedback.add "html","Thanks so much for your <strong>" & aspL.convertNmbr(aspL.getRequest("score")) & " stars</strong>!"
-	feedback.add "type","comment"
+	feedback.add "type","element"
 	feedback.add "tag","div"
 	
 	'you can build it here already. This will stop further exection	

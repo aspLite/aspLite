@@ -15,13 +15,13 @@ if form.postback then
 	
 	'feedback
 	dim md5 : set md5=form.field
-	md5.add "type","comment"
+	md5.add "type","element"
 	md5.add "html","<strong>MD5 hash:</strong><textarea rows=""3"" class=""form-control"">" & aspL.plugin("md5").md5(hash,32) & "</textarea>"
 	md5.add "tag","div"
 	md5.add "class","alert alert-dark"	
 	
 	dim sha256 : set sha256=form.field
-	sha256.add "type","comment"
+	sha256.add "type","element"
 	sha256.add "html","<strong>sha256 hash:</strong><textarea rows=""3"" class=""form-control"">" & aspL.plugin("sha256").sha256(hash) & "</textarea>"
 	sha256.add "tag","div"
 	sha256.add "class","alert alert-dark"	

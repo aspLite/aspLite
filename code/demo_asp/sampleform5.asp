@@ -21,14 +21,14 @@ if form.postback then
 		case "save"
 		
 			feedback.add "html","Successfully saved!"
-			feedback.add "type","comment"
+			feedback.add "type","element"
 			feedback.add "tag","div"
 			feedback.add "class","alert alert-primary"			
 		
 		case "delete"
 	
 			feedback.add "html","Record Deleted!"
-			feedback.add "type","comment"
+			feedback.add "type","element"
 			feedback.add "tag","div"
 			feedback.add "class","alert alert-warning"
 			

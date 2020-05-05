@@ -8,7 +8,7 @@ form.targetDiv="sampleform3"
 form.id="dateForm"
 
 dim intro : set intro=form.field
-intro.add "type","comment"
+intro.add "type","element"
 intro.add "tag","p"
 intro.add "html","<a href=""https://jqueryui.com/datepicker/"" target=""_blank""> https://jqueryui.com/datepicker/</a>"
 
@@ -20,7 +20,7 @@ if form.postback then
 	'feedback
 	dim feedback : set feedback=form.field
 	feedback.add "html","<p>You selected <strong>" & FormatDateTime(dateFromPicker(aspl.getRequest("dp")),1) & "</strong> (vbLongDate)</p>"
-	feedback.add "type","comment"
+	feedback.add "type","element"
 	feedback.add "tag","div"
 	feedback.add "class","alert alert-success"
 

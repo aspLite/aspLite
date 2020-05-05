@@ -11,7 +11,7 @@ form.id="conditionalinclude"
 	
 'result
 dim feedback : set feedback=form.field
-feedback.add "type","comment"
+feedback.add "type","element"
 feedback.add "html",testObj.hello
 feedback.add "tag","div"
 

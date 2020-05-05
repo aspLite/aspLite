@@ -10,8 +10,8 @@ form.onSubmit="" '
 	
 'result
 dim feedback : set feedback=form.field
-feedback.add "type","comment"
-'this is one of a kind... The complete form is included as a comment, but that "comment" includes all the
+feedback.add "type","element"
+'this is one of a kind... The complete form is included as div-element, but that "element" includes all the
 'html and javascript needed for this jQuery uploader.... Kind of weird, but it works like a charm.
 feedback.add "html",aspL.loadText("html/demo_asp/uploadjquery.resx")
 feedback.add "tag","div"

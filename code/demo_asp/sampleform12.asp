@@ -8,7 +8,7 @@ form.id="cnn"
 	
 'result
 dim feedback : set feedback=form.field
-feedback.add "type","comment"
+feedback.add "type","element"
 feedback.add "html",rss.read("http://rss.cnn.com/rss/cnn_topstories.rss")
 feedback.add "tag","div"
 

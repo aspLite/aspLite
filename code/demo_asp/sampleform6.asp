@@ -21,28 +21,28 @@ if form.postback then
 		case "save"
 		
 			feedback.add "html","Save button was clicked"
-			feedback.add "type","comment"
+			feedback.add "type","element"
 			feedback.add "tag","div"
 			feedback.add "class","alert alert-primary"			
 		
 		case "delete"
 	
 			feedback.add "html","Delete button was clicked"
-			feedback.add "type","comment"
+			feedback.add "type","element"
 			feedback.add "tag","div"
 			feedback.add "class","alert alert-danger"
 			
 		case "link"
 	
 			feedback.add "html","Link button clicked"
-			feedback.add "type","comment"
+			feedback.add "type","element"
 			feedback.add "tag","div"
 			feedback.add "class","alert alert-info"
 		
 		case "button"
 	
 			feedback.add "html","Regular button clicked"
-			feedback.add "type","comment"
+			feedback.add "type","element"
 			feedback.add "tag","div"
 			feedback.add "class","alert alert-warning"
 
@@ -59,7 +59,7 @@ else
 	'let's reuse the feedback field to return an initial intro message
 
 	feedback.add "html","Form is not yet submitted"
-	feedback.add "type","comment"
+	feedback.add "type","element"
 	feedback.add "tag","div"
 	feedback.add "class","alert alert-dark"
 
@@ -92,7 +92,7 @@ delete.add "containerstyle","margin-left:10px"
 delete.add "onclick","$('#mb_aspFormAction').val('delete');"
 
 dim link : set link=form.field
-link.add "type","comment"
+link.add "type","element"
 link.add "tag","a"
 link.add "html","Link"
 link.add "style","margin-top:15px;margin-left:10px"
@@ -100,11 +100,10 @@ link.add "class","btn btn-info"
 link.add "onclick","$('#mb_aspFormAction').val('link');$('#multiButtons').submit();return false"
 
 dim button : set button=form.field
-button.add "type","comment"
-button.add "tag","button"
+button.add "type","button"
 button.add "html","Button"
-button.add "style","margin-top:15px;margin-left:10px"
 button.add "class","btn btn-warning"
+button.add "style","margin-top:15px;margin-left:10px"
 button.add "onclick","$('#mb_aspFormAction').val('button');$('#multiButtons').submit();return false;"
 
 '##########################################################################################
