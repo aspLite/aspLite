@@ -14,11 +14,7 @@ dim output
 output=replace(aspL.loadText("html/demo_asp/jpg.resx"),"[src]",jpg.src,1,-1,1)
 output=replace(output,"[caption]","square",1,-1,1)
 
-'formbuilder sample - built on bootstrap css
-aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
-
 dim form : set form=new cls_formbuilder
-form.listenTo "e","sampleform13"
 form.targetDiv="sampleform13"
 form.id="jpg"
 	

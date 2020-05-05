@@ -13,6 +13,10 @@ dim json : set json=aspL.plugin("json")
 'create a database object. It will also be used in the demo site all over the place.
 dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
 
+'we will use the formbuilder all over the place, so we load the formbuilder class in the namespace
+'this is very similar to an include directive.
+aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
+
 'here you can typically add some sort of eventhandler (what did the user do exactly?)
 'in general: if the code for dealing with the event is not large, include it here.
 'if the code is getting complex, use yet another codebehind file, like in the examples below (helloworld, mail, json, etc)
@@ -37,10 +41,6 @@ select case lcase(aspL.getRequest("e")) '"event"
 	
 	case "uploadmulti" 				: body=aspL.loadText("html/demo_asp/multiupload.resx")		
 	
-	case "jszip" 					: aspL.exec("code/demo_asp/jszip.asp")	
-	
-	case "codemirror" 				: aspL.exec("code/demo_asp/codemirror.asp")	
-		
 	'AJAX handlers
 	'json.dump is very often used for AJAX handlers. "dump" basically means "flush" and "stop"	
 	'All communication with the browser is done with JSON.
@@ -72,6 +72,10 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "sampleform13" 			: aspL.exec("code/demo_asp/sampleform13.asp")	
 	
 	case "sampleform14" 			: aspL.exec("code/demo_asp/sampleform14.asp")	
+	
+	case "sampleform15" 			: aspL.exec("code/demo_asp/sampleform15.asp")	
+	
+	case "sampleform16" 			: aspL.exec("code/demo_asp/sampleform16.asp")	
 	
 	case "postdtt" 					: aspL.exec("code/demo_asp/postdtt.asp")	
 	

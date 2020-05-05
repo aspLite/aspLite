@@ -18,7 +18,6 @@
 'into an html form in /js/demoAjax.js. The built-in html5 input-types text, email, date, number and email are used.
 'they are not supported in Safari... 
 
-
 class cls_formbuilder
 
 	private allFields, counter, eventListener
@@ -27,13 +26,11 @@ class cls_formbuilder
 	private sub class_initialize()
 	
 		set allFields		= aspl.dict
-		set eventListener	= aspl.dict
-		eventListener.add "type","hidden"
-		onSubmit			= "aspAjax('POST','',$(this).serialize(),aspForm);return false;"
-		
+		onSubmit			= "aspAjax('POST','',$(this).serialize(),aspForm);return false;"		
 		counter				= 0	
 		offSet				= 150
-		doScroll			= false 'true or false		
+		doScroll			= false 'true or false	
+		set eventListener = nothing
 		
 		'by default, a hidden field named "postback" is added to the collection of forms
 		dim postBackHF : set postBackHF=field
@@ -58,8 +55,10 @@ class cls_formbuilder
 		
 	end function
 	
-	public sub listenTo(eventName,eventValue)		
-		
+	public sub listenTo(eventName,eventValue)	
+
+		set eventListener	= aspl.dict
+		eventListener.add "type","hidden"		
 		eventListener.add "name",eventName
 		eventListener.add "value",eventValue		
 	
@@ -83,8 +82,12 @@ class cls_formbuilder
 			
 		next
 		
-		'pass the event listener
-		set arr(allFields.count)=eventListener
+		'pass the event listener (if any) - this will always be the last item in the dictionary of fields
+		if not eventListener is nothing then 
+			set arr(allFields.count)=eventListener
+		else
+			ReDim preserve arr(allFields.count-1)	
+		end if
 		
 		set allFields=nothing
 

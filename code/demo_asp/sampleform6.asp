@@ -1,6 +1,4 @@
 <%
-'formbuilder sample - built on bootstrap css
-aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
 
 dim form : set form=new cls_formbuilder
 form.listenTo "e","sampleform6"

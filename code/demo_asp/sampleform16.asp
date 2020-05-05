@@ -1,6 +1,4 @@
 <%
-pagetitle="jsZip Example"
-
 'this folder will be zipped by the browser!
 dim folderToZip
 folderToZip="uploads"
@@ -16,8 +14,9 @@ if not aspL.isEmpty(request.querystring("stream")) then
 	
 end if
 
-'load the template file first (including JavScript CDN)
-body=aspL.loadText("html/demo_asp/jszip.resx")	
+'load the javascript file first
+dim javascript
+javascript=aspL.loadText("html/demo_asp/jszip.resx")	
 
 'get filelist
 dim filelist,filelistArr,objSuperFolder,filepath
@@ -32,15 +31,41 @@ dim url
 for each url in filelist
 
 	if filelist(url)<>"blob" then
-		filelistArr=filelistArr & vbtab & "urls.push(['" & aspL.sanitizeJS(url) & "','demo.asp?e=jszip&stream=" & server.urlencode(url) &"'])" & vbcrlf
+		filelistArr=filelistArr & vbtab & "urls.push(['" & aspL.sanitizeJS(url) & "','demo.asp?e=sampleform16&stream=" & server.urlencode(url) &"'])" & vbcrlf
 	else
 		filelistArr=filelistArr & vbtab & "urls.push(['" & aspL.sanitizeJS(url) & "','" & aspL.sanitizeJS(url) & "'])" & vbcrlf
 	end if
 next
 
-body=replace(body,"[filelist]",filelistArr,1,-1,1)
+javascript=replace(javascript,"[filelist]",filelistArr,1,-1,1)
 
 set filelist=nothing
+
+dim form : set form=new cls_formbuilder
+form.targetDiv="sampleform16"
+form.id="jszipForm"
+form.onsubmit="return false"
+
+dim scriptSrc : set scriptSrc=form.field
+scriptSrc.add "type","script"
+scriptSrc.add "text", "$.getScript('js/jszip.min.js');$.getScript('js/filesaver.min.js')"
+
+dim scriptAsp : set scriptAsp=form.field
+scriptAsp.add "type","script"
+scriptAsp.add "text",javascript
+
+'##########################################################################################
+
+dim download : set download=form.field
+download.add "type","button"
+download.add "id","blob"
+download.add "html","click to download zip"
+download.add "class","btn btn-primary"
+
+'##########################################################################################
+
+form.build()
+
 
 Sub ShowSubFolders(fFolder)
 

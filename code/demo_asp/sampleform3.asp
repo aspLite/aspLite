@@ -1,8 +1,6 @@
 <%
-'formbuilder sample - built on bootstrap css
 'load some variables and functions (dateformat, dateFromPicker, dateToPicker)
 aspL.exec("code/demo_asp/functions.asp")
-aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
 
 dim form : set form=new cls_formbuilder
 form.listenTo "e","sampleform3"

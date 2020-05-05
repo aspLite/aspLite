@@ -5,11 +5,7 @@ aspL.exec("code/demo_asp/class.asp")
 dim testObj
 set testObj=new cls_test
 
-'formbuilder sample - built on bootstrap css
-aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
-
 dim form : set form=new cls_formbuilder
-form.listenTo "e","sampleform10"
 form.targetDiv="sampleform10"
 form.id="conditionalinclude"
 	

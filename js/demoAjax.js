@@ -31,20 +31,42 @@ function scroll() {
 function aspForm(data) {	
 			
 	//avoid double id's
-	if (typeof data.id != 'undefined') {
+	if (data.id != '') {
 		$('#' + data.id ).remove()	
+	}
+	else
+	{
+		//form.id is mandatory
+		console.log('ERROR: form ID is missing!')
+		enumerateJson(data)
 	}	
-
+	
 	var aspForm=$('<form>').attr({
 		"onsubmit"	: data.onSubmit,
 		"style"		: "margin: 0;padding: 0",
 		"id"		: data.id,
 		"method"	: "post"
 		})
+	
+	
+	if (data.targetDiv == '') {
+		
+		//form.targetDiv is mandatory
+		console.log('ERROR: form targetDiv is missing!')
+		enumerateJson(data)		
+	}
+		
+	//loop through the collection (aspForm) of fieldobjects 
 
 	for(var i = 0; i < data.aspForm.length; i++) {		
 	
 		var field=data.aspForm[i]
+		
+		if (typeof field.type == 'undefined') {
+			console.log('ERROR: field TYPE is missing!')
+			enumerateJson(field)
+			continue
+		}		
 	
 		if (field.type=="hidden") {
 			$('<input>').attr({
@@ -53,6 +75,29 @@ function aspForm(data) {
 				"id"	: field.id,				
 				"name"	: field.name				
 			}).appendTo(aspForm)			
+			continue
+		}
+		
+		if (field.type=="link") {
+			$('<link>').attr({
+				"rel"	: field.rel,
+				"href"	: field.href			
+			}).appendTo('head')			
+			continue
+		}
+
+		if (field.type=="button") {
+			$('<button>').attr({
+				"id"	: field.id,
+				"class"	: field.class			
+			}).html(field.html).appendTo(aspForm)			
+			continue
+		}			
+		
+		if (field.type=="style") {
+			var style=$('<style>').attr({
+				"type"	: "text/css",
+			}).html(field.text).appendTo('head')			
 			continue
 		}
 		
@@ -245,13 +290,23 @@ function aspForm(data) {
 		}).appendTo(formgroup)
 			
 	}	
-
+	
 	//set targetDiv (div containing the form)
-	$('#' + data.targetDiv).html(aspForm)
+		$('#' + data.targetDiv).html(aspForm)
 	
 	//scroll to the top of the containing div (offset is used to correct offset from the top of the page, if needed
 	if (data.doScroll) {
 		$('html,body').animate({scrollTop: $('#' + data.targetDiv).offset().top-data.offSet}, 'slow')
+	}
+	
+}
+
+function enumerateJson(p) {
+	
+	for (var key in p) {
+		if (p.hasOwnProperty(key)) {
+			console.log(key + " -> " + p[key])
+		}
 	}
 	
 }

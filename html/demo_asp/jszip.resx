@@ -1,39 +1,35 @@
-<script src="js/jszip.min.js"></script>
-<script src="js/filesaver.min.js"></script>
 
-<p><strong>JSZip</strong> experiment - <a target="_blank" href="https://stuk.github.io/jszip/">https://stuk.github.io/jszip/</a>. JSZip is a javascript library for creating, reading and editing .zip files, with a lovely and simple API. 
-aspLite ships with an example script that offers a list of files (residing on the <i>server</i>) that will be zipped by the <i>browser</i>. See /code/demo_asp/jszip.asp</p>
-
-<button id="blob" class="btn btn-primary">click to download zip</button>
-
-<script>
-
-var zip = new JSZip()
+var zip
 var i=0
 var urls = []
 
+//the list of files below is generated on the server
+//see code/demo_asp/sampleform16.asp
+[filelist]
+
 $("#blob").on("click", function () {
 
+	zip = new JSZip()
+
 	$(this).html('please wait... files are downloading')
-	
-	//the list of files below is generated on the server
-	//see code/demo_asp/jszip.asp
-[filelist]
+	$('#blob').attr({"class":"btn btn-danger"})
 	
 	getUrl(urls[i][0],urls[i][1])	
 		
 });
 
-function download() {
+function download() {	
 	
 	$('#blob').html('please wait... files are zipped')
+	$('#blob').attr({"class":"btn btn-warning"})
 
 	i=0
 
 	zip.generateAsync({type:"blob"}).then(function (blob) { 
 		saveAs(blob, "download.zip")
 		
-		$('#blob').html('click to download zip')	
+		$('#blob').attr({"class":"btn btn-success"})
+		$('#blob').html('ready!')	
 		
 	}, function (err) {})
 }
@@ -59,7 +55,7 @@ function getUrl(filename,url) {
 			if (filename==url) {zip.file(filename, data,{binary: true})}
 			else{zip.file(filename, data)}
 			
-			i++		
+			i++			
 			
 			if (i==urls.length) {download()}
 			else {getUrl(urls[i][0],urls[i][1])}
@@ -76,5 +72,3 @@ function getUrl(filename,url) {
 		}
 	})
 }
-
-</script>

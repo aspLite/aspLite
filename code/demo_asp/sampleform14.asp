@@ -1,16 +1,12 @@
 <%
 
-'formbuilder sample - built on bootstrap css
-aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
-
 dim form : set form=new cls_formbuilder
-form.listenTo "e","sampleform14"
 form.targetDiv="sampleform14"
 form.id="uploadForm"
-form.onSubmit="" 'overrule the default submit - 
+form.onSubmit="" '
 'We need to overrule the default submit.
 'this is needed here because this multi-fileuploader does not really submit the form
-'it sends a collection of files
+'it sends a collection of files instead
 	
 'result
 dim feedback : set feedback=form.field

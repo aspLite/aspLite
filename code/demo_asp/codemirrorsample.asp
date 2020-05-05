@@ -5,14 +5,10 @@ response.write "ASP functions and methods are colored"
 class codemirror
 
 	private a,b,c
-	public d,e,f
 	
 	public function check()
 	
-		dim i
-	
-		for i=1 to 10
-			
+		for i=1 to 10			
 		next
 		
 		while i>0 		

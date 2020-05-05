@@ -3,11 +3,7 @@
 dim helloworld
 set helloworld=aspL.plugin("helloworld")
 
-'formbuilder sample - built on bootstrap css
-aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
-
 dim form : set form=new cls_formbuilder
-form.listenTo "e","sampleform9"
 form.targetDiv="sampleform9"
 form.id="helloworld"
 	

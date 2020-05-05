@@ -7,11 +7,7 @@ for i=1 to 10
 	body=body & aspL.plugin("randomizer").randomtext(aspL.plugin("randomizer").randomnumber(5,10)) & " "
 next
 
-'formbuilder sample - built on bootstrap css
-aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
-
 dim form : set form=new cls_formbuilder
-form.listenTo "e","sampleform10"
 form.targetDiv="sampleform11"
 form.id="randomizer"
 	

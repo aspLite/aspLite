@@ -27,11 +27,7 @@ wend
 
 set rs=nothing
 
-'formbuilder sample - built on bootstrap css
-aspl.exec("code/demo_asp/formbuilder/formbuilder.asp")
-
 dim form : set form=new cls_formbuilder
-form.listenTo "e","sampleform8"
 form.targetDiv="sampleform8"
 form.id="datatable"
 	
