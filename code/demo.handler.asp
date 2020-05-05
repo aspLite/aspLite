@@ -1,7 +1,5 @@
 <%
-dim html,titletag,body,pagetitle
-
-titletag="aspLite demo"
+dim html,body
 
 'load the template of the demosite
 html=aspL.loadText("html/demo_asp/demo.resx")
@@ -80,9 +78,11 @@ select case lcase(aspL.getRequest("e")) '"event"
 	case "postdtt" 					: aspL.exec("code/demo_asp/postdtt.asp")	
 	
 	case "uploadfilejquery" 		: aspL.exec("code/demo_asp/uploadfile.asp") : aspL.die	''uploader
-		
-	case else body="This is a demo SPA (Single Page Application) making use of <strong>aspLite</strong>. Various sample forms, plugins and utilities are showcased over here. The location of the ASP-code involved, is displayed each time. Have fun while discovering the bits and bytes of this demo!" 'default content
-			
+	
+	case "welcome"					: aspL.exec("code/demo_asp/welcome.asp")
+	
+	case else 
+				
 		'get userfriendly url, if any (and launch a new handler-instance!)
 		aspL.exec("code/demo_asp/404handler.asp")		
 		

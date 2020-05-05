@@ -67,6 +67,10 @@
 		aspAjax('POST',aspAjaxUrl,$(this).serialize(),dttSuccess)
 	})
 	
+	function scroll() {
+		$('html,body').animate({scrollTop: $("#body").offset()}, 'slow')	
+	}
+	
 	function reloadTable() {
 		$('#jsExampleSSP').DataTable().ajax.reload(null, false)
 	}
@@ -87,6 +91,8 @@
 		if (data.aspl.status=="DELETE") {
 			reloadTable()
 			$("#exampleModal").modal('toggle')
-		}		
-	}	
+		}
+		
+	}
+	
 </script>

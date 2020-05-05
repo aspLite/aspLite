@@ -7,27 +7,14 @@ $(document).ready(function(e) {
 	spinner+="<div class='spinner-border text-secondary spinner-border-sm' role='status'><span class='sr-only'>Loading...</span> </div>"
 	spinner+="</div>"
 	
+	//all divs with class=aspForm will be filled with aspForms according their id (e-handler)
 	$(".aspForm").each(function(){	
 		//initialize with bootstrap spinners
 		$(this).html(spinner)	
 		aspAjax('GET',aspAjaxUrl,'e=' + $(this).attr('id'),aspForm)
 	})	
 })
-
-$('.ajaxForm').submit(function(e) {	
-	e.preventDefault()
-	aspAjax('POST',aspAjaxUrl,$(this).serialize(),aspAjaxSuccess)	
-	scroll()
-})
-
-function aspAjaxSuccess(data) {
-	$('#body').html(data.aspl)
-}
-
-function scroll() {
-	$('html,body').animate({scrollTop: $("#ajax").offset()}, 'slow')	
-}
-    
+  
 function aspForm(data) {	
 			
 	//avoid double id's

@@ -15,7 +15,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
-	<title>[TITLETAG]</title>
+	<title>aspLite demo</title>
 	
 	<style>
 		body {
@@ -56,14 +56,15 @@
 
 			<div class="row">			
 				<div class="col">					
-					<h5>[PAGETITLE]</h5>
-					<div id="body">[BODY]</div>
-					<div id="ajax"></div>
+					<div id="body">[BODY]</div>					
 				</div>
-			</div>
+			</div>				
 			
-			<br>	
-			
+			<div class="row">			
+				<div class="col">
+					<div id="welcome" class="aspForm"></div>
+				</div>
+			</div>			
 			
 			<div class="row">	
 				<div class="col">
@@ -105,25 +106,6 @@
 							</div>
 							
 						</div>
-						
-						<div class="card">
-							<div class="card-header">
-								jQuery multifile uploader
-							 </div>
-							<div class="card-body">							
-								<div class="aspForm card-text" id="sampleform14"></div>	
-								<hr>
-								<p class="card-text">
-									<small class="text-muted">
-									/code/demo_asp/sampleform14.asp
-									<br>							
-									/html/demo_asp/uploadjquery.resx
-									<br>
-									/code/demo_asp/uploadfile.asp
-									</small>						
-								</p>	
-							</div>
-						</div>
 
 						<div class="card">
 							<div class="card-header">
@@ -156,6 +138,25 @@
 								<div class="aspForm card-text" id="sampleform6"></div>
 								<hr>
 								<p class="card-text"><small class="text-muted">/code/demo_asp/sampleform6.asp</small></p>	
+							</div>
+						</div>
+						
+						<div class="card">
+							<div class="card-header">
+								jQuery multifile uploader
+							 </div>
+							<div class="card-body">							
+								<div class="aspForm card-text" id="sampleform14"></div>	
+								<hr>
+								<p class="card-text">
+									<small class="text-muted">
+									/code/demo_asp/sampleform14.asp
+									<br>							
+									/html/demo_asp/uploadjquery.resx
+									<br>
+									/code/demo_asp/uploadfile.asp
+									</small>						
+								</p>	
 							</div>
 						</div>
 						
@@ -257,7 +258,7 @@
 
 						<div class="card">
 							<div class="card-header">
-								CodeMirror Example
+								CodeMirror example
 							 </div>
 							<div class="card-body">		
 								<p class="card-text">CodeMirror - <a target="_blank" href="https://codemirror.net/">https://codemirror.net/</a> -  is a versatile text editor for the browser.</p>
