@@ -110,7 +110,7 @@
 								Rating form
 							 </div>
 							<div class="card-body">	
-								<p class="card-text">Self-submitting form example</p>
+								<p class="card-text">Self-submitting form</p>
 								<div class="aspForm card-text" id="sampleform2"></div>
 								<hr>							
 								<p class="card-text"><small class="text-muted">/code/asp/sampleform2.asp</small></p>	
