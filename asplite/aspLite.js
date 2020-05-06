@@ -48,6 +48,11 @@ function getAspForm (data) {
 	}
 }
 
+$('.ajaxLink').click(function(e) {
+		e.preventDefault()
+		aspAjax('GET',aspLiteAjaxHandler,'e=' + $(this).attr("data-aspForm"),aspForm)
+	})
+
 function aspAjax (type,url,data,success) {	
 
 	$.ajax({		
