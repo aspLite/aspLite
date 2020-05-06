@@ -1224,6 +1224,27 @@ section.lazy-placeholder:after {
 .cid-rWetaMv7DC blockquote {
   color: #767676;
 }
+.cid-rYd3Ur0Rje {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-color: #ffffff;
+}
+.cid-rYd3Ur0Rje .title {
+  margin-bottom: 2rem;
+}
+.cid-rYd3Ur0Rje .mbr-section-subtitle {
+  color: #767676;
+}
+.cid-rYd3Ur0Rje a:not([href]):not([tabindex]) {
+  color: #fff;
+  border-radius: 3px;
+}
+.cid-rYd3Ur0Rje a.btn-white:not([href]):not([tabindex]) {
+  color: #333;
+}
+.cid-rYd3Ur0Rje textarea.form-control {
+  min-height: 188px;
+}
 .cid-rViKEFCjNe {
   padding-top: 90px;
   padding-bottom: 90px;
