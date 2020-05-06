@@ -1,0 +1,15 @@
+<%
+body=aspl.loadText("code/html/404/default.resx")
+
+'title
+body=replace(body,"[title]","Learn more",1,-1,1)
+
+'heading
+body=replace(body,"[heading]","Learn more about aspLite!",1,-1,1)
+
+'body
+body=replace(body,"[body]","<p>Welcome to the learn-more page of this website.</p>",1,-1,1)
+
+aspL.dump(body)
+
+%>

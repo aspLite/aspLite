@@ -1,0 +1,49 @@
+<%
+
+dim form : set form=aspl.form
+form.listenTo "e","sampleform4"
+form.target="sampleform4"
+
+dim defaultValue
+defaultValue="<p><strong>CKEditor4: Smart WYSIWYG HTML editor</strong></p><p>Approved by millions. Fully customizable. Number #1 rich text editor with the most features.</p>"
+	
+'form-submitted
+if form.postback then
+
+	defaultValue=aspl.getRequest("mNotes1")
+	
+	'feedback
+	dim feedback : set feedback=form.field("element")
+	feedback.add "html","Saved!"
+	feedback.add "tag","div"
+	feedback.add "class","alert alert-info"		
+	
+	'you can build it here already. This will stop further exection	
+	'form.build()
+
+end if	
+
+'##########################################################################################
+
+dim mNotes1 : set mNotes1=form.field("textarea")
+mNotes1.add "name","mNotes1"
+mNotes1.add "id","mNotes1"
+mNotes1.add "value",defaultValue
+
+dim scriptSrc : set scriptSrc=form.field("script")
+scriptSrc.add "text", "CKEDITOR.replace('mNotes1')"
+
+'##########################################################################################
+
+dim submit : set submit=form.field("submit")
+submit.add "style","margin-top:10px"
+submit.add "name","btnAction"
+submit.add "value","Save"
+submit.add "class","btn btn-primary"
+submit.add "onclick","CKEDITOR.instances.mNotes1.updateElement();"
+
+'##########################################################################################
+
+form.build()
+
+%>

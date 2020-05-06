@@ -6,6 +6,8 @@
 '### trailing slashes (asplite/) -> NOT OK !
 '#########################################################
 
+'IMPORTANT: if you change the path, ALSO change the path asplite/asplite.js in your HTML source!
+
 const aspL_path="asplite"
 
 '#########################################################

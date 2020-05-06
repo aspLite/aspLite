@@ -1,0 +1,21 @@
+<%
+body=aspl.loadText("code/html/404/default.resx")
+
+'title
+body=replace(body,"[title]","About",1,-1,1)
+
+'heading
+body=replace(body,"[heading]","About us",1,-1,1)
+
+'get some random text
+dim randomtext,i
+for i=1 to 100
+	randomtext=randomtext & aspl.randomizer.randomtext(aspl.randomizer.randomNumber(10,30)) & " "
+next
+
+'body - we load some random text
+body=replace(body,"[body]","<p>Some random text... " & randomtext & "</p>",1,-1,1)
+
+aspL.dump(body)
+
+%>

@@ -1,0 +1,78 @@
+
+<style>
+.dataTables_wrapper .dataTables_processing {
+height: 60px;
+font-size: 1em;
+}
+</style>
+
+<h3>DataTables / Server Side Processing (Classic ASP)</h3>
+
+<hr>
+
+<p>Loading some dozens or even hundreds of records at once works fine. But what if you want to browse 1000's? The table below browses (sorts and searches) 10.000 records. Only the records shown are actually loaded. This speeds up the page loadtime (a lot). I found inspiration for this feature <a href="https://datatables.net/forums/discussion/59746/new-classic-asp-server-side-script-for-datatables-1-10-20" target="_blank">here</a> (SlavTheClaw). </p>
+
+<hr>
+
+<table id="jsExampleSSP" class="table table-striped" style="width:100%">
+	<thead>
+		<tr>
+			<th style="text-align:center">
+				<button class="btn btn-info" style="padding:2px 7px" onclick="askAspForm(null)">Add&nbsp;new</button>
+			</th>			
+			<th>text</th>
+			<th>number</th>
+			<th>boolean</th>	
+			<th>date</th>			
+			<th>country</th>				
+		</tr>
+	</thead>
+</table>
+
+<!-- bootstrap modal window -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">      
+	  <div id="editForm"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function askAspForm (id) {
+	aspAjax ("post","default.asp","iId=" + id + "&e=postdtt",receiveAspForm)
+}
+
+function receiveAspForm(data) {
+	$('#editForm').html(data.aspl)
+	$("#exampleModal").modal()
+}
+
+$(document).ready( function () {	
+	
+	$('#jsExampleSSP').DataTable( {	
+		
+		"order": [1,"asc"],		
+		"responsive": true,
+		"serverSide": true,
+		"ajax": 'default.asp?e=json_datatables_data',
+		"processing": true,
+		"columnDefs": [
+				{"targets": '_all',"render":$.fn.dataTable.render.text()},
+				{"orderable": false, "targets": 0 },
+				{"targets": 0,"className": 'dt-body-center'}
+			],		
+		"columns": [           
+			{  "data": "iId", render: function ( data, type, row ) {				
+				return '<button class="btn btn-secondary" style="padding:2px 14px" onclick="askAspForm(' + data + ')">Modify</button>'							
+				}
+			},			
+			{ "data": "sText"},
+            { "data": "iNumber" },
+			{ "data": "bBoolean" },
+			{ "data": "dDate" },				
+			{ "data": "countryName" }
+			]
+	} );	
+});
+</script>
