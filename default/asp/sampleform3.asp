@@ -1,6 +1,6 @@
 <%
 'load some variables and functions (dateformat, dateFromPicker, dateToPicker)
-aspL.exec("code/asp/functions.asp")
+aspL("default/asp/functions.asp")
 
 dim form : set form=aspl.form
 form.listenTo "e","sampleform3"

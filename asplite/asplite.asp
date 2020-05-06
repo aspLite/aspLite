@@ -64,19 +64,11 @@ class cls_asplite
 		
 	End sub
 	
-	private function removeCRB(value)
-	
-		'remove Code Render Blocks
-	
-		value=replace(value,"<" & "%","",1,-1,1)
-		removeCRB=replace(value,"%" & ">","",1,-1,1)	
-	
-	end function	
-
+	'default sub!
 	'executeGlobal: the ASP code in the file (path) will
 	'be executed as classic ASP and it will be available in
 	'the namespace of this page.
-	public sub exec(path)		
+	public default sub exec(path)		
 		
 		on error resume next
 		
@@ -87,6 +79,15 @@ class cls_asplite
 		on error goto 0
 
 	end sub	
+	
+	private function removeCRB(value)
+	
+		'remove Code Render Blocks
+	
+		value=replace(value,"<" & "%","",1,-1,1)
+		removeCRB=replace(value,"%" & ">","",1,-1,1)	
+	
+	end function	
 	
 	'loads the content of text file (utf8)
 	public function loadText(path)		
@@ -1237,7 +1238,7 @@ class cls_asplite_randomizer
 
 	public function randomNumber(startnr,stopnr)
 
-		randomNumber=Int((stopnr-startnr+1)*Rnd+startnr)
+		randomNumber=aspl.convertNmbr((stopnr-startnr+1)*Rnd+startnr)
 		
 	end function
 

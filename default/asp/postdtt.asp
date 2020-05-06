@@ -1,9 +1,9 @@
 <%
 'load jquery date-functions (sets the dateformat!)
-aspl.exec("code/asp/functions.asp")
+aspL("default/asp/functions.asp")
 
 'load includes (classes) for this particular example
-aspl.exec("code/asp/datatables/includes.asp")
+aspL("default/asp/datatables/includes.asp")
 
 'create an instance of the contact class
 dim contact : set contact = new cls_contact
@@ -43,11 +43,11 @@ if aspl.convertBool(aspl.getRequest("postBack")) then
 	contact.reflectTo(jsonDict)
 	
 	'the Ajax page-execution stops here!
-	json.dump(jsonDict)
+	aspl.json.dump(jsonDict)
 	
 end if
 
-dim form : form=aspL.loadText("code/html/postdtt.resx")
+dim form : form=aspL.loadText("default/html/postdtt.resx")
 
 'set the dateformat for jQuery UI DatePicker
 form=replace(form,"[dateformat]",dateformat,1,-1,1)
@@ -73,5 +73,5 @@ form=replace(form,"[countryList]",countryList.showSelected("option",aspL.sanitiz
 set contact=nothing
 set booleanlist=nothing
 
-json.dump(form)
+aspl.json.dump(form)
 %>

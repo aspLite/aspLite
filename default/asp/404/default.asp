@@ -1,5 +1,5 @@
 <%
-body=aspl.loadText("code/html/404/default.resx")
+body=aspl.loadText("default/html/404/default.resx")
 
 'title
 body=replace(body,"[title]","Now we're talking!",1,-1,1)

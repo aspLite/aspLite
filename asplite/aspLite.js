@@ -27,10 +27,11 @@ $(document).ready(function(e) {
 		aspLiteAjaxForms.push($(this).attr('id'));
 		
 	})	
+	
 	if (aspLiteAjaxForms.length>0) {
 		//let's get this rolling. we start with the first item in the array
 		//from there on, the recursive getAspForm will loop through the array and 
-		//load all calls sequential
+		//load all Ajax calls sequential
 		aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[0],getAspForm)		
 	}
 })

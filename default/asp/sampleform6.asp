@@ -79,20 +79,20 @@ delete.add "value","Delete"
 delete.add "style","margin-top:15px"
 delete.add "class","btn btn-danger"
 delete.add "container","span"
-delete.add "containerstyle","margin-left:10px"
+delete.add "containerstyle","margin-left:5px"
 delete.add "onclick","$('#mb_aspFormAction').val('delete');"
 
 dim link : set link=form.field("element")
 link.add "tag","a"
 link.add "html","Link"
-link.add "style","margin-top:15px;margin-left:10px"
+link.add "style","margin-top:15px;margin-left:5px"
 link.add "class","btn btn-info"
 link.add "onclick","$('#mb_aspFormAction').val('link');$('#"& form.id &"').submit();return false"
 
 dim button : set button=form.field("button")
 button.add "html","Button"
 button.add "class","btn btn-warning"
-button.add "style","margin-top:15px;margin-left:10px"
+button.add "style","margin-top:15px;margin-left:5px"
 button.add "onclick","$('#mb_aspFormAction').val('button');$('#" & form.id & "').submit();return false;"
 
 '##########################################################################################

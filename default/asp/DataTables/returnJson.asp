@@ -68,9 +68,9 @@ class cls_dt_returnJson
 			rs.pagesize=RowsPerPage
 		end if
 
-		'prepare JSON return - this class takes care of the recordset paging! - see json.recordsetPaging
-		json.recordsetPaging=true
-		JsonAnswer=json("data", rs, false) 
+		'prepare JSON return - this class takes care of the recordset paging! - see aspl.json.recordsetPaging
+		aspl.json.recordsetPaging=true
+		JsonAnswer=aspl.json.toJson("data", rs, false) 
 
 		'finalizing JSON response - preparing header:
 		JsonHeader = "{ ""draw"": "& draw &", "& vbcrlf

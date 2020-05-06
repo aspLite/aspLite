@@ -3,7 +3,8 @@ on error resume next
 
 'load the cls_dt_returnJson class that will return the Json at the end 
 'an object returnJson is already created in that asp file
-aspL.exec("code/asp/datatables/returnJson.asp")
+aspL("default/asp/datatables/returnJson.asp")
+
 
 'pass the selectClause to the returnJson object
 'to make this a little more interesting, i added a linked table (left join)

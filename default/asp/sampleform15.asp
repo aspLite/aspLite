@@ -5,7 +5,7 @@ form.listenTo "e","sampleform15"
 form.target="sampleform15"
 
 dim defaultValue
-defaultValue=aspl.loadText("code/asp/codemirrorsample.asp")
+defaultValue=aspl.loadText("default/asp/codemirrorsample.asp")
 	
 'form-submitted
 if form.postback then

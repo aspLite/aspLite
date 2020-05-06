@@ -1,6 +1,6 @@
 <%
 'CONDITIONAL load of asp page = include file
-aspL.exec("code/asp/class.asp")	
+aspL("default/asp/class.asp")	
 
 dim testObj
 set testObj=new cls_test

@@ -11,7 +11,7 @@ jpg.square=1
 jpg.path=replace(request.servervariables("path_info"),"default.asp","",1,-1,1) & aspL_path & "/plugins/jpg/sample.jpg"
 
 dim output
-output=replace(aspL.loadText("code/html/jpg.resx"),"[src]",jpg.src,1,-1,1)
+output=replace(aspL.loadText("default/html/jpg.resx"),"[src]",jpg.src,1,-1,1)
 output=replace(output,"[caption]","square",1,-1,1)
 
 dim form : set form=aspl.form

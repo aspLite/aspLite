@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 	<!-- jQuery -->
-	<script src="code/js/jquery.js"></script>	
+	<script src="default/js/jquery.js"></script>	
 	
 	
 	<!-- Bootstrap CSS -->
@@ -402,8 +402,8 @@
 	<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 	
 	<!-- JSZip -->
-	<script src="code/js/jszip.min.js"></script>
-	<script src="code/js/filesaver.min.js"></script>	
+	<script src="default/js/jszip.min.js"></script>
+	<script src="default/js/filesaver.min.js"></script>	
 	
 	<!-- CodeMirror -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>

@@ -16,7 +16,7 @@ end if
 
 'load the javascript file first
 dim javascript
-javascript=aspL.loadText("code/html/jszip.resx")	
+javascript=aspL.loadText("default/html/jszip.resx")	
 
 'get filelist
 dim filelist,filelistArr,objSuperFolder,filepath

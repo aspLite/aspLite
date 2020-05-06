@@ -6,7 +6,7 @@
     <meta name="description" content="">  
 
 	<!-- jQuery -->
-	<script src="code/js/jquery.js"></script>	
+	<script src="default/js/jquery.js"></script>	
    
     <title>[title] - aspLite custom 404 catcher at work</title>
 
