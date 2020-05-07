@@ -1,0 +1,19 @@
+<script language="vbscript" runat="server">
+
+Sub Application_OnStart
+	Application("visitors")=0
+End Sub
+
+Sub Session_OnStart
+	Application.Lock
+	Application("visitors")=Application("visitors")+1
+	Application.UnLock
+End Sub
+
+Sub Session_OnEnd
+	Application.Lock
+	Application("visitors")=Application("visitors")-1
+	Application.UnLock
+End Sub
+
+</script>

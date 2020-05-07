@@ -88,6 +88,17 @@
 						
 						<div class="card">
 							<div class="card-header">
+								Visitors online (reloads every 30 sec)
+							 </div>
+							<div class="card-body">									
+								<div class="aspForm card-text" id="sampleform23"></div>	
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform23.asp</small></p>	
+							</div>
+						</div>
+						
+						<div class="card">
+							<div class="card-header">
 								Replace with form
 							 </div>
 							<div class="card-body">									
@@ -245,7 +256,7 @@
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform11.asp</small></p>	
 							</div>
-						</div>	
+						</div>						
 						
 						<div class="card">
 							<div class="card-header">

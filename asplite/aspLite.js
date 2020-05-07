@@ -40,7 +40,6 @@ function init() {
 
 $(document).ready(function(e) {	
 init();
-
 })
 
 //recursive execution to avoid server issues

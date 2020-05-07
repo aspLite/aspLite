@@ -816,6 +816,22 @@ class cls_asplite_formbuilder
 	
 	end property
 	
+	
+	public property let reload(value)
+	
+		if aspl.convertNmbr(value)>0 then	
+			
+			if not postback then				
+		
+				dim setTimeout: set setTimeout=field("script")		
+				setTimeout.add "text","$(document).ready(function(e) {setInterval(function(){$('#" & id & "').submit()}," & value*1000 & ")})"
+			
+			end if
+			
+		end if
+	
+	end property
+	
 	public function field(value)
 	
 		set field=aspl.dict
