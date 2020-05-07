@@ -1,14 +1,12 @@
 <%
-dim html,body
-
-'create a database object. It will also be used on various occasions in this demo
+'create a database object. It will be used on various occasions in this demo
 'this demo uses an Access database, located in "db/sample.mdb"
 dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
 
 'here comes the eventhandler (what did the user do/click on exactly?)
-'in general: if the code for dealing with the event is not large, include it here (downloadlargefile,downloadsmallfile,etc).
+'in general: if the code for dealing with the event is not large, include it here (downloadlargefile,downloadsmallfile).
 'if the code is getting complex, use yet another codebehind file, like all sampleforms!
-'the aspl.exec is the DEFAULT sub in aspLite, so aspl(XX) will execute XX where XX is the path to the ASP file to be executed
+'aspl.exec is the DEFAULT sub in aspLite, so aspl(XX) will execute XX where XX is the path to the ASP file to be executed
 
 select case lcase(aspL.getRequest("e")) 'e="event"	
 	
@@ -77,21 +75,7 @@ select case lcase(aspL.getRequest("e")) 'e="event"
 		
 end select
 
-'load the template of the demosite in the html-variable
-'default.resx is plain html and it will remain 99% unchanged. 
-'only [BODY] and [TIMER] will be replaced (see bottom of this file).
-'however, in most cases, [BODY] will be empty, as aspLite will mainly
-'return dynamic Ajax forms (see sampleform0 to 18)
-html=aspL.loadText("default/html/default.resx")
-
-'final replaces before returning html to the browser
-'body
-html=replace (html,"[BODY]",body,1,-1,1)
-
-'timer
-html=replace (html,"[TIMER]","<!--code took " & aspL.printTimer & " ms to execute-->",1,-1,1)
-
-response.write html
+response.write aspL.loadText("default/html/default.resx")
 
 'destroy aspLite
 set aspL=nothing

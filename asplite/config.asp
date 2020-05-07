@@ -14,6 +14,5 @@ const aspL_path="asplite"
 '### enable debuging (send error messages to the browser
 '#########################################################
 
-const aspL_debug=true  'you may want to set to false for live sites	
-
+const aspL_debug=true  'you may want to set to false for live sites
 %>

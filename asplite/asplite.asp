@@ -10,16 +10,16 @@ set aspL=new cls_asplite
 class cls_asplite
 
 	private debug,startTime,stopTime,plugins,p_fso,cacheprefix,multipart,p_json,p_randomizer
-	
+
 	Private Sub Class_Initialize()
-	
+
 		on error resume next
-	
+
 		startTime					= Timer()
-		debug						= aspL_debug	
+		debug						= aspL_debug
 
 		'-------------------------------------------
-		Response.Buffer				= true		
+		Response.Buffer				= true
 		Response.CharSet			= "utf-8" 'does not work on IIS5 (Windows 2000 Servers) - comment it out when IIS5 is used!
 		Response.ContentType		= "text/html"
 		Response.CacheControl		= "no-cache"
@@ -27,7 +27,7 @@ class cls_asplite
 		Response.Expires			= -1
 		Response.ExpiresAbsolute	= Now()-1
 		'-------------------------------------------
-		
+
 		'check if a form with enctype="multipart/form-data" was submitted. 
 		'in that case, the request(.form) collection cannot be called as it throws an error
 		'this is important for getRequest() -> see below
@@ -35,284 +35,284 @@ class cls_asplite
 			multipart=true
 		else
 			multipart=false
-		end if		
-		
+		end if
+
 		cacheprefix="asplite_"
-		set plugins			= nothing	
+		set plugins			= nothing
 		set p_fso			= nothing
 		set p_json			= nothing
 		set p_randomizer	= nothing
-		
+
 		on error goto 0
-		
-	End Sub	
-	
+
+	End Sub
+
 	Private Sub Class_Terminate()
-	
+
 		'destroy all plugins
-		
+
 		if not plugins is nothing then
 			dim p
 			for each p in plugins
-				set plugins(p)=nothing			
+				set plugins(p)=nothing
 			next
-		
+
 			set plugins=nothing
 		end if
-		
+
 		set p_fso=nothing
-		
+
 	End sub
-	
+
 	'default sub!
 	'executeGlobal: the ASP code in the file (path) will
 	'be executed as classic ASP and it will be available in
 	'the namespace of this page.
-	public default sub exec(path)		
-		
+	public default sub exec(path)
+
 		on error resume next
-		
+
 		executeGlobal removeCRB(stream(path,false,""))
-		
+
 		aspError("problem when executing " & path & " - <strong><a target=""_blank"" href=""" & path & """>try to load the ASP file directly</a></strong>")
-		
+
 		on error goto 0
 
-	end sub	
-	
+	end sub
+
 	public function removeCRB(value)
-	
+
 		'remove Code Render Blocks
-	
+
 		value=replace(value,"<" & "%","",1,-1,1)
-		removeCRB=replace(value,"%" & ">","",1,-1,1)	
-	
-	end function	
-	
+		removeCRB=replace(value,"%" & ">","",1,-1,1)
+
+	end function
+
 	'loads the content of text file (utf8)
-	public function loadText(path)		
-		
+	public function loadText(path)
+
 		loadText=stream(path,false,"")
 
 	end function
-	
+
 	'loads the content of a binary file (image, pdf, zip, etc)
-	public function loadBinary(path)		
-		
+	public function loadBinary(path)
+
 		loadBinary=stream(path,true,"")
 
-	end function	
-	
+	end function
+
 	private function stream(path,binary,byref size)
-	
+
 		on error resume next
 
 		Dim objStream
-		Set objStream = server.CreateObject("ADODB.Stream")	
-		
+		Set objStream = server.CreateObject("ADODB.Stream")
+
 		if binary then
-		
-			objStream.Open	
+
+			objStream.Open
 			objStream.type=1 'adTypeBinary
 			objStream.LoadFromFile(server.mappath(path))
 			stream=objStream.Read()
-		
+
 		else
-	
+
 			objStream.CharSet = "utf-8"
-			objStream.Open	
+			objStream.Open
 			objStream.type=2 'adTypeText
 			objStream.LoadFromFile(server.mappath(path))
 			stream = objStream.ReadText()
-			
+
 		end if
-		
+
 		size=objStream.size
-			
+
 		set objStream=nothing
-		
-		asperror(path)			
-		
-		on error goto 0	
-	
-	end function	
-	
+
+		asperror(path)
+
+		on error goto 0
+
+	end function
+
 	public sub saveText(sPath,data)
-	
+
 		on error resume next
-	
+
 		Dim objStream
 		Set objStream = CreateObject("ADODB.Stream")
 		objStream.CharSet = "utf-8"
 		objStream.mode = 3 'adModeReadWrite
-		objStream.Open		
+		objStream.Open
 		objStream.position = 0
 		objStream.WriteText data
-		objStream.SaveToFile server.mappath(sPath), 2      
+		objStream.SaveToFile server.mappath(sPath), 2
 		objStream.close
-		set objStream = nothing  
+		set objStream = nothing
 
 		asperror(path)
-      
-        on error goto 0
-		
-    end sub	
-	
+
+		on error goto 0
+
+	end sub
+
 	public function form
-	
+
 		set form=new cls_asplite_formbuilder
-	
+
 	end function
-	
+
 	public function json
-	
+
 		'gives back a json object (created only once)
-	
+
 		if p_json is nothing then
 			set p_json=new cls_asplite_json
 		end if
-		
+
 		set json=p_json
-	
+
 	end function
-	
+
 	public function randomizer
-	
+
 		'gives back a randomizer object (created only once)
-	
+
 		if p_randomizer is nothing then
 			set p_randomizer=new cls_asplite_randomizer
 		end if
-		
+
 		set randomizer=p_randomizer
-	
+
 	end function
-	
+
 	public function plugin(value)
-	
+
 		value=lcase(value)
-		
+
 		if plugins is nothing then
 			set plugins=dict
 		end if
-	
+
 		if not plugins.exists(value) then
-			
-			exec(aspL_path & "/plugins/" & value & "/" & value & ".asp")	
-			
+
+			exec(aspL_path & "/plugins/" & value & "/" & value & ".asp")
+
 			dim pluginCls
 			set pluginCls=eval("new cls_asplite_" & value)
-			
+
 			plugins.add value,pluginCls
-		
+
 		end if
-		
+
 		set plugin=plugins(value)
-	
-	end function	
-	
+
+	end function
+
 	public function getRequest(value)
-	
+
 		on error resume next
-		
-		err.clear()	
-		
+
+		err.clear()
+
 		if multipart then
-		
+
 			'binary data was submitted with enctype=multipart/form-data
 			'in this case, the request.form collecion cannot be used and even raises an error
 			'aspLite only returns the querystring in this case
-		
+
 			getRequest=request.querystring(value)
-			
+
 		else
-		
+
 			if not [isEmpty](request.form(value)) then
 				getRequest=request.form(value)
 			elseif [isEmpty](request.querystring(value)) then
 				getRequest=request.querystring(value)
 			else
-				getRequest=request(value)				
+				getRequest=request(value)
 			end if
-			
+
 		End If
-		
-		on error goto 0	
-	
-	end function	
-	
-	Public function asperror(value)	
-	
+
+		on error goto 0
+
+	end function
+
+	Public function asperror(value)
+
 		if not debug then exit function
-		
+
 		if err.number<>0 then
-		
+
 			asperror="<h1>aspLite error details:</h1>"
 			asperror=asperror & "<span style=""color:Red;font-size:1.5em;font-weight:700"">" & value & "</span><br><br>"
-			asperror=asperror & "err.number: " &  err.number & "<br>"
-			asperror=asperror & "err.source: " &  err.source & "<br>"
-			asperror=asperror & "err.description: " &  err.description
-			
+			asperror=asperror & "err.number: " &err.number & "<br>"
+			asperror=asperror & "err.source: " &err.source & "<br>"
+			asperror=asperror & "err.description: " &err.description
+
 			asperror=asperror & "<hr>"
-			
-			asperror=asperror & replace(request.servervariables("ALL_RAW"),vbcrlf,"<br>",1,-1,1)		
-			
+
+			asperror=asperror & replace(request.servervariables("ALL_RAW"),vbcrlf,"<br>",1,-1,1)
+
 			dump asperror
-		
+
 		end if
-	
-	end function	
-	
+
+	end function
+
 	public sub die
-	
-		Class_Terminate()		
-		response.end	
-	
+
+		Class_Terminate()
+		response.end
+
 	end sub
-	
+
 	public function dump (value)
-	
+
 		response.clear
 		response.write replace(value,"[ASPLITE_executionTime]",printTimer,1,-1,1)
 		die()
-	
-	end function	
-	
-	public function dumpJson (value)	
-		
+
+	end function
+
+	public function dumpJson (value)
+
 		Response.ContentType = "application/json"
 		dump(value)
-	
+
 	end function
-	
+
 	public function dumpBinary (path)
-	
+
 		on error resume next
-	
+
 		path=server.mappath(path)
-	
+
 		Dim objStream : Set objStream = server.CreateObject("ADODB.Stream")
-		
-		objStream.Open	
+
+		objStream.Open
 		objStream.type=1 'adTypeBinary
 		objStream.LoadFromFile(path)
 
 		asperror(path)
-				
+
 		'get filesize
-		dim size : size=objStream.size	
+		dim size : size=objStream.size
 
 		'set chunksize - files will be served by chunks of 500kb each
 		dim chunksize : chunksize=500000
-	
+
 		'retrieve filename
-		dim filename : filename=right(path,len(path)-InStrRev(path,"\",-1,1))		
-		
-		'retrieve filetype		
-		dim filetype : filetype=getFileType(filename)		
-		
+		dim filename : filename=right(path,len(path)-InStrRev(path,"\",-1,1))
+
+		'retrieve filetype
+		dim filetype : filetype=getFileType(filename)
+
 		select case lcase(filetype)
-		
+
 			case "jpeg","jpg" : response.ContentType="image/JPEG"
 			case "png" : response.ContentType="image/x-png"
 			case "htm","html" : response.ContentType="text/HTML"
@@ -323,7 +323,7 @@ class cls_asplite
 			case "pdf" : response.ContentType="application/pdf"
 			case "doc","docx" : Response.ContentType = "application/msword"
 			case "xls","xlsx" : Response.ContentType = "application/x-msexcel"
-			case "mpeg" : Response.ContentType = "video/mpeg"	
+			case "mpeg" : Response.ContentType = "video/mpeg"
 			case "mp3" : Response.ContentType = "audio/mpeg"
 			case "mp4" : Response.ContentType = "video/mp4"
 			case "avi" : Response.ContentType = "video/x-msvideo"
@@ -334,198 +334,196 @@ class cls_asplite
 			case "xml" : Response.ContentType = "application/xml"
 			case "wav" : Response.ContentType = "audio/wav"
 			case else Response.ContentType = "application/octet-stream"
-		
+
 		end select
-				
-		response.clear	
-		
-		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename		
-		
+
+		response.clear
+
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename
+
 		if size<chunksize then
-			response.AddHeader "Content-Length", size			
-			response.binarywrite objStream.Read()			
+			response.AddHeader "Content-Length", size
+			response.binarywrite objStream.Read()
 		else
-		
+
 			dim i
 			for i=0 to size step chunksize
 				response.binarywrite objStream.Read(chunksize)
 				response.flush()
 			next
-			
-		end if		
-		
+
+		end if
+
 		set objStream=nothing
-		
+
 		response.clear
-		
+
 		die()
-	
+
 	end function
-	
-	Public Function printTimer() 	  
-	   
+
+	Public Function printTimer()
+
 		stopTime=Timer()
-		
+
 		PrintTimer = round((stopTime - startTime) * 1000,0) 'milliseconds
-	
+
 	End Function 
-	
+
 	public function xmlhttp(url,binary)
-	
+
 		on error resume next
-		
+
 		dim oxmlhttp
 		Set oxmlhttp = server.createobject("MSXML2.ServerXMLHTTP")
 
 		oxmlhttp.open "GET", url
 		oxmlhttp.send
-		
+
 		if oXMLHTTP.status=200 then
-		
+
 			if binary then
 				xmlhttp=oxmlhttp.responseBody
 			else
 				xmlhttp=oxmlhttp.responseText
 			end if
-		
+
 		else
-		
+
 			xmlhttp=oXMLHTTP.status
-		
+
 		end if
-		
+
 		set oxmlhttp=nothing
-		
-		if err.number<>0 then	
+
+		if err.number<>0 then
 			asperror(url)
-		end if	
-		
+		end if
+
 		on error goto 0
 
 	end function
-	
+
 	Public function xmldom(url)
-	
+
 		on error resume next
-	
+
 		Set xmlDOM = Server.CreateObject("MSXML2.DOMDocument")
 		xmlDOM.async = False
 		xmlDOM.setProperty "ServerHTTPRequest", True
 		xmlDOM.Load(url)
-		
+
 		If xmlDOM.parseError.errorCode <> 0 Then
-		
+
 			Set xmlDOM = Server.CreateObject("Msxml2.DOMDocument.6.0")
 			xmlDOM.async = false
 			xmlDOM.setProperty "ServerHTTPRequest", True
 			xmlDom.resolveExternals = False
-			
+
 			if xmlDOM.Load(url) then
 				err.clear
 			end if
-			
+
 		End If
-	
-		if err.number<>0 then	
+
+		if err.number<>0 then
 			asperror(url)
-		end if	
-		
+		end if
+
 		on error goto 0
-	
+
 	end function
-	
+
 	'############################
 	'### some caching functions
 	'############################
-	
+
 	public function setcache(name,value)
-	
+
 		'cached items always get a timestamp at the moment they're stored
 
 		dim arr(2)
 		arr(0)=Timer()
-		arr(1)=value		
-	
+		arr(1)=value
+
 		application(cacheprefix & name)=arr
-	
-	end function
-	
-	public function clearcache(name)
-	
-		application.contents.remove(cacheprefix & name)
-	
-	end function
-	
-	public function getCacheT (name, seconds)
-		
-		'returns the cached content only if it was stored less than x seconds ago
-	
-		getCacheT=getcache(name)
-		
-		if not [isEmpty](getCacheT) then
-			if round((Timer - application(cacheprefix & name)(0)),0) > convertNmbr(seconds) then
-				getCacheT=""				
-			end if
-		end if
-		
 
 	end function
-	
+
+	public function clearcache(name)
+
+		application.contents.remove(cacheprefix & name)
+
+	end function
+
+	public function getCacheT (name, seconds)
+
+		'returns the cached content only if it was stored less than x seconds ago
+
+		getCacheT=getcache(name)
+
+		if not [isEmpty](getCacheT) then
+			if round((Timer - application(cacheprefix & name)(0)),0) > convertNmbr(seconds) then
+				getCacheT=""
+			end if
+		end if
+
+	end function
+
 	public function getCache(name)
-	
+
 		'returns the cached content, regardless the timestamp
 		on error resume next
-		
+
 		getCache=application(cacheprefix & name)(1)
-		
+
 		if err.number<>0 then getCache=""
-		
+
 		on error goto 0
-		
+
 	end function
-	
+
 	public function clearAllCache
-	
+
 		dim el
-		for each el in application.contents		
+		for each el in application.contents
 			if left(el,len(cacheprefix))=cacheprefix then
 				application.contents.remove(el)
 			end if
 		next
-	
+
 	end function
-	
+
 	public function fso
-	
+
 		'gives back a filesystemobject (created only once)
-	
+
 		if p_fso is nothing then
 			set p_fso=server.createobject("scripting.filesystemobject")
 		end if
-		
+
 		set fso=p_fso
-	
+
 	end function
-	
+
 	public function dict
-	
-		'gives back a scripting.dictionary		
+
+		'gives back a scripting.dictionary
 		set dict=server.createobject("scripting.dictionary")
-	
+
 	end function
-	
-	
+
 	Public function pathinfo 'get userfriendly url from 404 request if any
-		
+
 		dim ufl
-		ufl=Request.ServerVariables("query_string")	
-				
+		ufl=Request.ServerVariables("query_string")
+
 		if instr(ufl,"?")>0 then
 			ufl=left(ufl,instr(ufl,"?"))
-		end if			
-		
+		end if
+
 		if not [isEmpty](ufl) then
-		
+
 			ufl=replace(ufl,":80","",1,-1,1)
 			ufl=replace(ufl,":443","",1,-1,1)
 			ufl=replace(ufl,"http://" & request.servervariables("http_host") & "/" & aspL_path,"",1,-1,1)
@@ -533,22 +531,22 @@ class cls_asplite
 			ufl=replace(ufl,"http://" & request.servervariables("http_host"),"",1,-1,1)
 			ufl=replace(ufl,"https://" & request.servervariables("http_host"),"",1,-1,1)
 			ufl=replace(ufl,"404;","",1,-1,1)
-			ufl=replace(ufl,"aspxerrorpath=/","",1,-1,1)			
-			ufl=replace(ufl,":" & request.servervariables("server_port"),"",1,-1,1)		
+			ufl=replace(ufl,"aspxerrorpath=/","",1,-1,1)
+			ufl=replace(ufl,":" & request.servervariables("server_port"),"",1,-1,1)
 
 			dim uflLoop
 			uflLoop=true
-			
+
 			while uflLoop
 				if instr(ufl,"//")>0 then
 					ufl=replace(ufl,"//","/",1,-1,1)
 				else
 					uflLoop=false
 				end if
-			wend	
-			
+			wend
+
 			uflLoop=true
-			
+
 			while uflLoop
 				if left(ufl,1)="/" then
 					ufl=right(ufl,len(ufl)-1)
@@ -556,7 +554,7 @@ class cls_asplite
 					uflLoop=false
 				end if
 			wend
-			
+
 			uflLoop=true
 
 			while uflLoop
@@ -565,40 +563,38 @@ class cls_asplite
 				else
 					uflLoop=false
 				end if
-			wend			
-			
-			ON Error Resume Next		
-			
+			wend
+
+			ON Error Resume Next
+
 			if not [isEmpty](ufl) and IsAlphaNumeric(ufl) then
 				Response.Status = "200 OK"
-				pathinfo=ufl			
-			end if			
-				
+				pathinfo=ufl
+			end if
+
 			ON Error Goto 0
-			
+
 		end if
-		
+
 	end function
-	
-	
-	'#################################################################################################
-	'#################################################################################################
-	'###### This is it as far as aspLite is concerned. 
-	'###### Below you find some generic VBScript functions I often use in ASP projects
-	'###### DO NOT REMOVE or CHANGE them. I use some of these functions aspLite (above)
-	'###### and/or in some of the plugins I already developed
-	'#################################################################################################
-	'#################################################################################################
-	
-	
+
+'#################################################################################################
+'#################################################################################################
+'###### This is it as far as aspLite is concerned. 
+'###### Below you find some generic VBScript functions I often use in ASP projects
+'###### DO NOT REMOVE or CHANGE them. I use some of these functions aspLite (above)
+'###### and/or in some of the plugins I already developed
+'#################################################################################################
+'#################################################################################################
+
 	public function getFileType(filename)
-	
+
 		getFileType=right(filename,len(filename)-InStrRev(filename,".",-1,1))
-	
+
 	end function
-	
+
 	public function isNumber(byval value)
-		
+
 		on error resume next
 
 		if [isEmpty](value) then
@@ -606,45 +602,43 @@ class cls_asplite
 		else
 			isNumber=isNumeric(value)
 		end if
-		
+
 		on error goto 0
-		
+
 	end function
 
-
 	public function [isEmpty](byval value)
-	
+
 		on error resume next
-		
+
 		isEmpty=false
-		
+
 		if isNull(value) then
 			isEmpty=true
 		else
 			if trim(value)="" then isEmpty=true
 		end if
-		
-		on error goto 0
-		
-	End Function
 
+		on error goto 0
+
+	End Function
 
 	public function convertStr(value)
 
 		on error resume next
-		
+
 		if not isnull(value) then
 			convertStr=cstr(value)
 		else
 			convertStr=""
 		end if
-		
+
 		if err.number<>0 then
 			convertStr=value
 		end if
-		
+
 		on error goto 0
-		
+
 	End Function
 
 	public function sanitize(sValue)
@@ -656,15 +650,14 @@ class cls_asplite
 			sanitize=replace(sanitize,"<","&lt;",1,-1,1)
 			sanitize=replace(sanitize,">","&gt;",1,-1,1)
 		end if
-		
+
 	end function
 
 	public function sanitizeJS(sValue)
 
 		sanitizeJS=replace(sValue,"'","\'",1,-1,1)
-		
-	end function
 
+	end function
 
 	public function convertNmbr(value)
 
@@ -675,17 +668,17 @@ class cls_asplite
 		else
 			convertNmbr=0
 		end if
-		
+
 		if err.number<>0 then convertNmbr=0
-		
+
 		on error goto 0
-					
+
 	End Function
 
 	public function convertBool(value)
-		
+
 		On Error Resume Next
-		
+
 		if [isEmpty](value) then
 			convertBool=false
 			exit function
@@ -710,11 +703,11 @@ class cls_asplite
 			convertBool=true
 			exit function
 		end if
-		
+
 		convertBool=false
-		
+
 		On Error Goto 0
-		
+
 	End Function
 
 	public function sqli(str)
@@ -723,7 +716,7 @@ class cls_asplite
 		else
 			sqli=replace(str,"'","''",1,-1,1)
 		end if
-	end function	
+	end function
 
 	'******************************************************************************************
 	'* padLeft - copied from Ajaxed Library
@@ -731,7 +724,7 @@ class cls_asplite
 	public function padLeft(value, totalLength, paddingChar)
 		padLeft = right(clone(paddingChar, totalLength) & value, totalLength)
 	end function
-	
+
 	'******************************************************************************************
 	'* clone - copied from Ajaxed Library
 	'******************************************************************************************
@@ -739,161 +732,159 @@ class cls_asplite
 		dim i
 		for i = 1 to n : clone = clone & str : next
 	end function
-		
+
 	public Function IsAlphaNumeric(byVal str)
-	
+
 		If IsNull(str) Then str = ""
-		
+
 		Dim ianRegEx
 		Set ianRegEx = New RegExp
 		ianRegEx.Pattern = "[^a-z0-9\/\_\-\.]"
 		ianRegEx.Global = True
 		ianRegEx.IgnoreCase = True
 		IsAlphaNumeric = (str = ianRegEx.Replace(str,""))
-		
+
 		Set ianRegEx=nothing
-		
-	End Function	
-	
+
+	End Function
+
 	'proper case -> first character will convert to uppercase, others to lowercase
 	public function pCase(value)
-	
+
 		value=trim(convertStr(value))
-		
+
 		if value="" then pCase=value : exit function
-	
+
 		dim firstLetter,otherLetters
-		
+
 		firstLetter=UCase(Left(value,1))
 		otherLetters=LCase(Right(value,Len(value)-1))
 		pCase=firstLetter & otherLetters
-	
-	end function
-	
-end class
 
+	end function
+
+end class
 
 class cls_asplite_formbuilder
 
 	private allFields, counter, eventListener, p_target
 	public postback,offSet,doScroll,id,onSubmit
-	
+
 	private sub class_initialize()
-	
+
 		set allFields		= aspl.dict
-		onSubmit			= "aspAjax('POST',aspLiteAjaxHandler,$(this).serialize(),aspForm);return false;"		
-		counter				= 0	
+		onSubmit			= "aspAjax('POST',aspLiteAjaxHandler,$(this).serialize(),aspForm);return false;"
+		counter				= 0
 		offSet				= 150
-		doScroll			= false 'true or false	
-		set eventListener = nothing
-		
+		doScroll			= false 'true or false
+		set eventListener	= nothing
+
 		'by default, a hidden field named "postback" is added to the collection of forms
 		dim postBackHF : set postBackHF=field("hidden")
 		postBackHF.add "name","postBack"
-		postBackHF.add "value","true"	
-		
+		postBackHF.add "value","true"
+
 		'postback=true in case the form has been submitted 
 		if aspl.convertBool(aspL.getRequest("postBack")) then
 			postback=true
 		else
 			postback=false
 		end if
-		
-	end sub	
-	
+
+	end sub
+
 	public property get target
-	
+
 		target=p_target
-	
+
 	end property
-	
+
 	public property let target(value)
-	
+
 		p_target	= value
-		
+
 		'the form.id is automatically set, with a suffix "_aspForm"
 		id			= p_target & "_aspForm"
-	
+
 	end property
-	
-	
+
 	public property let reload(value)
-	
-		if aspl.convertNmbr(value)>0 then	
-			
-			if not postback then				
-		
-				dim setTimeout: set setTimeout=field("script")		
+
+		if aspl.convertNmbr(value)>0 then
+
+			if not postback then
+
+				dim setTimeout: set setTimeout=field("script")
 				setTimeout.add "text","$(document).ready(function(e) {setInterval(function(){$('#" & id & "').submit()}," & value*1000 & ")})"
-			
+
 			end if
-			
+
 		end if
-	
+
 	end property
-	
+
 	public function field(value)
-	
+
 		set field=aspl.dict
 		field.add "type",value
 		allFields.add counter,field
 		counter=counter+1
-		
-	end function
-	
-	public sub listenTo(eventName,eventValue)	
 
-		set eventListener	= field("hidden")
+	end function
+
+	public sub listenTo(eventName,eventValue)
+
+		set eventListener = field("hidden")
 		eventListener.add "name",eventName
-		eventListener.add "value",eventValue		
-	
+		eventListener.add "value",eventValue
+
 	end sub
-	
+
 	public sub build()
-	
+
 		Dim arr : arr = Array()
-		ReDim arr(allFields.count-1)	
+		ReDim arr(allFields.count-1)
 
 		dim fieldkey
 		for each fieldkey in allFields
-			
+
 			'set the values of the input fields with the request-values in the submitted form
 			if allfields(fieldkey).exists("name") then
 				if not aspl.isEmpty(aspL.getRequest(allFields(fieldkey)("name"))) then
 					allFields(fieldkey)("value")=aspL.getRequest(allFields(fieldkey)("name"))
 				end if
 			end if
-			
+
 			set arr(fieldkey)=allFields(fieldkey)
-			
-		next	
-		
-		set allFields=nothing	
+
+		next
+
+		set allFields=nothing
 
 		dim JsonAnswer,JsonHeader
-		JsonAnswer=aspl.json.toJson("aspForm", arr, false)		
+		JsonAnswer=aspl.json.toJson("aspForm", arr, false)
 
 		'finalizing JSON response - preparing header:
 		JsonHeader = "{""target"":"""& p_target & ""","
 		JsonHeader = JsonHeader & """offSet"":" & offSet & ","
-		
+
 		if doScroll then
 			JsonHeader = JsonHeader & """doScroll"":true,"
 		else
 			JsonHeader = JsonHeader & """doScroll"":false,"
-		end if		
-		
+		end if
+
 		JsonHeader = JsonHeader & """id"":""" & aspl.json.escape(id) & ""","
 		JsonHeader = JsonHeader & """onSubmit"":""" & aspl.json.escape(onSubmit) & ""","
 		JsonHeader = JsonHeader & """executionTime"":""[ASPLITE_executionTime]ms"","
-				  
+
 		'removing from generated JSON initial bracket { and concatenating all together.
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
-		JsonAnswer = JsonHeader & JsonAnswer		 		
-		
+		JsonAnswer = JsonHeader & JsonAnswer
+
 		'writing a response and stop executing page
-		aspL.dumpJson JsonAnswer		
-	
+		aspL.dumpJson JsonAnswer
+
 	end sub
 
 end class
@@ -915,7 +906,7 @@ end class
 ''					'simple number
 ''					output = (new JSON)("myNum", 2, false)
 ''					'generates {"myNum": 2}
-''										
+''
 ''					'array with different datatypes
 ''					output = (new JSON)("anArray", array(2, "x", null), true)
 ''					'generates "anArray": [2, "x", null]
@@ -931,12 +922,12 @@ class cls_asplite_json
 
 	'private members
 	private output, innerCall
-	
+
 	'public members
 	public toResponse		''[bool] should the generated representation be written directly to the response (using <em>response.write</em>)? default = false
 	public recordsetPaging	''[bool] indicates if only the current page should be processed on paged recordsets.
 							''e.g. would return only 10 records if <em>RS.pagesize</em> is set to 10. default = false (means that always all records are processed)
-	
+
 	'**********************************************************************************************************
 	'* constructor 
 	'**********************************************************************************************************
@@ -945,7 +936,7 @@ class cls_asplite_json
 		toResponse = false
 		recordsetPaging = false
 	end sub
-	
+
 	'******************************************************************************************
 	'' @SDESCRIPTION:	STATIC! takes a given string and makes it JSON valid
 	'' @DESCRIPTION:	all characters which needs to be escaped are beeing replaced by their
@@ -978,7 +969,7 @@ class cls_asplite_json
 			escape = escape & currentDigit
 		next
 	end function
-	
+
 	'******************************************************************************************************************
 	'' @SDESCRIPTION:	generates a representation of a name value pair in JSON grammer
 	'' @DESCRIPTION:	It generates a name value pair which is represented as <em>{"name": value}</em> in JSON.
@@ -1024,34 +1015,34 @@ class cls_asplite_json
 	''					(if toResponse is on then the return is written directly to the response and nothing is returned)
 	'******************************************************************************************************************
 	public default function toJSON(name, val, nested)
-	
+
 		if not nested and not isEmpty(name) then write("{")
 		if not isEmpty(name) then write("""" & escape(name) & """: ")
 		generateValue(val)
 		if not nested and not isEmpty(name) then write("}")
 		toJSON = output
-		
+
 		if innerCall = 0 then newGeneration()
 	end function
-	
+
 	'******************************************************************************************************************
 	'' Added by Pieter Cooreman, developer aspLite
 	'' I added this function to have a very easy way to return single level values named "aspl"
 	'' Val can be of all types (string, arrays, objects, recordset) - see toJSON
 	'******************************************************************************************************************
-	public sub dump(val)	
-		
+	public sub dump(val)
+
 		write("{""aspl"": ")
 		generateValue(val)
-		write("}")	
-		
+		write("}")
+
 		Response.ContentType = "application/json"
 		response.clear
 		response.write output
-		response.end 		
-		
+		response.end
+
 	end sub
-	
+
 	'******************************************************************************************************************
 	'* generate 
 	'******************************************************************************************************************
@@ -1090,23 +1081,23 @@ class cls_asplite_json
 			'bool
 			dim varTyp
 			varTyp = varType(val)
-			
+
 			select case aspL.convertNmbr(varTyp)
-			
+
 				case 11 : if val then write("true") else write("false") 'bool
-				
+
 				case 2,3,17,19 : write(cLng(val))
-			
+
 				case 4,5,6,14 : write(replace(cDbl(val), ",", "."))
-				
+
 				case else :	write("""" & escape(val & "") & """")
-				
+
 			end select 
-			
+
 		end if
 		generateValue = output
 	end function
-	
+
 	'******************************************************************************************************************
 	'* generateArray 
 	'******************************************************************************************************************
@@ -1122,7 +1113,7 @@ class cls_asplite_json
 		next
 		write("]")
 	end sub
-	
+
 	'******************************************************************************************************************
 	'* generateDictionary 
 	'******************************************************************************************************************
@@ -1143,7 +1134,7 @@ class cls_asplite_json
 		write("}")
 		innerCall = innerCall - 1
 	end sub
-	
+
 	'******************************************************************************************************************
 	'* generateRecordset 
 	'******************************************************************************************************************
@@ -1157,7 +1148,7 @@ class cls_asplite_json
 			write("{")
 			for i = 0 to val.fields.count - 1
 				if i > 0 then write(",")
-				
+
 				if isDate(val.fields(i).value) then
 					copyDate=val.fields(i).value
 					toJSON val.fields(i).name, year(copyDate) & "-" & padLeft(month(copyDate),2,0) & "-" & padLeft(day(copyDate),2,0) & "T" & padLeft(hour(copyDate),2,0) & ":" & padLeft(minute(copyDate),2,0) & ":" & padLeft(second(copyDate),2,0), true
@@ -1173,7 +1164,7 @@ class cls_asplite_json
 		wend
 		write("]")
 	end sub
-	
+
 	'******************************************************************************************************************
 	'* generateObject 
 	'******************************************************************************************************************
@@ -1191,7 +1182,7 @@ class cls_asplite_json
 			write("""" & escape(typename(val)) & """")
 		end if
 	end sub
-	
+
 	'******************************************************************************************************************
 	'* newGeneration 
 	'******************************************************************************************************************
@@ -1199,21 +1190,21 @@ class cls_asplite_json
 		output = empty
 		innerCall = 0
 	end sub
-	
+
 	'******************************************************************************************
 	'* JsonEscapeSquence 
 	'******************************************************************************************
 	private function escapequence(digit)
 		escapequence = "\u00" + right(padLeft(hex(ascw(digit)), 2, 0), 2)
 	end function
-	
+
 	'******************************************************************************************
 	'* padLeft 
 	'******************************************************************************************
 	private function padLeft(value, totalLength, paddingChar)
 		padLeft = right(clone(paddingChar, totalLength) & value, totalLength)
 	end function
-	
+
 	'******************************************************************************************
 	'* clone 
 	'******************************************************************************************
@@ -1221,7 +1212,7 @@ class cls_asplite_json
 		dim i
 		for i = 1 to n : clone = clone & str : next
 	end function
-	
+
 	'******************************************************************************************
 	'* write 
 	'******************************************************************************************
@@ -1238,24 +1229,24 @@ end class
 class cls_asplite_randomizer
 
 	Private Sub Class_Initialize()
-	
-		randomize()			
-	
+
+		randomize()
+
 	end sub
 
-	public function randomText(nmbrChars)	
+	public function randomText(nmbrChars)
 
 		dim i
-		for i=1 to nmbrChars	
+		for i=1 to nmbrChars
 			randomText=randomText & CHR(Int((122-97+1)*Rnd+97))
 		next
-	   
+
 	End Function
 
 	public function randomNumber(startnr,stopnr)
 
 		randomNumber=aspl.convertNmbr((stopnr-startnr+1)*Rnd+startnr)
-		
+
 	end function
 
 end class
