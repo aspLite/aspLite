@@ -15,7 +15,7 @@ if form.postback then
 	feedback.add "tag","div"
 	feedback.add "class","alert alert-warning"	
 	
-	'you can build it here already. This will stop further exection	
+	'you can build the form here already. This will stop further exection	
 	form.build()
 
 end if	

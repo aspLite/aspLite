@@ -1,13 +1,6 @@
 <%
 dim html,body
 
-'load the template of the demosite in the html-variable
-'default.resx is plain html and it will remain 99% unchanged. 
-'only [BODY] and [TIMER] will be replaced (see bottom of this file).
-'however, in most cases, [BODY] will be empty, as aspLite will mainly
-'return dynamic Ajax forms (see sampleform0 to 18)
-html=aspL.loadText("default/html/default.resx")
-
 'create a database object. It will also be used on various occasions in this demo
 'this demo uses an Access database, located in "db/sample.mdb"
 dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
@@ -87,6 +80,13 @@ select case lcase(aspL.getRequest("e")) 'e="event"
 		aspL("default/404.handler.asp")		
 		
 end select
+
+'load the template of the demosite in the html-variable
+'default.resx is plain html and it will remain 99% unchanged. 
+'only [BODY] and [TIMER] will be replaced (see bottom of this file).
+'however, in most cases, [BODY] will be empty, as aspLite will mainly
+'return dynamic Ajax forms (see sampleform0 to 18)
+html=aspL.loadText("default/html/default.resx")
 
 'final replaces before returning html to the browser
 'body

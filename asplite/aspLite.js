@@ -49,10 +49,10 @@ function getAspForm (data) {
 	aspLiteFormLooper++
 	//console.log(aspLiteFormLooper)
 	if (aspLiteFormLooper < aspLiteAjaxForms.length) {
-		//you can even save the server more, by adding some (10) milliseconds of delay before the next call is launched
-		setTimeout(function(){ aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm) }, 10);
+		//you can even save the server more, by adding some (5) milliseconds of delay before the next call is launched
+		//setTimeout(function(){ aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm) }, 5);
 		//or if you prefer not to wait...
-		//aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm)
+		aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm)
 	}
 }
 
@@ -80,7 +80,9 @@ function aspAjaxError(data) {
  
 function aspForm(data) {
 	
-	if (typeof data.id == 'undefined') { return }
+	if (typeof data.id == 'undefined') { console.log('no formID!') ; enumerateJson(data) ; return }
+	
+	//console.log(data.id)
 			
 	//avoid double id's
 	$('#' + data.id ).remove()

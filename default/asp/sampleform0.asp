@@ -1,5 +1,5 @@
 <%
-
+'also see sampleform0.resx
 dim form : set form=aspl.form
 form.target="body"
 

@@ -9,9 +9,14 @@ select case lcase(aspl.pathinfo)
 	
 	case "getcode" 		: aspL("default/asp/404/getcode.asp")	
 	
-	case "contact" 		: aspL("default/asp/404/contact.asp")	
+	case "contact" 		: aspL("default/asp/404/contact.asp")
 	
-	case else 'do nothing?
+	case "" 'do nothing
+	
+	case else 
+		
+		response.write "this page does not exist"
+		response.end
 	
 end select
 %>

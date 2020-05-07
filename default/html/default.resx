@@ -48,8 +48,10 @@
 		<main role="main" class="container">		
 
 			<div class="row" style="margin-bottom:10px">			
-				<div class="col">					
-					<div id="body" class="aspForm">[BODY]</div>									
+				<div class="col">		
+					[BODY]
+					<div id="body" class="aspForm"></div>
+					
 				</div>
 			</div>					
 			
@@ -63,7 +65,7 @@
 							Hello (Ajax form)
 							</div>
 							<div class="card-body">
-							<p class="card-text">Let's get this started. This demo includes a powerful Ajax formbuilder. Not only you can create forms, you can also use it to simply bind any html element. This first sample does both. Try it out!</p>
+							<p class="card-text">Let's get this started. aspLite has a powerful Ajax formbuilder. Not only you can create forms, you can also use it to bind any html element. This first sample does both. Try it out!</p>
 								<div class="aspForm card-text" id="sampleform1"></div>
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform1.asp</small></p>						
@@ -278,7 +280,7 @@
 									<small class="text-muted">
 									/default/asp/sampleform14.asp
 									<br>							
-									/default/html/uploadjquery.resx
+									/default/html/sampleform14.resx
 									<br>
 									/default/asp/uploadfile.asp
 									</small>						
@@ -336,37 +338,6 @@
 									/asplite/asplite.asp (pathinfo)
 									</small>							
 								</p>	
-							</div>
-						</div>	
-
-						<div class="card">
-							<div class="card-header">
-								Binary uploads
-							 </div>
-							<div class="card-body">							
-								
-								<ul>
-									<li><a href="default.asp?e=upload">upload single file</a>
-										<p class="card-text">
-											<small class="text-muted">
-											/default/html/singleupload.resx
-											<br>
-											/default/asp/uploadfile.asp
-											</small>							
-										</p>									
-									</li>
-									<li><a href="default.asp?e=uploadmulti">upload multiple files</a>
-										<p class="card-text">
-											<small class="text-muted">
-											/default/html/multiupload.resx
-											<br>
-											/default/asp/uploadfile.asp
-											</small>							
-										</p>									
-									</li>
-
-								</ul>	
-													
 							</div>
 						</div>	
 						

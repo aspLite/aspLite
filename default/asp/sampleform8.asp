@@ -31,9 +31,8 @@ dim form : set form=aspl.form
 form.target="sampleform8"
 	
 'result
-dim feedback : set feedback=form.field("element")
+dim feedback : set feedback=form.field("plain")
 feedback.add "html","<table class=""table table-striped""><tbody>" & datatable & "</tbody></table>"
-feedback.add "tag","div"
 
 form.build()
 
