@@ -1,6 +1,5 @@
 <%
-'the functions below are not part of aspLite. But they are used in code/asp/sampleform3.asp (jQuery IO Datepicker)
-'they are rather specific to use with the jQuery Datepicker. You can extend this list of functions as you wish.
+'the functions are rather specific to use with the jQuery UI. You can extend this list of functions as you wish.
 
 'select a date-format
 dim dateformat

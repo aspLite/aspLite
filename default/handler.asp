@@ -15,28 +15,23 @@ dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
 'here comes the eventhandler (what did the user do/click on exactly?)
 'in general: if the code for dealing with the event is not large, include it here (downloadlargefile,downloadsmallfile,etc).
 'if the code is getting complex, use yet another codebehind file, like all sampleforms!
+'the aspl.exec is the DEFAULT sub in aspLite, so aspl(XX) will execute XX where XX is the path to the ASP file to be executed
 
 select case lcase(aspL.getRequest("e")) 'e="event"	
 	
 	case "downloadlargefile" 		: aspL.dumpBinary("default/html/largefile.jpg")
 	
 	case "downloadsmallfile" 		: aspL.dumpBinary("default/html/smallfile.jpg")
-	
-	case "datatables_ssp"			: body=aspL.loadText("default/html/datatables_ssp.resx")
-	
-	case "datatables" 				: body=aspL.loadText("default/html/datatables.resx")
-
-	case "json_datatables_data" 	: aspL("default/asp/datatables_ssp.asp")	
-	
-	case "json_datatables" 			: aspL("default/asp/json_datatables.asp")	
 				
-	case "upload" 					: body=aspL.loadText("default/html/singleupload.resx")
-		
-	case "uploadfile" 				: aspL("default/asp/uploadfile.asp")	
+	case "upload" 					: body=aspL.loadText("default/html/singleupload.resx")	
 	
-	case "uploadmulti" 				: body=aspL.loadText("default/html/multiupload.resx")		
+	case "uploadmulti" 				: body=aspL.loadText("default/html/multiupload.resx")	
+
+	case "uploadfilejquery" 		: aspL("default/asp/uploadfile.asp") : aspL.die
 	
-	case "sampleform0"				: aspL("default/asp/sampleform0.asp")
+	case "uploadfile" 				: aspL("default/asp/uploadfile.asp") ' takes care of the actual upload!
+	
+	case "body"						: aspL("default/asp/sampleform0.asp") 'default content for <div id="body">
 		
 	case "sampleform1" 				: aspL("default/asp/sampleform1.asp")
 	
@@ -46,7 +41,7 @@ select case lcase(aspL.getRequest("e")) 'e="event"
 	
 	case "sampleform4" 				: aspL("default/asp/sampleform4.asp")	
 	
-	case "sampleform5" 				: aspL("default/asp/sampleform5.asp")
+	case "sampleform5" 				: aspL("default/asp/sampleform5.asp")	
 	
 	case "sampleform6" 				: aspL("default/asp/sampleform6.asp")	
 	
@@ -72,11 +67,19 @@ select case lcase(aspL.getRequest("e")) 'e="event"
 	
 	case "sampleform17" 			: aspL("default/asp/sampleform17.asp")
 	
-	case "sampleform18" 			: aspL("default/asp/sampleform18.asp")	
+	case "sampleform18" 			: aspL("default/asp/sampleform18.asp")
 	
-	case "postdtt" 					: aspL("default/asp/postdtt.asp")	
+	case "sampleform19" 			: aspL("default/asp/sampleform19.asp")	
 	
-	case "uploadfilejquery" 		: aspL("default/asp/uploadfile.asp") : aspL.die	'uploader
+	case "sampleform20" 			: aspL("default/asp/sampleform20.asp")
+	
+	case "sampleform20_data" 		: aspL("default/asp/datatables/sampleform20_data.asp")
+	
+	case "sampleform21" 			: aspL("default/asp/sampleform21.asp")	
+	
+	case "sampleform21_data" 		: aspL("default/asp/datatables/sampleform21_data.asp")	
+	
+	case "sampleform22" 			: aspL("default/asp/sampleform22.asp")
 	
 	case else 
 				

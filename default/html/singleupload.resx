@@ -10,7 +10,7 @@
 
 <div class="alert alert-danger" role="alert">
   Security alert: this script uploads the selected file(s) in the /uploads folder. However,
-  for security reasons, they are deleted right after. Check /code/asp/uploadfile.asp.
+  for security reasons, they are deleted right after. Check /default/asp/uploadfile.asp.
 </div>
 
 <script>

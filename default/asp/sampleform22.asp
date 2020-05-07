@@ -1,6 +1,6 @@
 <%
 'load jquery date-functions (sets the dateformat!)
-aspL("default/asp/functions.asp")
+aspL("default/asp/includes/jQueryUiFunctions.asp")
 
 'load includes (classes) for this particular example
 aspL("default/asp/datatables/includes.asp")
@@ -47,7 +47,7 @@ if aspl.convertBool(aspl.getRequest("postBack")) then
 	
 end if
 
-dim form : form=aspL.loadText("default/html/postdtt.resx")
+dim form : form=aspL.loadText("default/html/sampleform22.resx")
 
 'set the dateformat for jQuery UI DatePicker
 form=replace(form,"[dateformat]",dateformat,1,-1,1)

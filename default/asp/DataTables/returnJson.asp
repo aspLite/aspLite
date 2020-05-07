@@ -1,7 +1,7 @@
 <%
-dim returnJson : set returnJson=new cls_dt_returnJson
+dim returnJson : set returnJson=new cls_datatables_returnJson
 
-class cls_dt_returnJson
+class cls_datatables_returnJson
 
 	private OrderCol,OrderDir,strOrder,draw,StartRecord,RowsPerPage,JsonAnswer,JsonHeader
 	public strSearch, strWhere, dbPath, strSelect
@@ -41,7 +41,7 @@ class cls_dt_returnJson
 		'reading search phrase - this one may be empty
 		strSearch = trim(aspL.getRequest("search[value]"))	
 		
-		aspL.aspError("cls_dt_returnJson.Class_Initialize")
+		aspL.aspError("cls_datatables_returnJson.Class_Initialize")
 		
 		on error goto 0
 	
@@ -68,15 +68,14 @@ class cls_dt_returnJson
 			rs.pagesize=RowsPerPage
 		end if
 
-		'prepare JSON return - this class takes care of the recordset paging! - see aspl.json.recordsetPaging
+		'prepare JSON return - JSON takes care of the recordset paging! - see aspl.json.recordsetPaging
 		aspl.json.recordsetPaging=true
 		JsonAnswer=aspl.json.toJson("data", rs, false) 
 
 		'finalizing JSON response - preparing header:
 		JsonHeader = "{ ""draw"": "& draw &", "& vbcrlf
 		JsonHeader = JsonHeader & """recordsTotal"": " & rTotal & ", "
-		JsonHeader = JsonHeader & """recordsFiltered"": " & rTotal & ", "
-		
+		JsonHeader = JsonHeader & """recordsFiltered"": " & rTotal & ", "		
 		  
 		'removing from generated JSON initial bracket { and concatenating all together.
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)
@@ -84,7 +83,7 @@ class cls_dt_returnJson
 
 		set rs=nothing
 		 
-		aspL.aspError("cls_dt_returnJson.dumpJson")
+		aspL.aspError("cls_datatables_returnJson.dumpJson")
 		
 		'writing a response and stop executing page
 		aspL.dumpJson JsonAnswer

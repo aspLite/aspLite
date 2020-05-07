@@ -1,6 +1,6 @@
 <%
 'CONDITIONAL load of asp page = include file
-aspL("default/asp/class.asp")	
+aspL("default/asp/includes/class.asp")	
 
 dim testObj
 set testObj=new cls_test
@@ -12,6 +12,7 @@ form.target="sampleform10"
 dim feedback : set feedback=form.field("element")
 feedback.add "html",testObj.hello
 feedback.add "tag","div"
+feedback.add "class","jumbotron"
 
 form.build()
 

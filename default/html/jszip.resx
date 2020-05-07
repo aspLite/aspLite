@@ -4,7 +4,7 @@ var i=0
 var urls = []
 
 //the list of files below is generated on the server
-//see code/asp/sampleform16.asp
+//see default/asp/sampleform16.asp
 [filelist]
 
 $("#blob").on("click", function () {

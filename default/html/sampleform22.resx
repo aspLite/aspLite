@@ -1,6 +1,6 @@
 <form class="ajaxForm" method="post">
 
-	<input type="hidden" name="e" value="postdtt" />
+	<input type="hidden" name="e" value="sampleform22" />
 	<input type="hidden" name="postBack" value="true" />
 	<input type="hidden" id="btnAction" name="btnAction" value="" />
 

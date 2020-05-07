@@ -80,7 +80,7 @@ class cls_asplite
 
 	end sub	
 	
-	private function removeCRB(value)
+	public function removeCRB(value)
 	
 		'remove Code Render Blocks
 	

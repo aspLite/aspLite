@@ -2,8 +2,10 @@ var aspLiteAjaxHandler='default.asp'
 var aspLiteAjaxForms = []
 var aspLiteFormLooper=0
 
-$(document).ready(function(e) {	
-
+function init() {
+	
+	$('html,body').animate({scrollTop: $('body').offset().top}, 'slow')
+	
 	//bootstrap spinner
 	var spinner="<div class='text-center'>"
 	spinner+="<div class='spinner-border text-primary spinner-border' role='status'><span class='sr-only'>Loading...</span> </div>"
@@ -34,6 +36,11 @@ $(document).ready(function(e) {
 		//load all Ajax calls sequential
 		aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[0],getAspForm)		
 	}
+}
+
+$(document).ready(function(e) {	
+init();
+
 })
 
 //recursive execution to avoid server issues
@@ -42,17 +49,17 @@ function getAspForm (data) {
 	aspLiteFormLooper++
 	//console.log(aspLiteFormLooper)
 	if (aspLiteFormLooper < aspLiteAjaxForms.length) {
-		//you can even save the server more, by adding some (25) milliseconds of delay before the next call is launched
-		setTimeout(function(){ aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm) }, 25);
+		//you can even save the server more, by adding some (10) milliseconds of delay before the next call is launched
+		setTimeout(function(){ aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm) }, 10);
 		//or if you prefer not to wait...
 		//aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm)
 	}
 }
 
 $('.ajaxLink').click(function(e) {
-		e.preventDefault()
-		aspAjax('GET',aspLiteAjaxHandler,'e=' + $(this).attr("data-aspForm"),aspForm)
-	})
+	e.preventDefault()
+	aspAjax('GET',aspLiteAjaxHandler,'e=' + $(this).attr("data-aspForm"),aspForm)
+})
 
 function aspAjax (type,url,data,success) {	
 
@@ -63,15 +70,17 @@ function aspAjax (type,url,data,success) {
 		data: data,
 		success: success,
 		error: aspAjaxError
-	});	
-};
+	})
+}
 
 function aspAjaxError(data) {
-	console.log (data);
-	}; 
+	console.log (data)
+	}
  
  
 function aspForm(data) {
+	
+	if (typeof data.id == 'undefined') { return }
 			
 	//avoid double id's
 	$('#' + data.id ).remove()
@@ -99,6 +108,11 @@ function aspForm(data) {
 		if (typeof field.type == 'undefined') {
 			console.log('ERROR: field TYPE is missing!')
 			enumerateJson(field)
+			continue
+		}
+
+		if (field.type=="plain") {
+			aspForm.append(field.html)			
 			continue
 		}		
 	

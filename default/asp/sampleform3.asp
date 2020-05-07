@@ -1,6 +1,6 @@
 <%
-'load some variables and functions (dateformat, dateFromPicker, dateToPicker)
-aspL("default/asp/functions.asp")
+'load jquery date-functions (sets the dateformat!)
+aspL("default/asp/includes/jQueryUiFunctions.asp")
 
 dim form : set form=aspl.form
 form.listenTo "e","sampleform3"

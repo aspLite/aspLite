@@ -1,11 +1,3 @@
-
-<style>
-.dataTables_wrapper .dataTables_processing {
-height: 60px;
-font-size: 1em;
-}
-</style>
-
 <h3>DataTables / Server Side Processing (Classic ASP)</h3>
 
 <hr>
@@ -40,7 +32,7 @@ font-size: 1em;
 
 <script>
 function askAspForm (id) {
-	aspAjax ("post","default.asp","iId=" + id + "&e=postdtt",receiveAspForm)
+	aspAjax ("post",aspLiteAjaxHandler,"iId=" + id + "&e=sampleform22",receiveAspForm)
 }
 
 function receiveAspForm(data) {
@@ -55,7 +47,7 @@ $(document).ready( function () {
 		"order": [1,"asc"],		
 		"responsive": true,
 		"serverSide": true,
-		"ajax": 'default.asp?e=json_datatables_data',
+		"ajax": aspLiteAjaxHandler + '?e=sampleform21_data',
 		"processing": true,
 		"columnDefs": [
 				{"targets": '_all',"render":$.fn.dataTable.render.text()},

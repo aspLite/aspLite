@@ -1,0 +1,9 @@
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Welcome!</h4>
+  <p>This is a demo SPA (Single Page Application) making use of <strong>aspLite</strong>. Various sample forms, plugins and utilities are showcased over here. The location of the ASP-code involved, is displayed each time.</p>
+  <p>For the record, a "Single Page Application" does not mean that this is a "small" application. This SPA holds a few dozen of Ajax forms. But that can easily grow to 100 for larger SPA's.</p>
+  <p>This demo also executes only 1 ASP page: <strong>default.asp</strong> in the root of this installation. That ASP file acts as a dispatcher (handler) for all events that occur in the application. See /default/handler.asp.</p>
+  <p>Have fun while discovering the bits and bytes of this demo!</p>
+  <hr>
+  <small class="text-muted">/default/asp/sampleform0.asp</small>
+</div>
