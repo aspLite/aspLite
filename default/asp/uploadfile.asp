@@ -17,8 +17,6 @@ for each fileKey in Upload.UploadedFiles.keys
 	
 	filesize=Upload.UploadedFiles(fileKey).Length
 	filename=Upload.UploadedFiles(fileKey).filename
-			
-	body=body & "<p>The file <strong>" & aspL.sanitize(filename) & " (" & round(filesize/1024,0) & " kB)</strong> was successfully uploaded (and removed again).</p>"
 	
 	'for security reasons, I immediately remove the uploaded files.
 	Upload.UploadedFiles(fileKey).delete()

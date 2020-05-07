@@ -15,14 +15,8 @@ select case lcase(aspL.getRequest("e")) 'e="event"
 	case "downloadlargefile" 		: aspL.dumpBinary("default/html/largefile.jpg")
 	
 	case "downloadsmallfile" 		: aspL.dumpBinary("default/html/smallfile.jpg")
-				
-	case "upload" 					: body=aspL.loadText("default/html/singleupload.resx")	
-	
-	case "uploadmulti" 				: body=aspL.loadText("default/html/multiupload.resx")	
 
 	case "uploadfilejquery" 		: aspL("default/asp/uploadfile.asp") : aspL.die
-	
-	case "uploadfile" 				: aspL("default/asp/uploadfile.asp") ' takes care of the actual upload!
 	
 	case "body"						: aspL("default/asp/sampleform0.asp") 'default content for <div id="body">
 		
