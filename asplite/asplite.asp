@@ -768,7 +768,7 @@ end class
 class cls_asplite_formbuilder
 
 	private allFields, counter, eventListener, p_target
-	public postback,offSet,doScroll,id,onSubmit
+	public postback,offSet,doScroll,id,onSubmit,reload
 
 	private sub class_initialize()
 
@@ -806,22 +806,7 @@ class cls_asplite_formbuilder
 		'the form.id is automatically set, with a suffix "_aspForm"
 		id			= p_target & "_aspForm"
 
-	end property
-
-	public property let reload(value)
-
-		if aspl.convertNmbr(value)>0 then
-
-			if not postback then
-
-				dim setTimeout: set setTimeout=field("script")
-				setTimeout.add "text","$(document).ready(function(e) {setInterval(function(){$('#" & id & "').submit()}," & value*1000 & ")})"
-
-			end if
-
-		end if
-
-	end property
+	end property	
 
 	public function field(value)
 
@@ -841,6 +826,19 @@ class cls_asplite_formbuilder
 	end sub
 
 	public sub build()
+		
+		'reload
+		if aspl.convertNmbr(reload)>0 then
+
+			if not postback then
+
+				dim setTimeout: set setTimeout=field("script")
+				setTimeout.add "text","$(document).ready(function(e) {setInterval(function(){$('#" & id & "').submit()}," & reload*1000 & ")})"
+
+			end if
+
+		end if
+	
 
 		Dim arr : arr = Array()
 		ReDim arr(allFields.count-1)
