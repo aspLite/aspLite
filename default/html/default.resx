@@ -148,6 +148,18 @@
 							
 						</div>	
 						
+						<div class="card">
+							<div class="card-header">
+								Take the Quiz
+							 </div>
+							<div class="card-body">								
+								<div class="aspForm  card-text" id="sampleform24"></div>	
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform24.asp</small></p>	
+							</div>
+							
+						</div>
+						
 
 						<div class="card">
 							<div class="card-header">
@@ -171,18 +183,6 @@
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform5.asp</small></p>	
 							</div>
 						</div>	
-
-						<div class="card" style="min-height:320px">
-							<div class="card-header">
-								Take the Quiz
-							 </div>
-							<div class="card-body">								
-								<div class="aspForm  card-text" id="sampleform24"></div>	
-								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform24.asp</small></p>	
-							</div>
-							
-						</div>
 						
 						<div class="card">
 							<div class="card-header">
