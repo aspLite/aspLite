@@ -53,7 +53,7 @@ select case aspl.convertNmbr(aspl.getRequest("nextquestion"))
 		
 		nextquestion.add "value","2"
 
-		question.add "html","Q1: Is ASP dead?"				
+		question.add "html","Is ASP dead?"				
 
 		set options=aspl.dict
 		options.add 0,"Yes"
@@ -69,7 +69,7 @@ select case aspl.convertNmbr(aspl.getRequest("nextquestion"))
 		
 		nextquestion.add "value","3"	
 		
-		question.add "html","Q2: How many versions are there of ASP?"
+		question.add "html","How many ASP-versions are there?"
 		
 		set options=aspl.dict
 		options.add 1,"one"
@@ -86,7 +86,7 @@ select case aspl.convertNmbr(aspl.getRequest("nextquestion"))
 		
 		nextquestion.add "value","4"
 
-		question.add "html","Q3: Is aspLite the future or the past?"		
+		question.add "html","Is aspLite the future or the past?"		
 		
 		set options=aspl.dict
 		options.add 0,"the future"
