@@ -224,6 +224,15 @@ function aspForm(data) {
 				"size"		: field.size
 			}).val(field.value).appendTo(formgroup)	
 	
+			//emptyfirst?
+			if (typeof field.emptyfirst != 'undefined') {
+				$('<option>').attr({
+					
+					"value":""
+					
+				}).text(field.emptyfirst).appendTo(selectBox)
+			}
+	
 			//add the options
 			var options=field.options						
 			

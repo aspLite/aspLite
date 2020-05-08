@@ -33,6 +33,7 @@ score.add "label","How would you rate aspLite so far?"
 score.add "name","score"
 score.add "id","score"
 score.add "class","form-control"
+score.add "emptyfirst","please select"
 score.add "options",stars 'VBSscript dictionary!
 score.add "onchange","$('#" & form.id & "').submit();"
 

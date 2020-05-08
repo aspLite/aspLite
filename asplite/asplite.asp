@@ -768,7 +768,7 @@ end class
 class cls_asplite_formbuilder
 
 	private allFields, counter, eventListener, p_target
-	public postback,offSet,doScroll,id,onSubmit,reload
+	public postback,offSet,doScroll,id,onSubmit,reload,initialize
 
 	private sub class_initialize()
 
@@ -778,6 +778,7 @@ class cls_asplite_formbuilder
 		offSet				= 150
 		doScroll			= false 'true or false
 		set eventListener	= nothing
+		initialize			= true
 
 		'by default, a hidden field named "postback" is added to the collection of forms
 		dim postBackHF : set postBackHF=field("hidden")
@@ -847,9 +848,12 @@ class cls_asplite_formbuilder
 		for each fieldkey in allFields
 
 			'set the values of the input fields with the request-values in the submitted form
-			if allfields(fieldkey).exists("name") then
-				if not aspl.isEmpty(aspL.getRequest(allFields(fieldkey)("name"))) then
-					allFields(fieldkey)("value")=aspL.getRequest(allFields(fieldkey)("name"))
+			
+			if initialize then
+				if allfields(fieldkey).exists("name") then
+					if not aspl.isEmpty(aspL.getRequest(allFields(fieldkey)("name"))) then
+						allFields(fieldkey)("value")=aspL.getRequest(allFields(fieldkey)("name"))
+					end if
 				end if
 			end if
 
