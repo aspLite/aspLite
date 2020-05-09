@@ -1,7 +1,7 @@
 <%
 
 dim form : set form=aspl.form
-form.listenTo "e","sampleform15"
+form.listenTo "asplEvent","sampleform15"
 form.target="sampleform15"
 
 dim defaultValue

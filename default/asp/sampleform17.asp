@@ -1,8 +1,16 @@
 <%
-
 dim form : set form=aspl.form
-form.listenTo "e","sampleform17"
-form.target="sampleform17"
+form.listenTo "asplEvent","sampleform17"
+
+'rather than set the form-target, you can also make it dynamic,
+'so that the same form can bind to multiple div-ids
+'sampleForm17 binds to both id=sampleform17 and id=sampleform19
+form.target=aspl.getRequest("asplTarget")
+
+'in that case, make sure to add the asplTarget-field to the form
+set asplTarget=form.field("hidden")
+asplTarget.add "name","asplTarget"
+asplTarget.add "value",aspl.getRequest("asplTarget")
 
 if form.postback then
 

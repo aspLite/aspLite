@@ -27,7 +27,7 @@ $(document).ready( function () {
 	
 		"columnDefs": [{"targets": '_all',"render":$.fn.dataTable.render.text()}],
 	
-		"ajax": {"url": aspLiteAjaxHandler + "?e=sampleform20_data","dataSrc": "aspl"},	
+		"ajax": {"url": aspLiteAjaxHandler + "?asplEvent=sampleform20_data","dataSrc": "aspl"},	
 		 
 		"columns": [
             { "data": "id",render: $.fn.dataTable.render.text() },

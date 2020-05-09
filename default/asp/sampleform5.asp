@@ -1,7 +1,7 @@
 <%
 
 dim form : set form=aspl.form
-form.listenTo "e","sampleform5"
+form.listenTo "asplEvent","sampleform5"
 form.target="sampleform5"
 
 'form-submitted
@@ -45,23 +45,6 @@ end if
 dim aspFormAction : set aspFormAction=form.field("hidden")
 aspFormAction.add "name","aspFormAction"
 aspFormAction.add "id","aspFormAction"
-
-'##########################################################################################
-
-dim email : set email=form.field("email")
-email.add "label","Email:"
-email.add "name","email"
-email.add "id","email"
-email.add "value",""
-email.add "class","form-control"
-
-'##########################################################################################
-
-dim aspyears : set aspyears=form.field("number")
-aspyears.add "label","For how many years are you an ASP coder?"
-aspyears.add "id","aspyears"
-aspyears.add "name","aspyears"
-aspyears.add "class","form-control"
 
 '##########################################################################################
 dim reasons: set reasons=aspl.dict

@@ -32,7 +32,7 @@
 
 <script>
 function askAspForm (id) {
-	aspAjax ("post",aspLiteAjaxHandler,"iId=" + id + "&e=sampleform22",receiveAspForm)
+	aspAjax ("post",aspLiteAjaxHandler,"iId=" + id + "&asplEvent=sampleform22",receiveAspForm)
 }
 
 function receiveAspForm(data) {
@@ -47,7 +47,7 @@ $(document).ready( function () {
 		"order": [1,"asc"],		
 		"responsive": true,
 		"serverSide": true,
-		"ajax": aspLiteAjaxHandler + '?e=sampleform21_data',
+		"ajax": aspLiteAjaxHandler + '?asplEvent=sampleform21_data',
 		"processing": true,
 		"columnDefs": [
 				{"targets": '_all',"render":$.fn.dataTable.render.text()},

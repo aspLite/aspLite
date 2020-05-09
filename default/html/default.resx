@@ -49,7 +49,7 @@
 
 			<div class="row" style="margin-bottom:10px">			
 				<div class="col">					
-					<div id="body" class="aspForm"></div>					
+					<div id="body" class="asplForm"></div>					
 				</div>
 			</div>					
 			
@@ -64,7 +64,7 @@
 							</div>
 							<div class="card-body">
 							<p class="card-text">Let's get this started. aspLite has a powerful Ajax formbuilder. Not only you can create forms, you can also use it to bind any html element. This first sample does both. Try it out!</p>
-								<div class="aspForm card-text" id="sampleform1"></div>
+								<div class="asplForm card-text" id="sampleform1"></div>
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform1.asp</small></p>						
 							</div>
@@ -72,11 +72,26 @@
 						
 						<div class="card">
 							<div class="card-header">
+								DataTables - jQuery plugin
+							 </div>
+							<div class="card-body">
+								
+								<p class="card-text">	
+								A classic ASP implementation of <a href="https://datatables.net/" target="_blank">DataTables</a> (jQuery plugin). DataTables turns any html table into a powerful widget with sorting, paging and searching functions.</p>
+									<ul>
+										<li><a href="#" class="ajaxLink" data-asplEvent="sampleform20">DataTables (Json)</a><br><small class="text-muted">see /default/asp/sampleform20.asp</small></li>						
+										<li><a href="#" class="ajaxLink" data-asplEvent="sampleform21">DataTables (ASP)</a><br><small class="text-muted">see /default/asp/sampleform21.asp</small></li>		
+									</ul>												
+							</div>
+						</div>	
+						
+						<div class="card">
+							<div class="card-header">
 								Trigger form by click
 							 </div>
 							<div class="card-body">		
 								<p class="card-text">
-									<a href="#" class="ajaxLink btn btn-success" data-aspForm="sampleform17">Trigger sampleform17</a>
+									<a href="#" class="ajaxLink btn btn-success" data-asplTarget="sampleform17" data-asplEvent="sampleform17">Trigger sampleform17</a>
 								</p>
 								<div class="card-text" id="sampleform17"></div>	
 								<hr>
@@ -86,10 +101,29 @@
 						
 						<div class="card">
 							<div class="card-header">
+								Open form in modal
+							 </div>
+							<div class="card-body">
+							
+								<p class="card-text">
+									<!-- you can trigger the sampleform17-event and bind it to a different asplTarget-id (sampleform19 (the body of the modal, see below))
+									This is how you can have the same form in various places in your html (see /default/asp/sampleform17.asp) -->
+									<a class="ajaxLink btn btn-outline-info" href="#" data-asplTarget="sampleform19" data-asplEvent="sampleform17" data-toggle="modal" data-target="#aspFormModal">Form17 in Modal</a>
+								</p>
+															
+								<hr>
+								
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform17.asp</small></p>
+								
+							</div>
+						</div>		
+						
+						<div class="card">
+							<div class="card-header">
 								Visitors online (reloads every 30 sec)
 							 </div>
 							<div class="card-body">									
-								<div class="aspForm card-text" id="sampleform23"></div>	
+								<div class="asplForm card-text" id="sampleform23"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform23.asp</small></p>	
 							</div>
@@ -101,27 +135,12 @@
 							 </div>
 							<div class="card-body">									
 								<div class="card-text" id="sampleform18">
-									<a href="#" class="ajaxLink btn btn-info" data-aspForm="sampleform18">Replace me</a>								
+									<a href="#" class="ajaxLink btn btn-info" data-asplEvent="sampleform18">Replace me</a>								
 								</div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform18.asp</small></p>	
 							</div>
-						</div>
-						
-						<div class="card">
-							<div class="card-header">
-								Open form in modal
-							 </div>
-							<div class="card-body">
-							
-								<p class="card-text"><a class="ajaxLink btn btn-outline-info" href="#" data-aspForm="sampleform19" data-toggle="modal" data-target="#aspFormModal">Form in Modal</a></p>
-															
-								<hr>
-								
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform19.asp</small></p>
-								
-							</div>
-						</div>		
+						</div>						
 
 						<div class="card" >
 							<div class="card-header">
@@ -129,7 +148,7 @@
 							 </div>
 							<div class="card-body">	
 								<p class="card-text">Self-submitting form</p>
-								<div class="aspForm card-text" id="sampleform2"></div>
+								<div class="asplForm card-text" id="sampleform2"></div>
 								<hr>							
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform2.asp</small></p>	
 							</div>
@@ -141,11 +160,10 @@
 							 </div>
 							<div class="card-body">								
 								<p class="card-text"><a href="https://jqueryui.com/datepicker/" target="_blank"> https://jqueryui.com/datepicker/</a></p>
-								<div class="aspForm  card-text" id="sampleform3"></div>	
+								<div class="asplForm  card-text" id="sampleform3"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform3.asp</small></p>	
-							</div>
-							
+							</div>							
 						</div>	
 						
 						<div class="card">
@@ -153,13 +171,11 @@
 								Take the Quiz
 							 </div>
 							<div class="card-body">								
-								<div class="aspForm  card-text" id="sampleform24"></div>	
+								<div class="asplForm  card-text" id="sampleform24"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform24.asp</small></p>	
-							</div>
-							
-						</div>
-						
+							</div>							
+						</div>						
 
 						<div class="card">
 							<div class="card-header">
@@ -167,7 +183,7 @@
 							 </div>
 							<div class="card-body">	
 								<p class="card-text"><a target="_blank" href="https://ckeditor.com/ckeditor-4/">https://ckeditor.com/ckeditor-4/</a></p>							
-								<div class="aspForm card-text" id="sampleform4"></div>	
+								<div class="asplForm card-text" id="sampleform4"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform4.asp</small></p>	
 							</div>
@@ -175,10 +191,10 @@
 						
 						<div class="card">
 							<div class="card-header">
-								Sample form
+								Select, radio and checkbox
 							 </div>
 							<div class="card-body">						
-								<div class="aspForm card-text" id="sampleform5"></div>
+								<div class="asplForm card-text" id="sampleform5"></div>
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform5.asp</small></p>	
 							</div>
@@ -189,27 +205,11 @@
 								Multiple buttons
 							 </div>
 							<div class="card-body">						
-								<div class="aspForm card-text" id="sampleform6"></div>
+								<div class="asplForm card-text" id="sampleform6"></div>
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform6.asp</small></p>	
 							</div>
 						</div>					
-						
-						
-						<div class="card">
-							<div class="card-header">
-								DataTables - jQuery plugin
-							 </div>
-							<div class="card-body">
-								
-								<p class="card-text">	
-								A classic ASP implementation of <a href="https://datatables.net/" target="_blank">DataTables</a> (jQuery plugin). DataTables turns any html table into a powerful widget with sorting, paging and searching functions.</p>
-									<ul>
-										<li><a href="#" class="ajaxLink" data-aspForm="sampleform20">DataTables (Json)</a><br><small class="text-muted">see /default/asp/sampleform20.asp</small></li>						
-										<li><a href="#" class="ajaxLink" data-aspForm="sampleform21">DataTables (ASP)</a><br><small class="text-muted">see /default/asp/sampleform21.asp</small></li>		
-									</ul>												
-							</div>
-						</div>	
 						
 						<div class="card">
 							<div class="card-header">
@@ -217,7 +217,7 @@
 							 </div>
 							<div class="card-body">		
 								<p class="card-text">aspLite comes with two hashing plugins (MD5 & sha256)</p>
-								<div class="aspForm card-text" id="sampleform7"></div>	
+								<div class="asplForm card-text" id="sampleform7"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform7.asp</small></p>	
 							</div>
@@ -229,7 +229,7 @@
 							 </div>
 							<div class="card-body">	
 								<p class="card-text">Basic database (Access) plugin example</p>
-								<div class="aspForm card-text" id="sampleform8"></div>
+								<div class="asplForm card-text" id="sampleform8"></div>
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform8.asp</small></p>	
 							</div>
@@ -240,7 +240,7 @@
 								Hello World
 							 </div>
 							<div class="card-body">						
-								<div class="aspForm card-text" id="sampleform9"></div>
+								<div class="asplForm card-text" id="sampleform9"></div>
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform9.asp</small></p>	
 							</div>
@@ -251,7 +251,7 @@
 								Conditional include
 							 </div>
 							<div class="card-body">						
-								<div class="aspForm card-text" id="sampleform10"></div>	
+								<div class="asplForm card-text" id="sampleform10"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform10.asp</small></p>	
 							</div>
@@ -263,7 +263,7 @@
 							 </div>
 							<div class="card-body">	
 								<p class="card-text">Generate random texts and numbers with aspLite's randomizer:</p>
-								<div class="aspForm card-text" id="sampleform11"></div>	
+								<div class="asplForm card-text" id="sampleform11"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform11.asp</small></p>	
 							</div>
@@ -274,7 +274,7 @@
 								CNN News - RSS-reader plugin
 							 </div>
 							<div class="card-body">		
-								<div class="aspForm card-text" id="sampleform12"></div>								
+								<div class="asplForm card-text" id="sampleform12"></div>								
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform12.asp</small></p>	
 							</div>
 						</div>	
@@ -285,7 +285,7 @@
 							 </div>
 							<div class="card-body">		
 								<p class="card-text">The image below was rendered with the aspLite jpg-plugin (.net required):</p>
-								<div class="aspForm card-text" id="sampleform13"></div>	
+								<div class="asplForm card-text" id="sampleform13"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform13.asp</small></p>	
 							</div>
@@ -296,7 +296,7 @@
 								jQuery multifile uploader
 							 </div>
 							<div class="card-body">							
-								<div class="aspForm card-text" id="sampleform14"></div>	
+								<div class="asplForm card-text" id="sampleform14"></div>	
 								<hr>
 								<p class="card-text">
 									<small class="text-muted">
@@ -317,7 +317,7 @@
 							<div class="card-body">		
 								<p class="card-text">CodeMirror - <a target="_blank" href="https://codemirror.net/">https://codemirror.net/</a> -  is a versatile text editor for the browser.</p>
 
-								<div class="aspForm card-text" id="sampleform15"></div>	
+								<div class="asplForm card-text" id="sampleform15"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform15.asp</small></p>	
 							</div>
@@ -330,7 +330,7 @@
 							<div class="card-body">		
 								<p class="card-text"> <a target="_blank" href="https://stuk.github.io/jszip/">JSZip</a> is a javascript library for creating, reading and editing zip files. Files (residing on the <i>server</i>) will be zipped by the <i>browser</i></p>
 
-								<div class="aspForm card-text" id="sampleform16"></div>	
+								<div class="asplForm card-text" id="sampleform16"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform16.asp</small></p>	
 							</div>
@@ -370,18 +370,17 @@
 							<div class="card-body">				
 								
 								<p class="card-text">Offer downloads, without exposing filenames to the visitor. aspLite's function dumpBinary() takes care.</p>						
-								<p><a class="btn btn-info" href="default.asp?e=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see /default/default.handler.asp</small></p>
-								<p><a class="btn btn-info" href="default.asp?e=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see /default/default.handler.asp</small></p>
+								<p><a class="btn btn-info" href="default.asp?asplEvent=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see /default/default.handler.asp</small></p>
+								<p><a class="btn btn-info" href="default.asp?asplEvent=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see /default/default.handler.asp</small></p>
 													
 							</div>
-						</div>	
+						</div>
 
 						
 						
 					</div>				
 				</div>	
-			</div>	
-			
+			</div>			
 			
 			<!-- Modal -->
 			<div class="modal fade" id="aspFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -405,8 +404,7 @@
 
 		</main>
 
-<!-- /.container --> 
-
+<!-- /.container -->
 
 	<!-- REQUIRED AJAX functions for aspLite - jQuery REQUIRED! -->
 	<script src="asplite/asplite.js"></script>

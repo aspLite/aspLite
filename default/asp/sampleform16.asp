@@ -31,7 +31,7 @@ dim url
 for each url in filelist
 
 	if filelist(url)<>"blob" then
-		filelistArr=filelistArr & vbtab & "urls.push(['" & aspL.sanitizeJS(url) & "',aspLiteAjaxHandler + '?e=sampleform16&stream=" & server.urlencode(url) &"'])" & vbcrlf
+		filelistArr=filelistArr & vbtab & "urls.push(['" & aspL.sanitizeJS(url) & "',aspLiteAjaxHandler + '?asplEvent=sampleform16&stream=" & server.urlencode(url) &"'])" & vbcrlf
 	else
 		filelistArr=filelistArr & vbtab & "urls.push(['" & aspL.sanitizeJS(url) & "','" & aspL.sanitizeJS(url) & "'])" & vbcrlf
 	end if

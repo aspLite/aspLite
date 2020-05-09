@@ -2,62 +2,62 @@ var aspLiteAjaxHandler='default.asp'
 var aspLiteAjaxForms = []
 var aspLiteFormLooper=0
 
+$(document).ready(function(e) {	
+init();
+})
+
 function init() {
 	
 	$('html,body').animate({scrollTop: $('body').offset().top}, 'slow')
 	
 	//bootstrap spinner
 	var spinner="<div class='text-center'>"
-	spinner+="<div class='spinner-border text-primary spinner-border' role='status'><span class='sr-only'>Loading...</span> </div>"
+	spinner+="<div class='spinner-border text-primary spinner-border' role='status'>"
+	spinner+="<span class='sr-only'>Loading...</span> </div>"
 	spinner+="</div>"
 	
-	//all divs with class=aspForm will be filled with aspLiteAjaxForms according their id (e-handler)
-	$(".aspForm").each(function(){	
+	//all divs with class=asplForm will be filled with aspLiteAjaxForms according their id (asplEvent-handler)
+	$(".asplForm").each(function(){	
 		
 		//initialize with bootstrap spinners
 		$(this).html(spinner)
 		
-		//I commented the line below out to make the ajax calls sequential
-		//this seems to have very little effect on total pageload time
-		//but I guess it somehow saves the server processor and it sure
-		//limits the number of simultaneous connections to databases (if any)
-		
-		//aspAjax('GET',aspLiteAjaxHandler,'e=' + $(this).attr('id'),aspForm)			
-		
-		//console.log($(this).attr('id')) - jQuery reads them top to bottom
 		//an array of id's is loaded. it will be used in a second...
 		aspLiteAjaxForms.push($(this).attr('id'));
 		
 	})	
 	
 	if (aspLiteAjaxForms.length>0) {
-		//let's get this rolling. we start with the first item in the array
-		//from there on, the recursive getAspForm will loop through the array and 
-		//load all Ajax calls sequential
-		aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[0],getAspForm)		
+		//we start with the first item in the array
+		//from there on, the recursive getAspForm will loop through the array and load all Ajax calls sequential
+		aspAjax('GET',aspLiteAjaxHandler,'asplEvent=' + aspLiteAjaxForms[0],getAspForm)		
 	}
 }
-
-$(document).ready(function(e) {	
-init();
-})
 
 //recursive execution to avoid server issues
 function getAspForm (data) {
+	
 	aspForm(data) 
 	aspLiteFormLooper++
-	//console.log(aspLiteFormLooper)
+	
 	if (aspLiteFormLooper < aspLiteAjaxForms.length) {
-		//you can even save the server more, by adding some (5) milliseconds of delay before the next call is launched
-		//setTimeout(function(){ aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm) }, 5);
+		//you can even save the server more, by adding some (25) milliseconds of delay before the next call is launched
+		//setTimeout(function(){ aspAjax('GET',aspLiteAjaxHandler,'asplEvent=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm) }, 25);
 		//or if you prefer not to wait...
-		aspAjax('GET',aspLiteAjaxHandler,'e=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm)
+		aspAjax('GET',aspLiteAjaxHandler,'asplEvent=' + aspLiteAjaxForms[aspLiteFormLooper],getAspForm)
 	}
 }
 
+
 $('.ajaxLink').click(function(e) {
 	e.preventDefault()
-	aspAjax('GET',aspLiteAjaxHandler,'e=' + $(this).attr("data-aspForm"),aspForm)
+	
+	var asplTarget=''
+	if (typeof $(this).attr("data-asplTarget") != 'undefined') {
+		asplTarget=$(this).attr("data-asplTarget")
+	}	
+	
+	aspAjax('GET',aspLiteAjaxHandler,'asplEvent=' + $(this).attr("data-asplEvent") +'&asplTarget=' + asplTarget,aspForm)
 })
 
 function aspAjax (type,url,data,success) {	
@@ -80,11 +80,11 @@ function aspAjaxError(data) {
 function aspForm(data) {
 	
 	if (typeof data.id == 'undefined') { console.log('no formID!') ; enumerateJson(data) ; return }
-	
-	//console.log(data.id)
-			
+
 	//avoid double id's
-	$('#' + data.id ).remove()
+	if (data.id!='') {
+		$('#' + data.id ).remove()
+	}
 	
 	var aspForm=$('<form>').attr({
 		"onsubmit"	: data.onSubmit,

@@ -8,7 +8,7 @@ body=replace(body,"[title]","Contact",1,-1,1)
 body=replace(body,"[heading]","Fill in the contact form:",1,-1,1)
 
 'body
-body=replace(body,"[body]","<div class=""aspForm"" id=""sampleform5""></div>",1,-1,1)
+body=replace(body,"[body]","<div class=""asplForm"" id=""sampleform5""></div>",1,-1,1)
 
 aspL.dump(body)
 

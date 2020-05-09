@@ -3,7 +3,7 @@
 aspL("default/asp/includes/jQueryUiFunctions.asp")
 
 dim form : set form=aspl.form
-form.listenTo "e","sampleform3"
+form.listenTo "asplEvent","sampleform3"
 form.target="sampleform3"
 
 'form-submitted

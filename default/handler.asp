@@ -3,12 +3,12 @@
 'this demo uses an Access database, located in "db/sample.mdb"
 dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
 
-'here comes the eventhandler (what did the user do/click on exactly?)
-'in general: if the code for dealing with the event is not large, include it here (downloadlargefile,downloadsmallfile).
+'Below the eventhandler (what did the user do/click on exactly?)
+'In general: if the code for dealing with the event is not large, include it here (downloadlargefile,downloadsmallfile).
 'if the code is getting complex, use yet another codebehind file, like all sampleforms!
 'aspl.exec is the DEFAULT sub in aspLite, so aspl(XX) will execute XX where XX is the path to the ASP file to be executed
 
-select case lcase(aspL.getRequest("e")) 'e="event"	
+select case lcase(aspL.getRequest("asplEvent"))	
 	
 	case "downloadlargefile" 		: aspL.dumpBinary("default/html/largefile.jpg")
 	
@@ -52,9 +52,7 @@ select case lcase(aspL.getRequest("e")) 'e="event"
 	
 	case "sampleform17" 			: aspL("default/asp/sampleform17.asp")
 	
-	case "sampleform18" 			: aspL("default/asp/sampleform18.asp")
-	
-	case "sampleform19" 			: aspL("default/asp/sampleform19.asp")	
+	case "sampleform18" 			: aspL("default/asp/sampleform18.asp")	
 	
 	case "sampleform20" 			: aspL("default/asp/sampleform20.asp")
 	

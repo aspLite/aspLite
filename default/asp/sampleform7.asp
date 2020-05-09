@@ -1,7 +1,7 @@
 <%
 
 dim form : set form=aspl.form
-form.listenTo "e","sampleform7"
+form.listenTo "asplEvent","sampleform7"
 form.target="sampleform7"
 
 'form-submitted

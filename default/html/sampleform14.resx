@@ -79,7 +79,7 @@ function ajax(fd,file) {
 	$.ajax({		
 		type: "post",
 		method: "post",
-		url: aspLiteAjaxHandler + "?e=uploadfilejquery",
+		url: aspLiteAjaxHandler + "?asplEvent=uploadfilejquery",
 		dataType: "text",
 		contentType: false,
 		data: fd,
