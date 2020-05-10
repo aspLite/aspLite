@@ -38,7 +38,7 @@
 				<ul class="navbar-nav mr-auto">					
 					
 					<li class="nav-item active">
-						<a class="nav-link" href="#" onclick="init()">reset</a>
+						<a class="nav-link" href="default.asp">refresh</a>
 					</li>
 					
 				</ul>
@@ -79,8 +79,8 @@
 								<p class="card-text">	
 								A classic ASP implementation of <a href="https://datatables.net/" target="_blank">DataTables</a> (jQuery plugin). DataTables turns any html table into a powerful widget with sorting, paging and searching functions.</p>
 									<ul>
-										<li><a href="#" class="ajaxLink" data-asplEvent="sampleform20">DataTables (Json)</a><br><small class="text-muted">see /default/asp/sampleform20.asp</small></li>						
-										<li><a href="#" class="ajaxLink" data-asplEvent="sampleform21">DataTables (ASP)</a><br><small class="text-muted">see /default/asp/sampleform21.asp</small></li>		
+										<li><a href="#" class="ajaxLink" data-asplTarget="body" data-asplEvent="sampleform20">DataTables (Json)</a><br><small class="text-muted">see /default/asp/sampleform20.asp</small></li>						
+										<li><a href="#" class="ajaxLink" data-asplTarget="body" data-asplEvent="sampleform21">DataTables (ASP)</a><br><small class="text-muted">see /default/asp/sampleform21.asp</small></li>		
 									</ul>												
 							</div>
 						</div>	

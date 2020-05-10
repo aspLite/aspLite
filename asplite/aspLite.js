@@ -8,6 +8,8 @@ init();
 
 function init() {
 	
+	//console.clear()
+	
 	$('html,body').animate({scrollTop: $('body').offset().top}, 'slow')
 	
 	//bootstrap spinner
@@ -73,18 +75,29 @@ function aspAjax (type,url,data,success) {
 }
 
 function aspAjaxError(data) {
+	console.log ("aspLite error message:\n\n")
+	if (typeof data.aspl != 'undefined') {
+		console.log	(data.aspl)
+	}
+	else
+	{
 	console.log (data)
 	}
+}
  
  
 function aspForm(data) {
 	
-	if (typeof data.id == 'undefined') { console.log('no formID!') ; enumerateJson(data) ; return }
+	if (typeof data.id == 'undefined' || typeof data.target == 'undefined') { 
+		console.log('no Form ID or TARGET!') ; enumerateJson(data) ; return 
+	}
 
 	//avoid double id's
 	if (data.id!='') {
 		$('#' + data.id ).remove()
 	}
+	
+	console.log(data.id + ' - ' + data.executionTime)
 	
 	var aspForm=$('<form>').attr({
 		"onsubmit"	: data.onSubmit,
@@ -93,12 +106,8 @@ function aspForm(data) {
 		"method"	: "post"
 		})	
 	
-	if (data.target == '') {
-		
-		//form.target is mandatory
-		console.log('ERROR: form target is missing!')
-		enumerateJson(data)		
-	}
+	//form.target is mandatory
+	if (data.target == '') { console.log('ERROR: form target is missing!') ; enumerateJson(data) ; return }
 		
 	//loop through the collection (aspForm) of fieldobjects 
 
@@ -109,6 +118,7 @@ function aspForm(data) {
 		if (typeof field.type == 'undefined') {
 			console.log('ERROR: field TYPE is missing!')
 			enumerateJson(field)
+			//alert(field)
 			continue
 		}
 
@@ -138,12 +148,22 @@ function aspForm(data) {
 		if (field.type=="button") {
 			$('<button>').attr({
 				"id"		: field.id,
+				"type"		: field.type,
 				"class"		: field.class,
 				"style"		: field.style,
 				"onclick"	: field.onclick				
 			}).html(field.html).appendTo(aspForm)			
 			continue
-		}			
+		}
+
+		if (field.type=="reset") {
+			$('<button>').attr({				
+				"type"		: "reset",
+				"class"		: field.class,
+				"style"		: field.style								
+			}).html(field.html).appendTo(aspForm)			
+			continue
+		}				
 		
 		if (field.type=="style") {
 			var style=$('<style>').attr({

@@ -1,7 +1,5 @@
 <%
 dim form : set form=aspl.form
-form.listenTo "asplEvent","sampleform24"
-form.target="sampleform24"
 form.initialize=false
 
 'we can create some fields only once

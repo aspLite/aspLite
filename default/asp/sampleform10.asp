@@ -6,7 +6,6 @@ dim testObj
 set testObj=new cls_test
 
 dim form : set form=aspl.form
-form.target="sampleform10"
 	
 'result
 dim feedback : set feedback=form.field("element")

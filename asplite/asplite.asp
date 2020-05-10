@@ -74,8 +74,8 @@ class cls_asplite
 		on error resume next
 
 		executeGlobal removeCRB(stream(path,false,""))
-
-		aspError("problem when executing " & path & " - <strong><a target=""_blank"" href=""" & path & """>try to load the ASP file directly</a></strong>")
+		
+		aspError("problem when executing " & path)
 
 		on error goto 0
 
@@ -248,17 +248,16 @@ class cls_asplite
 
 		if err.number<>0 then
 
-			asperror="<h1>aspLite error details:</h1>"
-			asperror=asperror & "<span style=""color:Red;font-size:1.5em;font-weight:700"">" & value & "</span><br><br>"
-			asperror=asperror & "err.number: " &err.number & "<br>"
-			asperror=asperror & "err.source: " &err.source & "<br>"
-			asperror=asperror & "err.description: " &err.description
+			asperror="aspLite error details:" & vbcrlf			
+			asperror=asperror & "url: " & curPageURL & vbcrlf 
+			asperror=asperror & "querystring: " & Request.ServerVariables("QUERY_STRING") & vbcrlf 
+			asperror=asperror & "form: " & Request.form & vbcrlf 
+			asperror=asperror & "error: " & value & vbcrlf 
+			asperror=asperror & "err.number: " & err.number & vbcrlf 
+			asperror=asperror & "err.source: " & err.source & vbcrlf 
+			asperror=asperror & "err.description: " & err.description
 
-			asperror=asperror & "<hr>"
-
-			asperror=asperror & replace(request.servervariables("ALL_RAW"),vbcrlf,"<br>",1,-1,1)
-
-			dump asperror
+			json.dump(asperror)
 
 		end if
 
@@ -588,6 +587,25 @@ class cls_asplite
 '#################################################################################################
 '#################################################################################################
 
+	'converts a VBScript date to YYYY-MM-DD
+	'this is one of these things that should have been added to VBScript after the 2010-adoption of HTML5
+	'how difficult can it be to add this to the list of default FormatDateTime options ???!!!
+	public function convertHtmlDate(value)
+	
+		if [isEmpty](value) then
+			convertHtmlDate=""
+		end if
+	
+		if isDate(value) then
+			convertHtmlDate=year(value) & "-" & padleft(month(value),2,0) & "-" & padleft(day(value),2,0)
+		else
+			convertHtmlDate=""
+		end if
+	
+	
+	end function
+	
+	'get file-extension of a file (eg: jpeg, jpg, gif, doc, docx, etc)
 	public function getFileType(filename)
 
 		getFileType=right(filename,len(filename)-InStrRev(filename,".",-1,1))
@@ -762,6 +780,34 @@ class cls_asplite
 		otherLetters=LCase(Right(value,Len(value)-1))
 		pCase=firstLetter & otherLetters
 
+	end function
+	
+	
+	public function curPageURL()
+	
+		dim s, protocol, port
+
+		if Request.ServerVariables("HTTPS") = "on" then
+			s = "s"
+		else
+			s = ""
+		end if  
+
+		protocol = strleft(LCase(Request.ServerVariables("SERVER_PROTOCOL")), "/") & s 
+
+		if Request.ServerVariables("SERVER_PORT") = "80" then
+			port = ""
+		else
+			port = ":" & Request.ServerVariables("SERVER_PORT")
+		end if  
+
+		curPageURL = protocol & "://" & Request.ServerVariables("SERVER_NAME") &_
+		port & Request.ServerVariables("SCRIPT_NAME")
+		
+	end function
+
+	public function strLeft(str1,str2)
+		strLeft = Left(str1,InStr(str1,str2)-1)
 	end function
 
 end class

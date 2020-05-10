@@ -1,8 +1,5 @@
 <%
-
 dim form : set form=aspl.form
-form.listenTo "asplEvent","sampleform4"
-form.target="sampleform4"
 
 dim defaultValue
 defaultValue="<p><strong>CKEditor4: Smart WYSIWYG HTML editor</strong></p><p>Approved by millions. Fully customizable. Number #1 rich text editor with the most features.</p>"

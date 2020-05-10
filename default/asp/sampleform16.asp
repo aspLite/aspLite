@@ -42,7 +42,6 @@ javascript=replace(javascript,"[filelist]",filelistArr,1,-1,1)
 set filelist=nothing
 
 dim form : set form=aspl.form
-form.target="sampleform16"
 form.onsubmit="return false"
 
 dim scriptAsp : set scriptAsp=form.field("script")

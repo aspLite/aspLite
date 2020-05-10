@@ -1,5 +1,6 @@
 <%
 'create a database object. It will be used on various occasions in this demo
+'creating this object here already does not harm performance, as no database connection is establised yet
 'this demo uses an Access database, located in "db/sample.mdb"
 dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
 

@@ -1,8 +1,5 @@
 <%
-
 dim form : set form=aspl.form
-form.listenTo "asplEvent","sampleform15"
-form.target="sampleform15"
 
 dim defaultValue
 defaultValue=aspl.loadText("default/asp/includes/codemirrorsample.asp")

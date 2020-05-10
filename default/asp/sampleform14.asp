@@ -1,7 +1,5 @@
 <%
-
 dim form : set form=aspl.form
-form.target="sampleform14"
 
 form.onSubmit="" '
 'We need to overrule the default submit.

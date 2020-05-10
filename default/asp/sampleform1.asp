@@ -1,8 +1,6 @@
 <%
 
 dim form : set form=aspl.form
-form.listenTo "asplEvent","sampleform1"
-form.target="sampleform1"
 
 'form-submitted
 if form.postback then

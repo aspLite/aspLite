@@ -10,7 +10,7 @@
 	<thead>
 		<tr>
 			<th style="text-align:center">
-				<button class="btn btn-info btn-sm" onclick="askAspForm(null)">Add&nbsp;new</button>
+				<button type="button" class="btn btn-info btn-sm" onclick="askAspForm(null)">Add&nbsp;new</button>
 			</th>			
 			<th>text</th>
 			<th>number</th>
@@ -56,7 +56,7 @@ $(document).ready( function () {
 			],		
 		"columns": [           
 			{  "data": "iId", render: function ( data, type, row ) {				
-				return '<button class="btn btn-secondary btn-sm" onclick="askAspForm(' + data + ')">Modify</button>'							
+				return '<button type="button" class="btn btn-secondary btn-sm" onclick="askAspForm(' + data + ')">Modify</button>'							
 				}
 			},			
 			{ "data": "sText"},

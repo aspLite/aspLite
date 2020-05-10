@@ -4,7 +4,6 @@ dim helloworld
 set helloworld=aspL.plugin("helloworld")
 
 dim form : set form=aspl.form
-form.target="sampleform9"
 	
 'result
 dim feedback : set feedback=form.field("element")

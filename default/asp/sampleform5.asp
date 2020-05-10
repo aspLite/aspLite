@@ -1,8 +1,5 @@
 <%
-
 dim form : set form=aspl.form
-form.listenTo "asplEvent","sampleform5"
-form.target="sampleform5"
 
 'form-submitted
 if form.postback then
@@ -96,14 +93,10 @@ submit.add "class","btn btn-primary"
 submit.add "container","span"
 submit.add "onclick","$('#aspFormAction').val('save')"
 
-dim delete : set delete=form.field("submit")
-delete.add "name","btnDelete"
-delete.add "value","Delete"
-delete.add "style","margin-top:15px"
-delete.add "class","btn btn-danger"
-delete.add "container","span"
-delete.add "containerstyle","margin-left:10px"
-delete.add "onclick","if (confirm('Are you sure?')) {$('#aspFormAction').val('delete')} else {return false}"
+dim reset : set reset=form.field("reset")
+reset.add "html","Reset"
+reset.add "style","margin-left:10px;margin-top:15px"
+reset.add "class","btn btn-warning"
 
 '##########################################################################################
 

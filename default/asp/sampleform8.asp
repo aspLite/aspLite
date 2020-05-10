@@ -28,7 +28,6 @@ wend
 set rs=nothing
 
 dim form : set form=aspl.form
-form.target="sampleform8"
 	
 'result
 dim feedback : set feedback=form.field("plain")

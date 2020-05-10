@@ -8,7 +8,6 @@ for i=1 to 10
 next
 
 dim form : set form=aspl.form
-form.target="sampleform11"
 	
 'result
 dim feedback : set feedback=form.field("element")

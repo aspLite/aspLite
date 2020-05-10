@@ -15,7 +15,6 @@ output=replace(aspL.loadText("default/html/jpg.resx"),"[src]",jpg.src,1,-1,1)
 output=replace(output,"[caption]","square",1,-1,1)
 
 dim form : set form=aspl.form
-form.target="sampleform13"
 	
 'result
 dim feedback : set feedback=form.field("element")
