@@ -97,7 +97,7 @@ function aspForm(data) {
 		$('#' + data.id ).remove()
 	}
 	
-	console.log(data.id + ' - ' + data.executionTime)
+	//console.log(data.id + ' - ' + data.executionTime)
 	
 	var aspForm=$('<form>').attr({
 		"onsubmit"	: data.onSubmit,
