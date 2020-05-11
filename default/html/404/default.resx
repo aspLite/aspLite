@@ -92,6 +92,9 @@
 </footer>
 
 	<!-- REQUIRED AJAX functions for aspLite - jQuery REQUIRED! -->
+	<script>
+	var aspLiteAjaxHandler='default.asp'
+	</script>
 	<script src="asplite/asplite.js"></script>
 
 

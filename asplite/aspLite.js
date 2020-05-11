@@ -1,4 +1,3 @@
-var aspLiteAjaxHandler='default.asp'
 var aspLiteAjaxForms = []
 var aspLiteFormLooper=0
 
