@@ -1,5 +1,4 @@
 <%
-
 'load jquery date-functions (sets the dateformat!)
 aspL("default/asp/includes/jQueryUiFunctions.asp")
 
@@ -10,69 +9,115 @@ aspL("default/asp/datatables/includes.asp")
 dim contact : set contact = new cls_contact
 contact.pick(aspL.getRequest("iId"))
 
+'create form
+dim form : set form=aspl.form
+form.initialize=false
+
 'catch ajax call!
-if aspl.convertBool(aspl.getRequest("postBack")) then
+if form.postback then
 
-	'prepare JSON answer	
-	dim jsonDict : set jsonDict=aspL.dict
-	jsonDict.add "iId",contact.iId
+	'session securitycheck
+	if form.sameSession then
+	
+		dim reload : set reload=form.field("script")
 
-	select case aspl.getRequest("btnAction")
-	
-		case "save"
-	
-			contact.sText		= trim(left(aspl.getRequest("sText"),255))
-			contact.iNumber		= aspl.getRequest("iNumber")
-			contact.bBoolean	= aspl.getRequest("bBoolean")
-			contact.dDate		= dateFromPicker(aspl.getRequest("dDate"))
-			contact.iCountryID	= aspl.getRequest("iCountryID")
+		select case aspl.getRequest("btnDTTAction")
+		
+			case "save"
+		
+				contact.sText		= trim(left(aspl.getRequest("sText"),255))
+				contact.iNumber		= aspl.getRequest("iNumber")			
+				contact.dDate		= dateFromPicker(aspl.getRequest("dDate"))
+				contact.iCountryID	= aspl.getRequest("iCountryID")
+				
+				if contact.save then
+								
+					set feedback=form.field("element")
+					feedback.add "tag","div"
+					feedback.add "html","Save OK"
+					feedback.add "class","alert alert-success"				
+					
+					reload.add "text","$('#jsExampleSSP').DataTable().ajax.reload(null, false)"
+							
+				else
+				
+					set feedback=form.field("element")
+					feedback.add "tag","div"			
+					feedback.add "html","Error! Fill in all fields"
+					feedback.add "class","alert alert-warning"
+								
+				end if			
 			
-			if contact.save then
-				jsonDict.add "status","OK"				
-			else
-				jsonDict.add "status","ERR"				
-			end if			
+			case "delete"
+			
+				contact.delete			
+				
+				reload.add "text","$('#jsExampleSSP').DataTable().ajax.reload(null, false);$('#exampleModal').modal('toggle')"
+				
 		
-		case "delete"
+		end select
 		
-			contact.delete
-			jsonDict.add "status","DELETE"	
-	
-	end select 
-	
-	'add the contact-object to the JSON output		
-	contact.reflectTo(jsonDict)
-	
-	'the Ajax page-execution stops here!
-	aspl.json.dump(jsonDict)
+	end if
 	
 end if
 
-dim form : form=aspL.loadText("default/html/sampleform22.resx")
+dim iContactID : set iContactID = form.field("hidden")
+iContactID.add "value",contact.iId
+iContactID.add "name","iId"
 
-'set the dateformat for jQuery UI DatePicker
-form=replace(form,"[dateformat]",dateformat,1,-1,1)
+dim sText : set sText = form.field("text")
+sText.add "label","text"
+sText.add "class","form-control"
+sText.add "value",contact.sText
+sText.add "required",true
+sText.add "name","sText"
 
-'hide or show the delete button
-if aspl.convertNmbr(contact.iId)=0 then 'new record!
-	form=replace(form,"[display]"," style=""display:none"" ",1,-1,1)
-else
-	form=replace(form,"[display]","",1,-1,1)
-end if
+dim iNumber : set iNumber = form.field("number")
+iNumber.add "label","number"
+iNumber.add "class","form-control"
+iNumber.add "value",contact.iNumber
+iNumber.add "required",true
+iNumber.add "name","iNumber"
 
-dim booleanlist : set booleanlist=new cls_booleanlist
 dim countryList : set countryList=new cls_countryList
 
-'form replacements
-form=replace(form,"[iId]",aspL.sanitize(contact.iId),1,-1,1)
-form=replace(form,"[sText]",aspL.sanitize(contact.sText),1,-1,1)
-form=replace(form,"[iNumber]",aspL.sanitize(contact.iNumber),1,-1,1)
-form=replace(form,"[booleanlist]",booleanlist.showSelected("option",aspL.sanitize(contact.bBoolean)),1,-1,1)
-form=replace(form,"[dDate]",aspL.sanitize(dateToPicker(contact.dDate)),1,-1,1)
-form=replace(form,"[countryList]",countryList.showSelected("option",aspL.sanitize(contact.iCountryID)),1,-1,1)
+dim iCountryID : set iCountryID = form.field("select")
+iCountryID.add "label","country"
+iCountryID.add "class","form-control"
+iCountryID.add "value",contact.iCountryID
+iCountryID.add "required",true
+iCountryID.add "name","iCountryID"
+iCountryID.add "options",countryList.list
 
-set contact=nothing
-set booleanlist=nothing
+dim today : set today=form.field("text")
+today.add "label","Select a jQuery UI date"
+today.add "name","dDate"
+today.add "class","form-control"
+today.add "id","df1"
+today.add "value",dateToPicker(contact.dDate)
 
-aspl.json.dump(form)
+dim script : set script=form.field("script")
+script.add "text","$('#df1').datepicker({inline: true, dateFormat:'" & dateformat & "'})"
+
+dim btnDTTAction : set btnDTTAction=form.field("hidden")
+btnDTTAction.add "name","btnDTTAction"
+btnDTTAction.add "id","btnDTTAction"
+
+dim save : set save = form.field("button")
+save.add "html","Save"
+save.add "class","btn btn-primary"
+save.add "style","margin-top:10px"
+save.add "onclick","$('#btnDTTAction').val('save');aspAjax('POST',aspLiteAjaxHandler,$('#" & form.id & "').serialize(),aspForm)"
+
+if aspl.convertNmbr(contact.iId)<>0 then
+	dim delete : set delete = form.field("button")
+	delete.add "html","Delete"	
+	delete.add "class","btn btn-warning"
+	delete.add "style","margin-top:10px;margin-left:5px"
+	delete.add "container","span"
+	delete.add "onclick","if (confirm('Are you sure?')) {$('#btnDTTAction').val('delete');aspAjax('POST',aspLiteAjaxHandler,$('#" & form.id & "').serialize(),aspForm)}"
+end if
+
+form.build
+
 %>

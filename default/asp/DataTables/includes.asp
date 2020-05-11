@@ -2,14 +2,7 @@
 class cls_contact
 
 	private rs
-	public iId, sText, iNumber, bBoolean, dDate, iCountryID
-	public reflection
-	
-	Private Sub Class_Initialize	
-		
-		reflection = Array("iId","sText","iNumber","bBoolean","dDate","iCountryID")
-		
-	End Sub	
+	public iId, sText, iNumber, dDate, iCountryID	
 
 	public function pick(id)
 	
@@ -21,8 +14,7 @@ class cls_contact
 			
 				iId			=	rs("iId")
 				sText		=	rs("sText")
-				iNumber		=	rs("iNumber")
-				bBoolean	=	rs("bBoolean")
+				iNumber		=	rs("iNumber")				
 				dDate		=	rs("dDate")
 				iCountryID	=	rs("iCountryID")
 			
@@ -39,11 +31,9 @@ class cls_contact
 		check=true
 		
 		if aspL.isEmpty(sText) then 			check=false : exit function
-		if not aspL.isNumber(iNumber) then 		check=false : exit function
-		if aspL.isEmpty(bBoolean) then 			check=false : exit function		
+		if not aspL.isNumber(iNumber) then 		check=false : exit function		
 		if not isDate(dDate) then 				check=false : exit function
-		if not aspL.isNumber(iCountryID) then 	check=false : exit function
-		
+		if not aspL.isNumber(iCountryID) then 	check=false : exit function		
 	
 	end function
 	
@@ -61,8 +51,7 @@ class cls_contact
 			end if		
 			
 			rs("sText")			= sText
-			rs("iNumber")		= aspL.convertNmbr(iNumber)
-			rs("bBoolean")		= aspl.convertBool(bBoolean)
+			rs("iNumber")		= aspL.convertNmbr(iNumber)			
 			rs("dDate")			= dDate
 			rs("iCountryID")	= aspL.convertNmbr(iCountryID)
 			
@@ -90,63 +79,9 @@ class cls_contact
 		db.execute("delete from contact where iId=" & aspl.convertNmbr(iId))
 		
 	end function
-	
-	
-	public function reflectTo(byref dict)	
-				
-		for i=lbound(reflection) to ubound(reflection)
-			dict.add "contact_" & reflection(i),eval(reflection(i))
-		next
-	
-	end function
+
 
 end class
-
-Class cls_booleanlist
-	
-	Public list
-	
-	Private Sub Class_Initialize
-	
-		Set list = aspL.dict
-		
-		list.Add true, "true"
-		list.Add false, "false"	
-		
-	End Sub
-	
-	Private Sub Class_Terminate
-	
-		Set list = nothing
-		
-	End Sub
-	
-	Public Function showSelected(mode, selected)		
-		
-		Select Case mode
-		
-			Case "single" : showSelected = list(selected)
-			
-			Case "option"				
-				
-				Dim key
-				For each key in list
-				
-					showSelected = showSelected & "<option value=""" & key & """"
-					
-					If aspL.convertBool(selected) = aspL.convertBool(key) Then
-						showSelected = showSelected & " selected"
-					End If
-					
-					showSelected = showSelected & ">" & list(key) & "</option>" & vbcrlf
-				Next
-				
-		End Select
-		
-	End Function
-	
-End class
-
 
 Class cls_countryList
 	
@@ -174,33 +109,7 @@ Class cls_countryList
 	
 		Set list = nothing
 		
-	End Sub
-	
-	Public Function showSelected(mode, selected)		
-		
-		Select Case mode
-		
-			Case "single" : showSelected = list(selected)
-			
-			Case "option"	
-
-				showSelected="<option></option>"
-				
-				Dim key
-				For each key in list
-				
-					showSelected = showSelected & "<option value=""" & key & """"
-					
-					If aspL.convertNmbr(selected) = aspL.convertNmbr(key) Then
-						showSelected = showSelected & " selected"
-					End If
-					
-					showSelected = showSelected & ">" & list(key) & "</option>" & vbcrlf
-				Next
-				
-		End Select
-		
-	End Function
+	End Sub	
 	
 End class
 %>

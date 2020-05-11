@@ -13,31 +13,37 @@
 				<button type="button" class="btn btn-info btn-sm" onclick="askAspForm(null)">Add&nbsp;new</button>
 			</th>			
 			<th>text</th>
-			<th>number</th>
-			<th>boolean</th>	
+			<th>number</th>			
 			<th>date</th>			
 			<th>country</th>				
 		</tr>
 	</thead>
 </table>
 
-<!-- bootstrap modal window -->
+
+<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">      
-	  <div id="editForm"></div>
-    </div>
+	<div class="modal-content">	 
+	  <div class="modal-body">
+		  <div id="editForm"></div>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>					
+	  </div>
+	</div>
   </div>
-</div>
+</div>		
+
 
 <script>
 function askAspForm (id) {
-	aspAjax ("post",aspLiteAjaxHandler,"iId=" + id + "&asplEvent=sampleform22",receiveAspForm)
+	aspAjax ("post",aspLiteAjaxHandler,"iId=" + id + "&asplTarget=editForm&asplEvent=sampleform22",receiveAspForm)
 }
 
 function receiveAspForm(data) {
-	$('#editForm').html(data.aspl)
 	$("#exampleModal").modal()
+	aspForm(data)	
 }
 
 $(document).ready( function () {	
@@ -60,8 +66,7 @@ $(document).ready( function () {
 				}
 			},			
 			{ "data": "sText"},
-            { "data": "iNumber" },
-			{ "data": "bBoolean" },
+            { "data": "iNumber" },			
 			{ "data": "dDate" },				
 			{ "data": "countryName" }
 			]

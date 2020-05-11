@@ -25,10 +25,8 @@ $(document).ready( function () {
 	//json data
 	$('#jsExample').DataTable({
 	
-		"columnDefs": [{"targets": '_all',"render":$.fn.dataTable.render.text()}],
-	
-		"ajax": {"url": aspLiteAjaxHandler + "?asplEvent=sampleform20_data","dataSrc": "aspl"},	
-		 
+		"columnDefs": [{"targets": '_all',"render":$.fn.dataTable.render.text()}],	
+		"ajax": {"url": aspLiteAjaxHandler + "?asplEvent=sampleform20_data","dataSrc": "aspl"},			 
 		"columns": [
             { "data": "id",render: $.fn.dataTable.render.text() },
             { "data": "text",render: $.fn.dataTable.render.text() },
@@ -36,7 +34,6 @@ $(document).ready( function () {
 			{ "data": "boolean",render: $.fn.dataTable.render.text() },
 			{ "data": "date",render: $.fn.dataTable.render.text() }			
 			]			
-	});
-	
+	});	
 });
 </script>

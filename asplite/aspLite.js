@@ -269,7 +269,8 @@ function aspForm(data) {
 
 			//selected value - array of selected values
 			if (typeof field.value != 'undefined') {
-				selectBox.val(field.value.split(', '))
+				//console.log(field.value)
+				selectBox.val((field.value+'').split(', '))
 			}			
 			continue
 		}	
@@ -284,24 +285,27 @@ function aspForm(data) {
 			});			
 			
 			//treat as JSON object (vbscript dictionary)		
-			
+			var k
+			k=0
 			for (var key in options) {	
 				
-				var item=$('<li>')
+				var item=$('<li>')			
 				
 				var radioB=$('<input>').attr({					
 					"type"		: "radio",
 					"name"		: field.name,
 					"class"		: field.class,
 					"style"		: field.style,
+					"id"		: k + "_radio_id_" + field.name,
 					"required"	: field.required,
 					"value"		: key				
-				}).prop("checked", (field.value==key)).appendTo(item)
-				
+				}).prop("checked", (field.value==key)).appendTo(item)	
+
 				//add label
-				$('<span>').html(" " + options[key]).appendTo(item)	
+				$('<label>').attr({"for" : k + "_radio_id_" + field.name,"style":"margin-left:5px"}).html(options[key]).appendTo(item)					
 				
 				item.appendTo(list)
+				k++
 				
 			}
 			
@@ -320,6 +324,8 @@ function aspForm(data) {
 			});
 			
 			//treat as JSON object (vbscript dictionary)
+			var k
+			k=0
 			
 			for (var key in options) {	
 				
@@ -328,6 +334,7 @@ function aspForm(data) {
 				var radioB=$('<input>').attr({					
 					"type"	: "checkbox",
 					"name"	: field.name,
+					"id"	: k + "_cb_id_" + field.name,
 					"class"	: field.class,
 					"style"	: field.style,
 					"required"	: field.required,
@@ -336,12 +343,14 @@ function aspForm(data) {
 				
 				if (typeof field.value != 'undefined') {						
 					radioB.prop("checked", $.inArray(key.toString(),field.value.split(', '))>=0)
-				}				
+				}	
 				
 				//add label
-				$('<span>').html(" " + options[key]).appendTo(item)	
+				$('<label>').attr({"for" : k + "_cb_id_" + field.name,"style":"margin-left:5px"}).html(options[key]).appendTo(item)	
 				
 				item.appendTo(list)
+				
+				k++
 				
 			}
 			
