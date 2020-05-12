@@ -341,7 +341,7 @@
 								<strong>jsPDF</strong> experiment
 							 </div>
 							<div class="card-body">		
-								<p class="card-text"> <a target="_blank" href="https://github.com/MrRio/jsPDF">jsPDF</a> is a library to generate PDFs in JavaScript.</p>
+								<p class="card-text"> <a target="_blank" href="https://github.com/MrRio/jsPDF">jsPDF</a> is a library to generate PDFs in JavaScript. A secret text-file residing on the <i>server</i>, will be turned into a PDF by the <i>browser</i>.</p>
 
 								<div class="asplForm card-text" id="sampleform25"></div>	
 								<hr>
