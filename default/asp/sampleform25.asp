@@ -3,10 +3,10 @@ dim form : set form=aspl.form
 
 if form.postback then
 
-	'button was clicked
+	'button was clicked, we can create the content of the PDF file on the SERVER!
 	dim file
 
-	for i=0 to 5000 'PDF with 5000 random strings between 3 and 10 characters long
+	for i=0 to 2500 'PDF with 2500 random strings between 3 and 10 characters long
 		file=file & aspl.randomizer.randomtext(aspl.randomizer.randomNumber(3,10)) & " "
 	next
 
@@ -56,7 +56,7 @@ if form.postback then
 end if
 
 dim button : set button=form.field("submit")
-button.add "value","Click to generate PDF"
+button.add "value","click to generate pdf"
 button.add "class","btn btn-danger"	
 
 form.build()
