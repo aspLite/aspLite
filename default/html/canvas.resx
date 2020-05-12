@@ -1,0 +1,49 @@
+<script>
+var c=document.getElementById('demo');
+var ctx=c.getContext("2d");
+
+setDimensions()
+
+window.addEventListener("resize",setDimensions);
+
+var cx,cy,radius,angle2;
+
+setInterval(draw,35);
+
+function setDimensions() {
+	c.width=$('#sampleform26').width()
+	c.height=$('#sampleform26').height()
+	cx = c.width/2;
+	cy = c.height/2;
+	radius = 0;
+	angle2=0;	
+};
+
+var total_circles = 7;
+
+function draw() {
+
+	ctx.clearRect(0,0,c.width,c.height)
+
+	for(i = 0; i < total_circles; i++){
+		ctx.fillStyle = "rgba(255,0,0,0.2)";
+		var angle = i * angle2 * Math.PI/total_circles;
+		var x = cx + Math.cos(angle) * radius;
+		var y = cy + Math.sin(angle) * radius;  	
+		
+		ctx.beginPath();
+		ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.fill();	
+		
+	}	
+	
+	
+	if (radius<400) {radius++;};
+	
+	angle2+=0.01;
+	
+}
+
+
+</script>

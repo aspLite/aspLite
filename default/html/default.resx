@@ -347,7 +347,9 @@
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform25.asp</small></p>	
 							</div>
-						</div>						
+						</div>	
+
+							
 						
 						<div class="card">
 							<div class="card-header">
@@ -388,6 +390,19 @@
 													
 							</div>
 						</div>
+						
+						<div class="card">
+							<div class="card-header">
+								<strong>HTML Canvas</strong> experiment
+							 </div>
+							<div class="card-body">		
+								<p class="card-text">To conclude this, let me finish with a HTML Canvas animation, my favorite <a target="_blank" href="https://htmlcanvas.quickersite.com/">waste of time</a>. The animation below is pure JavaScript. Nothing to do with aspLite...</p>
+
+								<div class="asplForm card-text" style="min-height:320px" id="sampleform26"></div>	
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform26.asp</small></p>	
+							</div>
+						</div>	
 
 						
 						
