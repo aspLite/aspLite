@@ -1,0 +1,224 @@
+about aspLite
+
+
+aspLite is a lightweight framework for ASP/VBScript developers. It can help to develop better ASP/VBScript applications. aspLite does not reinvent, replace or rewrite ASP components. It only tries to come up with a new way of using some of them.
+
+ASP/VBScript (also known as "classic ASP") is available for more than 20 years now and I believe it still makes sense to share this approach. After all, classic ASP has proven to be reliable, fast and secure. 
+
+But that's not all. Today's web applications use JavaScript frameworks (Angular, Vue, React, jQuery, etc). Often only data (json) is transmitted back and forth to the server. That's why a server-side technology better stays small, fast and simple. Hence the name "aspLite".
+
+An example. The aspLite demo site ships with a (fully functional) classic ASP implementation of DataTables. This wonderful (free-to-use) widget has all it takes to offer ... datatables, including client-side sorting, searching and paging. There is only very little ASP code involved. Quite fascinating!
+
+The vast majority of these JavaScript plugins are free to use, backed by 100's of contributors and they work in all (current) browsers, on all devices. How amazing is that?! Ever since the adoption of HTML5, CSS3 and ECMAScript 5 (somewhere between 2009 and 2012), client-side JS/CSS/HTML frameworks have become very popular. Much more popular than their server-sided predecessors (ASP(.NET), PHP, etc). Today, the most starred repositories on GitHub are all about (learning) JavaScript.
+
+The aspLite demo puts the following front-end HTML/CSS/JS frameworks/plugins at work: Bootstrap, jQuery, jQuery UI Datepicker, JSZip, jsPDF, CkEditor, CodeMirror and DataTables. 
+
+You may want to read the story behind aspLite.
+
+
+22 years ago, classic ASP was about Request() and Response(). Ins and outs. Simply put.
+Today, any server-side web framework is still about just that. 
+For everything else you can - in 2020 - rely on JavaScript frameworks. No more need for spaghetti-ASP or HTML server-controls.
+
+
+developer guidelines
+
+Installation
+
+Install as a website or virtual directory in IIS. Make sure IUSR has full permissions on the entire folder and subfolders. aspLite does not require any 3rd party dll (COM) to be installed.
+The actual framework is located in /asplite/asplite.asp. The path /asplite can be changed to anything else in /asplite/config.asp. If you prefer to use aspLite in a subfolder /mypath/asplite, make sure to update config.asp correspondingly. To run the demo site that ships with the framework, you need to enable 32bits applications for your website's application pool, as it includes an Access database sample.
+
+aspLite can also be used in any IIS Express edition.
+
+Less is more
+
+aspLite consists of a few files only:
+
+/asplite/asplite.asp
+/asplite/aspform.asp
+/asplite/config.asp
+/asplite/asplite.js (requires jQuery)
+
+aspLite facilitates the following functions:
+
+* conditionally load asp code (rather than include them 'all')
+* facilitate a .net-alike codebehind approach
+* charset utf8-proof
+* create rich Ajax forms
+* Json implementation (by Michal Gabrukiewicz)
+* file streaming (text, code + binary)
+* ServerXMLHTTP & DOMDocument
+* application caching
+* randomizer 
+* catch 404 requests
+* some generic ASP/VBScript functions
+* write your own plugins
+
+Get started
+
+Check default.asp. It helps to understand how aspLite works.
+
+To start using aspLite, include it at the very top of your asp-page:
+<!-- #include file="asplite/asplite.asp"-->
+
+From then on, you can use an object of the aspLite class: aspL (it's already created). The word "aspL" should therefore be considered a reserved word. Do not re-declare, re-set or destroy it. 
+
+VBScript executeGlobal
+
+aspLite totally relies on VBScript's executeGlobal. This feature got introduced in VBScript 5.0 (back in 2000), together with regular expressions, classes, the with-statement, eval and execute. ExecuteGlobal allows to dynamically add ASP/VBScript code to the same namespace of an ASP page. In other words, after you have included a snippet of ASP/VBScript using executeGlobal, that code is available to use (everywhere) in your ASP page. aspLite uses this feature the "extreme" way. It does not load short snippets of ASP/VBScript, aspLite imports full-blown VBScript classes in the page's namespace, each packed with numerous functions and subroutines. That's how aspLite conditionally includes ASP/VBScript, rather than "include them all" using the include-directives. The main advantages of this technique are a major cut in (RAM) memory-needs, but especially - scalability: you can add ASP/VBScript code (plugins) without changing the framework itself. I have successfully used execute and executeGlobal in QuickerSite for many years. It was the only way for me to develop plugins without having to change the QuickerSite codebase. 
+
+Stick to 1 asp file for your project
+
+There are some very good reasons to stick to 1 asp page only for your application, even if your application has 20 screens with various different menus, forms, buttons or links each. Your best option is to use "default.asp" in the root of your application. "Default.asp" is always included in the list of "default documents" in IIS (Express). Using 1 asp page only, keeps server memory usage very low, specially when combined with conditionally loading asp scripts.
+
+Catch 404 requests
+
+There is another reason to stick to 1 asp page for your app: configure that page to execute 404 request. aspLite ships with a function (aspLite.pathinfo) that retrieves any custom url (pointing to non-existing items). Make sure you add this to web.config (in the root of your site):
+(thanks to Sergio Conselvan for providing a copy that works for both IIS & IIS Express)
+
+<?xml version="1.0"?>
+<configuration>
+	<system.webServer>
+		<httpErrors errorMode="Custom">
+			<remove statusCode="404" subStatusCode="-1" />
+			<error statusCode="404" path="/default.asp" responseMode="ExecuteURL" />
+		</httpErrors>
+	</system.webServer>
+</configuration>
+
+(change /default.asp to the page of your choice - eventually add the virtual directory, eg: /mydir/default.asp)
+
+The advantage of using this technique, is that your urls would look like:
+www.site.com/folder (rather than www.site.com/default.asp?folder=foldername)
+www.site.com/folder/folder
+www.site.com/folder/folder/folder
+Not only this looks better and it's easier to type, you can also retrieve a lot of information from these 404 requests. This is a very powerful technique, available to classic ASP developers for years already (as from Windows 2000). If you use this technique consistently, nobody will ever be able to tell which technology your site uses (php? asp? .net?). This technique is not harming SEO, as status 200 is returned to the browser. It's even improving SEO a lot, as userfriendly (and meaningful) urls are used.
+
+Debugging
+
+When using aspLite, you absolutely need to get clear VBScript runtime error messages. Setting <httpErrors errorMode="Custom"> however - necessary to enable the aspLite custom 404 catcher -  prevents detailed errors to be sent to the browser. aspLite does its best to intercept errors by using the "on error resume next" statement (and next check for errors), but in some cases, these custom errors are not detailed enough, especially when code is executed via executeGlobal.
+
+So while developing (and debugging) plugins, you may have to change your web.config file: <httpErrors errorMode="Custom"> to <httpErrors> (defaults to DetailedLocalOnly). 
+
+But there is a bigger problem. aspLite uses executeGlobal when loading plugins. In case a VBScript runtime error occurs in the loaded code (plugin), it's raised at the line of the executeGlobal-call, not in the actual code itself. That's how it's actually impossible to debug code when loaded via executeGlobal. That's a problem.
+
+To overcome that, you can better develop plugins the more "classic" way by using include-statements. When you're done, you could then migrate your plugin-classes (and other elements) to a dedicated plugin folder. 
+
+Resx files?
+
+As a web developer, you will notice that I use the .resx extension to include HTML snippets/code. Why? For security reasons. Resx files are never served or executed by IIS. Therefore, it's impossible to open resx files in the browser directly. If html extensions were used, html templates and/or snippets will eventually be crawled by search engines and potentially weird and/or private data would show up in search results. Using the resx extension for HTML templates/snippets avoids that.
+
+Access databases?
+
+A lot has been said about using Access databases in web applications (whether or not developed in classic ASP). Bottom line, most experts say: don't! However, I say: Access is the easiest, fastest, most server-friendly (uses no memory) and an extremely reliable database to use with classic ASP. Period. I'm using them for 20 years now. Never ran into a single problem. And today - with these fast SSD drives and powerful CPU's - you're not going to crash an ASP page that's using an Access database. I have gone through all the available stress-tests over the years. I was even getting frustrated at some point, as I have invested a lot of time and money in migrating to SQL Server in the past. All in vain. Waste of time and money. I went back to Access for all my hosted websites in 2018. No regrets.
+
+That said, there are some guidelines and things to keep in mind when using Access in classic ASP:
+
+* Do not store binary files (images, pdf, documents) in Access databases. Store them as regular files. If you're concerned about security, give your files a secure (not downloadable) extension (like .resx) and stream them to users with adodb.stream. 
+
+* Do not store visitor data (logfiles) in a database. Again, use the file system. There is no point in storing bulk data that you're probably never going to look into afterwards anyway. Also, visitor data are typically stored in the IIS logfiles already. No need to duplicate them.
+
+* Summarizing: only store text and numeric data in Access databases that you're actually going to use in your application: read, update, delete and search for.
+
+* Make backups of your Access mdb files. Do it. Every day, or even every couple of hours for business critical applications. You really don't want to lose data.
+
+* Have a look at the database-plugin : /asplite/plugins/database/database.asp. Ideally, an ASP page opens a connection to a database only ONCE through its lifespan. Opening (and closing) database connections are probably the most time-consuming operations in ASP pages. Doing this only once drastically speeds up your ASP pages.
+
+* There is a limit of 255 concurrent users for Access databases. However, when using Access in a web application, the "user" (IUSR in most cases) is only connected for a few milliseconds. You wil not often face situations where 255 visitors simultaneously open an ASP page (that is: on the very same millisecond). Unless you're Google or Facebook... I have never faced that situation in 20 years time.
+
+* There is a limit of 2GB for Access databases. That's a lot of text and numeric data. Do not let Access databases grow even close to 2GB. I would personally decide to upsize to SQL Server as soon as an Access mdb file grows bigger than 500MB. But that's just me, given the hardware I use and trust (EC2 instance on AWS). I currently do not host a single Access database bigger than 250MB.
+
+IDE
+
+Classic ASP developers have been lacking a dedicated IDE (Integrated Development Environment) for some time now, unless they don't mind to wait 30 seconds before some bloated .NET monster raises from the dead (and eats all your ram and kills your cpu). I therefore prefer to use Notepad++. It's free, lightning fast, reliable and it's very easy to enable HTML syntax highlighting for .resx files. Open Settings, Style configurator, select "html", add "resx" to the "user ext". You have to reopen the resx files for this to take effect. Notepad++ also comes with some basic code-completion functions. Notepad++ can also be freely installed and used on any Windows Server. I often use it to search for specific texts and strings in over 1 million files. No problem at all. Others may want to use Visual Studio Code instead.
+
+Where to host ASP sites today?
+
+A final note on hosting. I have personally never used or liked shared ASP hosting solutions of any type. From day one, I use my own server. In 2004 I bought my own. In 2010 I migrated to the cloud. Today (2020), I use an AWS EC2 instance. Very satisfying so far. In my opinion, if you're into ASP development, you're better off managing a Windows Server yourself, rather than rely on shared hosting. There are very few people left who can assist you with ASP hosting issues. We're on our own. But that shouldn't be a problem as Windows Servers are very easy to setup, deploy and maintain. As an ASP developer you need to know the basics of setting up backups, firewall, IIS, mailserver and security on Windows Servers after all. On top of that, when you dive into ASP developing, you may have to install specific COM software or you may want to prefer a specific setup to facilitate code-reuse. This requires full access to a server. Both Microsoft Azure, Google Cloud and Amazon Web Services offer free-tier solutions that allow to test-drive a basic setup for a year. It's really worthwhile looking into these solutions.
+
+
+Plugins
+
+aspLite will always have a very small footprint on your application and on the server. You can however develop your own plugins for aspLite. How?
+The following plugins are included already - but not necessary to use the framework i.e. they can be ignored. When no plugins are used, they will not affect security or performance of your application in any way. The demo uses all plugins available:
+
+* connector for Access/SQL Server databases (OLEDB)
+* mailer for CDO.Message 
+* jpg resize/recolor/crop (.net required) 
+* rss feed reader
+* atom feed reader
+* file uploader (based on freeaspupload.net)
+* Secure Hash Algorithm (SHA256)
+* MD5 (Message Digest Algorithm 5) 
+
+How to add your own?
+
+Let's inspect one of the example plugins: asplite/plugins/helloworld/helloworld.asp
+
+<%
+class cls_asplite_helloworld
+
+	public function hw
+		hw="Hello world!"
+	end function
+
+end class
+%>
+
+Some remarks:
+
+* The entire codeblock sits between <% and %> code render blocks. This is not required, but it can help to trigger syntax highlighting, like when working in Notepad++. Be aware that at runtime, aspLite removes code render blocks - see asplite.exec(path)
+
+* The entire content of this asp file will be considered ASP code. Do not mix it with html, text, js or css code. It would raise an error.
+
+* Even though I always use Option Explicit (forces to declare variables only once), it seems to have no effect on code that is executed through VBScript's executeGlobal. I have no idea why, but it's good to know I guess.
+
+* Plugin-folders can include other subfolders and files, like html, js, css, images, etc. There are no limitations whatsoever.
+
+These are the steps to create a plugin for aspLite:
+1. Locate
+Plugins are stored in /asplite/plugins
+
+2. Add your plugin-folder
+Add a separate folder for your plugin named myplugin: eg: /asplite/plugins/myplugin/
+
+3. Create plugin-asp
+Add an ASP file with the same name: /asplite/plugins/myplugin/myplugin.asp 
+
+4. Create class
+In myplugin.asp, create a class with this same name as follows:
+
+class cls_asplite_myplugin
+...
+end class
+
+5. Usage
+To create an instance of your plugin somewhere in your application, use:
+
+dim myObj
+set myObj=aspL.plugin("myplugin")
+myObj.XX()
+
+You could also just call:
+aspL.plugin("myplugin").XX()
+
+where XX() is a public sub/function of your myplugin-class
+
+
+learn ASP?
+
+If you're young and you're willing or able to dive into new technologies, do not learn classic ASP or VBScript. If you want to become a web developer (by extension a mobile app developer) - today or in the future - learn JavaScript. However, if you are already using classic ASP (and plan to keep on doing so), it's always a good idea to learn new things. Even after all these years, there's always something new to learn about ASP. aspLite is living proof of that.
+
+That said, learn ASP actually means: learn VBScript! There is not much to learn about classic ASP after all, except for 5 objects with each a handful of properties and methods: Application, Session, Response, Request and Server.  VBScript however is the preferred (and default) programming language for most ASP developers. Even though VBScript is no longer being developed by Microsoft, it is still used a lot, not only by web developers, but also to automate tasks on Windows servers.
+
+Out of many online resources you find when searching for "learn classic ASP", I personally liked 'A Practical Guide to Microsoft Active Server Pages 3.0' by Manas Tungare a lot. He was so kind to allow me to redistribute this guide on this website. These 70 well written pages are about everything you need to get started using classic ASP.
+
+Furthermore, W3Schools.com is probably the best online resource to start as a classic ASP/VBScript web developer. Before you learn classic ASP, you must learn HTML and CSS (and grab some basic JavaScript as well). Make sure to also check their very complete VBScript and ADO reference. ADO can be used to access databases from classic ASP pages. 
+
+
+Roadmap
+
+* security enhancers (encryption, protect against sqli, csrf, brute force attacks, cookie theft, etc) (core)
+* facilitate multilingual applications (core)
+ 
+© Copyright 2020 - Contact me on GitHub - website gratefully hosted by Github Pages
