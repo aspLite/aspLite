@@ -334,6 +334,19 @@
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform16.asp</small></p>	
 							</div>
+						</div>	
+
+						<div class="card">
+							<div class="card-header">
+								<strong>jsPDF</strong> experiment
+							 </div>
+							<div class="card-body">		
+								<p class="card-text"> <a target="_blank" href="https://github.com/MrRio/jsPDF">jsPDF</a> is a library to generate PDFs in JavaScript.</p>
+
+								<div class="asplForm card-text" id="sampleform25"></div>	
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform25.asp</small></p>	
+							</div>
 						</div>						
 						
 						<div class="card">
@@ -430,6 +443,9 @@
 	<!-- JSZip -->
 	<script src="default/js/jszip.min.js"></script>
 	<script src="default/js/filesaver.min.js"></script>	
+	
+	<!-- JSPdf -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
 	
 	<!-- CodeMirror -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>

@@ -88,6 +88,8 @@ function aspForm(data) {
 	if (typeof data.id == 'undefined' || typeof data.target == 'undefined') { 
 		console.log('no Form ID or TARGET!') ; enumerateJson(data) ; return 
 	}
+	
+	//console.log (data.id + ': ' + data.executionTime)
 
 	//avoid double id's
 	if (data.id!='') {
@@ -178,6 +180,9 @@ function aspForm(data) {
 		
 		if (field.type=="script") {
 			if (typeof field.text != 'undefined') {
+				
+				//console.log(field.text)
+				
 				$('<script>').text(field.text).appendTo(aspForm)
 			}
 			else
