@@ -5,9 +5,7 @@ $(document).ready(function(e) {
 init();
 })
 
-function init() {
-	
-	//console.clear()
+function init() {	
 	
 	$('html,body').animate({scrollTop: $('body').offset().top}, 'slow')
 	
@@ -94,9 +92,7 @@ function aspForm(data) {
 	//avoid double id's
 	if (data.id!='') {
 		$('#' + data.id ).remove()
-	}
-	
-	//console.log(data.id + ' - ' + data.executionTime)
+	}		
 	
 	var aspForm=$('<form>').attr({
 		"onsubmit"	: data.onSubmit,
@@ -116,8 +112,7 @@ function aspForm(data) {
 		
 		if (typeof field.type == 'undefined') {
 			console.log('ERROR: field TYPE is missing!')
-			enumerateJson(field)
-			//alert(field)
+			enumerateJson(field)			
 			continue
 		}
 

@@ -1163,7 +1163,7 @@ class cls_asplite_randomizer
 
 		dim i
 		for i=1 to nmbrChars
-			randomText=randomText & CHR(Int((122-97+1)*Rnd+97))
+			randomText=randomText & CHR(Int((26)*Rnd+97))
 		next
 
 	End Function

@@ -54,7 +54,7 @@ end select
 	and passes asplEvent (clickLink) and  asplTarget (simpleDiv2) -->
  	<a href="#" class="ajaxLink" data-asplTarget="simpleDiv2" data-asplEvent="clickLink">Click here</a>
 	
-	<div id="simpleDiv2" style="color:Red"></div>		
+	<div id="simpleDiv2" style="color:Red"></div>
 	
 	
 	<!-- jQuery  & aspLite JS -->

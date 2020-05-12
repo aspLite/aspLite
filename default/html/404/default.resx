@@ -62,7 +62,7 @@
   <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">[title]</h1>
-      <p class="lead">If you can read this, you got the <strong><i>aspLite custom 404 catcher</i></strong> (enabling userfriendly urls) to work. This is great. A whole new world opens up now. You can use an unlimited number of imaginary folders and subfolders(*) for your web application. You would typically store important information in them, like "/category/products/productname". This way you can create very good SEO urls. The 4 buttons below will lead you to 4 different "pages" of this application. Please note that we're always (and only) executing "default.asp" in the root of this aspLite installation.</p>
+      <p class="lead">If you can read this, you got the <strong><i>aspLite custom 404 catcher</i></strong> (enabling userfriendly urls) to work (*). This is great. A whole new world opens up now. You can use an unlimited number of imaginary folders and subfolders(**) for your web application. You would typically store important information in them, like "/category/products/productname". This way you can create very good SEO urls. The 4 buttons below will lead you to 4 different "pages" of this application. Please note that we're always (and only) executing "default.asp" in the root of this aspLite installation.</p>
 	  
       <p>
 	  <a class="btn btn-success btn-lg" href="about" role="button">About us &raquo;</a>
@@ -71,7 +71,10 @@
 	  <a class="btn btn-primary btn-lg" href="contact" role="button">Contact us &raquo;</a>	  
 	  </p>
 	  
-	  <p><i>(*) when subfolders are used, be careful to add forward slashes ("/") to all your links. If you don't, paths to scripts, images and css files will break.</i></p>
+	  <p>
+	  <i>(*) when using this technique, you technically are no longer building a Single Page Application, as every url will reload the entire page</i>
+	  <br>
+	  <i>(**) when subfolders are used, be careful to add forward slashes ("/") to all your links. If you don't, paths to scripts, images and css files will break</i></p>
 	  
     </div>
   </div>
