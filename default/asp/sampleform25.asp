@@ -96,7 +96,7 @@ function textFileTojsPDF (filepath)
 		
 	next	
 	
-	textFileTojsPDF = "var doc = new jsPDF();doc.setFontSize(14);" & replace(js,vbcrlf,"\n",1,-1,1) & "; doc.save('aspLite-jsPDF.pdf')"
+	textFileTojsPDF = "var doc = new jsPDF();doc.setFontSize(14);" & js & "; doc.save('aspLite-jsPDF.pdf')"
 
 end function
 
