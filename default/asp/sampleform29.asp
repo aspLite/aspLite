@@ -36,7 +36,7 @@ if form.postback then
 					set field = form.field("element")
 					field.add "tag","div"
 					field.add "class","alert alert-warning"
-					field.add "html","Password incorrect! Attempt " & session("wrongPWcount") & " of 3"				
+					field.add "html","Password incorrect! Attempt " & session("wrongPWcount")+1 & " of 3"				
 					
 				end if
 		
