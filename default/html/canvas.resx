@@ -25,7 +25,7 @@ function draw() {
 
 	ctx.clearRect(0,0,c.width,c.height)
 
-	for(i = 0; i < total_circles; i++){
+	for(var i = 0; i < total_circles; i++){
 		ctx.fillStyle = "rgba(255,0,0,0.2)";
 		var angle = i * angle2 * Math.PI/total_circles;
 		var x = cx + Math.cos(angle) * radius;
