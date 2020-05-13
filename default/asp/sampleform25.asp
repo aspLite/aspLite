@@ -21,8 +21,12 @@ function textFileTojsPDF (filepath)
 	'load textfile
 	text=aspl.loadText(filepath)
 
+	text=replace(text,vblf,"\n",1,-1,1)
+	text=replace(text,vbcr,"",1,-1,1)
+	text=replace(text,vbcrlf,"\n",1,-1,1)
+
 	'split on the linebreaks
-	arr=split(text,vbcrlf)
+	arr=split(text,"\n")
 	
 	'keep track of the number of lines, we will stick to 45 lines max/page
 	counter=0
