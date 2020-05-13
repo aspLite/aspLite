@@ -8,14 +8,14 @@
 
 <table id="jsExampleSSP" class="table table-striped" style="width:100%">
 	<thead>
-		<tr>
-			<th style="text-align:center">
-				<button type="button" class="btn btn-info btn-sm" onclick="askAspForm(null)">Add&nbsp;new</button>
-			</th>			
+		<tr>					
 			<th>text</th>
 			<th>number</th>			
 			<th>date</th>			
-			<th>country</th>				
+			<th>country</th>	
+			<th style="text-align:center">
+				<button type="button" class="btn btn-info btn-sm" onclick="askAspForm(null)">Add&nbsp;new</button>
+			</th>				
 		</tr>
 	</thead>
 </table>
@@ -57,18 +57,18 @@ $(document).ready( function () {
 		"processing": true,
 		"columnDefs": [
 				{"targets": '_all',"render":$.fn.dataTable.render.text()},
-				{"orderable": false, "targets": 0 },
-				{"targets": 0,"className": 'dt-body-center'}
+				{"orderable": false, "targets": 4 },
+				{"targets": 4,"className": 'dt-body-center'}
 			],		
-		"columns": [           
-			{  "data": "iId", render: function ( data, type, row ) {				
-				return '<button type="button" class="btn btn-secondary btn-sm" onclick="askAspForm(' + data + ')">Modify</button>'							
+		"columns": [           		
+				{ "data": "sText"},
+				{ "data": "iNumber" },			
+				{ "data": "dDate" },				
+				{ "data": "countryName" },
+				{  "data": "iId", render: function ( data, type, row ) {				
+					return '<button type="button" class="btn btn-secondary btn-sm" onclick="askAspForm(' + data + ')">Modify</button>'							
+					}
 				}
-			},			
-			{ "data": "sText"},
-            { "data": "iNumber" },			
-			{ "data": "dDate" },				
-			{ "data": "countryName" }
 			]
 	} );	
 });
