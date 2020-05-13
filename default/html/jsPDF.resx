@@ -13,8 +13,6 @@ The vast majority of these JavaScript plugins are free to use, backed by 100's o
 
 The aspLite demo puts the following front-end HTML/CSS/JS frameworks/plugins at work: Bootstrap, jQuery, jQuery UI Datepicker, JSZip, jsPDF, CkEditor, CodeMirror and DataTables. 
 
-You may want to read the story behind aspLite.
-
 
 22 years ago, classic ASP was about Request() and Response(). Ins and outs. Simply put.
 Today, any server-side web framework is still about just that. 
