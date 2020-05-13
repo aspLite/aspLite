@@ -1,0 +1,12 @@
+var canvas=document.getElementById('servertext');
+var context=canvas.getContext('2d');
+context.font='40px Tangerine';
+
+var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+gradient.addColorStop("0"," magenta");
+gradient.addColorStop("0.5", "blue");
+gradient.addColorStop("1.0", "red");
+// Fill with gradient
+context.fillStyle = gradient;
+
+context.fillText('[name]',0,40);

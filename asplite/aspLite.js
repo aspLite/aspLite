@@ -117,6 +117,31 @@ function aspForm(data) {
 			enumerateJson(field)			
 			continue
 		}
+		
+		if (field.type=="link") {
+			$('<link>').attr({
+				"rel"	: field.rel,
+				"href"	: field.href			
+			}).appendTo('head')			
+			continue
+		}
+		
+		if (field.type=="canvas") {
+			$('<canvas>').attr({
+				"id"		: field.id,
+				"width"		: field.width,
+				"height"	: field.height,
+				"style"		: field.style				
+			}).appendTo(aspForm)			
+			continue
+		}
+		
+		if (field.type=="style") {
+			var style=$('<style>').attr({
+				"type"	: "text/css"
+			}).html(field.text).appendTo('head')			
+			continue
+		}
 
 		if (field.type=="plain") {
 			aspForm.append(field.html)			
@@ -131,15 +156,7 @@ function aspForm(data) {
 				"name"	: field.name				
 			}).appendTo(aspForm)			
 			continue
-		}
-		
-		if (field.type=="link") {
-			$('<link>').attr({
-				"rel"	: field.rel,
-				"href"	: field.href			
-			}).appendTo('head')			
-			continue
-		}
+		}	
 
 		if (field.type=="button") {
 			$('<button>').attr({
@@ -161,12 +178,7 @@ function aspForm(data) {
 			continue
 		}				
 		
-		if (field.type=="style") {
-			var style=$('<style>').attr({
-				"type"	: "text/css"
-			}).html(field.text).appendTo('head')			
-			continue
-		}
+		
 		
 		if (field.type=="element") {			
 			$('<' + field.tag + '>').html(field.html).attr({
@@ -362,7 +374,7 @@ function aspForm(data) {
 			continue
 		}		
 	
-		$('<input>').attr({
+		var inputField=$('<input>').attr({
 			"type"			: field.type,
 			"value"			: field.value,			
 			"name"			: field.name,
@@ -374,7 +386,8 @@ function aspForm(data) {
 			"style"			: field.style,	
 			"required"		: field.required,
 			"onchange"		: field.onchange,
-			"onclick"		: field.onclick			
+			"onclick"		: field.onclick
+					
 		}).appendTo(formgroup)
 			
 	}	
