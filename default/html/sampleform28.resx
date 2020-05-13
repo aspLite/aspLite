@@ -1,0 +1,39 @@
+
+<div id="Itemlist">
+	<table class="table">
+		<tr>
+			<th>text</th>
+			<th>number</th>			
+		</tr>
+		<tr v-for="item in items">
+			<td>{{item.text}}</td>
+			<td>{{item.number}}</td>			
+		</tr>
+	</table>
+</div>
+
+<script>
+
+function startVue() {
+
+	var ItemsVue = new Vue({
+		el: '#Itemlist',
+		data: {
+			items: []
+		},
+		mounted: function () {
+			var self = this;
+			$.ajax({
+				url: 'default.asp?asplEvent=sampleform28_data',
+				method: 'GET',
+				success: function (data) {
+					self.items = data.aspl;
+				},
+				error: function (error) {
+					console.log(error);
+				}
+			});
+		}
+	});
+}
+</script>

@@ -60,6 +60,34 @@
 				<div class="col">
 			
 					<div class="card-columns">
+					
+						<div class="card">
+							<div class="card-header">
+								Login form
+							 </div>
+							<div class="card-body">
+							<p class="card-text">
+								<div class="asplForm card-text" id="sampleform29"></div>			
+											
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform29.asp</small></p>
+								
+							</div>
+						</div>	
+					
+						<div class="card">
+							<div class="card-header">
+								Vue - datatable sample
+							 </div>
+							<div class="card-body">
+							<p class="card-text"><a target="_blank" href="https://vuejs.org/">Vue</a> is a progressive JavaScript framework</p>
+								<div class="asplForm card-text" id="sampleform28"></div>			
+											
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform28.asp</small></p>					
+																			
+							</div>
+						</div>			
 
 						<div class="card">
 							<div class="card-header">
@@ -465,6 +493,7 @@
 		font-size: 1em;
 		}
 	</style>
+
 	
 	<!-- JSZip -->
 	<script src="default/js/jszip.min.js"></script>
