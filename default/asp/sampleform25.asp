@@ -4,14 +4,16 @@ dim form : set form=aspl.form
 
 if form.postback then
 	
-	dim script : set script = form.field("script")	
-	script.add "text", textFileTojsPDF("default/html/jsPDF.resx")
+	dim script : set script = form.field("plain")	
+	script.add "html", textFileTojsPDF("default/html/jsPDF.resx")
 	
 end if
 
 dim button : set button=form.field("submit")
 button.add "value","click to generate pdf"
 button.add "class","btn btn-danger"	
+button.add "id","pdfButton"
+button.add "onclick","this.value='please wait...'"
 
 form.build()
 
@@ -96,7 +98,7 @@ function textFileTojsPDF (filepath)
 		
 	next	
 	
-	textFileTojsPDF = "var doc = new jsPDF();doc.setFontSize(14);" & js & "; doc.save('aspLite-jsPDF.pdf')"
+	textFileTojsPDF = replace(aspl.loadText("default/html/sampleform25.resx"),"[js]",js,1,-1,1)
 
 end function
 

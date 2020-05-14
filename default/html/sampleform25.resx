@@ -1,0 +1,13 @@
+<script>
+
+var doc = new jsPDF()
+doc.setFontSize(14)
+[js]
+doc.save('aspLite-jsPDF.pdf')
+$('#pdfButton').val('Done!')
+
+setTimeout(function(){
+	$('#pdfButton').val('click to generate pdf!') 
+	},2000)
+	
+</script>

@@ -1,3 +1,8 @@
+<script>
+
+$('#generateExcel').val('SheetJS starts loading...');
+
+$.getScript('https://unpkg.com/xlsx@0.16.0/dist/xlsx.core.min.js',function(){createXLS()})
 
 function createXLS () {
 	$('#generateExcel').val('Tabledata is requested')
@@ -17,5 +22,11 @@ function createFile(data) {
 	$('#generateExcel').removeClass('btn-warning')
 	$('#generateExcel').addClass('btn-primary')
 	$('#generateExcel').val('File is ready for download!')
-	
+		
+	setTimeout(function() {
+		$('#generateExcel').removeClass('btn-primary')
+		$('#generateExcel').addClass('btn-success')
+		$('#generateExcel').val('click to generate xlsx')
+	}, 2000);
 }
+</script>
