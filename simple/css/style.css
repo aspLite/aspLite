@@ -1,0 +1,30 @@
+html, body {
+	font-family:'Open Sans';
+	font-size:16px;
+	background-color:#EEE;
+    padding: 0px;
+    margin: 0px;   
+}
+
+.wrapper {
+	width:960px;
+	margin:0 auto;	
+}
+
+.content {
+	margin-top:20px;
+	padding:20px;
+	background-color:#FFF;
+}
+
+@media screen and (max-width: 960px) {
+	html, body {
+		background-color:#FFF;
+	}
+	.wrapper {
+		width:100%;
+	}
+	.content {
+		margin-top:0px;
+	}
+}
