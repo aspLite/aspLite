@@ -1,14 +1,21 @@
 
 function createXLS () {
-
-	aspAjax ("get",aspLiteAjaxHandler,"asplEvent=sampleform30_data",function(data){createFile(data)}) 
-	
-	}
+	$('#generateExcel').val('Tabledata is requested')
+	$('#generateExcel').removeClass('btn-success')
+	$('#generateExcel').addClass('btn-warning')
+	aspAjax ("get",aspLiteAjaxHandler,"asplEvent=sampleform30_data",createFile)	
+}
 
 function createFile(data) {
 
-	var wb = XLSX.utils.book_new(), ws = XLSX.utils.json_to_sheet(data.aspl);	
-	XLSX.utils.book_append_sheet(wb, ws, 'SheetJS Experiment');
-	XLSX.writeFile(wb, 'aspLite.xlsx', {type: 'file'});
+	$('#generateExcel').val('Tabledata was received')
 
+	var wb = XLSX.utils.book_new(), ws = XLSX.utils.json_to_sheet(data.aspl)
+	XLSX.utils.book_append_sheet(wb, ws, 'SheetJS Experiment')
+	XLSX.writeFile(wb, 'aspLite.xlsx', {type: 'file'})
+	
+	$('#generateExcel').removeClass('btn-warning')
+	$('#generateExcel').addClass('btn-primary')
+	$('#generateExcel').val('File is ready for download!')
+	
 }
