@@ -1,0 +1,14 @@
+
+function createXLS () {
+
+	aspAjax ("get",aspLiteAjaxHandler,"asplEvent=sampleform30_data",function(data){createFile(data)}) 
+	
+	}
+
+function createFile(data) {
+
+	var wb = XLSX.utils.book_new(), ws = XLSX.utils.json_to_sheet(data.aspl);	
+	XLSX.utils.book_append_sheet(wb, ws, 'SheetJS Experiment');
+	XLSX.writeFile(wb, 'aspLite.xlsx', {type: 'file'});
+
+}
