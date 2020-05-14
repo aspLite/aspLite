@@ -3,9 +3,9 @@ dim form, field
 
 select case lcase(aspL.getRequest("asplEvent"))	
 	
-	case "simplediv1"
+	case "basicdiv1"
 	
-		'this aspLite form binds to data-asplTarget="simpleDiv1"
+		'this aspLite form binds to data-asplTarget="basicDiv1"
 		set form=aspl.form
 		set field = form.field("plain")
 		field.add "html","<p><i>Onload event!</i></p>"
@@ -14,7 +14,7 @@ select case lcase(aspL.getRequest("asplEvent"))
 
 	case "clicklink"
 	
-		'this aspLite form binds to data-asplTarget="simpleDiv2"
+		'this aspLite form binds to data-asplTarget="basicDiv2"
 		set form=aspl.form
 		
 		set field = form.field("script")
@@ -28,8 +28,7 @@ select case lcase(aspL.getRequest("asplEvent"))
 
 end select
 
-response.write aspL.loadText("simple/html/simple.resx")
+response.write aspL.loadText("basic/html/basic.resx")
 
 set aspL=nothing
-
 %>

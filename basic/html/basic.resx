@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" type="text/css" />
-	<link rel="stylesheet" href="simple/css/style.css">
+	<link rel="stylesheet" href="basic/css/style.css">
   </head>
   <body>  
   
@@ -17,26 +17,26 @@
   
 			<h3>"Onload"-event triggers aspLite form</h3>
 			
-			<!-- class="asplForm" triggers a function in aspLite.js that calls this ASP page and replaces simpleDiv1 --> 	
+			<!-- class="asplForm" triggers a function in aspLite.js that calls this ASP page and replaces basicDiv1 --> 	
 			
-			<div class="asplForm" id="simpleDiv1" style="color:Blue"></div>
+			<div class="asplForm" id="basicDiv1" style="color:Blue"></div>
 				
 			
 			<h3>Trigger aspLite form</h3>
 			<!-- class="ajaxlink" triggers a function in aspLite.js that calls this ASP page 
-			and passes asplEvent (clickLink) and  asplTarget (simpleDiv2) -->
-			<a href="#" class="ajaxLink" data-asplTarget="simpleDiv2" data-asplEvent="clickLink">Click here</a>
+			and passes asplEvent (clickLink) and  asplTarget (basicDiv2) -->
+			<a href="#" class="ajaxLink" data-asplTarget="basicDiv2" data-asplEvent="clickLink">Click here</a>
 			
-			<div id="simpleDiv2" style="color:Red"></div>
+			<div id="basicDiv2" style="color:Red"></div>
 		
 		</div>
 		
 	</div>	
 	
 	<!-- jQuery  & aspLite JS -->
-	<script src="asplite/jquery.js"></script>	
+	<script src="asplite/jquery.js"></script>
 	<script>
-		var aspLiteAjaxHandler='simple.asp'
+		var aspLiteAjaxHandler='basic.asp'
 	</script>
 	<script src="asplite/asplite.js"></script>
 	
