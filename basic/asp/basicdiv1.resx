@@ -1,0 +1,9 @@
+<%
+'this aspLite form binds to data-asplTarget="basicDiv1"
+set form=aspl.form
+
+set field = form.field("plain")
+field.add "html","<p><i>Onload event!</i></p>"
+
+form.build()
+%>
