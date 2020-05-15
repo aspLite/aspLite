@@ -1,9 +1,9 @@
 <%
 'load jquery date-functions (sets the dateformat!)
-aspL("default/asp/includes/jQueryUiFunctions.asp")
+aspL("default/asp/includes/jQueryUiFunctions.resx")
 
 'load includes (classes) for this particular example
-aspL("default/asp/datatables/includes.asp")
+aspL("default/asp/datatables/includes.resx")
 
 'create an instance of the contact class
 dim contact : set contact = new cls_contact

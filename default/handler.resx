@@ -1,0 +1,100 @@
+<%
+'create a database object. It will be used on various occasions in this demo
+'creating this object here already does not harm performance, as no database connection is establised yet
+'this demo uses an Access database, located in "db/sample.mdb"
+dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
+
+'Below the eventhandler (what did the user do/click on exactly?)
+'In general: if the code for dealing with the event is not large, include it here (downloadlargefile,downloadsmallfile).
+'if the code is getting complex, use yet another codebehind file, like all sampleforms!
+'aspl.exec is the DEFAULT sub in aspLite, so aspl(XX) will execute XX where XX is the path to the ASP file to be executed
+
+select case lcase(aspL.getRequest("asplEvent"))	
+	
+	case "downloadlargefile" 		: aspL.dumpBinary("default/html/largefile.jpg")
+	
+	case "downloadsmallfile" 		: aspL.dumpBinary("default/html/smallfile.jpg")
+
+	case "uploadfilejquery" 		: aspL("default/asp/uploadfile.resx") : aspL.die
+	
+	case "body"						: aspL("default/asp/sampleform0.resx") 'default content for <div id="body">
+		
+	case "sampleform1" 				: aspL("default/asp/sampleform1.resx")
+	
+	case "sampleform2" 				: aspL("default/asp/sampleform2.resx")
+	
+	case "sampleform3"				: aspL("default/asp/sampleform3.resx")
+	
+	case "sampleform4" 				: aspL("default/asp/sampleform4.resx")	
+	
+	case "sampleform5" 				: aspL("default/asp/sampleform5.resx")	
+	
+	case "sampleform6" 				: aspL("default/asp/sampleform6.resx")	
+	
+	case "sampleform7" 				: aspL("default/asp/sampleform7.resx")
+	
+	case "sampleform8" 				: aspL("default/asp/sampleform8.resx")
+	
+	case "sampleform9" 				: aspL("default/asp/sampleform9.resx")
+	
+	case "sampleform10" 			: aspL("default/asp/sampleform10.resx")
+	
+	case "sampleform11" 			: aspL("default/asp/sampleform11.resx")
+
+	case "sampleform12" 			: aspL("default/asp/sampleform12.resx")
+	
+	case "sampleform13" 			: aspL("default/asp/sampleform13.resx")	
+	
+	case "sampleform14" 			: aspL("default/asp/sampleform14.resx")	
+	
+	case "sampleform15" 			: aspL("default/asp/sampleform15.resx")	
+	
+	case "sampleform16" 			: aspL("default/asp/sampleform16.resx")	
+	
+	case "sampleform17" 			: aspL("default/asp/sampleform17.resx")
+	
+	case "sampleform18" 			: aspL("default/asp/sampleform18.resx")	
+	
+	case "sampleform20" 			: aspL("default/asp/sampleform20.resx")
+	
+	case "sampleform20_data" 		: aspL("default/asp/datatables/sampleform20_data.resx")
+	
+	case "sampleform21" 			: aspL("default/asp/sampleform21.resx")	
+	
+	case "sampleform21_data" 		: aspL("default/asp/datatables/sampleform21_data.resx")	
+	
+	case "sampleform22" 			: aspL("default/asp/sampleform22.resx")
+	
+	case "sampleform23" 			: aspL("default/asp/sampleform23.resx")
+	
+	case "sampleform24" 			: aspL("default/asp/sampleform24.resx")
+	
+	case "sampleform25" 			: aspL("default/asp/sampleform25.resx")
+	
+	case "sampleform26" 			: aspL("default/asp/sampleform26.resx")
+	
+	case "sampleform27" 			: aspL("default/asp/sampleform27.resx")
+	
+	case "sampleform28" 			: aspL("default/asp/sampleform28.resx")
+	
+	case "sampleform28_data" 		: aspL("default/asp/sampleform28_data.resx")
+	
+	case "sampleform29" 			: aspL("default/asp/sampleform29.resx")
+	
+	case "sampleform30" 			: aspL("default/asp/sampleform30.resx")
+	
+	case "sampleform30_data" 		: aspL("default/asp/sampleform30_data.resx")
+	
+	case else 
+				
+		'get userfriendly url, if any (and launch a new handler-instance!)
+		aspL("default/404.handler.resx")		
+		
+end select
+
+response.write aspL.loadText("default/html/default.resx")
+
+'destroy aspLite
+set aspL=nothing
+
+%>

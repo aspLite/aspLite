@@ -1,6 +1,6 @@
 <%
 'load jquery date-functions (sets the jQuery UI dateformat!)
-aspL("default/asp/includes/jQueryUiFunctions.asp")
+aspL("default/asp/includes/jQueryUiFunctions.resx")
 
 dim form : set form=aspl.form
 

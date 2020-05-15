@@ -26,7 +26,7 @@ function startVue() {
 		mounted: function () {
 			var self = this;
 			$.ajax({
-				url: 'default.asp?asplEvent=sampleform28_data',
+				url: aspLiteAjaxHandler + '?asplEvent=sampleform28_data',
 				method: 'GET',
 				success: function (data) {
 					self.items = data.aspl;

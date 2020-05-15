@@ -956,16 +956,23 @@ class cls_asplite_json
 	'' Added by Pieter Cooreman, developer aspLite
 	'' I added this function to have a very easy way to return single level values named "aspl"
 	'' Val can be of all types (string, arrays, objects, recordset) - see toJSON
+	'' Another reason for this "hack" is that toResponse=true ensures that the variable "output" does not 
+	'' get too big (it' not even used). Adding strings to ever growing string-variables results in very poor
+	'' performance very quickly! Having the response.buffer=true while adding many strings to it,
+	'' gives much better performance than classic string-concatenation
 	'******************************************************************************************************************
 	public sub dump(val)
+	
+		toResponse=true
+	
+		Response.ContentType = "application/json"
+		
+		response.clear
 
 		write("{""aspl"": ")
 		generateValue(val)
 		write("}")
-
-		Response.ContentType = "application/json"
-		response.clear
-		response.write output
+		
 		response.end
 
 	end sub

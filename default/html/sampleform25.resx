@@ -1,5 +1,5 @@
 <script>
-
+//be careful, jsPDF does NOT work with UTF-8 charset, only ASCII!
 var doc = new jsPDF()
 doc.setFontSize(14)
 [js]

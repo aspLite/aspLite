@@ -1,5 +1,7 @@
 <%
-'turn a text file into a PDF file!
+'turn an ASCII text file into PDF!
+'be careful, jsPDF does NOT work with UTF-8 charset, only ASCII!
+
 dim form : set form=aspl.form
 
 if form.postback then

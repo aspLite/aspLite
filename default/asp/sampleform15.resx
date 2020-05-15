@@ -2,7 +2,7 @@
 dim form : set form=aspl.form
 
 dim defaultValue
-defaultValue=aspl.loadText("default/asp/includes/codemirrorsample.asp")
+defaultValue=aspl.loadText("default/asp/includes/codemirrorsample.resx")
 	
 'form-submitted
 if form.postback then

@@ -1,0 +1,22 @@
+<%
+select case lcase(aspl.pathinfo)
+
+	case "customurl" 	: aspL("default/asp/404/default.resx")
+	
+	case "learn-more" 	: aspL("default/asp/404/learnmore.resx")	
+	
+	case "about" 		: aspL("default/asp/404/about.resx")	
+	
+	case "getcode" 		: aspL("default/asp/404/getcode.resx")	
+	
+	case "contact" 		: aspL("default/asp/404/contact.resx")
+	
+	case "" 'do nothing
+	
+	case else 
+		
+		response.write "this page does not exist"
+		response.end
+	
+end select
+%>

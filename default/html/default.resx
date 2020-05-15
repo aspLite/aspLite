@@ -70,7 +70,7 @@
 								<div class="asplForm card-text" id="sampleform30"></div>			
 											
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform30.asp</small></p>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform30.resx</small></p>
 								
 							</div>
 						</div>	
@@ -84,7 +84,7 @@
 								<div class="asplForm card-text" id="sampleform29"></div>			
 											
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform29.asp</small></p>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform29.resx</small></p>
 								
 							</div>
 						</div>	
@@ -98,7 +98,7 @@
 								<div class="asplForm card-text" id="sampleform28"></div>			
 											
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform28.asp</small></p>					
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform28.resx</small></p>					
 																			
 							</div>
 						</div>			
@@ -110,7 +110,7 @@
 							<div class="card-body">
 								<div class="asplForm card-text" id="sampleform27"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform27.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform27.resx</small></p>	
 							</div>
 						</div>			
 					
@@ -122,7 +122,7 @@
 							<p class="card-text">Not only you can create forms, you can also bind ASP-output any html element. This sample does both. Try it out!</p>
 								<div class="asplForm card-text" id="sampleform1"></div>
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform1.asp</small></p>						
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform1.resx</small></p>						
 							</div>
 						</div>
 						
@@ -135,8 +135,8 @@
 								<p class="card-text">	
 								A classic ASP implementation of <a href="https://datatables.net/" target="_blank">DataTables</a> (jQuery plugin). DataTables turns any html table into a powerful widget with sorting, paging and searching functions.</p>
 									<ul>
-										<li><a href="#" class="ajaxLink" data-asplTarget="body" data-asplEvent="sampleform20">DataTables (Json)</a><br><small class="text-muted">see /default/asp/sampleform20.asp</small></li>						
-										<li><a href="#" class="ajaxLink" data-asplTarget="body" data-asplEvent="sampleform21">DataTables (ASP)</a><br><small class="text-muted">see /default/asp/sampleform21.asp</small></li>		
+										<li><a href="#" class="ajaxLink" data-asplTarget="body" data-asplEvent="sampleform20">DataTables (Json)</a><br><small class="text-muted">see /default/asp/sampleform20.resx</small></li>						
+										<li><a href="#" class="ajaxLink" data-asplTarget="body" data-asplEvent="sampleform21">DataTables (ASP)</a><br><small class="text-muted">see /default/asp/sampleform21.resx</small></li>		
 									</ul>												
 							</div>
 						</div>	
@@ -151,7 +151,7 @@
 								</p>
 								<div class="card-text" id="sampleform17"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform17.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform17.resx</small></p>	
 							</div>
 						</div>
 						
@@ -163,13 +163,13 @@
 							
 								<p class="card-text">
 									<!-- you can trigger the sampleform17-event and bind it to a different asplTarget-id (sampleform19 (the body of the modal, see below))
-									This is how you can have the same form in various places in your html (see /default/asp/sampleform17.asp) -->
+									This is how you can have the same form in various places in your html (see /default/asp/sampleform17.resx) -->
 									<a class="ajaxLink btn btn-outline-info" href="#" data-asplTarget="sampleform19" data-asplEvent="sampleform17" data-toggle="modal" data-target="#aspFormModal">Form17 in Modal</a>
 								</p>
 															
 								<hr>
 								
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform17.asp</small></p>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform17.resx</small></p>
 								
 							</div>
 						</div>		
@@ -181,7 +181,7 @@
 							<div class="card-body">									
 								<div class="asplForm card-text" id="sampleform23"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform23.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform23.resx</small></p>	
 							</div>
 						</div>
 						
@@ -194,7 +194,7 @@
 									<a href="#" class="ajaxLink btn btn-info" data-asplEvent="sampleform18">Replace me</a>								
 								</div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform18.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform18.resx</small></p>	
 							</div>
 						</div>						
 
@@ -206,7 +206,7 @@
 								<p class="card-text">Self-submitting form</p>
 								<div class="asplForm card-text" id="sampleform2"></div>
 								<hr>							
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform2.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform2.resx</small></p>	
 							</div>
 						</div>
 
@@ -218,7 +218,7 @@
 								<p class="card-text"><a href="https://jqueryui.com/datepicker/" target="_blank"> https://jqueryui.com/datepicker/</a></p>
 								<div class="asplForm  card-text" id="sampleform3"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform3.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform3.resx</small></p>	
 							</div>							
 						</div>	
 						
@@ -229,7 +229,7 @@
 							<div class="card-body">								
 								<div class="asplForm  card-text" id="sampleform24"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform24.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform24.resx</small></p>	
 							</div>							
 						</div>						
 
@@ -241,7 +241,7 @@
 								<p class="card-text"><a target="_blank" href="https://ckeditor.com/ckeditor-4/">https://ckeditor.com/ckeditor-4/</a></p>							
 								<div class="asplForm card-text" id="sampleform4"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform4.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform4.resx</small></p>	
 							</div>
 						</div>
 						
@@ -252,7 +252,7 @@
 							<div class="card-body">						
 								<div class="asplForm card-text" id="sampleform5"></div>
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform5.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform5.resx</small></p>	
 							</div>
 						</div>	
 						
@@ -263,7 +263,7 @@
 							<div class="card-body">						
 								<div class="asplForm card-text" id="sampleform6"></div>
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform6.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform6.resx</small></p>	
 							</div>
 						</div>					
 						
@@ -275,7 +275,7 @@
 								<p class="card-text">aspLite comes with two hashing plugins (MD5 & sha256)</p>
 								<div class="asplForm card-text" id="sampleform7"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform7.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform7.resx</small></p>	
 							</div>
 						</div>					
 						
@@ -287,7 +287,7 @@
 								<p class="card-text">Basic database (Access) plugin example</p>
 								<div class="asplForm card-text" id="sampleform8"></div>
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform8.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform8.resx</small></p>	
 							</div>
 						</div>	
 						
@@ -298,7 +298,7 @@
 							<div class="card-body">						
 								<div class="asplForm card-text" id="sampleform9"></div>
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform9.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform9.resx</small></p>	
 							</div>
 						</div>
 						
@@ -309,7 +309,7 @@
 							<div class="card-body">						
 								<div class="asplForm card-text" id="sampleform10"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform10.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform10.resx</small></p>	
 							</div>
 						</div>	
 						
@@ -321,7 +321,7 @@
 								<p class="card-text">Generate random texts and numbers with aspLite's randomizer:</p>
 								<div class="asplForm card-text" id="sampleform11"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform11.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform11.resx</small></p>	
 							</div>
 						</div>						
 						
@@ -331,7 +331,7 @@
 							 </div>
 							<div class="card-body">		
 								<div class="asplForm card-text" id="sampleform12"></div>								
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform12.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform12.resx</small></p>	
 							</div>
 						</div>	
 
@@ -343,7 +343,7 @@
 								<p class="card-text">The image below was rendered with the aspLite jpg-plugin (.net required):</p>
 								<div class="asplForm card-text" id="sampleform13"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform13.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform13.resx</small></p>	
 							</div>
 						</div>	
 						
@@ -356,11 +356,11 @@
 								<hr>
 								<p class="card-text">
 									<small class="text-muted">
-									/default/asp/sampleform14.asp
+									/default/asp/sampleform14.resx
 									<br>							
 									/default/html/sampleform14.resx
 									<br>
-									/default/asp/uploadfile.asp
+									/default/asp/uploadfile.resx
 									</small>						
 								</p>	
 							</div>
@@ -375,7 +375,7 @@
 
 								<div class="asplForm card-text" id="sampleform15"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform15.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform15.resx</small></p>	
 							</div>
 						</div>					
 						
@@ -388,7 +388,7 @@
 
 								<div class="asplForm card-text" id="sampleform16"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform16.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform16.resx</small></p>	
 							</div>
 						</div>	
 
@@ -397,11 +397,11 @@
 								<strong>jsPDF</strong> experiment
 							 </div>
 							<div class="card-body">		
-								<p class="card-text"> <a target="_blank" href="https://github.com/MrRio/jsPDF">jsPDF</a> is a library to generate PDFs in JavaScript. A secret text-file residing on the <i>server</i>, will be turned into a PDF by the <i>browser</i>.</p>
+								<p class="card-text"> <a target="_blank" href="https://github.com/MrRio/jsPDF">jsPDF</a> is a library to generate PDFs in JavaScript (be careful, only ASCII characters are supported!)</p>
 
 								<div class="asplForm card-text" id="sampleform25"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform25.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform25.resx</small></p>	
 							</div>
 						</div>						
 						
@@ -424,7 +424,7 @@
 								</p>	
 							<hr>
 								<p class="card-text"><small class="text-muted">
-									/default/asp/404.handler.asp
+									/default/asp/404.handler.resx
 									<br>
 									/asplite/asplite.asp (pathinfo)
 									</small>							
@@ -439,8 +439,8 @@
 							<div class="card-body">				
 								
 								<p class="card-text">Offer downloads, without exposing filenames to the visitor. aspLite's function dumpBinary() takes care.</p>						
-								<p><a class="btn btn-info" href="default.asp?asplEvent=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see /default/default.handler.asp</small></p>
-								<p><a class="btn btn-info" href="default.asp?asplEvent=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see /default/default.handler.asp</small></p>
+								<p><a class="btn btn-info" href="default.asp?asplEvent=downloadsmallfile">download small file (&lt;500kB)</a><br><small class="text-muted">see /default/handler.resx</small></p>
+								<p><a class="btn btn-info" href="default.asp?asplEvent=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see /default/handler.resx</small></p>
 													
 							</div>
 						</div>
@@ -454,7 +454,7 @@
 
 								<div class="asplForm card-text" style="min-height:320px" id="sampleform26"></div>	
 								<hr>
-								<p class="card-text"><small class="text-muted">/default/asp/sampleform26.asp</small></p>	
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform26.resx</small></p>	
 							</div>
 						</div>									
 							
@@ -511,11 +511,11 @@
 	
 	<!-- JSZip -->
 	<script src="default/js/jszip.min.js"></script>
-	<script src="default/js/filesaver.min.js"></script>	
+	<script src="default/js/filesaver.min.js"></script>
 	
 	<!-- JSPdf -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
-	
+		
 	<!-- CodeMirror -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/vbscript/vbscript.min.js"></script>

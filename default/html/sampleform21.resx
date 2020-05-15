@@ -3,7 +3,7 @@
 <hr>
 
 <p>Loading some dozens or even hundreds of records at once works fine. But what if you want to browse 1000's? The table below browses (sorts and searches) 10.000 records. Only the records shown are actually loaded. This speeds up the page loadtime (a lot). I found inspiration for this feature <a href="https://datatables.net/forums/discussion/59746/new-classic-asp-server-side-script-for-datatables-1-10-20" target="_blank">here</a> (SlavTheClaw). </p>
-<p><small class="text-muted">/default/asp/sampleform21.asp</small></p>
+<p><small class="text-muted">/default/asp/sampleform21.resx</small></p>
 <hr>
 
 <table id="jsExampleSSP" class="table table-striped" style="width:100%">

@@ -1,0 +1,14 @@
+<%
+on error resume next
+
+sql="select top 2500 contact.iId, contact.sText, contact.iNumber, contact.dDate, country.sText as country "
+sql=sql & "from contact LEFT JOIN country ON contact.iCountryID = country.iId order by contact.sText asc"
+
+dim rs : set rs=db.rs : rs.open(sql)
+
+aspL.asperror("json_datatables")
+
+aspl.json.dump(rs)
+
+on error goto 0
+%>
