@@ -1,0 +1,10 @@
+<%
+set rs=db.rs
+rs.open("select sText from country where sText like '%" & aspl.sqli(aspl.getRequest("query")) & "%'")
+
+if not rs.eof then
+	aspl.dumpJson(aspl.json.toJSON("suggestions",rs.getRows,false))
+else
+	aspl.dumpJson(aspl.json.toJSON("suggestions","",false))
+end if
+%>

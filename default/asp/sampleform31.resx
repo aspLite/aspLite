@@ -1,0 +1,15 @@
+<%
+'jQuery Autocomplete sample
+set form = aspl.form
+
+set field = form.field("text")
+field.add "id", "autocomplete"
+field.add "class", "form-control"
+field.add "name", "autocomplete"
+field.add "placeholder","start writing a country name"
+
+set field = form.field("script")
+field.add "text",aspl.loadText("default/html/sampleform31.resx")
+
+form.build
+%>

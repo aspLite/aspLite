@@ -1,6 +1,6 @@
 var canvas=document.getElementById('servertext');
 var context=canvas.getContext('2d');
-context.font='40px Tangerine';
+context.font='bold 40px Tangerine';
 
 var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
 gradient.addColorStop("0"," magenta");

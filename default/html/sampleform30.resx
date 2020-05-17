@@ -2,7 +2,7 @@
 
 $('#generateExcel').val('SheetJS starts loading...');
 
-$.getScript('https://unpkg.com/xlsx@0.16.0/dist/xlsx.core.min.js',function(){createXLS()})
+$.getScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.1/xlsx.min.js',function(){createXLS()})
 
 function createXLS () {
 	$('#generateExcel').val('Tabledata is requested')
