@@ -91,6 +91,8 @@ select case lcase(aspL.getRequest("asplEvent"))
 	
 	case "sampleform32" 			: aspL("default/asp/sampleform32.resx")
 	
+	case "sampleform33"				: aspL("default/asp/sampleform33.resx")
+	
 	case else 
 				
 		'get userfriendly url, if any (and launch a new handler-instance!)

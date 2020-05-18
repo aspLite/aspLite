@@ -1,0 +1,6 @@
+<%
+response.contenttype="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+response.AddHeader "Content-Disposition", "attachment; filename=aspLite.docx"
+response.write aspl.loadText("default/html/utf8.resx")
+response.end 
+%>

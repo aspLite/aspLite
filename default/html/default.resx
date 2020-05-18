@@ -436,13 +436,29 @@
 								<strong>jsPDF</strong> experiment
 							 </div>
 							<div class="card-body">		
-								<p class="card-text"> <a target="_blank" href="https://github.com/MrRio/jsPDF">jsPDF</a> is a library to generate PDFs in JavaScript (be careful, only ASCII characters are supported!)</p>
+								<p class="card-text"><a target="_blank" href="https://github.com/MrRio/jsPDF">jsPDF</a> is a library to generate PDFs in JavaScript (be careful, only ASCII characters are supported!)</p>
 
 								<div class="asplForm card-text" id="sampleform25"></div>	
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform25.resx</small></p>	
 							</div>
-						</div>						
+						</div>
+
+						<div class="card">
+							<div class="card-header">
+								Export Word (docx) file
+							 </div>
+							<div class="card-body">		
+								<p class="card-text">Exporting to docx (MS Word) with response.contenttype is 100% utf8-proof!</p>
+								<div class="card-text">
+									<button class="btn btn-primary" onclick="location.assign('default.asp?asplEvent=sampleform33');return false;")>Export docx file</button>
+								</div>			
+											
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform33.resx</small></p>
+								
+							</div>
+						</div>	
 						
 						<div class="card">
 							<div class="card-header">
