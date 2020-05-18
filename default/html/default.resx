@@ -96,6 +96,22 @@
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform30.resx</small></p>
 								
 							</div>
+						</div>
+						
+						<div class="card">
+							<div class="card-header">
+								Export XLSX with Response.Contenttype
+							 </div>
+							<div class="card-body">
+								<p class="card-text">There is another way to export xls(x) files.</p>
+								<div class="card-text">
+									<button class="btn btn-primary" onclick="location.assign('default.asp?asplEvent=sampleform32');return false;")>Export xlsx file</button>
+								</div>			
+											
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform32.resx</small></p>
+								
+							</div>
 						</div>	
 					
 						<div class="card">

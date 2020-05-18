@@ -1,0 +1,35 @@
+<%
+dim rs,field,datatable	
+set rs=db.rs : rs.open ("select * from testdata")
+
+datatable="<tr>"
+
+'get headers
+for each field in rs.fields	
+	datatable=datatable & "<th>" & aspL.sanitize(field.name) & "</th>"		
+next
+
+datatable=datatable & "</tr>"
+
+while not rs.eof	
+
+	datatable=datatable & "<tr>"
+
+	for each field in rs.fields	
+		datatable=datatable & "<td>" & aspL.sanitize(rs(field.name)) & "</td>"
+	next
+	
+	datatable=datatable & "</tr>"
+	
+	rs.movenext
+
+wend
+
+set rs=nothing
+
+response.contenttype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+response.AddHeader "Content-Disposition", "attachment; filename=export.xlsx"
+response.write "<table><tbody>" & datatable & "</tbody></table>"
+response.end 
+
+%>
