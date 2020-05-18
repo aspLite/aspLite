@@ -1,8 +1,6 @@
 <script>
 
-$('#generateExcel').val('SheetJS starts loading...');
-
-$.getScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.1/xlsx.min.js',function(){createXLS()})
+createXLS()
 
 function createXLS () {
 	$('#generateExcel').val('Tabledata is requested')

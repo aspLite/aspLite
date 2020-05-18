@@ -1,4 +1,8 @@
 <%
+'we expect a parameter named "query" from the ajax call. make sure to protect against SQLinjection
+'in this query, the searchstring will be searched for in the entire country-name ('%query%'). 
+'if you prefer to only search for country names BEGINNING with the querystring, use 'query%'
+
 set rs=db.rs
 rs.open("select sText from country where sText like '%" & aspl.sqli(aspl.getRequest("query")) & "%'")
 

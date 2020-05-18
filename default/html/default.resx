@@ -535,6 +535,9 @@
 	<!-- JSZip -->
 	<script src="default/js/jszip.min.js"></script>
 	<script src="default/js/filesaver.min.js"></script>
+		
+	<!-- SheetJS -->
+	<script src="default/js/sheetjs.min.js"></script>
 	
 	<!-- JSPdf -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
