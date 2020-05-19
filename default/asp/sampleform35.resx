@@ -4,11 +4,16 @@ set form = aspl.form
 if form.postback then	
 
 	set field = form.field("plain")
-	field.add "html", "<div style=""padding:5px 10px"" id=""qrSpinner""></div><img style=""width:100%"" id=""qrImg"" src="""" />"
+	field.add "html", "<div id=""qrSpinner""></div><img style=""width:100%"" id=""qrImg"" alt="""" src="""" />"
 
 	set field = form.field("plain")
 	field.add "html",replace(aspl.loadText("default/html/sampleform35.resx"),"[QR]",aspl.sanitizeJS(aspl.getRequest("qr")),1,-1,1)
 	
+else
+
+	set field = form.field("plain")
+	field.add "html", "<img style=""width:100%"" alt="""" src=""https://chart.googleapis.com/chart?cht=qr&chs=320x320&chl=asplite.com"" />"
+
 end if
 
 set field = form.field ("text")

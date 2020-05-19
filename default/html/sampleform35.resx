@@ -8,7 +8,7 @@ xhr.onreadystatechange = function(){
         var img = document.getElementById("qrImg");
         var url = window.URL || window.webkitURL;
         img.src = url.createObjectURL(this.response);
-		$('#qrSpinner').css('display','none')
+		$('#qrSpinner').html('')
     }
 }
 xhr.open('GET', 'https://chart.googleapis.com/chart?cht=qr&chs=320x320&chl=[QR]');
