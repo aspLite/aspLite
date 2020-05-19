@@ -1,0 +1,3 @@
+$( "#jqAutocomplete" ).autocomplete({
+	source: 'default.asp?asplEvent=sampleform34_data'
+});

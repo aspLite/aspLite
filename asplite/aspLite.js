@@ -1,25 +1,25 @@
 var aspLiteAjaxForms = []
 var aspLiteFormLooper=0
 
+//bootstrap aspLiteSpinner
+var aspLiteSpinner="<div class='text-center'>"
+aspLiteSpinner+="<div class='spinner-border text-primary spinner-border' role='status'>"
+aspLiteSpinner+="<span class='sr-only'>Loading...</span> </div>"
+aspLiteSpinner+="</div>"
+
 $(document).ready(function(e) {	
 init();
 })
 
 function init() {	
 	
-	$('html,body').animate({scrollTop: $('body').offset().top}, 'slow')
-	
-	//bootstrap spinner
-	var spinner="<div class='text-center'>"
-	spinner+="<div class='spinner-border text-primary spinner-border' role='status'>"
-	spinner+="<span class='sr-only'>Loading...</span> </div>"
-	spinner+="</div>"
+	$('html,body').animate({scrollTop: $('body').offset().top}, 'slow')	
 	
 	//all divs with class=asplForm will be filled with aspLiteAjaxForms according their id (asplEvent-handler)
 	$(".asplForm").each(function(){	
 		
 		//initialize with bootstrap spinners
-		$(this).html(spinner)
+		$(this).html(aspLiteSpinner)
 		
 		//an array of id's is loaded. it will be used in a second...
 		aspLiteAjaxForms.push($(this).attr('id'));

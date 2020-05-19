@@ -61,6 +61,8 @@
 			
 					<div class="card-columns">
 					
+						
+					
 						<div class="card">
 							<div class="card-header">
 								jQuery Autocomplete
@@ -80,6 +82,21 @@
 											
 								<hr>
 								<p class="card-text"><small class="text-muted">/default/asp/sampleform31.resx</small></p>
+								
+							</div>
+						</div>						
+						
+						<div class="card">
+							<div class="card-header">
+								jQuery UI Autocomplete
+							 </div>
+							<div class="card-body">
+								<p class="card-text"><a target="_blank" href="https://jqueryui.com/autocomplete/">jQuery UI Autocomplete</a> enables users to quickly find and select from a pre-populated list of values as they type, leveraging searching and filtering.</p>
+							
+								<div class="asplForm card-text" id="sampleform34"></div>											
+																			
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform34.resx</small></p>
 								
 							</div>
 						</div>	
@@ -499,6 +516,24 @@
 													
 							</div>
 						</div>
+						
+						<div class="card">
+							<div class="card-header">
+								Generate QR code
+							 </div>
+							<div class="card-body">			
+								
+								<p class="card-text">
+								<a target="_blank" href="https://developers.google.com/chart/infographics/docs/qr_codes">Google</a> provides an easy way for developers to generate QR codes. Check it out!
+								</p>
+							
+								<div class="asplForm card-text" id="sampleform35"></div>											
+																			
+								<hr>
+								<p class="card-text"><small class="text-muted">/default/asp/sampleform35.resx</small></p>
+								
+							</div>
+						</div>	
 						
 						<div class="card">
 							<div class="card-header">

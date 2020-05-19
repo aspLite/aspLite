@@ -1,0 +1,27 @@
+<%
+set form = aspl.form
+
+if form.postback then	
+
+	set field = form.field("plain")
+	field.add "html", "<div style=""padding:5px 10px"" id=""qrSpinner""></div><img style=""width:100%"" id=""qrImg"" src="""" />"
+
+	set field = form.field("plain")
+	field.add "html",replace(aspl.loadText("default/html/sampleform35.resx"),"[QR]",aspl.sanitizeJS(aspl.getRequest("qr")),1,-1,1)
+	
+end if
+
+set field = form.field ("text")
+field.add "class","form-control"
+field.add "placeholder","turn any text into a QR code"
+field.add "name", "qr"
+field.add "maxlength",50
+field.add "required",true
+
+set field = form.field("submit")
+field.add "class","btn btn-warning"
+field.add "value","create QR code"
+field.add "style","margin-top:5px"
+
+form.build
+%>
