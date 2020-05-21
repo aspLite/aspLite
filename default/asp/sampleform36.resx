@@ -1,0 +1,137 @@
+<%
+'conditional form
+set form = aspl.form
+
+set yn = aspl.dict
+yn.add 1,"No"
+yn.add 2,"Yes"
+
+set field = form.field ("select")
+field.add "label","Is it raining?"
+field.add "class","form-control"
+field.add "name", "raining"
+field.add "required",true
+field.add "options",yn
+field.add "emptyfirst",""
+field.add "onchange","$('#" & form.id & "').submit();"
+
+select case aspl.convertNmbr(aspl.getRequest("raining"))
+
+	case 1 'it's not raining	
+		
+		set field = form.field ("select")
+		field.add "label","Are you enjoying the sun?"
+		field.add "class","form-control"
+		field.add "name", "enjoyingSun"
+		field.add "required",true
+		field.add "options",yn
+		field.add "emptyfirst",""
+		field.add "onchange","$('#" & form.id & "').submit();"		
+		
+		select case aspl.convertNmbr(aspl.getRequest("enjoyingSun"))
+	
+			case 1 'no sun
+			
+				set field = form.field ("element")
+				field.add "tag","div"
+				field.add "class","alert alert-info"	
+				field.add "html","Too bad! No further questions!"
+				field.add "style","margin-top:10px"
+			
+			case 2 'sun
+			
+				set field = form.field ("select")
+				field.add "label","Have you put on sun cream?"
+				field.add "class","form-control"
+				field.add "name", "suncream"
+				field.add "required",true
+				field.add "emptyfirst",""
+				field.add "options",yn
+				field.add "onchange","$('#" & form.id & "').submit();"
+				
+				select case aspl.convertNmbr(aspl.getRequest("suncream"))
+	
+					case 1 'no suncream
+					
+						set field = form.field ("element")
+						field.add "tag","div"
+						field.add "class","alert alert-danger"	
+						field.add "html","Put it on NOW!"
+						field.add "style","margin-top:10px"		
+						
+						set field = form.field ("submit")		
+						field.add "class","btn btn-primary"	
+						field.add "value","Ok, I took care!"
+						field.add "style","margin-top:10px"
+						field.add "onclick","alert('Well done');return false;"						
+					
+					case 2 'no suncream
+					
+						set field = form.field ("element")
+						field.add "tag","div"
+						field.add "class","alert alert-success"	
+						field.add "html","Well done!"
+						field.add "style","margin-top:10px"
+
+				end select
+				
+		end select
+	
+	case 2 'it's raining
+	
+		set field = form.field ("select")
+		field.add "label","Are you watching a movie?"
+		field.add "class","form-control"
+		field.add "name", "enjoyingMovies"
+		field.add "required",true
+		field.add "options",yn
+		field.add "emptyfirst",""
+		field.add "onchange","$('#" & form.id & "').submit();"
+		
+		select case aspl.convertNmbr(aspl.getRequest("enjoyingMovies"))
+	
+			case 1 'no movies
+			
+				set field = form.field ("element")
+				field.add "tag","div"
+				field.add "class","alert alert-info"	
+				field.add "html","Take your umbrella and go for a rainy walk!"
+				field.add "style","margin-top:10px"
+			
+			case 2 'movie
+			
+				set field = form.field ("select")
+				field.add "label","Do you like the movie?"
+				field.add "class","form-control"
+				field.add "name", "likemovie"
+				field.add "required",true
+				field.add "emptyfirst",""
+				field.add "options",yn
+				field.add "onchange","$('#" & form.id & "').submit();"
+				
+				select case aspl.convertNmbr(aspl.getRequest("likemovie")) 
+				
+					case 1 'not liking movie
+					
+						set field = form.field ("element")
+						field.add "tag","div"
+						field.add "class","alert alert-warning"	
+						field.add "html","You'd better code some good old ASP classic then!"
+						field.add "style","margin-top:10px"
+					
+					case 2 'liking movie
+					
+						set field = form.field ("element")
+						field.add "tag","div"
+						field.add "class","alert alert-success"	
+						field.add "html","Great! Enjoy!"
+						field.add "style","margin-top:10px"
+					
+				end select 
+				
+		end select
+
+end select
+
+form.build
+%>
