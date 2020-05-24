@@ -1,6 +1,6 @@
 <%
 dim rs,field,datatable	
-set rs=db.rs : rs.open ("select * from person")
+set rs=db.rs : rs.open ("select top 25 * from testdata")
 
 datatable="<tr>"
 
@@ -27,7 +27,8 @@ wend
 
 set rs=nothing
 
-dim form : set form=aspl.form
+set form=aspl.form
+form.doscroll=true
 	
 'result
 dim feedback : set feedback=form.field("plain")

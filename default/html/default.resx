@@ -353,8 +353,10 @@
 							Table with data
 						 </div>
 						<div class="card-body">	
-							<p class="card-text">Basic database (Access) plugin example</p>
-							<div class="asplForm card-text" id="sampleform8"></div>
+							<p class="card-text">Basic database (Access) plugin example</p>						
+							
+							<a href="#" class="ajaxLink btn btn-info" data-asplTarget="body" data-asplEvent="sampleform8">Access sample</a>					
+							
 							<hr>
 							<p class="card-text"><small class="text-muted">/default/asp/sampleform8.resx</small></p>	
 						</div>
