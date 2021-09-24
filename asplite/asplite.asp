@@ -346,6 +346,7 @@ class cls_asplite
 		if size<chunksize then
 			response.AddHeader "Content-Length", size
 			response.binarywrite objStream.Read()
+			response.flush()
 		else
 
 			dim i
