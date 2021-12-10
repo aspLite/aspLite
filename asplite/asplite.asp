@@ -740,6 +740,28 @@ class cls_asplite
 		end if
 	end function
 
+	'check syntax email address	
+	private function GetEmailValidator()
+
+		Set GetEmailValidator = New RegExp
+
+		GetEmailValidator.Pattern = "^((?:[A-Z0-9_%+-]+\.?)+)@((?:[A-Z0-9-]+\.)+[A-Z]{2,40})$"
+
+		GetEmailValidator.IgnoreCase = True
+
+	end function
+
+	' Action: checks if an email is correct. 
+	' Parameter: Email address 
+	' Returned value: on success it returns True, else False. 
+	public function CheckEmailSyntax(strEmail) 
+
+		Dim EmailValidator : Set EmailValidator = GetEmailValidator()
+
+		CheckEmailSyntax=EmailValidator.Test(strEmail) 
+
+	end function
+
 	'******************************************************************************************
 	'* padLeft - copied from Ajaxed Library
 	'******************************************************************************************
