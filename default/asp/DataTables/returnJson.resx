@@ -56,7 +56,7 @@ class cls_datatables_returnJson
 		'If you need Group By/having, you would need to add it here
 		set rs=db.rs : rs.Open strSelect & strWhere  & " Order By " & OrderCol  & " " & OrderDir	
 		
-		aspl.log(strSelect & strWhere  & " Order By " & OrderCol  & " " & OrderDir	)		
+		'aspl.log(strSelect & strWhere  & " Order By " & OrderCol  & " " & OrderDir	)		
 		
 		'total number of results
 		rTotal=rs.recordcount
