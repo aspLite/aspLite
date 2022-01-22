@@ -287,7 +287,7 @@ class cls_asplite
 
 	end function
 
-	public function dumpBinary (path)
+	public function dumpBinary (path,dumpAs)
 
 		on error resume next
 
@@ -303,15 +303,20 @@ class cls_asplite
 
 		'get filesize
 		dim size : size=objStream.size
-
 		'set chunksize - files will be served by chunks of 500kb each
 		dim chunksize : chunksize=500000
 
 		'retrieve filename
-		dim filename : filename=right(path,len(path)-InStrRev(path,"\",-1,1))
+		'retrieve filename
+		dim filename
+		if not [isEmpty](dumpAs) then
+			filename=dumpAs
+		else
+			filename=right(path,len(path)-InStrRev(path,"\",-1,1))
+		end if			  
 
 		'retrieve filetype
-		dim filetype : filetype=getFileType(filename)
+		dim filetype : filetype=getFileType(filename) 
 
 		select case lcase(filetype)
 
@@ -346,7 +351,7 @@ class cls_asplite
 		if size<chunksize then
 			response.AddHeader "Content-Length", size
 			response.binarywrite objStream.Read()
-			response.flush()
+			response.flush()	   
 		else
 
 			dim i
@@ -436,8 +441,37 @@ class cls_asplite
 		on error goto 0
 
 	end function
-
+	
 	'############################
+	'### some logging functions
+	'############################	
+	
+	public function log(value)
+	
+		dim logfile 
+		logfile=loadText(aspL_path & "/asplite.log")
+	
+		saveText aspL_path & "/asplite.log",logfile & value & vbcrlf & vbcrlf & "FORM elements: " & vbcrlf & formcollection & vbcrlf & vbcrlf
+	
+	end function
+	
+	private function formcollection
+	
+		exit function
+		
+		dim element	
+		for each element in request.form
+			formcollection=formcollection & element & ": " & request.form(element) & vbcrlf
+		next
+		
+		for each element in request.querystring
+			formcollection=formcollection & element & ": " & request.querystring(element) & vbcrlf
+		next
+	
+	end function
+	
+	
+	'############################							  
 	'### some caching functions
 	'############################
 
@@ -628,7 +662,20 @@ class cls_asplite
 		on error goto 0
 
 	end function
+	
+	public function length(value)
+	
+		on error resume next
 
+		if [isEmpty](value) then
+			length=0
+		else
+			length=len(value)
+		end if
+
+		on error goto 0
+	
+	end function			 
 	public function [isEmpty](byval value)
 
 		on error resume next
@@ -680,13 +727,20 @@ class cls_asplite
 		sanitizeJS=replace(sValue,"'","\'",1,-1,1)
 
 	end function
+	public function htmlEncJs (sValue)
+	
+		htmlEncJs=sanitizeJS(server.htmlEncode(sValue))
+	
+	end function	 
 
 	public function convertNmbr(value)
-
+	
+		dim cValue : cValue=value
+		
 		on error resume next
 
-		if isNumber(value) then 
-			convertNmbr=cdbl(value)
+		if isNumber(cValue) then 
+			convertNmbr=cdbl(cValue)
 		else
 			convertNmbr=0
 		end if
@@ -738,28 +792,6 @@ class cls_asplite
 		else
 			sqli=replace(str,"'","''",1,-1,1)
 		end if
-	end function
-
-	'check syntax email address	
-	private function GetEmailValidator()
-
-		Set GetEmailValidator = New RegExp
-
-		GetEmailValidator.Pattern = "^((?:[A-Z0-9_%+-]+\.?)+)@((?:[A-Z0-9-]+\.)+[A-Z]{2,40})$"
-
-		GetEmailValidator.IgnoreCase = True
-
-	end function
-
-	' Action: checks if an email is correct. 
-	' Parameter: Email address 
-	' Returned value: on success it returns True, else False. 
-	public function CheckEmailSyntax(strEmail) 
-
-		Dim EmailValidator : Set EmailValidator = GetEmailValidator()
-
-		CheckEmailSyntax=EmailValidator.Test(strEmail) 
-
 	end function
 
 	'******************************************************************************************
@@ -834,10 +866,51 @@ class cls_asplite
 	public function strLeft(str1,str2)
 		strLeft = Left(str1,InStr(str1,str2)-1)
 	end function
+	public Function GetEmailValidator()
+
+		Set GetEmailValidator = New RegExp
+
+		GetEmailValidator.Pattern = "^((?:[A-Z0-9_%+-]+\.?)+)@((?:[A-Z0-9-]+\.)+[A-Z]{2,40})$"
+
+		GetEmailValidator.IgnoreCase = True
+
+	End Function
+
+	' Action: checks if an email is correct. 
+	' Parameter: Email address 
+	' Returned value: on success it returns True, else False. 
+	public Function CheckEmailSyntax(strEmail) 
+	
+		Dim EmailValidator : Set EmailValidator = GetEmailValidator()
+
+		CheckEmailSyntax=EmailValidator.Test(strEmail)
+	 
+	end function
+	
+	
+	public function stripHTML(strHTML)
+		'Strips the HTML tags from strHTML
+
+		Dim objRegExp, strOutput
+		Set objRegExp = New Regexp
+
+		objRegExp.IgnoreCase = True
+		objRegExp.Global = True
+		objRegExp.Pattern = "<(.|\n)+?>"
+
+		'Replace all HTML tag matches with the empty string
+		strOutput = objRegExp.Replace(strHTML, "")
+
+		'Replace all < and > with &lt; and &gt;
+		strOutput = Replace(strOutput, "<", "&lt;")
+		strOutput = Replace(strOutput, ">", "&gt;")
+
+		stripHTML = strOutput    'Return the value of strOutput
+
+		Set objRegExp = Nothing
+	End function
 
 end class
-
-
 
 '**************************************************************************************************************
 

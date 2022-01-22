@@ -105,6 +105,15 @@ class cls_asplite_formbuilder
 		ReDim arr(counter-1)
 
 		dim fieldkey
+		
+		'check if any given field is set to focus()
+		for each fieldkey in allFields
+			if allfields(fieldkey).exists("focus") then
+				if not allfields(fieldkey).exists("id") then
+					allfields(fieldkey).add "id",aspl.randomizer.randomText(10)
+				end if
+			end if			
+		next		  
 		for each fieldkey in allFields
 
 			'set the values of the input fields with the request-values in the submitted form

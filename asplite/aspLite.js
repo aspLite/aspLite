@@ -7,6 +7,20 @@ aspLiteSpinner+="<div class='spinner-border text-primary spinner-border' role='s
 aspLiteSpinner+="<span class='sr-only'>Loading...</span> </div>"
 aspLiteSpinner+="</div>"
 
+//html encoding
+function htmlEnc(s) {
+  return s.replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/'/g, '&#39;')
+    .replace(/"/g, '&#34;')
+}
+
+//remove html
+function removeHTML(s){
+	return s.replace(/<\/?[^>]+(>|$)/g, "")
+}
+			  
 $(document).ready(function(e) {	
 init();
 })
@@ -85,6 +99,7 @@ function aspAjaxError(data) {
  
 function aspForm(data) {
 	
+	var focusID=''					   
 	if (typeof data.id == 'undefined' || typeof data.target == 'undefined') { 
 		console.log('no Form ID or TARGET!') ; enumerateJson(data) ; return 
 	}
@@ -179,12 +194,27 @@ function aspForm(data) {
 		}				
 		
 		
+		if (field.type=="buttonModal") {
+			$('<button>').attr({
+				"id"				: field.id,
+				"type"				: "button",
+				"class"				: field.class,
+				"style"				: field.style,				
+				"onclick"			: field.onclick,
+				"data-bs-toggle"	: field.datatoggle,
+				"data-bs-target"	: field.datatarget,
+				"data-bs-dismiss"	: field.databsdismiss
+			}).html(field.html).appendTo(aspForm)			
+			continue
+		}
+								  
 		
 		if (field.type=="element") {			
 			$('<' + field.tag + '>').html(field.html).attr({
 				"class": field.class,
 				"id": field.id,	
 				"style": field.style,
+				"role": field.role,   
 				"onclick": field.onclick				
 			}).appendTo(aspForm)			
 			continue
@@ -228,6 +258,14 @@ function aspForm(data) {
 			}).appendTo(formgroup)
 				
 		}		
+		
+		if (field.type=="label") {			
+			$('<label>').attr({
+				"for"		: field.for					
+			}).val(field.html).appendTo(formgroup)		
+			continue
+		}				
+		
 		
 		if (field.type=="textarea") {			
 			$('<textarea>').attr({
@@ -386,9 +424,17 @@ function aspForm(data) {
 			"style"			: field.style,	
 			"required"		: field.required,
 			"onchange"		: field.onchange,
-			"onclick"		: field.onclick
+			"autocomplete"	: field.autocomplete,
+			"onclick"		: field.onclick,
+			"onfocus"		: field.onfocus,
+			"step" 			: "0.01"				 
 					
 		}).appendTo(formgroup)
+		//set focus?
+		if (typeof field.focus != 'undefined') {		
+			//console.log('field.focus: ' + field.focus + ' ' + field.id)
+			focusID=field.id				
+		}	  
 			
 	}	
 	
@@ -400,6 +446,13 @@ function aspForm(data) {
 		$('html,body').animate({scrollTop: $('#' + data.target).offset().top-data.offSet}, 'slow')
 	}
 	
+	//set focus
+	if(focusID!='') {
+		//alert(focusID)
+		document.getElementById(focusID).focus();
+		}
+	
+	
 }
 
 function enumerateJson(p) {
@@ -410,4 +463,15 @@ function enumerateJson(p) {
 		}
 	}
 	
+}
+
+function alphabetizeList() {
+    var sel = $(listField);
+    var selected = sel.val(); // cache selected value, before reordering
+    var opts_list = sel.find('option');
+    opts_list.sort(function (a, b) {
+        return $(a).text() > $(b).text() ? 1 : -1;
+    });
+    sel.html('').append(opts_list);
+    sel.val(selected); // set cached selected value
 }

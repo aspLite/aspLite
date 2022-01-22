@@ -41,6 +41,17 @@ if not aspL.isEmpty(returnJson.strSearch) then
 	
 end if
 
+'let the class know how to sort! dit moet overeenkomen met de volgorde van de tabellen in de HTML-view!
+select case returnJson.orderCol
+		
+	case 0 : returnJson.OrderCol="contact.sText"
+	case 1 : returnJson.OrderCol="iNumber"		
+	case 2 : returnJson.OrderCol="dDate"			
+	case 3 : returnJson.OrderCol="country.sText"			
+			
+
+end select 
+
 aspL.aspError("datatables server-side-processing")
 
 'finally return the JSon object to DataTables - here stops the page execution

@@ -3,8 +3,8 @@ dim returnJson : set returnJson=new cls_datatables_returnJson
 
 class cls_datatables_returnJson
 
-	private OrderCol,OrderDir,strOrder,draw,StartRecord,RowsPerPage,JsonAnswer,JsonHeader
-	public strSearch, strWhere, dbPath, strSelect
+	private OrderDir,strOrder,draw,StartRecord,RowsPerPage,JsonAnswer,JsonHeader
+	public strSearch, strWhere, dbPath, strSelect, OrderCol
 
 	Private Sub Class_Initialize()
 	
@@ -36,7 +36,7 @@ class cls_datatables_returnJson
 		'how many rows per page? 
 		RowsPerPage = aspL.convertNmbr(aspL.getRequest("length"))
 		if RowsPerPage <= 0 then RowsPerPage=10
-		if RowsPerPage>100 then RowsPerPage=10
+		if RowsPerPage>500 then RowsPerPage=10
 		 
 		'reading search phrase - this one may be empty
 		strSearch = trim(aspL.getRequest("search[value]"))	
@@ -54,7 +54,9 @@ class cls_datatables_returnJson
 		'the recordset rs expects an open database connection (db)
 		'this is a very basic SQL implementation. 
 		'If you need Group By/having, you would need to add it here
-		set rs=db.rs : rs.Open strSelect & strWhere  & strOrder
+		set rs=db.rs : rs.Open strSelect & strWhere  & " Order By " & OrderCol  & " " & OrderDir	
+		
+		aspl.log(strSelect & strWhere  & " Order By " & OrderCol  & " " & OrderDir	)		
 		
 		'total number of results
 		rTotal=rs.recordcount
