@@ -11,9 +11,9 @@ dim db : set db=aspL.plugin("database") : db.path="db/sample.mdb"
 
 select case lcase(aspL.getRequest("asplEvent"))	
 	
-	case "downloadlargefile" 		: aspL.dumpBinary("default/html/largefile.jpg","")
+	case "downloadlargefile" 		: aspL.dumpBinary "default/html/largefile.jpg",""
 	
-	case "downloadsmallfile" 		: aspL.dumpBinary("default/html/smallfile.jpg","")
+	case "downloadsmallfile" 		: aspL.dumpBinary "default/html/smallfile.jpg",""
 
 	case "uploadfilejquery" 		: aspL("default/asp/uploadfile.resx") : aspL.die
 	
