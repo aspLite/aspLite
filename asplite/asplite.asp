@@ -675,7 +675,8 @@ class cls_asplite
 
 		on error goto 0
 	
-	end function			 
+	end function	
+	
 	public function [isEmpty](byval value)
 
 		on error resume next
@@ -727,6 +728,7 @@ class cls_asplite
 		sanitizeJS=replace(sValue,"'","\'",1,-1,1)
 
 	end function
+	
 	public function htmlEncJs (sValue)
 	
 		htmlEncJs=sanitizeJS(server.htmlEncode(sValue))
@@ -750,6 +752,7 @@ class cls_asplite
 		on error goto 0
 
 	End Function
+	
 
 	public function convertBool(value)
 
@@ -785,6 +788,7 @@ class cls_asplite
 		On Error Goto 0
 
 	End Function
+	
 
 	public function sqli(str)
 		if [isEmpty](str) then
@@ -793,6 +797,7 @@ class cls_asplite
 			sqli=replace(str,"'","''",1,-1,1)
 		end if
 	end function
+	
 
 	'******************************************************************************************
 	'* padLeft - copied from Ajaxed Library
@@ -862,10 +867,13 @@ class cls_asplite
 		port & Request.ServerVariables("SCRIPT_NAME")
 		
 	end function
+	
 
 	public function strLeft(str1,str2)
 		strLeft = Left(str1,InStr(str1,str2)-1)
 	end function
+	
+	
 	public Function GetEmailValidator()
 
 		Set GetEmailValidator = New RegExp
