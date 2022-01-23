@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/facebook-plugin/style.css">
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
@@ -105,6 +104,11 @@
 
             <tbody>
               
+                
+                
+                 
+                
+                
               
               
                 
@@ -129,6 +133,17 @@
                 
                 
                 
+                
+                
+                  
+                
+                
+                
+                
+                
+                
+                
+                
                  
                 
                 
@@ -136,6 +151,13 @@
                 
                 
                  
+                
+                
+                
+                
+                
+                
+                
                 
                 
                 
@@ -155,6 +177,12 @@
                 
                 
               <td class="body-item mbr-fonts-style display-7">aspL.aspError</td><td class="body-item mbr-fonts-style display-7">Flushes VBScript runtime error (if any) and stops executing the page&nbsp;</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.CheckEmailSyntax(value)
+<br></td><td class="body-item mbr-fonts-style display-7">Checks syntax of email address - returns true/false</td></tr><tr>
                 
                 
                 
@@ -206,7 +234,7 @@
                 
                 
                 
-              <td class="body-item mbr-fonts-style display-7">aspL.dumpBinary(path)</td><td class="body-item mbr-fonts-style display-7">Flushes binary file to the browser and terminates the page</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">aspL.dumpBinary(path,filename)</td><td class="body-item mbr-fonts-style display-7">Flushes binary file to the browser and terminates the page. Filename (optional) is the full name of the file offered for download (default: the original filename)</td></tr><tr>
                 
                 
                 
@@ -237,11 +265,14 @@
                 
                 
               <td class="body-item mbr-fonts-style display-7">aspL.getFileType(filepath)</td><td class="body-item mbr-fonts-style display-7">Returns the file-extension for the filepath</td></tr><tr>
-                
+                             
                 
                 
                 
               <td class="body-item mbr-fonts-style display-7">aspL.getRequest(name)</td><td class="body-item mbr-fonts-style display-7">Returns item from the request-collections querystring or form&nbsp;<br><em>If a name appears both in the form and the querystring, the form-value will be returned</em></td></tr><tr>
+                                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.htmlEncJs(value)</td><td class="body-item mbr-fonts-style display-7">HTML encodes a JavaScript snippet</td></tr><tr>
                 
                 
                 
@@ -266,7 +297,17 @@
                 
                 
                 
+              <td class="body-item mbr-fonts-style display-7">aspL.length(value)</td><td class="body-item mbr-fonts-style display-7">Replaces VBS len() (survives null)</td></tr><tr>
+                
+                
+                
+                
               <td class="body-item mbr-fonts-style display-7">aspL.loadText(filepath)</td><td class="body-item mbr-fonts-style display-7">Loads text from filepath</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.log(value)</td><td class="body-item mbr-fonts-style display-7">Can be used to log events to asplite/asplite.log</td></tr><tr>
                 
                 
                 
@@ -312,6 +353,11 @@
                 
                 
               <td class="body-item mbr-fonts-style display-7">aspL.setCache(name,value)</td><td class="body-item mbr-fonts-style display-7">Sets Application item with a given value</td></tr><tr>
+                
+                
+                
+                
+              <td class="body-item mbr-fonts-style display-7">aspL.stripHTML(value)</td><td class="body-item mbr-fonts-style display-7">Strips HTML-tags from value (keeping only text)</td></tr><tr>
                 
                 
                 
@@ -618,16 +664,13 @@
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5"></script>
-  <script src="https://apis.google.com/js/plusone.js"></script>
-  <script src="assets/facebook-plugin/facebook-script.js"></script>
-  <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/dropdown/js/nav-dropdown.js"></script>
   <script src="assets/dropdown/js/navbar-dropdown.js"></script>
   <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="assets/datatables/jquery.data-tables.min.js"></script>
   <script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/theme/js/script.js"></script>
   
   
