@@ -451,7 +451,7 @@ class cls_asplite
 		dim logfile 
 		logfile=loadText(aspL_path & "/asplite.log")
 	
-		saveText aspL_path & "/asplite.log",logfile & value & vbcrlf & vbcrlf & "FORM elements: " & vbcrlf & formcollection & vbcrlf & vbcrlf
+		saveText aspL_path & "/asplite.log",logfile & now & vbcrlf & value &  vbcrlf & "FORM elements: " & vbcrlf & formcollection & vbcrlf
 	
 	end function
 	
