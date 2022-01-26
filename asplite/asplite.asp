@@ -829,18 +829,29 @@ class cls_asplite
 
 	End Function
 
-	'proper case -> first character will convert to uppercase, others to lowercase
+	'proper case -> first character in names will convert to uppercase, others to lowercase (same as title-case, or initcap)
+	'this wil also work for double names like Scott-Johnson of O'Connor.
 	public function pCase(value)
-
-		value=trim(convertStr(value))
-
-		if value="" then pCase=value : exit function
-
-		dim firstLetter,otherLetters
-
-		firstLetter=UCase(Left(value,1))
-		otherLetters=LCase(Right(value,Len(value)-1))
-		pCase=firstLetter & otherLetters
+	
+		pcase=""
+	
+		value=aspl.convertStr(value)
+		if [isEmpty](value) then exit function
+		
+		Dim i, x, strOut, flg
+		flg = True
+		For i = 1 To Len(value)
+		  x = LCase(Mid(value, i, 1))
+		  If Not IsNumeric(x) And (x < "a" Or x > "z") Then
+			flg = True
+		  ElseIf flg Then
+			x = UCase(x)
+			flg = False
+		  End If
+		  strOut = strOut & x
+		Next
+		
+		PCase = strOut
 
 	end function
 	
