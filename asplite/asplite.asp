@@ -653,7 +653,9 @@ class cls_asplite
 
 		on error resume next
 
-		if [isEmpty](value) then
+		if isNull(value) then 
+			isNumber=false
+		elseif [isEmpty](value) then
 			isNumber=false
 		else
 			isNumber=isNumeric(value)
