@@ -831,8 +831,8 @@ class cls_asplite
 
 	End Function
 
-	'proper case -> first character in names will convert to uppercase, others to lowercase (same as title-case, or initcap)
-	'this wil also work for double names like Scott-Johnson of O'Connor.
+	'proper case -> first character in names will convert to uppercase, others to lowercase
+	'this wil also work for double names like Scott-Johnson or O'Connor.
 	public function pCase(value)
 	
 		pcase=""
@@ -844,7 +844,7 @@ class cls_asplite
 		flg = True
 		For i = 1 To Len(value)
 		  x = LCase(Mid(value, i, 1))
-		  If Not IsNumeric(x) And (x < "a" Or x > "z") Then
+		  If Not IsNumeric(x) And (x < "a" Or x > "z") and (x < "à" or x > "þ")  Then
 			flg = True
 		  ElseIf flg Then
 			x = UCase(x)
