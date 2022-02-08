@@ -965,7 +965,7 @@ end class
 class cls_asplite_json
 
 	'private members
-	private output, innerCall
+	private output, innerCall, bufferCount
 
 	'public members
 	public toResponse		''[bool] should the generated representation be written directly to the response (using <em>response.write</em>)? default = false
@@ -979,6 +979,7 @@ class cls_asplite_json
 		newGeneration()
 		toResponse = false
 		recordsetPaging = false
+		bufferCount=0	   
 	end sub
 
 	'******************************************************************************************
@@ -1269,7 +1270,14 @@ class cls_asplite_json
 	'******************************************************************************************
 	private sub write(val)
 		if toResponse then
+			bufferCount=bufferCount+1				
 			response.write(val)
+			if bufferCount>250 then 
+				'emptying the buffer after some response.writes improves performance
+				response.flush
+				response.clear
+				bufferCount=0
+			end if															
 		else
 			output = output & val
 		end if
