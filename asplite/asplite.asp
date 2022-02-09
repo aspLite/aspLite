@@ -1272,10 +1272,9 @@ class cls_asplite_json
 		if toResponse then
 			bufferCount=bufferCount+1				
 			response.write(val)
-			if bufferCount>250 then 
+			if bufferCount>1000 then 
 				'emptying the buffer after some response.writes improves performance
-				response.flush
-				response.clear
+				response.flush				
 				bufferCount=0
 			end if															
 		else
