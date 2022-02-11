@@ -29,6 +29,7 @@ class cls_asplite
 		Response.AddHeader "pragma", "no-cache"
 		Response.Expires			= -1
 		Response.ExpiresAbsolute	= Now()-1
+		Server.ScriptTimeout		= 600
 		'-------------------------------------------
 
 		'check if a form with enctype="multipart/form-data" was submitted. 
