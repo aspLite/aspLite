@@ -698,19 +698,13 @@ class cls_asplite
 
 	public function convertStr(value)
 
-		on error resume next
+		p_value=value
 
-		if not isnull(value) then
-			convertStr=cstr(value)
+		if not isnull(p_value) then
+			convertStr=trim(cstr(p_value))
 		else
 			convertStr=""
 		end if
-
-		if err.number<>0 then
-			convertStr=value
-		end if
-
-		on error goto 0
 
 	End Function
 
