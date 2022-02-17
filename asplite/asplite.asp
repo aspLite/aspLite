@@ -707,6 +707,38 @@ class cls_asplite
 		end if
 
 	End Function
+	
+	public function convertNull(value)
+
+		p_value=value		
+		
+		if isNull(p_value) then
+		
+			convertNull=null
+			exit function
+			
+		elseif convertNmbr(p_value)=0 then
+			
+			convertNull=null
+			exit function
+		
+		elseif isNumber(p_value) then
+		
+			convertNull=convertNmbr(p_value)
+			exit function
+			
+		elseif [isEmpty](p_value) then
+		
+			convertNull=null
+			exit function
+			
+		else
+		
+			convertNull=p_value
+			
+		end if
+
+	End Function
 
 	public function sanitize(sValue)
 
