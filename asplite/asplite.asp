@@ -12,7 +12,7 @@ class cls_asplite
 
 	'VERSION: 0.1.0
 
-	private debug,startTime,stopTime,plugins,p_fso,cacheprefix,multipart,p_json,p_randomizer
+	private debug,startTime,stopTime,plugins,p_fso,cacheprefix,multipart,p_json,p_randomizer,p_value
 
 	Private Sub Class_Initialize()
 
