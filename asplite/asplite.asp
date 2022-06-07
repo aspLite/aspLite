@@ -330,6 +330,7 @@ class cls_asplite
 			case "zip" : response.ContentType="application/x-zip-compressed"
 			case "pdf" : response.ContentType="application/pdf"
 			case "doc","docx" : Response.ContentType = "application/msword"
+			case "rtf" : response.ContentType="text/rtf"
 			case "xls","xlsx" : Response.ContentType = "application/x-msexcel"
 			case "mpeg" : Response.ContentType = "video/mpeg"
 			case "mp3" : Response.ContentType = "audio/mpeg"
