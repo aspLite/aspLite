@@ -83,6 +83,62 @@ class cls_asplite
 		on error goto 0
 
 	end sub
+	
+	public function recycleApplication
+
+		on error resume next
+		
+		err.clear
+		
+		'this function tries to update the global.asa file in the root of your site (if any). 
+		'this automatically recycles the IIS application pool
+
+		dim globalAsaPath : globalAsaPath=server.mappath("/global.asa")
+		dim globalAsaText : globalAsaText=fso.opentextfile(globalAsaPath).readAll
+		dim globalAsaNew : set globalAsaNew=fso.CreateTextFile(globalAsaPath)
+		globalAsaNew.write(globalAsaText) : globalAsaNew.close : set globalAsaNew=nothing
+		
+		if err.number<>0 then
+			recycleApplication=false
+		else
+			recycleApplication=true
+		end if
+		
+		err.clear
+		
+		on error goto 0
+
+	end function
+	
+	public Function SaveBinaryData(FileName, ByteArray)
+	
+		'Create Stream object
+		Dim BinaryStream : Set BinaryStream = server.createObject("ADODB.Stream")
+
+		'Specify stream type - we want To save binary data.
+		BinaryStream.Type = 1 'adTypeBinary
+
+		'Open the stream And write binary data To the object
+		BinaryStream.Open
+		BinaryStream.Write ByteArray
+
+		'Save binary data To disk
+		BinaryStream.SaveToFile FileName, 2 'adSaveCreateOverWrite
+		
+	End Function
+	
+	
+	public Function saveAsFile(fileName, fileBody)
+	
+		response.clear	
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename	
+		response.write fileBody		
+		response.flush()
+		response.clear
+
+		die()
+		
+	end function
 
 	public function removeCRB(value)
 
