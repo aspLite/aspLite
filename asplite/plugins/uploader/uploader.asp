@@ -313,13 +313,28 @@ Class UploadedFile
     End Property
 	
 	Public Property Get FileType
-		FileType=aspL.getFileType(FileName)	
+	FileType=aspL.getFileType(FileName)	
 	end property
 	
 	Public function delete()	
 	
 		if aspL.fso.FileExists (path) then
 			aspL.fso.DeleteFile (path)
+		end if	
+    
+   	end function
+	
+	
+	Public function rename(newname)	
+	
+		if aspL.fso.FileExists (path) then
+	
+			if aspl.convertStr(newname)=aspl.convertStr(path) then exit function
+			
+			if aspL.fso.FileExists (newname) then aspL.fso.deletefile(newname)
+						
+			aspL.fso.MoveFile path, newname
+			
 		end if	
     
     end function
