@@ -273,6 +273,7 @@ function aspForm(data) {
 				"rows"		: field.rows,
 				"id"		: field.id,	
 				"name"		: field.name,
+				"placeholder"	: field.placeholder,
 				"class"		: field.class,	
 				"style"		: field.style,
 				"required"	: field.required					
