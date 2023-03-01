@@ -131,7 +131,7 @@ class cls_asplite
 	public Function saveAsFile(fileName, fileBody)
 	
 		response.clear	
-		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename	
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & server.urlencode(filename)
 		response.write fileBody		
 		response.flush()
 		response.clear
@@ -404,7 +404,7 @@ class cls_asplite
 
 		response.clear
 
-		Response.AddHeader "Content-Disposition", "attachment; filename=" & filename
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & server.urlencode(filename)
 
 		if size<chunksize then
 			response.AddHeader "Content-Length", size
