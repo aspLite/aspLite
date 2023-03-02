@@ -131,13 +131,20 @@ class cls_asplite
 	public Function saveAsFile(fileName, fileBody)
 	
 		response.clear	
-		Response.AddHeader "Content-Disposition", "attachment; filename=" & server.urlencode(filename)
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & safeFileName(filename)
 		response.write fileBody		
 		response.flush()
 		response.clear
 
 		die()
 		
+	end function
+	
+	public function safeFileName(value)
+	
+		safeFileName=server.urlEncode(convertStr(value))
+		safeFileName=replace(safeFileName,"+"," ",1,-1,1)	
+	
 	end function
 
 	public function removeCRB(value)
@@ -404,7 +411,7 @@ class cls_asplite
 
 		response.clear
 
-		Response.AddHeader "Content-Disposition", "attachment; filename=" & server.urlencode(filename)
+		Response.AddHeader "Content-Disposition", "attachment; filename=" & safeFileName(filename)
 
 		if size<chunksize then
 			response.AddHeader "Content-Length", size
