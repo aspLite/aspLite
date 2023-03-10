@@ -1397,6 +1397,16 @@ class cls_asplite_randomizer
 		randomNumber=aspl.convertNmbr((stopnr-startnr+1)*Rnd+startnr)
 
 	end function
+	
+	public function CreateGUID(tmpLength)
+		Randomize Timer
+		Dim tmpCounter,tmpGUID,strValid
+		strValid = "0123456789abcdefghijklmnopqrstuvwxyz"
+		For tmpCounter = 1 To tmpLength
+			tmpGUID = tmpGUID & Mid(strValid, Int(Rnd(1) * Len(strValid)) + 1, 1)
+		Next
+		CreateGUID = tmpGUID
+	end function
 
 end class
 %>
