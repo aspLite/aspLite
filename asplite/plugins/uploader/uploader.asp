@@ -204,7 +204,7 @@ Class cls_asplite_uploader
 						'for security reasons, only a given number of filetypes can be uploaded
 					
 						select case lcase(oUploadFile.FileType)
-							case "jpg","jpeg","jpe","jp2","jfif","gif","bmp","png","psd","eps","ico","tif","tiff","ai","raw","tga","mng","svg","doc","rtf","txt","wpd","wps","csv","xml","xsd","sql","pdf","xls","mdb","ppt","docx","xlsx","pptx","ppsx","artx","mp3","wma","mid","midi","mp4","mpg","mpeg","wav","ram","ra","avi","mov","flv","m4a","m4v","htm","html","css","swf","js","rar","zip","ogv","ogg","webm","tar","gz","eot","ttf","ics","woff"
+							case "jpg","jpeg","jpe","jp2","jfif","gif","bmp","png","psd","eps","ico","tif","tiff","ai","raw","tga","mng","svg","doc","rtf","txt","wpd","wps","csv","xml","xsd","sql","pdf","xls","mdb","ppt","docx","xlsx","pptx","ppsx","artx","mp3","wma","mid","midi","mp4","mpg","mpeg","wav","ram","ra","avi","mov","flv","m4a","m4v","htm","html","css","swf","js","rar","zip","ogv","ogg","webm","tar","gz","eot","ttf","ics","woff","cod","msg","odt"
 								UploadedFiles.Add LCase(nCurPos & sFieldName), oUploadFile
 							case else
 								'not allowed
