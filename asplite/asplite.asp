@@ -10,9 +10,9 @@ set aspL=new cls_asplite
 
 class cls_asplite
 
-	'VERSION: 0.1.0
+	'VERSION: 0.1.2
 
-	private debug,startTime,stopTime,plugins,p_fso,cacheprefix,multipart,p_json,p_randomizer,p_value
+	private debug,startTime,stopTime,plugins,p_fso,cacheprefix,multipart,p_json,p_randomizer,p_formmessages,p_value
 
 	Private Sub Class_Initialize()
 
@@ -29,7 +29,7 @@ class cls_asplite
 		Response.AddHeader "pragma", "no-cache"
 		Response.Expires			= -1
 		Response.ExpiresAbsolute	= Now()-1
-		Server.ScriptTimeout		= 600
+		Server.ScriptTimeout		= 3600
 		'-------------------------------------------
 
 		'check if a form with enctype="multipart/form-data" was submitted. 
@@ -46,6 +46,7 @@ class cls_asplite
 		set p_fso			= nothing
 		set p_json			= nothing
 		set p_randomizer	= nothing
+		set p_formmessages	= nothing					  
 
 		on error goto 0
 
@@ -84,6 +85,27 @@ class cls_asplite
 
 	end sub
 	
+	
+	public sub execWithErrors(path)
+		executeGlobal removeCRB(stream(path,false,""))
+	end sub
+	
+	
+	public sub executescript(path)
+		execute removeCRB(stream(path,false,""))
+	end sub
+	
+	
+	public sub removeAllCookies
+	
+		dim cookie
+		for each cookie in Response.Cookies
+			Response.Cookies(cookie).Expires = DateAdd("d",-1,now())
+		next
+		
+	end sub
+	
+	
 	public function recycleApplication
 
 		on error resume next
@@ -93,7 +115,7 @@ class cls_asplite
 		'this function tries to update the global.asa file in the root of your site (if any). 
 		'this automatically recycles the IIS application pool
 
-		dim globalAsaPath : globalAsaPath=server.mappath("/global.asa")
+		dim globalAsaPath : globalAsaPath=server.mappath("global.asa")
 		dim globalAsaText : globalAsaText=fso.opentextfile(globalAsaPath).readAll
 		dim globalAsaNew : set globalAsaNew=fso.CreateTextFile(globalAsaPath)
 		globalAsaNew.write(globalAsaText) : globalAsaNew.close : set globalAsaNew=nothing
@@ -230,6 +252,66 @@ class cls_asplite
 		set form=new cls_asplite_formbuilder
 
 	end function
+	
+	
+	public function addErr(value)
+		
+		if not formmessages.exists(geticon("error") & value) then
+			formmessages.add geticon("error") & value,"alert alert-danger"		
+		end if
+	
+	end function
+	
+	public function addInfo(value)
+		
+		if not formmessages.exists(geticon("info") & value) then
+			formmessages.add geticon("info") & value,"alert alert-info"		
+		end if
+	
+	end function
+	
+	public function addWarning(value)
+		
+		if not formmessages.exists(geticon("warning") & value) then
+			formmessages.add geticon("warning") & value,"alert alert-warning"		
+		end if
+	
+	end function
+
+	public function addFb(value)
+	
+		on error resume next
+		
+		if not formmessages.exists(geticon("check_circle") & value) then
+			formmessages.add geticon("check_circle") & value,"alert alert-success"		
+		end if
+		
+		on error goto 0
+	
+	end function	
+	
+	public function formmessages
+	
+		if p_formmessages is nothing then
+			set p_formmessages=dict
+		end if
+
+		set formmessages=p_formmessages
+	
+	end function
+	
+	public function showMessages
+	
+		dim message, formmessages_copy
+		set formmessages_copy=formmessages
+	
+		for each message in formmessages
+		
+			showMessages=showMessages & "<div class=""" & formmessages_copy(message) & """>" & message & "</div>"
+		
+		next		
+	
+	end function
 
 	public function json
 
@@ -255,26 +337,18 @@ class cls_asplite
 
 	end function
 
-	public function plugin(value)
-
+	public function plugin(value)	
+		
 		value=lcase(value)
 
-		if plugins is nothing then
-			set plugins=dict
-		end if
+		if plugins is nothing then set plugins=dict		
 
-		if not plugins.exists(value) then
-
+		if not plugins.exists(value) then 
 			exec(aspL_path & "/plugins/" & value & "/" & value & ".asp")
+			plugins.add value,""
+		end if	
 
-			dim pluginCls
-			set pluginCls=eval("new cls_asplite_" & value)
-
-			plugins.add value,pluginCls
-
-		end if
-
-		set plugin=plugins(value)
+		set plugin=eval("new cls_asplite_" & value)
 
 	end function
 
@@ -759,6 +833,28 @@ class cls_asplite
 		on error goto 0
 
 	End Function
+	
+	public function removeTabs(value)
+	
+		value=convertStr(value)
+	
+		removeTabs=replace(value,vbtab,"",1,-1,1)		
+	
+	end function
+	
+	
+	function textOnly(value)
+
+		if not [isEmpty](value) then
+			textOnly=replace(value,vbtab,"",1,-1,1)
+			textOnly=replace(textOnly,vbcrlf,"",1,-1,1)
+			textOnly=trim(textOnly)
+		else
+			textOnly=""
+		end if
+
+	end function
+	
 
 	public function convertStr(value)
 
@@ -826,7 +922,17 @@ class cls_asplite
 	
 		htmlEncJs=sanitizeJS(server.htmlEncode(sValue))
 	
-	end function	 
+	end function	
+
+	public function htmlencode (sValue)
+	
+		if isNull(sValue) Then
+			htmlencode=""
+		else
+			htmlencode=server.htmlEncode(sValue)
+		end if		
+	
+	end function	
 
 	public function convertNmbr(value)
 	

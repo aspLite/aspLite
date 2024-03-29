@@ -1,17 +1,23 @@
 <%
 class cls_asplite_cdomessage
 
-	public smtpserver,smtpport,sendusing,pickupdir,smtpusername,smtpuserpw,smtpusessl
-	
-	public receiverEmail,receiverName, subject, body, attachments, fromemail, fromname
+	public receiverEmail,receiverName, subject, body, attachments, fromname, fromemail
+	public smtpusessl, smtpusername, smtpserver, smtpport, sendusing, pickupdir, smtpuserpw, copyto
 	
 	private sub class_initialize
-		set attachments=aspL.dict
-		pickupdir="C:\Inetpub\mailroot\Pickup"
-		smtpport=25
-		smtpusessl=false
-		sendusing=1	
-		smtpserver="localhost"
+	
+		set attachments=aspL.dict	
+		fromname		= system.fromnameget
+		fromemail		= system.fromemail
+		smtpusessl		= system.smtpusessl
+		smtpusername	= system.smtpusername
+		smtpserver		= system.smtpserver
+		smtpport		= system.smtpport
+		sendusing		= system.sendusing
+		pickupdir		= system.pickupdir
+		smtpuserpw		= system.smtpuserpw
+		copyto			= system.sSystemEmail
+		
 	end sub
 	
 	private sub class_terminate
@@ -30,9 +36,9 @@ class cls_asplite_cdomessage
 		
 		'configuration object
 		myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver")=smtpserver
-		myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport")=smtpport 
+		myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport")=aspl.convertNmbr(smtpport)
 		myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout")=60
-		myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing")=sendusing
+		myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing")=aspl.convertNmbr(sendusing)
 		myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverpickupdirectory") = pickupdir
 
 		if smtpusername<>"" then
@@ -41,7 +47,7 @@ class cls_asplite_cdomessage
 			myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword")=smtpuserpw
 		end if
 		
-		if smtpusessl then
+		if aspl.convertBool(smtpusessl) then
 			myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
 		else
 			myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = False
@@ -53,7 +59,7 @@ class cls_asplite_cdomessage
 		myMail.Bodypart.ContentTransferEncoding = "quoted-printable"
 		myMail.Subject=subject
 		myMail.To=receiverName&"<"&receiverEmail&">"
-		myMail.From=fromname&"<"& fromemail &">"
+		myMail.From=fromname & "<"& fromemail &">"
 		myMail.ReplyTo=fromemail
 		
 		'attachments
@@ -64,6 +70,14 @@ class cls_asplite_cdomessage
 		myMail.HtmlBody=body
 		myMail.HTMLBodypart.Charset = "utf-8"
 		myMail.send
+		
+		if not aspl.isEmpty(copyto) then
+			body=replace(body,"</body>","<table border=""0"" style=""border-style:none;width:100%"" cellpadding=""10""><tr><td style=""font-family:Arial;font-size:16px;background-color:silver"">Copy of email to " & receiverName & " - " & receiverEmail & "</td></tr></table></body>",1,-1,1)
+			myMail.HtmlBody=body
+			myMail.Subject=subject & " (copy)"
+			myMail.To=copyto
+			myMail.send
+		end if
 		
 		set MyMail=nothing	
 			

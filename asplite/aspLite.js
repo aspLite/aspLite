@@ -2,10 +2,7 @@ var aspLiteAjaxForms = []
 var aspLiteFormLooper=0
 
 //bootstrap aspLiteSpinner
-var aspLiteSpinner="<div class='text-center'>"
-aspLiteSpinner+="<div class='spinner-border text-primary spinner-border' role='status'>"
-aspLiteSpinner+="<span class='sr-only'>Loading...</span> </div>"
-aspLiteSpinner+="</div>"
+var aspLiteSpinner="<div class='d-flex justify-content-center'><div class='spinner-border' role='status'><span class='visually-hidden'></span></div></div>"
 
 //html encoding
 function htmlEnc(s) {
@@ -33,7 +30,10 @@ function init() {
 	$(".asplForm").each(function(){	
 		
 		//initialize with bootstrap spinners
-		$(this).html(aspLiteSpinner)
+		switch ($(this).attr('id')) {
+		  case 'keepsessionalive': break;
+		  default:$(this).html(aspLiteSpinner);
+		};
 		
 		//an array of id's is loaded. it will be used in a second...
 		aspLiteAjaxForms.push($(this).attr('id'));
@@ -116,12 +116,41 @@ function aspForm(data) {
 		"style"		: "margin: 0;padding: 0",
 		"id"		: data.id,
 		"method"	: "post"
-		})	
+		}).addClass(data.className)		
 	
 	//form.target is mandatory
 	if (data.target == '') { console.log('ERROR: form target is missing!') ; enumerateJson(data) ; return }
 		
-	//loop through the collection (aspForm) of fieldobjects 
+	//loop through the collection (aspForm) of fieldobjects
+
+//first get the formessages (systemmessages)
+	var hasSystemmessages='';
+	for(var i = 0; i < data.aspForm.length; i++) {
+		
+		var field=data.aspForm[i]		
+		
+		if (field.type=="formmessage") {
+			
+			if (data.bShowToasts) {
+				hasSystemmessages=hasSystemmessages + "<div class='" + field.class + "'>" + field.html + "</div>";
+			}
+			else
+			{			
+			$('<div>').attr({
+				"class": field.class								
+				}).html(field.html).appendTo(aspForm)
+			}
+		}		
+	}
+	
+	if (hasSystemmessages!='') {
+		//console.log('er zijn boodschappen!')
+		//initialize toasts
+		$('#toast_body').html(hasSystemmessages);
+		var myAlert =document.getElementById('toast');//select id of toast
+		var bsAlert = new bootstrap.Toast(myAlert,{"delay":2600});//inizialize it
+		bsAlert.show();//show it
+	}	
 
 	for(var i = 0; i < data.aspForm.length; i++) {		
 	
@@ -133,6 +162,10 @@ function aspForm(data) {
 			continue
 		}
 		
+		//skip the formmessages
+		if (field.type=="formmessage") {
+			continue
+		}						  
 		if (field.type=="link") {
 			$('<link>').attr({
 				"rel"	: field.rel,
@@ -159,7 +192,8 @@ function aspForm(data) {
 		}
 
 		if (field.type=="plain") {
-			aspForm.append(field.html)			
+			aspForm.append(field.html)				
+			//aspForm.innerHTML += field.html;			
 			continue
 		}		
 	
@@ -174,17 +208,42 @@ function aspForm(data) {
 		}	
 
 		if (field.type=="button") {
+			
+			if (field.style==null) {field.style='margin-right:7px;margin-bottom:7px'};
+			
 			$('<button>').attr({
-				"id"		: field.id,
-				"type"		: field.type,
-				"class"		: field.class,
-				"style"		: field.style,
-				"onclick"	: field.onclick				
+				"id"				: field.id,
+				"type"				: "button",
+				"class"				: field.class,
+				"style"				: field.style,				
+				"onclick"			: field.onclick,
+				"data-bs-dismiss"	: field.databsdismiss
+			}).html(field.html).appendTo(aspForm)			
+			continue
+		}
+		
+		
+		if (field.type=="submit") {
+			
+			if (field.style==null) {field.style='margin-right:7px;margin-bottom:7px'};
+			
+			$('<button>').attr({
+				"id"				: field.id,
+				"type"				: "submit",
+				"class"				: field.class,
+				"name"				: field.name,
+				"value"				: field.value,
+				"style"				: field.style,				
+				"onclick"			: field.onclick,
+				"data-bs-dismiss"	: field.databsdismiss
 			}).html(field.html).appendTo(aspForm)			
 			continue
 		}
 
 		if (field.type=="reset") {
+			
+			if (field.style==null) {field.style='margin-right:7px;margin-bottom:7px'};
+			
 			$('<button>').attr({				
 				"type"		: "reset",
 				"class"		: field.class,
@@ -274,8 +333,9 @@ function aspForm(data) {
 				"id"		: field.id,	
 				"name"		: field.name,
 				"placeholder"	: field.placeholder,
-				"class"		: field.class,	
+				"class"		: "form-control",
 				"style"		: field.style,
+				"placeholder"	: field.placeholder,
 				"required"	: field.required					
 			}).val(field.value).appendTo(formgroup)		
 			continue
@@ -286,7 +346,7 @@ function aspForm(data) {
 			var selectBox=$('<select>').attr({				
 				"id"		: field.id,	
 				"name"		: field.name,
-				"class"		: field.class,
+				"class"		: "form-control form-select",
 				"style"		: field.style,
 				"onchange"	: field.onchange,				
 				"required"	: field.required,
@@ -316,6 +376,11 @@ function aspForm(data) {
 				}).text(options[key]).appendTo(selectBox)						
 					
 			}
+		  //sort?
+			selectBox.html(selectBox.find('option').sort(function(x, y) {
+				// to change to descending order switch "<" for ">"
+				return $(x).text() > $(y).text() ? 1 : -1;
+			  }));
 
 			//selected value - array of selected values
 			if (typeof field.value != 'undefined') {
@@ -331,7 +396,8 @@ function aspForm(data) {
 			var options=field.options
 			
 			var list=$('<ul>').attr({				
-				"style":"list-style:none"				
+				"style":"list-style:none",
+				"class":"form-check"
 			});			
 			
 			//treat as JSON object (vbscript dictionary)		
@@ -344,6 +410,7 @@ function aspForm(data) {
 				var radioB=$('<input>').attr({					
 					"type"		: "radio",
 					"name"		: field.name,
+					"onchange"	: field.onchange,			 
 					"class"		: field.class,
 					"style"		: field.style,
 					"id"		: k + "_radio_id_" + field.name,
@@ -352,7 +419,7 @@ function aspForm(data) {
 				}).prop("checked", (field.value==key)).appendTo(item)	
 
 				//add label
-				$('<label>').attr({"for" : k + "_radio_id_" + field.name,"style":"margin-left:5px"}).html(options[key]).appendTo(item)					
+				$('<label>').attr({"class":field.labelclass,"for" : k + "_radio_id_" + field.name}).html(options[key]).appendTo(item)					
 				
 				item.appendTo(list)
 				k++
@@ -370,7 +437,8 @@ function aspForm(data) {
 			var options=field.options
 			
 			var list=$('<ul>').attr({				
-				"style":"list-style:none"				
+				"style":"list-style:none",
+				"class":"form-check"					
 			});
 			
 			//treat as JSON object (vbscript dictionary)
@@ -387,12 +455,15 @@ function aspForm(data) {
 					"id"	: k + "_cb_id_" + field.name,
 					"class"	: field.class,
 					"style"	: field.style,
+					"onclick"	: field.onclick,								 
 					"required"	: field.required,
 					"value"	: key				
 				}).appendTo(item)
 				
 				if (typeof field.value != 'undefined') {						
-					radioB.prop("checked", $.inArray(key.toString(),field.value.split(', '))>=0)
+					if (field.value!=null) {
+						radioB.prop("checked", $.inArray(key.toString(),field.value.split(', '))>=0)
+					}																							   
 				}	
 				
 				//add label
@@ -404,20 +475,22 @@ function aspForm(data) {
 				
 			}
 			
-			if (typeof field.value != 'undefined') {
-				list.val(field.value.split(', '))
+			if (typeof field.value != 'undefined' && field.value!=null) {
+				if (field.value!=null) {	
+					list.val(field.value.split(', '))
+				}
 			}	
 			
 			list.appendTo(formgroup)
 			
 			continue
-		}		
+		}	
 	
 		var inputField=$('<input>').attr({
 			"type"			: field.type,
 			"value"			: field.value,			
 			"name"			: field.name,
-			"class"			: field.class,
+			"class"			: "form-control",
 			"placeholder"	: field.placeholder,
 			"onclick"		: field.onclick,
 			"maxlength"		: field.maxlength,
@@ -425,12 +498,19 @@ function aspForm(data) {
 			"style"			: field.style,	
 			"required"		: field.required,
 			"onchange"		: field.onchange,
-			"autocomplete"	: field.autocomplete,
 			"onclick"		: field.onclick,
 			"onfocus"		: field.onfocus,
-			"step" 			: "0.01"				 
+			"step" 			: field.step,
+			"autocomplete" 	: field.autocomplete,			
+			"pattern"		: field.pattern,
+			"readonly"		: field.readonly,
+			"onblur"		: field.onblur			
 					
 		}).appendTo(formgroup)
+		
+		
+		
+		
 		//set focus?
 		if (typeof field.focus != 'undefined') {		
 			//console.log('field.focus: ' + field.focus + ' ' + field.id)

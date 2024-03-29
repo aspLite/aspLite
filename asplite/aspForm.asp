@@ -3,7 +3,7 @@
 class cls_asplite_formbuilder
 
 	private allFields, counter
-	public postback,offSet,doScroll,id,onSubmit,reload,initialize,sameSession,target
+	public postback,offSet,doScroll,id,onSubmit,reload,initialize,sameSession,target,bShowToasts,className
 
 	private sub class_initialize()
 
@@ -14,6 +14,8 @@ class cls_asplite_formbuilder
 		doScroll			= false 'true or false
 		initialize			= true
 		sameSession			= false
+		bShowToasts			= bShowToasts
+		className			= ""		  
 
 		'by default, a hidden field named "asplPostBack" is added to the collection of forms
 		dim postBackHF : set postBackHF=field("hidden")
@@ -77,6 +79,36 @@ class cls_asplite_formbuilder
 		eventListener.add "noinit","true"		
 
 	end sub	
+	
+	public sub newline
+	
+		write "<div style=""clear:both;height:7px"" class=""clearfix""></div>"		
+	
+	end sub	
+	
+	public sub write(value)
+	
+		value=aspl.convertStr(value)
+	
+		dim txt : set txt=field("plain")
+		txt.add "html",value
+	
+	end sub
+	
+	public sub writejs(value)
+	
+		value=aspl.convertStr(value)
+	
+		dim txt : set txt=field("script")
+		txt.add "text",value
+	
+	end sub
+	
+	public function request(value)
+	
+		request=aspl.getRequest(value)
+		
+	end function
 
 	public function field(value)
 
@@ -87,7 +119,16 @@ class cls_asplite_formbuilder
 
 	end function	
 
-	public sub build()				
+	public sub build()		
+	
+		'add the systemmessages
+		dim formmessage,formmessages,m
+		set formmessages=aspl.formmessages
+		for each formmessage in formmessages
+			set m=field("formmessage")
+			m.add "html",formmessage			
+			m.add "class",formmessages(formmessage)	'info, danger or success				
+		next							 
 		
 		'reload
 		if aspl.convertNmbr(reload)>0 then
@@ -110,10 +151,11 @@ class cls_asplite_formbuilder
 		for each fieldkey in allFields
 			if allfields(fieldkey).exists("focus") then
 				if not allfields(fieldkey).exists("id") then
-					allfields(fieldkey).add "id",aspl.randomizer.randomText(10)
+					allfields(fieldkey).add "id",aspl.randomizer.CreateGUID(10)
 				end if
 			end if			
-		next		  
+		next
+		
 		for each fieldkey in allFields
 
 			'set the values of the input fields with the request-values in the submitted form
@@ -141,6 +183,7 @@ class cls_asplite_formbuilder
 		'finalizing JSON response - preparing header:
 		JsonHeader = "{""target"":"""& target & ""","
 		JsonHeader = JsonHeader & """offSet"":" & offSet & ","
+		JsonHeader = JsonHeader & """className"":""" & className & ""","														  
 
 		if doScroll then
 			JsonHeader = JsonHeader & """doScroll"":true,"
@@ -151,6 +194,11 @@ class cls_asplite_formbuilder
 		JsonHeader = JsonHeader & """id"":""" & aspl.json.escape(id) & ""","
 		JsonHeader = JsonHeader & """onSubmit"":""" & aspl.json.escape(onSubmit) & ""","
 		JsonHeader = JsonHeader & """executionTime"":""[ASPLITE_executionTime]ms"","
+		if bShowToasts then
+			JsonHeader = JsonHeader & """bShowToasts"":true,"
+		else
+			JsonHeader = JsonHeader & """bShowToasts"":false,"
+		end if			
 
 		'removing from generated JSON initial bracket { and concatenating all together.
 		JsonAnswer=right(JsonAnswer,Len(JsonAnswer)-1)

@@ -20,6 +20,14 @@ Class cls_asplite_database
 		set p_getConn = nothing
 	End Sub
 	
+	public sub close
+		if not p_getConn is nothing then p_getConn.close	
+	end sub
+	
+	public sub open
+		p_getConn.open
+	end sub
+	
 	Public Function Execute(sql)
 	
 		On Error Resume Next	
@@ -47,7 +55,21 @@ Class cls_asplite_database
 		
 	End Function
 	
-	Private function getConn()
+	public function rsOpen(sql)
+	
+		On Error Resume Next		
+	
+		set rsOpen=rs
+		rsOpen.LockType = 1
+		rsOpen.open(sql)	
+		
+		aspL.asperror "The query """ & server.htmlEncode(sql) & """ cannot be executed. There may be a connection error and/or a mistake in the SQL-syntax."
+		
+		On Error Goto 0
+	
+	end function
+	
+	public function getConn()
 	
 		'this is the crucial part of this class.
 		'i always use the native OLEDB driver for Access & SQL Server (much MUCH faster than ODBC)
@@ -89,7 +111,8 @@ Class cls_asplite_database
 			errM=errM &"<li>The username/password for SQL Server are incorrect</li>"
 			errM=errM &"<li>IUSR has not sufficient permissions on the database file/folder</li>"
 			errM=errM &"</ul><p>To be sure, check the error message below:</p>"
-			
+			response.write errM
+			response.end 
 			aspL.asperror (errM)			
 			
 		end if

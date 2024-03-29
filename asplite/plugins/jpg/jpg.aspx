@@ -48,8 +48,8 @@
 			maxSize = 0
 		End If	
 		
-		if maxSize > 2560 then
-			maxSize=2560
+		if maxSize > 1920 then
+			maxSize=1920
 		end if
 			
 		'calculate new widht/height, if any  
