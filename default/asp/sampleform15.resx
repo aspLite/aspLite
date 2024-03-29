@@ -35,7 +35,7 @@ scriptSrc.add "text", "var editor;editor = CodeMirror.fromTextArea(document.getE
 dim submit : set submit=form.field("submit")
 submit.add "style","margin-top:10px;margin-bottom:10px"
 submit.add "name","btnAction"
-submit.add "value","Save"
+submit.add "html","Save"
 submit.add "class","btn btn-primary"
 submit.add "onclick","editor.save()"
 

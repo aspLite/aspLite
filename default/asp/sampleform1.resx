@@ -32,7 +32,7 @@ yourname.add "required",true
 dim submit : set submit=form.field("submit")
 submit.add "style","margin-top:10px"
 submit.add "name","btnAction"
-submit.add "value","Submit"
+submit.add "html","Submit"
 submit.add "class","btn btn-primary"
 
 '##########################################################################################

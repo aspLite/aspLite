@@ -11,7 +11,7 @@ if form.postback then
 end if
 
 set field = form.field("submit")
-field.add "value","click to generate xlsx"
+field.add "html","click to generate xlsx"
 field.add "class","btn btn-success"
 field.add "id","generateExcel"
 

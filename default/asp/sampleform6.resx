@@ -65,15 +65,15 @@ aspFormAction.add "id","mb_aspFormAction"
 '##########################################################################################
 
 dim submit : set submit=form.field("submit")
-submit.add "value","Save"
+submit.add "html","Save"
 submit.add "style","margin-top:15px"
 submit.add "class","btn btn-primary"
 submit.add "container","span"
 submit.add "onclick","$('#mb_aspFormAction').val('save')"
 
 dim delete : set delete=form.field("submit")
-delete.add "value","Delete"
-delete.add "style","margin-top:15px"
+delete.add "html","Delete"
+delete.add "style","margin-top:15px;margin-left:5px"
 delete.add "class","btn btn-danger"
 delete.add "container","span"
 delete.add "containerstyle","margin-left:5px"

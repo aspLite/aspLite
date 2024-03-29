@@ -27,7 +27,7 @@ set script = form.field("script")
 script.add "text",js
 
 set submit = form.field("submit")
-submit.add "value","Create PNG"
+submit.add "html","Create PNG"
 submit.add "class","btn btn-success"
 submit.add "style","margin-top:5px"
 

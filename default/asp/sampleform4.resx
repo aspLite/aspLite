@@ -35,7 +35,7 @@ scriptSrc.add "text", "CKEDITOR.replace('mNotes1')"
 dim submit : set submit=form.field("submit")
 submit.add "style","margin-top:10px"
 submit.add "name","btnAction"
-submit.add "value","Save"
+submit.add "html","Save"
 submit.add "class","btn btn-primary"
 submit.add "onclick","CKEDITOR.instances.mNotes1.updateElement();"
 

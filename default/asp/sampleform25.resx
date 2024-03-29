@@ -12,10 +12,10 @@ if form.postback then
 end if
 
 dim button : set button=form.field("submit")
-button.add "value","click to generate pdf"
+button.add "html","click to generate pdf"
 button.add "class","btn btn-danger"	
 button.add "id","pdfButton"
-button.add "onclick","this.value='please wait...'"
+button.add "onclick","this.innerHTML='please wait...'"
 
 form.build()
 

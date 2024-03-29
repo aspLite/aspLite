@@ -20,7 +20,7 @@ email.add "placeholder","your email"
 email.add "required",true
 
 dim submit : set submit=form.field("submit")
-submit.add "value","Subscribe"
+submit.add "html","Subscribe"
 submit.add "class","btn btn-info"
 submit.add "style","margin-top:5px"
 

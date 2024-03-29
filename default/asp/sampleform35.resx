@@ -25,7 +25,7 @@ field.add "required",true
 
 set field = form.field("submit")
 field.add "class","btn btn-warning"
-field.add "value","create QR code"
+field.add "html","create QR code"
 field.add "style","margin-top:5px"
 
 form.build

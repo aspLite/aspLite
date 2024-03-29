@@ -36,7 +36,7 @@ haspw.add "required",true
 dim submit : set submit=form.field("submit")
 submit.add "style","margin-top:10px"
 submit.add "name","btnAction"
-submit.add "value","Hash"
+submit.add "html","Hash"
 submit.add "class","btn btn-secondary"
 
 '##########################################################################################

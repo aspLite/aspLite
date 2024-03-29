@@ -45,7 +45,7 @@ select case aspl.convertNmbr(aspl.getRequest("nextquestion"))
 		
 		answer.add "style","display:none"
 		
-		submit.add "value","Start the Quiz!"			
+		submit.add "html","Start the Quiz!"			
 
 	case 1	
 		
@@ -61,7 +61,7 @@ select case aspl.convertNmbr(aspl.getRequest("nextquestion"))
 		answer.add "name","answer1"
 		answer.add "required",true		
 		
-		submit.add "value","Proceed to Q2"		
+		submit.add "html","Proceed to Q2"		
 
 	case 2		
 		
@@ -78,7 +78,7 @@ select case aspl.convertNmbr(aspl.getRequest("nextquestion"))
 		answer.add "name","answer2"
 		answer.add "required",true
 		
-		submit.add "value","Proceed to Q3"		
+		submit.add "html","Proceed to Q3"		
 
 	case 3		
 		
@@ -95,7 +95,7 @@ select case aspl.convertNmbr(aspl.getRequest("nextquestion"))
 		answer.add "name","answer3"
 		answer.add "required",true
 		
-		submit.add "value","See your score!"		
+		submit.add "html","See your score!"		
 
 	case 4	
 
@@ -116,7 +116,7 @@ select case aspl.convertNmbr(aspl.getRequest("nextquestion"))
 
 		answer.add "style","display:none"		
 		
-		submit.add "value","Start again"	
+		submit.add "html","Start again"	
 
 end select	
 

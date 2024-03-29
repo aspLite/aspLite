@@ -87,7 +87,7 @@ radio.add "options",radios 'VBSscript dictionary!
 
 dim submit : set submit=form.field("submit")
 submit.add "name","btnSave"
-submit.add "value","Submit"
+submit.add "html","Submit"
 submit.add "style","margin-top:15px"
 submit.add "class","btn btn-primary"
 submit.add "container","span"

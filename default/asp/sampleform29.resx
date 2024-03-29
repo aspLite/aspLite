@@ -55,7 +55,7 @@ if aspl.convertBool(session("authorized")) then
 	field.add "html","You are now authorized!"
 	
 	set button = form.field("submit")
-	button.add "value","Logout"	
+	button.add "html","Logout"	
 	button.add "class","btn btn-secondary"
 	button.add "style","margin-top:5px"
 	button.add "onclick","return confirm('are you sure?')"
@@ -72,7 +72,7 @@ else
 	field.add "required",true
 
 	set button = form.field("submit")
-	button.add "value","Login"
+	button.add "html","Login"
 	button.add "class","btn btn-secondary"
 	button.add "style","margin-top:5px"
 	
