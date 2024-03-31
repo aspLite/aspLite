@@ -20,7 +20,7 @@
 <body>
 
 <main>
-<header class="p-3 text-bg-dark">
+<header class="p-3 text-bg-light">
 <div class="container p-5">
 
 <img src="header.png" style="margin-bottom:30px;border-radius:30px;width:100%">
@@ -32,6 +32,12 @@
 <p>ASP/VBScript developers also needed a developer framework back in 2000. They did not need ASP.NET. A developer framework for ASP/VBScript should have taken care of various shortcomings in ASP/VBScript, workarounds for known bugs or issues, facilitate code behind, event-driven html-controls, bring a solution for the spaghetti-coding, improve coding habits, increase scalability and security. Last but not least, ASP/VBScript needed a framework in order not to reinvent the wheel each time a new project was to be developed. But that framework never happened. Again, at least a large group of ASP/VBScript developers needed such a framework, they didn't need ASP.NET. Moreover, by the time ASP.NET was stable (not before 2.0 in 2005), most developers had given up on .NET and migrated to PHP. For me it was very simple: I had 100s of customers who were using my Classic ASP applications. I built an entire hosting business around ASP/VBScript. I did not want to refactor 10000s of lines of code just because MicroSoft wanted me to. So I sticked to Classic ASP. I have never regret that choice. And I'm still hosting 100s of web applications solely relying on ASP/VBScript.</p>
 
 <p>We did have some individuals who did a great job with some very powerful scripts though. I remember a pure ASP/VBScript upload class that I used a lot in <a class="link"  target="_blank" href="https://quickersite.com">QuickerSite</a>. Michal Gabrukiewicz did a great job with <a class="link" target="_blank" href="http://www.asp-ajaxed.org/">ajaxed</a> but sadly passed away in 2009. More about Michal later. He played an important role when developing aspLite, even though he passed away 10 years before I started developing it. CLASP was another attempt that did not last long eiter. All in all, developer frameworks for ASP/VBScript developers did not last long and were often developed by a single developer. Apparently it was very hard to build a community around Classic ASP back then. I still blame MicroSoft. MicroSoft has given its own ASP/VBScript tandem very bad press back in those days. Nobody dared to stick his neck out by building a durable ASP/VBScript framework back in 2003-10</p>
+
+<p><strong>No painless nor hassle-free upgrade-path to ASP.NET</strong></p>
+
+<p>Back in those days, ASP/VBScript developers did not have a painless nor hassle-free upgrade path to ASP.NET. VBScript was not supported by ASP.NET. Oh yes, for small web applications, one or two ASP pages, it was doable. MicroSoft provided some automated conversion tools. But they were very limited. In 2002, by the time ASP.NET 1.1 fixed some very annoying bugs in 1.0, I was dealing with 3 extremely large ASP/VBScript codebases for 3 big customers. I mean: large codebases. Dozens of includes files, classes, functions and routines. It was impossible to refactor them to ASP.NET without spending at least a year. And for what reason? ASP.NET did not offer much extra compared to ASP/VBScript at that time. ASP.NET was often considered too little too late by seasoned MicroSoft developers. But what the heck, I didn't have the time for all that. I was building a business around my developing, selling and communication skills. I didn't need ASP.NET.</p>
+
+<p>As soon as a technology gets introduced and gains a large userbase - like was the case for ASP/VBScript - it's impossible to stop it. People will always be prepared to live with its limitations, work their way around them or learn to live with them. That's exactly what I did back then, and I'm still doing now with aspLite. And I'm not alone. It's a human thing. And we're all humans after all. MicroSoft misjudged that.</p>
 
 <p>We're 20 years later now. There are still loads of Classic ASP/VBScript applications out there, most of them serving dynamic websites for more than 20 years now. Still MicroSoft refuses to clearly communicate about the EOL policy of Classic ASP. There IS no EOL policy for ASP/VBScript. So after all these years, we - ASP/VBScript developers - are STILL left in the woods. Alone. Without even the slightest clue on when exactly MicroSoft will pull the plug.</p>
 
