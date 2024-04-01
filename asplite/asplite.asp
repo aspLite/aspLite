@@ -84,6 +84,18 @@ class cls_asplite
 		on error goto 0
 
 	end sub
+
+	public sub executeASP(txt)
+
+		on error resume next
+
+		executeGlobal removeCRB(txt)
+		
+		aspError("problem when executing " & path)
+
+		on error goto 0
+
+	end sub
 	
 	
 	public sub execWithErrors(path)
