@@ -701,6 +701,17 @@ class cls_asplite
 
 	end function
 
+	public function recordset
+		
+		'returns a recordset
+		set recordset=server.createobject("adodb.recordset")
+		set recordset.ActiveConnection = Nothing
+		recordset.CursorLocation=3
+		recordset.CursorType=3
+		recordset.LockType=4
+
+	end function
+
 	Public function pathinfo 'get userfriendly url from 404 request if any
 
 		dim ufl
