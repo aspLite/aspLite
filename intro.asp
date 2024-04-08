@@ -35,8 +35,8 @@
 
 <div class="p-4 m-4 text-bg-light lead">
 
-<p>This book is about what could and should have happened. But never did. And about what should never have happened, but did. And about what may happen one day, because we can still make it happen. OK. I think I just lost half of my readers.</p>
-<p>If you feel the need to discuss the various topics covered in this book, do not hesitate to start a discussion on <a href="https://github.com/aspLite" target="_blank">https://github.com/aspLite</a></p>
+<p>This book is about Classic ASP and VBScript and how they changed my life.</p>
+<p>If you want to discuss the various topics covered in this book, do not hesitate to start a discussion on <a href="https://github.com/aspLite" target="_blank">https://github.com/aspLite</a></p>
 
 <span class="float-end small">Pieter Cooreman, April 2024</span>
 
@@ -84,7 +84,7 @@
 
 <p>We also saw some interesting attempts to provide an IDE for Classic ASP developers. We had two flavors of "Webmatrix", an all-in-one IDE for both MicroSoft and Open Source technologies. I liked both versions of Webmatrix a lot. But they both suddenly disappeared at some point in time.</p>
 
-<p>So far, all Visual Studio editions supported intellisense and code-completion for Classic ASP. And IIS Express supports Classic ASP to the full 100%. Today, even the Windows 10 and 11 Home editions come with a full version of IIS. In a way, nowadays it's much easier to start developing in ASP/VBScript than it was back then. You needed Windows 2000 Professional or a Server back in 2000. Today you only need to know how get Classic ASP up and running. Unfortunately, very few Windows users know how, and they couldn't care less. This illustrates how things turned out for MicroSoft. In 2000, companies spent quite some money on Windows 2000 Pro licenses. Today, MicroSoft ships its entire development framework and its dependencies for free. But even that never turned the tide.</p>
+<p>So far, all Visual Studio editions supported intellisense and code-completion for Classic ASP. And IIS Express supports Classic ASP to the full 100%. Today, even the Windows 10 and 11 Home editions come with a full version of IIS. In a way, nowadays it's much easier to start developing in ASP/VBScript than it was back then. You needed Windows 2000 Professional or a Server back in 2000. Today you only need to know how to get Classic ASP up and running. Unfortunately, very few Windows users know how, and they couldn't care less. This illustrates how things turned out for MicroSoft. In 2000, companies spent quite some money on Windows 2000 Pro licenses. Today, MicroSoft ships its entire development framework and its dependencies for free. But even that never turned the tide.</p>
 
 <p>Another pleasant evolution is that - over the years - MicroSoft embraced Open Source technology. At some point in time, it was easier to install both WordPress, Joomla and Drupal on any Windows host than it was to get ASP up and running. The wonderful Web Platform Installer however, was retired in 2022 - again - for inexplicable reasons.</p>
 
@@ -185,7 +185,7 @@
 
 <p>That said, learn ASP actually means: learn VBScript! There is not much to learn about Classic ASP after all, except for 5 objects with each a handful of properties and methods: Application, Session, Response, Request and Server.  VBScript however is the preferred (and default) programming language for most ASP developers. Even though VBScript is no longer being developed by Microsoft, it is still used a lot, not only by web developers, but also to automate tasks on Windows servers.</p>
 
-<p>Out of many online resources you find when searching for "learn Classic ASP", I personally liked 'A Practical Guide to Microsoft Active Server Pages 3.0' by Manas Tungare a lot. He was so kind to allow me to redistribute this guide on this website. These 70 well written pages are about everything you need to get started using Classic ASP.</p>
+<p>Out of many online resources you find when searching for "learn Classic ASP", I personally liked '<a href="https://asplite.com/assets/files/A%20Practical%20Guide%20to%20ASP%203.0.pdf" target="_blank">A Practical Guide to Microsoft Active Server Pages 3.0</a>' by Manas Tungare a lot. He was so kind to allow me to redistribute this guide on this website. These 70 well written pages are about everything you need to get started using Classic ASP.</p>
 
 Furthermore, W3Schools.com (that website is developed in Classic ASP) is probably the best online resource to start as a Classic ASP/VBScript web developer. Before you learn Classic ASP, you must learn HTML and CSS (and grab some basic JavaScript as well). Make sure to also check their very complete VBScript and ADO reference. ADO can be used to access databases from Classic ASP pages. </p>
 
@@ -244,8 +244,6 @@ I believe that the lack of strictly or strongly typed variables in VBScript has 
 <p>Right after Option Explicit, 2 ASP files are included.</p>
 <p>The first one: <code>&lt;!-- #include file="config.asp"--&gt;</code>
 </p>
-
-<p>Open that file please.</p>
 
 <p><code>const aspL_path="aspLite"</code> lets you decide where exactly you want the aspLite "engine" in your application.</p>
 <p><code>const aspL_debug=true</code> lets you decide whether or not aspLite throws errors. I personally always keep this "true".</p>
@@ -389,7 +387,7 @@ aspl.exec("scripts/" &amp; aspl.getRequest("script") &amp; ".inc")
 
 <div class="p-4 m-4 text-bg-success lead">
 <p><strong>CDN for Classic ASP/VBScript classes?</strong></p>
-<p>The Hello-World script above (https://demo.aspLite.com/default/html/helloworld.txt) could have lead - back in 2000 - to another idea. But it didn't. Anyway. The idea would be to setup a CDN (Content Delivery Network) serving well-written ASP-classes. Pretty much like JavaScript frameworks rely on CDN, Classic ASP/VBScript CDN could have been setup in a very similar way. It would not be the browser loading a CDN file, but the server loading full-blown (compressed) classes to deal with (less) common tasks and functions. THAT's what we needed in 2002. We did not need ASP.NET. Also, bespoke CDN would have been a major step towards Open Source. Still today, it would be a great help for Classic ASP developers. We don't even need a hosting solution. All we need is a couple of megabytes of cloud storage. Google drive? Someone? This idea of CDN for Classic ASP goes beyond the scope of this book. It's something worth experimenting with however.</p>
+<p>The Hello-World script above (https://demo.aspLite.com/default/html/helloworld.txt) could have lead - back in 2000 - to another idea. But it didn't. Anyway. The idea would be to setup a CDN (Content Delivery Network) serving well-written ASP-classes. Pretty much like JavaScript frameworks rely on CDN, Classic ASP/VBScript CDN could have been setup in a very similar way. It would not be the browser loading a CDN file, but the server loading full-blown (compressed) classes to deal with (less) common tasks and functions. THAT's what we needed in 2002. We did not need ASP.NET. Also, bespoke CDN would have been a major step towards Open Source. Still today, it would be a great help for Classic ASP developers. We don't even need a hosting solution. All we need is a couple of megabytes of cloud storage. This idea of CDN for Classic ASP goes beyond the scope of this book. It's something worth experimenting with however.</p>
 </div>
 
 <div class="p-4 m-4 text-bg-warning lead">
@@ -822,16 +820,16 @@ response.write "<ul>" & news & "</ul>"
 
 </div>
 
-<h2>aspl.form</h2>
+<h4>aspl.form</h4>
 <p>Returns an instance of an asplForm. Example: <code>dim form : set form=aspl.form</code>
 
-<h2>form.write(value)</h2>
+<h4>form.write(value)</h4>
 <p>Adds value as plain text/html to the JSON output of the form.</p>
 
-<h2>form.writejs(value)</h2>
+<h4>form.writejs(value)</h4>
 <p>Adds value as JavaScript to the JSON output of the form.</p>
 
-<h2>form.build</h2>
+<h4>form.build</h4>
 <p>Builds the form, including all its fields and next stops executing the ASP script.</p>
 
 <p>An example. Create a file named <strong>default.asp</strong> in the root of your aspLite application:</p>
@@ -1125,7 +1123,7 @@ end if
 
 <p>As such, "good old" including all different ASP scripts like this will not harm performance nor will it need much more RAM. The only inconvenience is that you have to list all events and "manually" assign the appropriate script to them, like in the example above. There is one other reason why you'd prefer regular includes: better error descriptions! Whenever something goes wrong in ASP code imported by <code>aspl.exec()</code>, all you get is vague error message without a line number! That can be very annoying to debug your ASP code.</p>
 
-<h2>form.field(fieldType)</h2>
+<h4>form.field(fieldType)</h4>
 
 <p>Returns a VBScript Dictionary. Example: <code>dim field : set field=form.field("select")</code> returns an HTML selectbox.</p>
 
@@ -1223,6 +1221,9 @@ if form.postback then
 	form.write "Hello " &amp; aspl.htmlEncode(aspl.getRequest("name"))
 	form.newline
 	
+	form.write "You're an ASP developer for  " &amp; aspl.htmlEncode(aspl.getRequest("years")) &amp; " years."
+	form.newline
+	
 	form.write "Your birthdate: " &amp; aspl.htmlEncode(aspl.getRequest("birthdate"))
 	form.newline	
 	
@@ -1247,6 +1248,13 @@ name.add "name","name"
 name.add "class","form-control"
 name.add "label","Your name"
 name.add "required",true
+
+form.newline
+
+dim years : set years=form.field("number")
+years.add "name","years"
+years.add "class","form-control"
+years.add "label","For how many years are you an ASP developer?"
 
 form.newline
 
@@ -1322,7 +1330,7 @@ hidden("value")="12345"
    "doScroll":false,
    "id":"main_aspForm",
    "onSubmit":"aspAjax('POST',aspLiteAjaxHandler,$(this).serialize(),aspForm);return false;",
-   "executionTime":"39ms",
+   "executionTime":"31ms",
    "bShowToasts":false,
    "aspForm":[
       {
@@ -1334,7 +1342,7 @@ hidden("value")="12345"
       {
          "type":"hidden",
          "name":"asplSessionId",
-         "value":"381017981",
+         "value":"575517568",
          "noinit":"true"
       },
       {
@@ -1360,6 +1368,16 @@ hidden("value")="12345"
          "class":"form-control",
          "label":"Your name",
          "required":true
+      },
+      {
+         "type":"plain",
+         "html":"&lt;div style=\u0022clear:both;height:7px\u0022 class=\u0022clearfix\u0022&gt;&lt;\u002Fdiv&gt;"
+      },
+      {
+         "type":"number",
+         "name":"years",
+         "class":"form-control",
+         "label":"For how many years are you an ASP developer?"
       },
       {
          "type":"plain",
@@ -1418,8 +1436,7 @@ hidden("value")="12345"
 <h4>form.newline</h4>
 <p>Adds a linefeed of 7px (height).</p>
 
-<p>Example with selectboxes, checkboxes and radio buttons. Keep both default.asp and html/default.inc. <strong>Change asp/main.inc to:</strong></p>
-
+<p>Example with <strong>selectboxes, checkboxes and radio buttons</strong>. Keep both default.asp and html/default.inc. <strong>Change asp/main.inc to:</strong></p>
 
 <code>
 <pre>
@@ -1432,22 +1449,33 @@ for i=1 to 9
 	dictionary.add i,"option" &amp; i
 next
 
+if form.postback then
+
+	dim feedback : feedback="&lt;div class=""alert alert-success""&gt;"
+	feedback=feedback &amp; "&lt;p&gt;Selectbox value: &lt;strong&gt;" &amp; aspl.htmlencode(aspl.convertNmbr(aspl.getRequest("selectbox"))) &amp; "&lt;/strong&gt;&lt;/p&gt;"
+	feedback=feedback &amp; "&lt;p&gt;Radio value: &lt;strong&gt;" &amp; aspl.htmlencode(aspl.convertNmbr(aspl.getRequest("radio")))&amp; "&lt;/strong&gt;&lt;/p&gt;"
+	feedback=feedback &amp; "&lt;p&gt;Checkbox values: &lt;strong&gt;" &amp; aspl.htmlencode(aspl.getRequest("checkboxes"))&amp; "&lt;/strong&gt;&lt;/p&gt;"	
+	form.write feedback &amp; "&lt;/div&gt;"
+
+end if
+
 dim selectbox : set selectbox=form.field("select")
 selectbox.add "name","selectbox"
-selectbox.add "id","selectbox"
+selectbox.add "emptyfirst",""
 selectbox.add "class","form-control form-select"
 selectbox.add "label","Selectbox showing all values of a VBScript dictionary"
 selectbox.add "options",dictionary
+selectbox.add "onchange",form.submit
 
 form.newline
 
 dim radio : set radio=form.field("radio")
 radio.add "name","radio"
-radio.add "id","radio"
 radio.add "class","form-check-input"
 radio.add "labelclass","form-check-label"
 radio.add "label","Radiobutton showing all values of a VBScript dictionary"
 radio.add "options",dictionary
+radio.add "onchange",form.submit
 
 form.newline
 
@@ -1460,35 +1488,18 @@ checkboxes.add "name","checkboxes"
 checkboxes.add "options",dictionary
 checkboxes.add "container","div"
 checkboxes.add "containerclass","form-check form-switch"
-
-form.newline
-
-dim submit : set submit=form.field("submit")
-submit.add "html","Submit"
-submit.add "class","btn btn-primary"
-
-if form.postback then
-
-	form.newline
-	form.newline
-
-	form.write "Selectbox value: " &amp; aspl.htmlencode(dictionary(aspl.convertNmbr(aspl.getRequest("selectbox"))))
-	form.newline
-	
-	form.write "Radio value: " &amp; aspl.htmlencode(dictionary(aspl.convertNmbr(aspl.getRequest("radio"))))
-	form.newline
-	
-	form.write "Checkboxe value: " &amp; aspl.htmlencode(aspl.getRequest("checkboxes"))
-	form.newline
-
-end if
+checkboxes.add "onclick",form.submit
 
 form.build
+
 %&gt;
 </pre>
 </code>
 
-<p>The VBScript Dictionary is translated into HTML select boxes, a list of radio buttons and checkbox buttons by <strong>aspLite.js</strong>. Be careful, only VBScript dictionaries are supported! They are a perfect match with these HTML-controls (key/value-pairs).</p>
+<p>The VBScript Dictionary is translated into HTML select boxes, a list of radio buttons and checkboxes by <strong>aspLite.js</strong>. Be careful, only VBScript dictionaries are supported! They are a perfect match with these HTML-controls (key/value-pairs).</p>
+
+<h4>form.submit</h4>
+<p>In the example above, the VBScript helper function <code>form.submit</code> returns the JavaScript code necessary to submit the asplForm.</p>
 
 <p>The <strong>JSON string</strong> for <strong>asp/main.inc</strong> looks like this:</p>
 
@@ -1501,7 +1512,7 @@ form.build
    "doScroll":false,
    "id":"main_aspForm",
    "onSubmit":"aspAjax('POST',aspLiteAjaxHandler,$(this).serialize(),aspForm);return false;",
-   "executionTime":"62ms",
+   "executionTime":"55ms",
    "bShowToasts":false,
    "aspForm":[
       {
@@ -1513,7 +1524,7 @@ form.build
       {
          "type":"hidden",
          "name":"asplSessionId",
-         "value":"381017981",
+         "value":"575517568",
          "noinit":"true"
       },
       {
@@ -1531,7 +1542,7 @@ form.build
       {
          "type":"select",
          "name":"selectbox",
-         "id":"selectbox",
+         "emptyfirst":"",
          "class":"form-control form-select",
          "label":"Selectbox showing all values of a VBScript dictionary",
          "options":{
@@ -1544,7 +1555,8 @@ form.build
             "7":"option7",
             "8":"option8",
             "9":"option9"
-         }
+         },
+         "onchange":"$('#main_aspForm').submit();return false;"
       },
       {
          "type":"plain",
@@ -1553,7 +1565,6 @@ form.build
       {
          "type":"radio",
          "name":"radio",
-         "id":"radio",
          "class":"form-check-input",
          "labelclass":"form-check-label",
          "label":"Radiobutton showing all values of a VBScript dictionary",
@@ -1567,7 +1578,8 @@ form.build
             "7":"option7",
             "8":"option8",
             "9":"option9"
-         }
+         },
+         "onchange":"$('#main_aspForm').submit();return false;"
       },
       {
          "type":"plain",
@@ -1594,16 +1606,8 @@ form.build
             "9":"option9"
          },
          "container":"div",
-         "containerclass":"form-check form-switch"
-      },
-      {
-         "type":"plain",
-         "html":"&lt;div style=\u0022clear:both;height:7px\u0022 class=\u0022clearfix\u0022&gt;&lt;\u002Fdiv&gt;"
-      },
-      {
-         "type":"submit",
-         "html":"Submit",
-         "class":"btn btn-primary"
+         "containerclass":"form-check form-switch",
+         "onclick":"$('#main_aspForm').submit();return false;"
       }
    ]
 }
@@ -1612,7 +1616,7 @@ form.build
 
 <p>You can see how the various collections of "options" are passed through as JSON objects.</p>
 
-<h2>form.field("plain") and form.field("script")</h2>
+<h4>form.field("plain") and form.field("script")</h4>
 <p>Writes pure text/html (plain) and JavaScript (script)</p>
 <p>Example: keep default.asp and html/default.inc. <strong>Change asp/main.inc to</strong>: </p>
 
@@ -1647,8 +1651,31 @@ form.writejs "alert('Add JavaScripts');"
 
 <p>By default asplForms keep track of form-values and autofills form-controls with user-input. There is no need to initialize them "manually" with request-values.</p>
 
-<!--<p>Excursions to disconnected recordsets, chromeASP, datatables, create plugins, selectbox, refer to demosite.</p>-->
 </div>
+
+<h4>aspl.addFB, aspl.addInfo, aspl.addWarning and aspl.addErr</h4>
+<p>These are aspLite helper functions that rely on Bootstrap 5. They return alerts. They will always appear at the top of an asplForm.</p>
+<p>Change asp/main.inc to:</p>
+
+<code>
+<pre>
+&lt;%
+dim form : set form=aspl.form
+aspl.addFB("Success")
+aspl.addInfo("Info")
+aspl.addWarning("Warning")
+aspl.addErr("Error")
+form.build
+%&gt;
+</pre>
+</code>
+
+</div>
+
+
+
+<!--<p>Builmd more complex forms with Bootstrap, Excursions to disconnected recordsets, chromeASP, datatables, create plugins, selectbox, refer to demosite.</p>-->
+
 
 
 </main>
