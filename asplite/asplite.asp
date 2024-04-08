@@ -268,24 +268,24 @@ class cls_asplite
 	
 	public function addErr(value)
 		
-		if not formmessages.exists(geticon("error") & value) then
-			formmessages.add geticon("error") & value,"alert alert-danger"		
+		if not formmessages.exists(value) then
+			formmessages.add value,"alert alert-danger"		
 		end if
 	
 	end function
 	
 	public function addInfo(value)
 		
-		if not formmessages.exists(geticon("info") & value) then
-			formmessages.add geticon("info") & value,"alert alert-info"		
+		if not formmessages.exists(value) then
+			formmessages.add value,"alert alert-info"		
 		end if
 	
 	end function
 	
 	public function addWarning(value)
 		
-		if not formmessages.exists(geticon("warning") & value) then
-			formmessages.add geticon("warning") & value,"alert alert-warning"		
+		if not formmessages.exists(value) then
+			formmessages.add value,"alert alert-warning"		
 		end if
 	
 	end function
@@ -294,8 +294,8 @@ class cls_asplite
 	
 		on error resume next
 		
-		if not formmessages.exists(geticon("check_circle") & value) then
-			formmessages.add geticon("check_circle") & value,"alert alert-success"		
+		if not formmessages.exists(value) then
+			formmessages.add value,"alert alert-success"		
 		end if
 		
 		on error goto 0
