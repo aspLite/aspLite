@@ -103,6 +103,12 @@ class cls_asplite_formbuilder
 		txt.add "text",value
 	
 	end sub
+
+	public function submit 
+	
+		submit="$('#" & id & "').submit();return false;"
+		
+	end function
 	
 	public function request(value)
 	
