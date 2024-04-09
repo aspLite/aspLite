@@ -371,6 +371,14 @@ Furthermore, W3Schools.com (that website is developed in Classic ASP) is probabl
 
 <div class="alert alert-success"><p class="lead">aspLite does not rely on 3rd party COM components. It only relies on the built-in VBScript components. Therefore aspLite works on basically each and every shared hosting solution out there, but also on each and every Windows host with ASP installed.</p></div>
 
+<h4>Install aspLite as a virtual directory for code-reuse reasons?</h4>
+
+<p>If you're lucky enough to manage a Windows Server yourself, you may want to install aspLite as a <i>virtual directory</i> in your IIS website. This way you can use one aspLite codebase on an unlimited number of websites on your server. If you use a network location, you can even share one aspLite codebase amongst multiple servers.</p>
+
+<p>When setup this way, the first line in your ASP page would read:<br>
+<code>&lt;!-- #include virtual="aspLite/aspLite.asp"--&gt;</code> (in case you name the virtual directory "aspLite")</p>
+
+
 <h4>Getting started</h4>
 
 <p>In its most low-level mode, aspLite is nothing more (or less) than a library of ASP/VBScript classes, functions and subroutines. They can be found in /aspLite/aspLite.asp. I will go through all of them later on in this article.</p>
