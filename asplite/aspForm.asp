@@ -103,6 +103,37 @@ class cls_asplite_formbuilder
 		txt.add "text",value
 	
 	end sub
+	
+	public sub alert(alerttype,message)
+	
+		message=aspl.convertStr(message)
+	
+		dim txt : set txt=field("plain")
+		
+		select case lcase(alerttype)
+		
+			case "primary" 		: txt.add "html","<div class=""alert alert-primary"">" & message & "</div>"
+			case "secondary" 	: txt.add "html","<div class=""alert alert-secondary"">" & message & "</div>"
+			case "success" 		: txt.add "html","<div class=""alert alert-success"">" & message & "</div>"
+			case "warning" 		: txt.add "html","<div class=""alert alert-warning"">" & message & "</div>"
+			case "danger" 		: txt.add "html","<div class=""alert alert-danger"">" & message & "</div>"
+			case "info" 		: txt.add "html","<div class=""alert alert-info"">" & message & "</div>"
+			case "light" 		: txt.add "html","<div class=""alert alert-light"">" & message & "</div>"
+			case "dark" 		: txt.add "html","<div class=""alert alert-dark"">" & message & "</div>"		
+		
+		end select		
+	
+	end sub
+	
+	public function redirect(asplevent,target,querystring)
+		
+		redirect="aspAjax('GET',aspLiteAjaxHandler,"
+		redirect=redirect & "'asplEvent=" & server.urlEncode(asplevent) 
+		if not aspl.isEmpty(querystring) then redirect=redirect & "&" & querystring
+		if not aspl.isEmpty(target) then redirect=redirect & "&asplTarget=" & server.urlencode(target)		
+		redirect=redirect & "',aspForm);"		
+		
+	end function
 
 	public function submit 
 	
