@@ -1,0 +1,84 @@
+@font-face {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 300;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/300.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 500;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/500.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 600;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/600.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 700;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/700.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 800;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/800.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: regular;
+   font-display: swap;
+   font-weight: 400;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/regular.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 300;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/300italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 400;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 500;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/500italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 600;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/600italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 700;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/700italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 800;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Open Sans/800italic.ttf') format('truetype');
+}
