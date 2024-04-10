@@ -6,7 +6,7 @@ dim form : set form=aspl.form
 	
 'result
 dim feedback : set feedback=form.field("element")
-feedback.add "html",rss.read("http://rss.cnn.com/rss/cnn_topstories.rss")
+feedback.add "html",rss.read("https://rss.nytimes.com/services/xml/rss/nyt/World.xml")
 feedback.add "tag","div"
 
 form.build()
