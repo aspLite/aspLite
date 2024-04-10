@@ -61,7 +61,7 @@ select case aspl.convertNmbr(aspl.getRequest("raining"))
 						
 						set field = form.field ("submit")		
 						field.add "class","btn btn-primary"	
-						field.add "value","Ok, I took care!"
+						field.add "html","Ok, I took care!"
 						field.add "style","margin-top:10px"
 						field.add "onclick","alert('Well done');return false;"						
 					
