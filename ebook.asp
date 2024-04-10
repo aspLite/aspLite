@@ -177,15 +177,14 @@ end if
       </ul>
     </div>
 
-<div class="container-fluid p-5">
+<div class="container-fluid p-5 text-bg-light">
+<img src="/ebook/cover.jpg" style="width:100%" alt="aspLite: a future for ASP/VBScript">
 
-<div class="mb-4 lead">
-
-<h1>aspLite: a future for ASP/VBScript</h1>
+<div class="mb-4 mt-4 lead">
 
 <p>This book is about Classic ASP and VBScript and how they changed my life in 1999. And how MicroSoft took it back in 2002.</p>
 
-<p>If you want to discuss the various topics covered in this book, do not hesitate to start a discussion on <a href="https://github.com/aspLite" target="_blank">https://github.com/aspLite</a></p>
+<p>If you want to discuss the various topics covered in this book, do not hesitate to start a discussion on <a href="https://github.com/aspLite" target="_blank">https://github.com/aspLite</a>.</p>
 
 <p class="text-end">Pieter Cooreman, April 2024</p>
 
@@ -193,7 +192,7 @@ end if
 
 <h2>Preface</h2>
 
-<p>Back in 2002, thousands - difficult to say how many exactly - of ASP/VBScript developers were left alone in the woods by a very small team of MS developers who choose to build ASP.NET and throw ASP and VBScript in the bin. ASP got cancelled, from one day to the other. That's how it felt back then, and that's what really happened looking back on it today.</p>
+<p>Back in 2002, many thousands - difficult to say how many exactly - of ASP/VBScript developers were left alone in the woods by a very small team of MS developers who choose to build ASP.NET and throw ASP and VBScript in the bin. ASP got cancelled, from one day to the other. That's how it felt back then, and that's what really happened looking back on it today.</p>
 
 <p>I sometimes try to picture it like this: In 2002, Microsoft had just had a great couple of years. Windows 95, 98, 98SE, 2000 Professional, NT Server, 2000 Advanced Server. Not to mention Windows Me and the various XP editions. MicroSoft also had Internet Explorer, Office, SQL Server and many other products. These were all great products that were loved by basically any gamer, student, school, non-for-profit and  all businesses. Between 1997 and 2002, MicroSoft was the leading software company worldwide, without any doubt. They sure could afford themselves to make mistakes and make some wrong decisions. And so they did. That's how Classic ASP/VBScript ended up in the bin, without much ado. Just like that.</p>
 
@@ -1422,9 +1421,9 @@ form.writejs "alert('Add JavaScripts');"
 
 <p><strong>Summary</strong></p>
 
-<p>asplForms turn aspLite into a modern full-stack developer framework for Classic ASP/VBScript developers. It offers a powerful AJAX web form-builder whether or not making use of the wonderful Bootstrap front-end HTML/CSS front-end framework.</p>
+<p>asplForms turn aspLite into a modern full-stack developer framework for Classic ASP/VBScript developers. It offers a powerful AJAX web form-builder whether or not making use of the wonderful Bootstrap front-end HTML/CSS framework.</p>
 
-<p>The collaboration between server-side Classic ASP/VBScript and browser-side JavaScript frameworks is very promising and opens up a whole new world to ASP developers. </p>
+<p>The collaboration between server-side Classic ASP/VBScript and browser-side JavaScript frameworks is very promising and opens up a whole new world to ASP development.</p>
 
 <p>All-in-all, this is a very first attempt to bring back Classic ASP/VBScript development. I would even call it "embryonal". Especially the JavaScript file asplite/asplite.js needs some attention and further tweaking.</p>
 
