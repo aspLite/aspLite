@@ -3,6 +3,7 @@
   <p>This is a demo SPA (Single Page Application) making use of <strong>aspLite</strong>. "Single Page" does not mean "small". It means that the page will not be reloaded when clicking any of the links or buttons below. (Nearly) all HTML, CSS and JavaScript has already been downloaded and it will only load once. This saves a lot of bandwidth and it strongly improves user experience. This SPA includes a few dozen of Ajax forms. But that number can easily grow to 100 for larger apps.</p>
   <p>This demo also executes <strong>one ASP page</strong> only: <strong>default.asp</strong> in the root of this installation. That ASP file acts as a dispatcher (handler) that deals with all events. See /default/handler.resx.</p>
   <p>If this demo is a bit overwhelming, you may want to check <a href="basic.asp">basic.asp</a>. It's a more compact aspLite sample application.</p>
+  <p>Make sure to read the <a href="ebook.asp">aspLite Handbook</a> to get started!</p>
   <p>Finally, aspLite is by no means limited to SPA's, but I thought that - for the purpose of this demo - it would be fun to do this the SPA-way.</p>
   <p>Have fun while discovering the bits and bytes of this demo!</p>
   <hr>
