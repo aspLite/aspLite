@@ -5,10 +5,7 @@ rss.maxitems=1
 dim form : set form=aspl.form
 	
 'result
-dim feedback : set feedback=form.field("element")
-feedback.add "html",rss.read("https://rss.nytimes.com/services/xml/rss/nyt/World.xml")
-feedback.add "tag","div"
+form.write rss.read("https://rss.nytimes.com/services/xml/rss/nyt/World.xml")
 
 form.build()
-
 %>

@@ -533,23 +533,7 @@
 							<p><a class="btn btn-info" href="default.asp?asplEvent=downloadlargefile">download large file (&gt;500kB)</a><br><small class="text-muted">see /default/handler.resx</small></p>
 												
 						</div>
-					</div>
-					
-					<div class="card">
-						<div class="card-header">
-							Generate QR code
-						 </div>
-						<div class="card-body">			
-							
-							<p class="card-text">
-								<a target="_blank" href="https://developers.google.com/chart/infographics/docs/qr_codes">Google</a> provides an easy way for developers to generate QR codes. Check it out!
-							</p>							
-							<div class="asplForm card-text" id="sampleform35"></div>								
-							<hr>								
-							<p class="card-text"><small class="text-muted">/default/asp/sampleform35.resx</small></p>
-							
-						</div>
-					</div>	
+					</div>					
 					
 					<div class="card">
 						<div class="card-header">

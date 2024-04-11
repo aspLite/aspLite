@@ -67,7 +67,7 @@ $(document).ready( function () {
 				{ "data": "dDate" },				
 				{ "data": "countryName" },
 				{  "data": "iId", render: function ( data, type, row ) {				
-					return '<button type="button" class="btn btn-secondary btn-sm" onclick="askAspForm(' + data + ')">Modify</button>'							
+					return '<button type="button" class="btn btn-primary btn-sm" onclick="askAspForm(' + data + ')">Modify</button>'							
 					}
 				}
 			]
