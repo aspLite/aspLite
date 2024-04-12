@@ -4,20 +4,8 @@ class cls_asplite_cdomessage
 	public receiverEmail,receiverName, subject, body, attachments, fromname, fromemail
 	public smtpusessl, smtpusername, smtpserver, smtpport, sendusing, pickupdir, smtpuserpw, copyto
 	
-	private sub class_initialize
-	
+	private sub class_initialize	
 		set attachments=aspL.dict	
-		fromname		= system.fromnameget
-		fromemail		= system.fromemail
-		smtpusessl		= system.smtpusessl
-		smtpusername	= system.smtpusername
-		smtpserver		= system.smtpserver
-		smtpport		= system.smtpport
-		sendusing		= system.sendusing
-		pickupdir		= system.pickupdir
-		smtpuserpw		= system.smtpuserpw
-		copyto			= system.sSystemEmail
-		
 	end sub
 	
 	private sub class_terminate

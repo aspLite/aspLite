@@ -1022,10 +1022,14 @@ class cls_asplite
 	
 
 	'******************************************************************************************
-	'* padLeft - copied from Ajaxed Library
+	'* padLeft, padRight - copied from Ajaxed Library
 	'******************************************************************************************
 	public function padLeft(value, totalLength, paddingChar)
 		padLeft = right(clone(paddingChar, totalLength) & value, totalLength)
+	end function
+	
+	public function padRight(value, totalLength, paddingChar)
+		padRight = left(value & clone(paddingChar, totalLength), totalLength)
 	end function
 
 	'******************************************************************************************
