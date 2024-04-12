@@ -541,7 +541,7 @@ aspl.exec("scripts/" &amp; aspl.getRequest("script") &amp; ".inc")
 <li>3.inc - <code>response.write "hello3"</code></li>
 </ul>
 
-<p>Finally, browse to</p>
+<p>Finally, browse to:</p>
 
 <ul>
 <li><a href="http://localhost/?script=1">http://localhost/?script=1</a></li>
@@ -619,12 +619,19 @@ aspl.exec("scripts/" &amp; aspl.getRequest("script") &amp; ".inc")
 
 <h4>aspl.stripHTML(value)</h4>
 <p>Strips the HTML tags from value</p>
+<p>Example: <code>&lt;%=aspl.stripHTML("&lt;u&gt;not underlined&lt;/u&gt;")%&gt;</code> returns <strong><%=aspl.stripHTML("<u>not underlined</u>")%></strong></p>
 
 <h4>aspl.padLeft(value, totalLength, paddingChar)</h4>
-<p>Adds paddingChar left to value until totalLength is reached. Example: <strong><%=aspl.padLeft("5",10,"0")%></strong></p>
+<p>Adds paddingChar left to value until totalLength is reached.</p>
+<p>Example: <code>&lt;%=aspl.padLeft("5",3,"0")%&gt;</code> returns <strong><%=aspl.padLeft("5",3,"0")%></strong></p>
+
+<h4>aspl.padRight(value, totalLength, paddingChar)</h4>
+<p>Adds paddingChar right to value until totalLength is reached.</p>
+<p>Example: <code>&lt;%=aspl.padRight("5",3,"0")%&gt;</code> returns <strong><%=aspl.padRight("5",3,"0")%></strong></p>
 
 <h4>aspl.getFileType(filename)</h4>
-<p>Returns the file extension for a given filename. Example: <strong><%=aspl.getFileType("photo.jpeg")%></strong></p>
+<p>Returns the file extension for a given filename.</p>
+<p>Example: <code>&lt;%=aspl.getFileType("photo.jpeg")%&gt;</code> returns <strong><%=aspl.getFileType("photo.jpeg")%></strong></p>
 		
 <h4>aspl.log(value)</h4>
 <p>aspLite comes with a basic logger: <code>aspl.log("anything")</code> will write "anything" to aspLite/aspLite.log. The exact time of the logging is included as well. This logging feature is very useful as you can always tell what exactly happens to a variable, or when things go wrong. I often use it to debug certain functions.</p>
@@ -633,12 +640,12 @@ aspl.exec("scripts/" &amp; aspl.getRequest("script") &amp; ".inc")
 <p>Resets an ASP application by opening, saving and closing the global.asa-file.</p>	
 
 <h4>aspl.randomizer</h4>
-<p>Randomizer class with 3 functions:
-	<ul>
-		<li><code>aspl.randomizer.randomText(nmbrchars)</code> returns a random string with a given nmbrchars</li>
-		<li><code>aspl.randomizer.randomNumber(start,stop)</code> returns a random number between start and stop</li>
-		<li><code>aspl.randomizer.createGUID(length)</code> returns a GUID of a given length</li>				
-	</ul></p>
+<p>Randomizer class with 3 functions:</p>
+<ul>
+	<li><code>aspl.randomizer.randomText(nmbrchars)</code> returns a random string with a given nmbrchars</li>
+	<li><code>aspl.randomizer.randomNumber(start,stop)</code> returns a random number between start and stop</li>
+	<li><code>aspl.randomizer.createGUID(length)</code> returns a GUID of a given length</li>				
+</ul>
 	
 <h4>aspl.removeAllCookies</h4>
 
@@ -664,9 +671,7 @@ aspl.exec("scripts/" &amp; aspl.getRequest("script") &amp; ".inc")
 
 <p><code>aspl.clearAllCache()</code> clears all Application values for your cacheprefix.</p>
 
-<h3>Textfiles and binaries</h3>
-
-<p>Even though very useful, the above settings and methods are not what you'd call a true framework. They're just a fixed set of configurations and functions you'd use in each and every project. But not more than that.</p>
+<h3>Text files and binaries</h3>
 
 <p>For years I have assumed that ASP/VBScript was not capable of dealing with (large) binary files (upload, read, write, save, download). At least, that was, without expensive third party COM components. I was wrong all this time. Lewis Moten once created a purely scripted (and free-to-use) ASP/VBScript Upload class. It did and still does a very good job.</p>
 
@@ -829,9 +834,7 @@ aspl.SaveBinaryData server.mappath("html/smallfile.jpg"),aspl.XMLhttp("https://d
 
 <h2>How aspLite lead to asplForm</h2>
 
-<p>So far we're still not really using or describing a true framework for Classic ASP/VBScript development. We have only added some useful helper-functions through <code>&lt;!-- #include file="aspLite/aspLite.asp"--&gt;</code>, right?</p>
-
-<p>That is about to change in this chapter. When I was developing aspLite during the first weeks of the Covid19 lockdown, I quickly realised aspLite would soon lead to an AJAX formbuilder.</p>
+<p>When I was developing aspLite during the first weeks of the Covid19 lockdown, I quickly realised aspLite would soon lead to an AJAX formbuilder.</p>
 
 <h2>asplForm explained</h2>
 
@@ -1434,7 +1437,53 @@ form.writejs "alert('Add JavaScripts');"
 <div class="pagebreak"></div>
 
 <h2>aspLite plugins</h2>
+<p>aspLite comes with some plugins. These plugins are located in the asplite/plugins-folder. All plugins should go in that folder.</p>
+<p>There is an important rule to keep in mind when adding your own plugins: the name of the folder/ASP-file has to correspond with the name of the actual VBScript Class.</p>
+<p>Example: one of the folders in asplite/plugins is "database". The ASP file of the actual plugin is also named "database.asp". That is a requirement for aspLite-plugins to work. Other plugins are /asplite/sha256/sha256.asp and /asplite/atom/atom.asp.</p>
+<p>Not only the folder and filenames are important, the name of the actual VBScript Class also has to correspond. If you browse the plugins, you'll notice the following convention: cls_asplite_database, cls_asplite_atom, cls_asplite_sha256, etc. So there again, the exact same name of the plugin-folder and ASP file returns.</p>
+<p>This setup guarantees that aspLite plugins work, and all work the same way.</p>
+<p><strong>How to create an instance of an aspLite plugin?</strong></p>
+
+<ul class="list-group">
+	<li class="list-group-item"><code>dim db : set db=aspl.plugin("database")</code> creates an instance of the class <code>cls_asplite_database</code>, located in /asplite/plugins/database/database.asp</li>
+	<li class="list-group-item"><code>dim sha256 : set db=aspl.plugin("sha256")</code> creates an instance of the class <code>cls_asplite_sha256</code>, located in /asplite/plugins/sha256/sha256.asp</li>
+	<li class="list-group-item"><code>dim uploader : set db=aspl.plugin("uploader")</code> creates an instance of the class <code>cls_asplite_uploader</code>, located in /asplite/plugins/uploader/uploader.asp</li>
+</ul>
+
+<p>I'm sure you get the point.</p>
+
 <h3>CDO.message</h3>
+
+<p>One of the most robust and best supported mailsending components from IIS 5 (Windows 2000) onwards, has been the <code>"CDO.Message"</code>-object. Pretty much all (shared) hosting solutions supported it. And it still works on Windows Server 2022. <code>CDO.Message</code> was the successor of <code>"CDONTS.NewMail"</code>. I'm successfully using <code>CDO.Message</code> in QuickerSite for almost 20 years now. Never ran into problems.</p>
+
+<p>aspLite comes with a wrapper-class that facilitates the use of this widely supported ASP component. Be aware that I have commented out all .send() methods to prevent abuse. You would need to un-comment the .send-methods for the scripts to work.</p>
+
+<p>This first example does not use a SMTP-username and password, using your server's own SMTP server:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/cdo.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+<div class="asplForm alert alert-light" id="cdo"></div>
+
+<p>By default, the mail-body is wrapped into a valid HTML5-template ensuring Unicode-compatibility and correct HTML output. </p>
+
+<p>The next example uses an SMTP-username and password, using an external SMTP server and it adds an attachement. The SMTP server also requires communication via SSL:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/cdo2.inc"))%></pre>
+
+<p>This last example uses a mobile-friendly (responsive) mail-template that I used on Setlistplanner.com. Feel free to use it for your own projects.</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/cdo3.inc"))%></pre>
+
+
+<div class="mt-4 mb-4 p-4  text-bg-warning lead">
+<p><strong>Warning: Windows Servers 2025 do no longer come with an SMTP-server!</strong></p>
+<p>Windows Servers always shipped with a built-in SMTP server. When I recently gave Windows Server 2022 a try, it appeared to me that the built-in SMTP server was still there, but it got broken. It was no surprise to read that from Windows Server 2025 onwards, the built-in SMTP service will be removed, as it was part of IIS6. IIS6 will also no longer be available in Windows Server 2025.</p>
+
+<p>You may need a replacement for the built-in SMTP server. I always use the freeware version of MailEnable. However, be aware that nowadays the vast majority of email-providers require domain-specific SPF-records that point to the sending server(s). This is something to keep in mind when setting up email-sending applications for your customers. To avoid spam as much as possible, you can better send email over the appropriate mail servers for a given domain. Always check the MX-records for your domain on websites like <a target="_blank" href="https://mxtoolbox.com/SuperTool.aspx">https://mxtoolbox.com/SuperTool.aspx</a></p>
+
+</div>
+
 <h3>Database</h3>
 <h3>Access, SQL Server or MySQL?</h3>
 <h3>Encryption</h3>
