@@ -1,9 +1,8 @@
-<script>
-
 createXLS()
 
 function createXLS () {
-	$('#generateExcel').val('Tabledata is requested')
+	$('#generateExcel').html('Tabledata is requested')
+	$('#generateExcel').append(' <span class="spinner-border spinner-border-sm text-dark" role="status"><span class="visually-hidden"></span></span>')
 	$('#generateExcel').removeClass('btn-success')
 	$('#generateExcel').addClass('btn-warning')
 	aspAjax ("get",aspLiteAjaxHandler,"asplEvent=sampleform30_data",createFile)	
@@ -11,7 +10,7 @@ function createXLS () {
 
 function createFile(data) {
 
-	$('#generateExcel').val('Tabledata was received')
+	$('#generateExcel').html('Tabledata was received')
 
 	var wb = XLSX.utils.book_new(), ws = XLSX.utils.json_to_sheet(data.aspl)
 	XLSX.utils.book_append_sheet(wb, ws, 'SheetJS Experiment')
@@ -19,12 +18,11 @@ function createFile(data) {
 	
 	$('#generateExcel').removeClass('btn-warning')
 	$('#generateExcel').addClass('btn-primary')
-	$('#generateExcel').val('File is ready for download!')
+	$('#generateExcel').html('File is ready for download!')
 		
 	setTimeout(function() {
 		$('#generateExcel').removeClass('btn-primary')
 		$('#generateExcel').addClass('btn-success')
-		$('#generateExcel').val('click to generate xlsx')
+		$('#generateExcel').html('click to generate xlsx')
 	}, 2000);
 }
-</script>
