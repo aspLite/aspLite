@@ -38,6 +38,10 @@ end if
 	<!-- DataTables CSS & JS -->
 	<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
 	<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+	
+	<!-- jQuery Autocomplete-->	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.min.js"></script>
+
 			
 	<style>
 		
@@ -133,6 +137,15 @@ end if
 		display: block !important;
 		}
     </style>
+	
+	<style>
+		.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+		.autocomplete-suggestion { padding: 2px 5px; color:#000; white-space: nowrap; overflow: hidden; }
+		.autocomplete-selected { background: #F0F0F0; }
+		.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+		.autocomplete-group { padding: 2px 5px; }
+		.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+	</style>
 
 </head>
 
@@ -220,7 +233,7 @@ Auto
 
 <p>Back in 2002, many thousands - difficult to say how many exactly - of ASP/VBScript developers were left alone in the woods by a very small team of MS developers who choose to build ASP.NET and throw ASP and VBScript in the bin. ASP got cancelled, from one day to the other. That's how it felt back then, and that's what really happened looking back on it today.</p>
 
-<p>I sometimes try to picture it like this: In 2002, Microsoft had just had a great couple of years. Windows 95, 98, 98SE, 2000 Professional, NT Server, 2000 Advanced Server. Not to mention Windows Me and the various XP editions. MicroSoft also had Internet Explorer, Office, SQL Server and many other products. These were all great products that were loved by basically any gamer, student, school, non-for-profit and  all businesses. Between 1997 and 2002, MicroSoft was the leading software company worldwide, without any doubt. They sure could afford themselves to make mistakes and make some wrong decisions. And so they did. That's how Classic ASP/VBScript ended up in the bin, without much ado. Just like that.</p>
+<p>I sometimes try to picture it like this: In 2002, Microsoft had just had a great couple of years. Windows 95, 98, 98SE, 2000 Professional, NT Server, 2000 Advanced Server. Not to mention Windows Me and the various XP editions. MicroSoft also had Internet Explorer, Office, SQL Server and many other products. These were all great products that were loved by basically any gamer, student, school, non-for-profit and  all businesses. Between 1997 and 2002, MicroSoft was the leading software company worldwide, without any doubt. They sure could afford to make mistakes and make some wrong decisions. And so they did. That's how Classic ASP/VBScript ended up in the bin, without much ado. Just like that. But - as always - pride comes before a fall.</p>
 
 <div class="mt-4 mb-4 p-4 text-bg-dark lead">
 
@@ -228,11 +241,11 @@ Auto
 
 </div>
 
-<p>ASP/VBScript were very popular web development and scripting technologies between 1997 and 2002. They were MicroSoft's first answer to another rapidly growing web technology and competitor: PHP and Apache servers. We all know how that turned out. However, most businesses preferred ASP over PHP back then. ASP was running faster, integrated well with other MicroSoft products (Active Directory, SQL Server, Office, ...), had a rapidly growing community and supported (multi-threaded) COM-extensions. But above all, ASP/VBScript was very easy to learn, even for people like me, without a degree in computer science whatsoever. VBScript was a visual, case insensitive and lousy typed scripting language after all.</p>
+<p>ASP/VBScript were very popular web development and scripting technologies between 1997 and 2002. They were MicroSoft's first answer to another rapidly growing web technology and competitor: PHP and Apache servers. We all know how that turned out. However, most businesses preferred ASP over PHP back then. ASP was running faster, integrated well with other MicroSoft products (Active Directory, SQL Server, Office, ...), had a rapidly growing community and supported (multi-threaded) COM-extensions. But above all, ASP/VBScript was very easy to learn, even for people like me, without a degree in computer science whatsoever. VBScript was a basic, visual, case insensitive and lousy typed scripting language. And I loved it.</p>
 
-<p>Even though ASP was a huge success, MicroSoft developers decided to pull the plug and amuse themselves with... how many ... well what the heck, 25 versions of ASP.NET. ASP.NET never was a popular web development technology. In it's early years it was left far behind by PHP frameworks. Today full stack JavaScript frameworks have taken over. ASP.NET is and never was nowhere near a popular or frequently used web development framework. ASP/VBScript was.</p>
+<p>Even though ASP was a huge success, MicroSoft developers decided to pull the plug and amuse themselves with... how many ... well what the heck, 25 versions of ASP.NET. ASP.NET never was nowhere near a popular web development technology. ASP/VBScript was though. In it's early years, ASP.NET was left far behind by PHP frameworks. Today full stack JavaScript frameworks have taken over.</p>
 
-<p>PHP developers had more luck. Between 2000 and 2010 (about the same period of the rise and fall of ASP.NET and Windows Servers) a handful of PHP developer frameworks gained popularity amongst web developers (Zend, CakePHP, Symfony, Laravel, ...). They were there to stay. Everybody felt that. Unlike ASP.NET, these PHP frameworks were <i>built</i> with PHP, they did not want to <i>replace</i> it.</p>
+<p>PHP developers had more luck. Between 2000 and 2010 (about the same period of the rise and fall of ASP.NET and Windows Servers) a handful of PHP developer frameworks gained popularity amongst web developers (Zend, CakePHP, Symfony, Laravel, ...). They were there to stay. Everybody felt that. Unlike ASP.NET, these PHP frameworks were <i>built</i> with PHP, they did not want to <i>replace</i> it. And PHP ran on less expensive hosts and servers.</p>
 
 <p>ASP/VBScript developers also needed a developer framework back in 2002. They did not need ASP.NET. A developer framework for ASP/VBScript should have taken care of various shortcomings in ASP/VBScript, workarounds for known bugs or issues, facilitate code behind, become event-driven, bring a solution for the spaghetti-coding, improve coding habits, url-rewriting (MVC!), increase scalability and security. Last but not least, ASP/VBScript needed a framework in order not to reinvent the wheel each time a new project was to be developed. But that framework never happened.</p>
 
@@ -242,7 +255,7 @@ Auto
 
 <p><strong>Classic ASP was considered sloppy, buggy and weak. A technology for lesser Gods.</strong></p>
 
-<p>At least that's what MicroSoft developers wanted us to believe back then. And I sure identify as a lesser developer God. But the Classic ASP community did have some individuals who did a great job with some very powerful scripts. I remember a pure ASP/VBScript upload class by Lewis Moten that I used a lot in <a class="link" target="_blank" href="https://quickersite.com">QuickerSite</a> and other projects. It got fine-tuned and Unicode-proof by other developers along the years. Others developed very useful encryption classes for Classic ASP (Sha256.asp by Phil Fresle in 2001). I also remember a very useful Captcha image generator-class by Emir Tüzül in 2006. Later on we saw a few popular JSON-classes. </p>
+<p>At least that's what MicroSoft developers wanted us to believe back then. And I sure identify as a lesser developer God. But the Classic ASP community did have some individuals who did a great job with some very powerful scripts. I remember a pure ASP/VBScript upload class by Lewis Moten that I used a lot in <a class="link" target="_blank" href="https://quickersite.com">QuickerSite</a> and other projects. It got fine-tuned and Unicode-proof by other developers along the years. Others developed very useful encryption classes for Classic ASP (Sha256.asp by Phil Fresle in 2001). I also remember a very useful Captcha image generator-class by Emir Tüzül in 2006. Later on we also saw a few popular JSON-classes.</p>
 
 <p>But the Classic ASP community also saw some great attempts to develop true frameworks. Michal Gabrukiewicz did a great job with <a class="link" target="_blank" href="http://www.asp-AJAXed.org/">asp-AJAXed</a> but sadly passed away in 2009. More about Michal later. He played an important role when developing aspLite, even though he passed away 10 years before I started developing it. <a href="https://www.codeproject.com/Articles/7922/Classic-ASP-Framework-2-0-Make-your-Classic-ASP-co" target="_blank">CLASP</a> by Christian Caldereon was another great .NET-alike framework for Classic ASP. Others came up with Classic ASP MVC implementations, each one of them relying on the very useful 404-rewriting-trick. All in all, developer frameworks for ASP/VBScript developers did not last long and were often developed (and used) by a single developer. Apparently it was very hard to build a community around Classic ASP back then. I still blame MicroSoft. MicroSoft has given its own ASP/VBScript tandem very bad press back in those days. Nobody dared to stick his neck out by building a durable and community-driven ASP/VBScript framework back in 2003-10. I still regret that. We only needed 1 widely used Classic ASP (MVC) framework back in 2000. And we could and should have built it. But MicroSoft developers did not want us to have fun with that, they wanted to have fun themselves. So they created .NET.</p>
 
@@ -252,7 +265,7 @@ Auto
 
 <p>As soon as a technology gets introduced and gains a large user base - as was the case for ASP/VBScript between 1997 and 2002 - it's impossible to stop it. People will always be prepared to live with its limitations, work their way around them or learn to live with them. That's exactly what I did back then, and I'm still doing now with aspLite. And I'm not alone. It's a human thing. And we're all humans after all. MicroSoft misjudged that.</p>
 
-<p>We're 25 years later now. There are still loads of Classic ASP/VBScript applications out there, most of them serving dynamic websites for more than 20 years now. Still MicroSoft refuses to clearly communicate about the EOL policy of Classic ASP. There IS no EOL policy for ASP/VBScript. So after all these years, we - ASP/VBScript developers - are STILL left in the woods. Alone. Without even the slightest clue on when exactly MicroSoft will pull the plug.</p>
+<p>We're 25 years later now. There are still loads (millions) of Classic ASP/VBScript applications out there, most of them serving dynamic websites for more than 20 years now. Still MicroSoft refuses to clearly communicate about the EOL policy of Classic ASP. There IS no EOL policy for ASP/VBScript. So after all these years, we - ASP/VBScript developers - are STILL left in the woods. Alone. Without even the slightest clue on when exactly MicroSoft will pull the plug.</p>
 
 <p>I learned to live with that even though I still feel sad about it. In 2020 I decided to develop a new framework for ASP/VBScript developers: <a class="link" href="https://aspLite.com" target="_blank">aspLite</a>. I will be working on aspLite for the rest of my life. I somehow love this technology. And it just won't end. Classic ASP is fun! And fun is key.</p>
 
@@ -279,7 +292,7 @@ Auto
 
 <p>After having coded my way through basically any type of web application somewhere between 2000 and 2007, I decided to come up with a CMS (Content Management System) that combined all my best scripts and coding habits that had passed the test of time so far: <a href="https://www.quickersite.com/" target="_blank">QuickerSite</a>. QuickerSite was a success, especially in it's early years. Only one year after it's initial release in 2007, it was translated into 11 languages, including Danish, Hebrew, Italian, Turkish and Swedish. In 2008 QuickerSite was used by about 1000 users worldwide, who created at around 6000 QuickerSites in total. It was as if a lot of ASP coders all over the world had been waiting for a CMS developed in pure ASP/VBScript.&nbsp;</p>
 
-<p>Between 2007 and 2014 I built a hosting business around QuickerSite. At its peak, I hosted 1200 QuickerSites on a single dedicated <a href="https://www.quickersite.com/r/default.asp?iId=EDJEGEIH&iPostID=EHILMLH" target="_blank">Dell server</a> with very basic specs (3GB RAM, a slow 120 GB SATA disk and a single CPU). But it worked. It rocked. And all this time, I was a one-man-band. Nobody else but me, myself and I was dealing with everything related to my business: selling, developing, designing, hosting, invoicing, mailing. And everything else related to QuickerSite. So yes, I sure was a bit of a lone wolf back then. And as much as Microsoft forced me to switch over to ASP.NET, I did the exact opposite and stayed with Classic ASP. That's me.</p>
+<p>Between 2007 and 2014 I built a hosting business around QuickerSite. At its peak, I hosted 1200 QuickerSites on a single dedicated Dell server with very basic specs (3GB RAM, a slow 120 GB SATA disk and a single CPU). But it worked. It rocked. And all this time, I was a one-man-band. Nobody else but me, myself and I was dealing with everything related to my business: selling, developing, designing, hosting, invoicing, mailing. And everything else related to QuickerSite. So yes, I sure was a bit of a lone wolf back then. And as much as Microsoft forced me to switch over to ASP.NET, I did the exact opposite and stayed with Classic ASP. That's me.</p>
 
 <p>Developing, selling, hosting and supporting QuickerSite for a wide variety of customers (and hosting conditions) learned me even more about ASP/VBScript, its caveats AND its strengths. Developing QuickerSite was no doubt the best time of my life. I still host many QuickerSites today on a Windows 2019 Server in the cloud. And I made some life-time friends.</p>
 
@@ -291,7 +304,7 @@ Auto
 <div class="mt-4 mb-4 p-4  text-bg-primary lead">
 <p><strong>Trip down memory lane</strong></p>
 
-<p>When Jesse James Garret "invented" AJAX in 2005 - and Google made a success of it - some Classic ASP/VBScript developers must have thought by themselves: what the heck, we did AJAX back in 1999 already! We used something named <strong>Remote Scripting</strong>. It was AJAX avant-la-lettre. Nothing more, nothing less. We loaded a Java Applet (it took about 3 seconds to load) and next we were able to provide AJAX functionality in pure Classic ASP/VBScript. Back in 1999. This technique worked fine on both Internet Explorer and Netscape, the only two browsers that mattered back then.</p>
+<p>When Jesse James Garret "invented" AJAX in 2005 - and Google made a success of it - some Classic ASP/VBScript developers must have thought by themselves: what the heck, we did AJAX back in 1999 already! We used something named <strong>Remote Scripting</strong>. It was AJAX avant-la-lettre. We loaded a Java Applet (it took about 3 seconds to load) and next we were able to provide AJAX functionality in pure Classic ASP/VBScript. Back in 1999. This technique worked fine on both Internet Explorer and Netscape, the only two browsers that mattered back then.</p>
 </div>
 
 <p><strong>PHP and ASP.NET libraries in Classic ASP</strong></p>
@@ -302,7 +315,7 @@ Auto
 
 <p><strong>Concerns about the future of Classic ASP</strong></p>
 
-<p>Some developers may ask themselves: "<em>For how long are we going to be able to host Classic ASP applications on Windows Servers</em>"? Windows 2022 Server fully supports all Classic ASP/VBScript components, better than ever before (also thanks to much better/faster hardware). As soon as Microsoft releases his next Server edition, I'll be amongst the first to deeply test-drive Classic ASP on it.</p>
+<p>Some developers may ask themselves: "<em>For how long are we going to be able to host Classic ASP applications on Windows Servers</em>"? Windows 2022 Server fully supports all Classic ASP/VBScript components, better than ever before (also thanks to much better/faster hardware). As soon as Microsoft releases his next Server edition, I'll be amongst the first to deeply test-drive Classic ASP on it. Windows Server 2025 will not remove ASP/VBScript either. In all honesty, I believe we will be able to host Classic ASP/VBScript web applications for at least 10 more years in optimal conditions (somewhere till 2035). After that, things will get tricky.</p>
 
 <p><strong>Suggestion: turn ASP/VBScript into Open Source</strong></p>
 
@@ -333,13 +346,15 @@ Auto
 
 <p><strong>IDE</strong></p>
 
-<p>Classic ASP developers have been lacking a dedicated IDE (Integrated Development Environment) for some time now. I therefore prefer to use&nbsp;<a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to use. Notepad++ also comes with some basic code-completion functions. Notepad++ can also be freely installed and used on any Windows Server. I often use it to search for specific texts and strings in over 1 million files. No problem at all. Others may want to use <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> instead.</p>
+<p>Classic ASP developers have been lacking a dedicated IDE (Integrated Development Environment) for some time now. I therefore prefer to use&nbsp;<a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to use. Notepad++ also comes with some basic code-completion and intellisense. Notepad++ can also be freely installed and used on any Windows Server. I often use it to search for specific texts and strings in over 1 million files. No problem at all. Others may want to use <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> instead.</p>
 
 <p><strong>Where to host ASP sites today?</strong></p>
 
-<p>A final note on hosting. I have personally never used or liked <em>shared </em>ASP hosting solutions of any type. From day one, I use my own server. In 2004 I bought my own. In 2010 I migrated to the cloud. Today (2024), I use an&nbsp;<a href="https://aws.amazon.com/ec2/" target="_blank">AWS EC2 instance</a>. Very satisfying so far. In my opinion, if you're into ASP development, you're better off managing a Windows Server <em>yourself</em>, rather than rely on shared hosting. There are very few people left who can assist you with ASP hosting issues. We're on our own. But that shouldn't be a problem as Windows Servers are very easy to setup, deploy and maintain. As an ASP developer you need to know the basics of setting up backups, firewall, IIS, mailserver and security on Windows Servers after all. On top of that, when you dive into ASP developing, you may have to install specific COM software or you may want to prefer a specific setup to facilitate code-reuse. This requires full access to a server. Both Microsoft Azure, Google Cloud and Amazon Web Services offer free-tier solutions that allow to test-drive a basic setup for a year. It's really worthwhile looking into these solutions.</p>
+<p>A final note on hosting. I have personally never used or liked <em>shared </em>ASP hosting solutions of any type. From day one, I use my own server. In 2004 I bought my own. In 2010 I migrated to the cloud. Today (2024), I use an&nbsp;<a href="https://aws.amazon.com/ec2/" target="_blank">AWS EC2 instance</a>. Very satisfying so far. Windows Servers got much cheaper over the years. You get a lot of "Windows Server" for somewhere 100$/month these days, including backups, datatransfer and lots of diskspace. In my opinion, if you're into ASP development, you're better off managing a Windows Server <em>yourself</em>, rather than rely on shared hosting. There are very few people left who can assist you with ASP hosting issues. We're on our own. But that shouldn't be a problem as Windows Servers are very easy to setup, deploy and maintain. As an ASP developer you need to know the basics of setting up backups, firewall, IIS, mailserver and security on Windows Servers after all. On top of that, when you dive into ASP developing, you may have to install specific COM software or you may want to prefer a specific setup to facilitate code-reuse. This requires full access to a server. Both Microsoft Azure, Google Cloud and Amazon Web Services offer free-tier solutions that allow to test-drive a basic setup for a year. It's really worthwhile looking into these solutions.</p>
 
 <p><strong>Should I learn Classic ASP/VBScript in 2024?</strong></p>
+
+<p>Hell no.</p>
 
 <p>If you're young and you're willing or able to dive into new technologies, do not learn Classic ASP or VBScript. If you want to become a web developer (by extension a mobile app developer) - today or in the future - learn Python and/or JavaScript. However, if you are already using Classic ASP (and plan to keep on doing so), it's always a good idea to learn new things. Even after all these years, there's always something new to learn about ASP. aspLite is living proof of that.</p>
 
@@ -399,12 +414,12 @@ Furthermore, W3Schools.com (that website is developed in Classic ASP) is probabl
 <p>Let's have a closer look at <strong>aspLite/aspLite.asp</strong>. The  first line of that ASP page reads: <strong>&lt;@LANGUAGE="VBScript" CODEPAGE="65001"%&gt;</strong>. That's probably the most important line in the entire aspLite code base. What is it doing?
 <ul>
 	<li>Set <strong>VBScript</strong> as the default server-side scripting language</li>
-	<li>Ensure 100% compatibility with the <strong>UTF-8 character</strong> (Unicode) set, allowing you to use ANY language in your application and avoid very annoying character conversions and/or encoding. Actually, each and every ASP script should start with that one line. Unfortunately, most Classic ASP applications I have seen, did not. With some tragic consequences in most cases.</li>
+	<li>Ensure 100% compatibility with the <strong>UTF-8 character</strong> (Unicode) set, allowing you to use ANY language in your application and avoid very annoying character conversions and/or buggy encoding. Actually, each and every ASP script should start with that one line. Unfortunately, most Classic ASP applications I have seen, did not. With some tragic consequences in most cases.</li>
 </ul> 
 
 </p>
 
-<p>The second line in aspLite/aspLite.asp reads: <strong>Option Explicit</strong>. This is questionable. I assume you know that by having this line as the very first line in your ASP script, you are forced to declare variables and you're not allowed to declare them more than once. Even though it helps to keep the risks for overwriting certain values under control, it is not a 100% guarantee. Especially when using VBScript's Execute and ExecuteGlobal statements, Option Explicit does not have any effect. So be careful. Make a very good deal with yourself: always declare variables and keep their naming logical and consistent. That's harder than it sounds. Even though in theory you can declare (dim) the same variables (i, j, rs, counter,... are amongst the more popular variable names) in each and every class, function and sub, they DO overwrite each other. That's no doubt one of the reasons "real" developers never liked VBScript. You never really knew what value (and what type) a VBScript variable held. And if you're not used to that, I can imagine this is driving a developer crazy.</p>
+<p>The second line in aspLite/aspLite.asp reads: <strong>Option Explicit</strong>. This is questionable. I assume you know that by having this line as the very first line in your ASP script, you are forced to declare variables and you're not allowed to declare them more than once. Even though it helps to keep the risks of overwriting certain values under control, it is not a 100% guarantee. Especially when using VBScript's Execute and ExecuteGlobal statements, Option Explicit does not have any effect. So be careful. Make a very good deal with yourself: always declare variables and keep their naming logical and consistent. That's harder than it sounds. Even though in theory you can declare (dim) the same variables (i, j, rs, counter,... are amongst the more popular variable names) in each and every class, function and sub, they DO overwrite each other. That's no doubt one of the reasons "real" developers never liked VBScript. You never really knew what value (and what type) a VBScript variable held. And if you're not used to that, I can imagine this is driving a developer crazy.</p>
 
 <div class="mt-4 mb-4 p-4  text-bg-dark lead">
 I believe that the lack of strictly or strongly typed variables in VBScript has caused it's sudden death back in the early 00s and forced the MicroSoft dev-team to come up with their totally new approach: ASP.NET. It's true that Classic ASP is very prone to a total variable-jungle especially when using lots of include files, not to mention the real disaster scenario when multiple developers had to work on the same code base. It was nearly impossible to work as a team on a Classic ASP application. However, when working alone - like I always did in my career - it is ... feasible as long as you keep some variable-hygiene into account. PHP was - at that time - lousy typed as well. That did not stop PHP from growing and taking over the web development business as from somewhere mid 2000. My 2 cents.
@@ -429,7 +444,7 @@ I believe that the lack of strictly or strongly typed variables in VBScript has 
 
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/classinit.inc"))%></pre>
 
-<p>As we're using <strong>Option Explicit</strong>, we're forced - here also - to declare all variable names. In case of a class - rather than "dim" a variable (even though that also "works" in a way), you can use the private or public keyword. Private variables are available within the class only. Public variables (and their values) can be exposed to the outside world. When working alone on apps, you actually don't really need private values. But as aspLite might at some point in time be used by another developer, I guess I can better do it right, and keep most variables in de aspLite class private.<p>
+<p>As we're using <strong>Option Explicit</strong>, we're forced - here also - to declare all variable names. In case of a class - rather than "dim" a variable (even though that also "works" in a way), you can use the private or public keyword. Private variables are available within the class only. Public variables (and their values) can be exposed to the outside world. When working alone on apps, you actually don't really need private values. But as aspLite might at some point in time be used by another developer, I guess I can better do it right, and keep most variables in the aspLite class private.<p>
 
 <p>As the code in <strong>Class_Initialize</strong> is always executed when an instance of cls_aspLite is created, let's have a close look at what happens, line by line.</p>
 
@@ -554,11 +569,11 @@ aspl.exec("scripts/" &amp; aspl.getRequest("script") &amp; ".inc")
 <li><a href="http://localhost/?script=3">http://localhost/?script=3</a></li>
 </ul>
 
-<p>The one and only default.asp runs 3 different "imported" scripts. Unlike when using include-directives, the imported ASP code is dynamically loaded (or not). You decide which ASP script has to load and which does not. This keeps RAM usage under control. But above all, it facilitates an amazingly well structured ASP code base. For each event you can have your dedicated classes, functions, subs and program flow. And stil you would only be using only one ASP page (default.asp). That one ASP page is able to serve each and every module of your ASP application.</p>
+<p>The one and only default.asp runs 3 different "imported" scripts. Unlike when using include-directives, the imported ASP code is dynamically loaded (or not). You decide which ASP script has to load and which does not. This keeps RAM usage under control. But above all, it facilitates an amazingly well structured ASP code base. For each event you can have your dedicated classes, functions, subs and program flow. And stil you would only be using only one ASP page (default.asp) as your main entry-point. That one ASP page is able to serve each and every module of your ASP application. This begins to smell like MVC.</p>
 
 <div class="mt-4 mb-4 p-4  text-bg-success lead">
 <p><strong>CDN for Classic ASP/VBScript classes?</strong></p>
-<p>The Hello-World script above (https://demo.aspLite.com/ebook/helloworld.txt) could have lead - back in 2000 - to another idea. But it didn't. Anyway. The idea would be to setup a CDN (Content Delivery Network) serving well-written ASP-classes. Pretty much like JavaScript frameworks rely on CDN, Classic ASP/VBScript CDN could have been setup in a very similar way. It would not be the browser loading a CDN file, but the server loading full-blown (compressed) classes to deal with (less) common tasks and functions. THAT's what we needed in 2002. We did not need ASP.NET. Also, bespoke CDN would have been a major step towards Open Source. Still today, it would be a great help for Classic ASP developers. We don't even need a hosting solution. All we need is a couple of megabytes of cloud storage. This idea of CDN for Classic ASP goes beyond the scope of this book. It's something worth experimenting with however.</p>
+<p>The Hello-World script above (https://demo.aspLite.com/ebook/helloworld.txt) could have lead - back in 2000 - to another idea. But it didn't. Anyway. The idea would be to setup a CDN (Content Delivery Network) serving well-written ASP-classes. Pretty much like JavaScript frameworks rely on CDN, Classic ASP/VBScript CDN could have been setup in a very similar way. It would not be the browser loading a CDN file, but the server loading full-blown (compressed) classes to deal with (less) common tasks and functions. THAT's what we needed in 2002. We did not need ASP.NET. Also, this CDN would have been a major step towards Open Source. Still today, it would be a great help for Classic ASP developers. We don't even need a hosting solution. All we need is a couple of megabytes of cloud storage. This idea of CDN for Classic ASP goes beyond the scope of this book. It's something worth experimenting with however.</p>
 </div>
 
 <div class="mt-4 mb-4 p-4  text-bg-warning lead">
@@ -572,7 +587,7 @@ aspl.exec("scripts/" &amp; aspl.getRequest("script") &amp; ".inc")
 
 <h4>aspl.htmlEncode(value)</h4>
 
-<p>Previous example made use of another aspLite function: <code>aspl.htmlEncode</code>. Unlike server.htmlEncode(value), aspl.htmlEncode(value) does not throw an error when value is null.</p>
+<p>Unlike server.htmlEncode(value), <code>aspl.htmlEncode</code> does not throw an error when value is null.</p>
 
 <div class="alert alert-danger lead">It can't be said enough: ALWAYS htmlencode ANY input from users. I mean: also first names, last names and street numbers. <strong>Anything</strong>. It's the first and most efficient protection against XSS (Cross-Site-Scripting).</div>
 
@@ -720,7 +735,7 @@ aspl.saveText "html/textfile.txt", "This is the content of the file (text-only).
 
 <p>Sends text-files (only) to the browser (with a download-prompt). Filename is the default filename, filebody is the content of the file.</p>
 
-<p>At first sight, this is not very useful, as you can send any text to the browser already. However, in some cases, you may want to send text-files (.txt, .html, .css, .js, etc), rather than just text. They will then end up in the visitor's default download-folder.</p>
+<p>At first sight, this is not very useful, as you can send any text to the browser already. However, in some cases, you may want to send text-files (.txt, .html, .css, .js, etc), rather than just text. After showing the download-prompt, they will then end up in the visitor's default download-folder.</p>
 
 <pre class="alert alert-light">
 &lt;!-- #include file="aspLite/aspLite.asp"--&gt;
@@ -750,7 +765,7 @@ aspl.saveBinaryData server.mappath("html/copy.jpg"), file
 %&gt;
 </pre>
 
-<p>Another use I can think of is to copy a file from anywhere to your local drive. The example below downloads (GET) the JPG file on https://demo.aspLite.com/default/html/smallfile.jpg and saves it to your local html folder.</p>
+<p>Another use I can think of is to copy a file from anywhere to your local drive. The example below downloads (GET) the JPG file on <a href="https://demo.aspLite.com/default/html/smallfile.jpg" target="_blank">https://demo.aspLite.com/default/html/smallfile.jpg</a> and saves it to your local html folder.</p>
 
 <pre class="alert alert-light">
 &lt;!-- #include file="aspLite/aspLite.asp"--&gt;
@@ -789,7 +804,7 @@ aspl.dumpBinary "html/sample.jpg", "Suzuki Samurai.jpg"
 <p>This technique of executing scripts in case of a 404 is available from Windows 2000 (IIS5) onwards. It still works on Windows 2022 servers. But it was never documented or approved by MicroSoft as a valid method. That's a shame, because all this time Classic ASP developers could have made use of this technique to offer user-friendly and SEO-optimized urls. I used this technique in QuickerSite from day one. This has meant a big deal and it has drastically improved SEO for all my hosted Classic ASP customers.</p>
 
 <div class="mt-4 mb-4 p-4  text-bg-dark lead">
-This technique of rewriting 404 urls to "default.asp" could have lead, back in 2000, to a true Classic ASP MVC framework. But that didn't happen. It's only after the release of ASP.NET MVC in 2007(!) that some Classic ASP developers came up with MVC-alike ideas for Classic ASP. But by then, Classic ASP developers were way too often ignored and ridiculized by MicroSoft developers. So nothing happened, again.</div>
+This technique of rewriting 404 urls to "default.asp" could have lead, back in 2000, to a true Classic ASP MVC framework. But that didn't happen. It's only after the release of ASP.NET MVC in 2007(!) that some Classic ASP developers came up with MVC-alike ideas for Classic ASP. But by then, Classic ASP developers were way too often ignored and ridiculized by MicroSoft developers. So nothing really happened, again.</div>
 
 <h3>MSXML2.ServerXMLHTTP and MSXML2.DOMDocument</h3>
 
@@ -949,7 +964,7 @@ This is the footer
 
 <p>The <code>form.build</code>-method stopts the execution of the ASP script. That's why it's very important to call it here. If we don't, it would each time add the HTML, CSS and JavaScript to its response. We already have these, so we don't need them again.</p>
 
-<p>Some might think: is it a good idea to load default.asp 4 times (in a row)? Maybe not. Or maybe it doesn't really matter either. The most important reason however is that from now on, it's possible to build a web application based on events and clearly organise your ASP code base, using one ASP page only, performing an unlimited number of different tasks. How you structure it, is up to you. There are several ways to do it. You can even use good old include-files for each asplEvent, or use aspLite's execute methods. </p>
+<p>Some might think: is it a good idea to load default.asp 4 times (in a row)? Maybe not. Or maybe it doesn't really matter. The most important idea however is that from now on, it's possible to build a web application based on events and clearly organise your ASP code base, using one ASP entry-point (default.asp) only, performing an unlimited number of different tasks. How you structure it, is up to you. There are several ways to do it. You can even use good old include-files for each asplEvent, or use aspLite's execute methods. </p>
 
 <p><strong>Let's take this one step further</strong></p>
 
@@ -1093,8 +1108,8 @@ hidden("value")="12345"
 	<li>Asplite.js initializes all HTML-controls that have the class "asplform" through <strong>AJAX calls</strong>, only one in this case: default.asp?asplEvent=main</li>
 	<li>The server loads <strong>/asp/main.inc</strong> - our asplForm - in case default.asp?asplEvent=main is requested</li>
 	<li>Asplite.js builds an <strong>HTML form</strong> with all elements that are returned by default.asp?asplEvent=main</li>
-	<li>When hitting the submit-button, the form is submitted through and AJAX-call and form.postback will be true</li>
-	<li>If form.postback is true, you can process all values from the form.</li>
+	<li>When hitting the submit-button, the form is submitted through an AJAX-call and form.postback will be true</li>
+	<li>If form.postback is true, you can process all values coming from the form.</li>
 
 </ol>
 
@@ -1479,9 +1494,12 @@ form.writejs "alert('Add JavaScripts');"
 
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/cdo2.inc"))%></pre>
 
-<p>This last example uses a mobile-friendly (responsive) mail-template that I used on Setlistplanner.com. Feel free to use it for your own projects.</p>
+<p>This last example uses a mobile-friendly (responsive) mail-template that I used on <a target="_blank" href="https://Setlistplanner.com">Setlistplanner.com</a>. Feel free to use it for your own projects.</p>
 
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/cdo3.inc"))%></pre>
+
+<p>The HTML/CSS for <strong>ebook/mail.txt</strong> reads:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/mail.txt"))%></pre>
 
 <div class="mt-4 mb-4 p-4  text-bg-warning lead">
 <p><strong>Warning: Windows Servers 2025 do no longer come with an SMTP-server!</strong></p>
@@ -1567,7 +1585,7 @@ form.writejs "alert('Add JavaScripts');"
 
 <p>I amended Lewis Moten's code so that only a limited number of filetypes can be uploaded. I didn't want users to upload ASP(x) or PHP scripts. The following file-types are allowed for upload: "jpg", "jpeg", "jpe", "jp2", "jfif", "gif", "bmp", "png", "psd", "eps", "ico", "tif", "tiff", "ai", "raw", "tga", "mng", "svg", "doc", "rtf", "txt", "wpd", "wps", "csv", "xml", "xsd", "sql", "pdf", "xls", "mdb", "ppt", "docx", "xlsx", "pptx", "ppsx", "artx", "mp3", "wma", "mid", "midi", "mp4", "mpg", "mpeg", "wav", "ram", "ra", "avi", "mov", "flv", "m4a", "m4v", "htm", "html", "css", "swf", "js", "rar", "zip", "ogv", "ogg", "webm", "tar", "gz", "eot", "ttf", "ics", "woff", "cod", "msg", "odt". I agree this is quite an arbitrary list, but so far it did the trick for me.</p>
 
-<p>The example for this ebook uploads one file at a time. That can easily be updated to "multiple" files, simply by adding the attribute <strong>"multiple"</strong> to the HTML-fileupload control in <strong>ebook/uploadhtml.inc</strong>. The upload process may seem a little complex, but it is an AJAX upload-facility after all, giving a nice user-experience without annoying page-reload during the entire process.</p>
+<p>The example for this ebook uploads one file at a time. That can easily be updated to "multiple" files, simply by adding the attribute <strong>"multiple"</strong> to the HTML-fileupload control in <strong>ebook/uploadhtml.inc</strong>. The upload process may seem a little complex, but it is an AJAX upload-facility after all, giving a nice user-experience without annoying page-reloads during the entire process.</p>
 
 <p>Various files are used:</p>
 
@@ -1577,7 +1595,11 @@ form.writejs "alert('Add JavaScripts');"
 
 <p>As the actual upload will be performed by a custom JavaScript, I disable aspLite's default "onsubmit" by emptying <code>form.onSubmit=""</code></p>
 
-<p>That ASP script loads 2 files, one HTML snippet (holding the HTML fileupload-control) and one JavaScript file (dealing with the actual upload):</p>
+<p>Furthermore, the ASP script loads 2 files:</p>
+<ul>
+	<li>one HTML snippet (holding the HTML fileupload-control)</li>
+	<li>one JavaScript file (dealing with the actual upload):</li>
+</ul>
 
 <p>The HTML snippet in <strong>ebook/uploadhtml.inc</strong>:</p>
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/uploadhtml.inc"))%></pre>
@@ -1587,7 +1609,7 @@ form.writejs "alert('Add JavaScripts');"
 <p>The JavaScript in <strong>ebook/uploadjs.inc</strong>:</p>
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/uploadjs.inc"))%></pre>
 
-<p>The actual file-saving takes place in <strong>ebook/uploadfile.inc</strong> (note that the actual "save" is commented out, no files are saved for security reasons!). You would need to uncomment that line to enable the actual file-saving.</p>
+<p>The actual file-saving takes place in <strong>ebook/uploadfile.inc</strong> (note that the actual "save"-method is commented out - no files are saved for security reasons!). You would need to uncomment that line to enable the actual file-saving.</p>
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/uploadfile.inc"))%></pre>
 
 <p>The JavaScript script itself loads a final file, <strong>ebook/uploadfb.inc</strong> after a successful upload:</p>
@@ -1596,7 +1618,7 @@ form.writejs "alert('Add JavaScripts');"
 <p><strong>Live example:</strong></p>
 <div class="asplForm alert alert-light" id="upload"></div>
 
-<p>All in all, the upload-demo in <a href="https://demo.asplite.com" target="_blank">https://demo.asplite.com</a> is very similar, but adds sompe very useful feedback-messages for each uploaded file and also summarizes the final result.</p>
+<p>All in all, the upload-demo in <a href="https://demo.asplite.com" target="_blank">https://demo.asplite.com</a> is very similar, but adds some very useful feedback-messages for each uploaded file and also summarizes the final result.</p>
 
 <h3>Create your own</h3>
 
@@ -1624,7 +1646,7 @@ form.writejs "alert('Add JavaScripts');"
 
 <p>aspLite comes with a couple of plugins (VBScript classes) to facilitate emailing, database, rss & atom, file-upload, encryption and picture-manipulation. Plugins can be compared to regular include-files in Classic ASP, except they are only loaded when you initialize them. As soon as a plugin is instantiated, the plugin's-code is available in the ASP page's namespace.</p>
 
-<p>It's possible to develop your own aspLite's plugins, by adding asp files (including a VBScript class) in the appropriate folder: asplite/plugins/myplugin/myplugin.asp. The most important rule is not to response.write anything to a browser from within a plugin. That would make your plugin useless when working with asplForms.</p>
+<p>It's possible to develop your own aspLite plugins, by adding asp files (including a VBScript class) in the appropriate folder: asplite/plugins/myplugin/myplugin.asp. The most important rule is not to response.write anything to a browser from within a plugin. That would make your plugin useless when working with asplForms.</p>
 
 </div>
 
@@ -1632,11 +1654,11 @@ form.writejs "alert('Add JavaScripts');"
 
 <h2>Excursions</h2>
 
-<p>To conclude this ebook, I want to discuss a couple of loose ends. Things I have been developing over the years, whether or not relying on JavaScript frameworks.</p>
+<p>To conclude this ebook, I want to discuss a couple of loose ends. Things I have been developing over the years, whether or not relying on JavaScript frameworks or relating to aspLite.</p>
 
 <h3>Disconnected recordsets</h3>
 
-<p>Disconnected recordsets are regular recordsets. But they have nothing to do with databases. They are full-blown datatables, stored in the computer's RAM. Disconnected recordsets are much smarter than VBScript's dictionaries and arrays. They include data of any given datatype.</p>
+<p>Disconnected recordsets are regular recordsets. But they have nothing to do with databases. They are full-blown datatables, stored in the computer's RAM. Disconnected recordsets are much smarter than VBScript dictionaries and arrays. They are designed to store massive volumes of data of any given datatype.</p>
 
 <p>aspLite comes with a helper-function that returns a disconnected recordset:</p>
 
@@ -1682,7 +1704,7 @@ form.writejs "alert('Add JavaScripts');"
 
 <pre class="alert alert-light">$(document).ready(function() {$('#myTable').DataTable()});</pre>
 
-<p>Even though this technique is useful when you have few 100's of records, it will not work with large datasets as your ASP script would take too long to render the table-string. Therefore, DataTables also supports AJAX-calls to load limited numbers of records based on searches/paging. You can preview a working sample of DataTables with AJAX for Classic ASP/VBScript <a href="https://samples.asplite.com/datatables/" target="_blank">here</a> and <a href="https://github.com/aspLite/DataTables" target="_blank">download its code</a> on Github.</p>
+<p>Even though this technique is useful when you have few 100's of records, it will not work with large datasets as your ASP script would take too long to render the table-string. Therefore, DataTables also support AJAX-calls to load limited numbers of records based on searches/paging. You can preview a working sample of DataTables with AJAX for Classic ASP/VBScript <a href="https://samples.asplite.com/datatables/" target="_blank">here</a> and <a href="https://github.com/aspLite/DataTables" target="_blank">download its code</a> on Github.</p>
 
 <h3>ChromeASP</h3>
 
@@ -1736,7 +1758,8 @@ form.writejs "alert('Add JavaScripts');"
 <p>Apart from the select-control, the following JavaScript is loaded:</p>
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/select2js.inc"))%></pre>
 
-<p>Select2 loads the following ASP script. It searches for matching results in our table "persons" (that we used in previous examples). It returns JSON at the very end of the script: <code>aspl.dumpJson</code>.</p>
+<p>Select2 loads the following ASP script. It searches for matching results in our table "persons" (that we used in previous examples). Select2 sends the parameter "term" to <strong>ebook.asp?asplevent=selectdata&amp;term=x</strong>. Our ASP script returns the JSON-object "results" at the very end of the script: <code>aspl.dumpJson("{""results"": [" & suggestions & "]}")</code>.</p>
+
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/select2data.inc"))%></pre>
 
 <p><strong>Live example (start typing 1 or 2 characters):</strong></p>
@@ -1744,11 +1767,108 @@ form.writejs "alert('Add JavaScripts');"
 <div class="asplForm alert alert-light" id="select2"></div>
 
 <h3>Bootstrap Modal</h3>
+
+<p>A <a href="https://getbootstrap.com/docs/5.3/components/modal/" target="_blank">Bootstrap modal</a> is no doubt my favorite Bootstrap component. I can only think of advantages when using Bootstrap modals:</p>
+
+<ul>
+	<li>They keep a web application light and compact</li>
+	<li>Modals work very well on smaller screens</li>
+	<li>They come in different sizes (small, large, x-large, full-screen)</li>
+	<li>Querystrings to modals are not exposed in the browser's address bar</li>	
+	<li>They operate within their opener's document object model (DOM)</li>
+	<li>They come with attractive slide-in animations</li>
+	<li>They are a perfect fit for asplForm's AJAX capabilities</li>
+</ul>
+
+<p>The only limitation that I have faced in the past, is that you can only have <strong>one modal</strong> at a time. Another thing to keep in mind is that when you're having both large and small modals in your app, they could hide eachother. The larger modals always hide the smaller ones. The only solution is to close (manually or by JavaScript) modals before loading new ones.</p>
+
+<p>The necessary HTML for any Bootstrap modal is usually loaded (only once) together with the main HTML framework. The modal is nothing but an invisible div, somewhere in your body. For this occasion, I use a <strong>large modal</strong> (modal-lg). You can also have small (modal-sm) and x-large modals (modal-xl):</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/modal.inc"))%></pre>
+
+<p>To <strong>open</strong> a modal, you can use::</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/modalbutton.inc"))%></pre>
+
+<p><strong>Live example</strong></p>
+
+<p><%=aspl.loadText("ebook/modalbutton.inc")%></p>
+
+<p>The advantage of a <strong>static backdrop modal</strong> is that the user cannot close the modal by accident (by accidentally clicking it away). I always use static backdrop modals for interactive modals, where user-input is expected/required.</p>
+
+<p>I slightly amended the HTML-code for this default modal. I added 3 id's for the 3 div's that matter:</p>
+
+<ul>
+	<li>id="modalTitle"</li>
+	<li>id="modalBody"</li>
+	<li>id="modalFooter"</li>
+</ul>
+
+<p>Let's load 3 asplForms for these 3 divs:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/modalload.inc"))%></pre>
+
+<p><strong>Live example</strong></p>
+
+<div class="asplForm alert alert-light" id="modalload"></div>
+
+<p>Modals are by no means limited to short feedback messages. It's possible to load fully-featured interactive forms in Bootstrap modals. Let's revisit one of the first forms we used above:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/modalloadfull.inc"))%></pre>
+
+<p><strong>Live example</strong></p>
+
+<div class="asplForm alert alert-light" id="modalloadfull"></div>
+
+<p><strong>Closing</strong> a modal is as easy as:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/modalfooter.inc"))%></pre>
+
 <h3>Ajax Autocomplete for jQuery</h3>
-<h3>PHP ZipArchive in Classic ASP</h3>
+
+<p>I'd love to end this book where it all begun, back in 2005. AJAX was invented at around that time and it became popular when Google started using it for its one and only input field on www.google.com. After all these years, nothing has changed. Google.com still offers just that one input field, serving you with auto-filled suggestions and popular similar searches. That one and only input field has made of Google the strongest software company on the planet. Never change a winning team, isn't that true?</p>
+
+<p>This last excursion is about <a href="https://github.com/devbridge/jQuery-Autocomplete" target="_blank">Ajax Autocomplete for jQuery</a> and how to use it in Classic ASP/VBScript. Ajax Autocomplete for jQuery allows you to easily create autocomplete/autosuggest boxes for text input fields.</p>
+
+<p>There are many similar JavaScript plugins, whether or not relying on jQuery. There is a good implementation for <a target="_blank" href="https://jqueryui.com/autocomplete/">jQuery UI</a> as well. But I have used jQuery-Autocomplete several times before and it never disappointed me. Adding the fact that this plugin has a stable release for 7 years now (since 2017), makes it my preferred auto-fill jQuery plugin.</p>
+
+<p>As always, first things first: add the JavaScript library to the head-section:</p>
+<pre class="alert alert-light">
+&lt;!-- jQuery Autocomplete--&gt;	
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.min.js"&gt;
+</pre>
+
+<p>Let's create a regular input field (type: "text") and load the necessary JavaScript:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/autocomplete.inc"))%></pre>
+
+<p>The following JavaScript in <strong>ebook/autocompletejs.inc</strong> is loaded:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/autocompletejs.inc"))%></pre>
+
+<p>The AJAX-call retrieves data (max 100 records) from our "person" table:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/autocompletedata.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+<div class="asplForm alert alert-light" id="autocomplete"></div>
+
+<div class="mt-4 mb-4 p-4  text-bg-success lead">
+
+<p><strong>Final notes</strong></p>
+
+<p>Classic ASP/VBScript is fun. It always was. It's a capable, fast, server-friendly, light, easy-to-read and understand web development toolbox. In general, it still runs faster than both ASP.NET and PHP ever did on Windows Servers. MicroSoft should never have dropped it. It may not be as powerful, well thought of or structured than ASP.NET always was, Classic ASP had a large following and a reason to exist. It always was - and still is for some - a very popular scripting language.</p>
+
+<p>But Classic ASP lost all its shimmer and shine over the years. The talented developers jumped off the MicroSoft boat long time ago. I wasn't able to jump. I just had too much going on in Classic ASP back then. And all these years I kept on diggin' my development grave for way too long now. I need to make up my mind about my career as a web developer someday soon.</p>
+
+<p>aspLite comes way too late in the game, and it's not much more than a collection of fresh ideas on how to use Classic ASP in 2024. Despite the many kudos I receive, I am probably the only developer who actually uses aspLite and asplForms. I'm still building amazing web apps with it, yes in 2024. I recently even started offering good old Classic ASP applications as PWA's (Progressive Web Applications). There is no way you can tell the difference between a responsive PWA (using Bootstrap) and a native app on Windows PC's and/or Android devices. Apple is a different story though.</p>
+
+<p>The cover of my book shows a recent photo - taken by my wife - of my 15y old daughter, left alone in the woods. Just like we are. Lost but hopeful to find our way out one day, sooner or later.</p>
+
+<p>I hope you liked reading this book. I put all my heart and brains in it.</p>
+
+<p>Pieter Cooreman, April 2024.</p>
+
+</div>
 
 </div>
 
 
+<%=aspl.loadText("ebook/modal.inc")%>
 </body>
 </html>
