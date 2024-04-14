@@ -11,7 +11,7 @@ end if
 %>
 <!doctype html>
 <html lang="en">  
- <head>
+<head>
 	
 	<title>aspLite: a future for ASP/VBScript</title>
  
@@ -31,7 +31,24 @@ end if
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	
+	<!-- select2 -->
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		
+	<!-- DataTables CSS & JS -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+	<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+			
 	<style>
+		
+		pre {
+		 white-space: pre-wrap;       /* css-3 */
+		 white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+		 white-space: -pre-wrap;      /* Opera 4-6 */
+		 white-space: -o-pre-wrap;    /* Opera 7 */
+		 word-wrap: break-word;       /* Internet Explorer 5.5+ */
+		}
+	
 		@media print {
 		.pagebreak { page-break-before: always; } /* page-break-after works, as well */
 		}	
@@ -188,6 +205,17 @@ Auto
 
 </div>
 
+<div class="mt-4 mb-4 p-4 text-bg-secondary lead">
+
+<p><strong>Is Classic ASP nearing EOL?</strong></p>
+
+<p>While writing this book, I came accross some important (but shocking) <a style="color:#FFF" target="_blank" href="https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features">news about VBScript</a>, the default serverside scripting language for Classic ASP ever since Windows NT Server, back in 1996. <i>"VBScript will be available as a feature on demand before being retired in future Windows releases. Initially, the VBScript feature on demand will be preinstalled to allow for uninterrupted use while you prepare for the retirement of VBScript."</i></p>
+
+<p>Be aware that this is about <i>Windows Clients OS (Windows 10, 11 and their successors)</i> and not about Windows Server OS. MicroSoft does not say that VBScript will be removed from Windows Servers in the future. The features that will be deprecated and are no longer developed from Windows Server 2022 onwards can be found <a style="color:#FFF" target="_blank" href="https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server-2022">here</a>. VBScript is not listed there. I wonder how it would work when locally developing Classic ASP/VBScript applications though. If there is no way to do that, it's obvious that this will very quickly lead to the end of Classic ASP.</p>
+
+<p>As Classic ASP relies on VBScript - and there are still millions of websites running on Classic ASP - I really wonder how exactly VBScript's future removal will affect our Classic ASP applications. Unfortunately MicroSoft is not very clear in it's communication about this. But we're used to that. I even wonder if there are still MicroSoft product managers and developers who know what Classic ASP even is and where it relies on. We need better communication from MicroSoft about the future of Classic ASP, that's for sure.</p>
+</div>
+
 <h2>Preface</h2>
 
 <p>Back in 2002, many thousands - difficult to say how many exactly - of ASP/VBScript developers were left alone in the woods by a very small team of MS developers who choose to build ASP.NET and throw ASP and VBScript in the bin. ASP got cancelled, from one day to the other. That's how it felt back then, and that's what really happened looking back on it today.</p>
@@ -206,7 +234,7 @@ Auto
 
 <p>PHP developers had more luck. Between 2000 and 2010 (about the same period of the rise and fall of ASP.NET and Windows Servers) a handful of PHP developer frameworks gained popularity amongst web developers (Zend, CakePHP, Symfony, Laravel, ...). They were there to stay. Everybody felt that. Unlike ASP.NET, these PHP frameworks were <i>built</i> with PHP, they did not want to <i>replace</i> it.</p>
 
-<p>ASP/VBScript developers also needed a developer framework back in 2002. They did not need ASP.NET. A developer framework for ASP/VBScript should have taken care of various shortcomings in ASP/VBScript, workarounds for known bugs or issues, facilitate code behind, become event-driven, bring a solution for the spaghetti-coding, improve coding habits, increase scalability and security. Last but not least, ASP/VBScript needed a framework in order not to reinvent the wheel each time a new project was to be developed. But that framework never happened.</p>
+<p>ASP/VBScript developers also needed a developer framework back in 2002. They did not need ASP.NET. A developer framework for ASP/VBScript should have taken care of various shortcomings in ASP/VBScript, workarounds for known bugs or issues, facilitate code behind, become event-driven, bring a solution for the spaghetti-coding, improve coding habits, url-rewriting (MVC!), increase scalability and security. Last but not least, ASP/VBScript needed a framework in order not to reinvent the wheel each time a new project was to be developed. But that framework never happened.</p>
 
 <p>Modern and popular web development frameworks like Django and Vue are also facilitating the so-called spaghetti-way of coding. It does not prevent those frameworks to gain a large following amongst both beginning and more experienced developers. Same was 100% true for Classic ASP back then.</p>
 
@@ -214,11 +242,9 @@ Auto
 
 <p><strong>Classic ASP was considered sloppy, buggy and weak. A technology for lesser Gods.</strong></p>
 
-<p>At least that's what MicroSoft developers wanted us to believe back then. And I sure identify as a lesser developer God. I'm lucky enough to have other talents.</p>
+<p>At least that's what MicroSoft developers wanted us to believe back then. And I sure identify as a lesser developer God. But the Classic ASP community did have some individuals who did a great job with some very powerful scripts. I remember a pure ASP/VBScript upload class by Lewis Moten that I used a lot in <a class="link" target="_blank" href="https://quickersite.com">QuickerSite</a> and other projects. It got fine-tuned and Unicode-proof by other developers along the years. Others developed very useful encryption classes for Classic ASP (Sha256.asp by Phil Fresle in 2001). I also remember a very useful Captcha image generator-class by Emir Tüzül in 2006. Later on we saw a few popular JSON-classes. </p>
 
-<p>We did have some individuals who did a great job with some very powerful scripts though. I remember a pure ASP/VBScript upload class by Lewis Moten that I used a lot in <a class="link" target="_blank" href="https://quickersite.com">QuickerSite</a> and other projects. It got fine-tuned and Unicode-proof by other developers along the years. Others developed very useful encryption classes for Classic ASP (Sha256, MD5). I remember a very useful Captcha image generator-class. I once developed a class to facilitate Google Maps in ASP applications. I also developed some classes that I always reuse when starting new ASP applications. They relate to security, login, sessions, cookies, database connectivity and CRUD-statements, etc. </p>
-
-<p>But the Classic ASP community also saw some great attempts to develop true frameworks. Michal Gabrukiewicz did a great job with <a class="link" target="_blank" href="http://www.asp-AJAXed.org/">asp-AJAXed</a> but sadly passed away in 2009. More about Michal later. He played an important role when developing aspLite, even though he passed away 10 years before I started developing it. <a href="https://www.codeproject.com/Articles/7922/Classic-ASP-Framework-2-0-Make-your-Classic-ASP-co" target="_blank">CLASP</a> by Christian Caldereon was another great .NET-alike framework for Classic ASP. All in all, developer frameworks for ASP/VBScript developers did not last long and were often developed by a single developer. Apparently it was very hard to build a community around Classic ASP back then. I still blame MicroSoft. MicroSoft has given its own ASP/VBScript tandem very bad press back in those days. Nobody dared to stick his neck out by building a durable ASP/VBScript framework back in 2003-10. I still regret that.</p>
+<p>But the Classic ASP community also saw some great attempts to develop true frameworks. Michal Gabrukiewicz did a great job with <a class="link" target="_blank" href="http://www.asp-AJAXed.org/">asp-AJAXed</a> but sadly passed away in 2009. More about Michal later. He played an important role when developing aspLite, even though he passed away 10 years before I started developing it. <a href="https://www.codeproject.com/Articles/7922/Classic-ASP-Framework-2-0-Make-your-Classic-ASP-co" target="_blank">CLASP</a> by Christian Caldereon was another great .NET-alike framework for Classic ASP. Others came up with Classic ASP MVC implementations, each one of them relying on the very useful 404-rewriting-trick. All in all, developer frameworks for ASP/VBScript developers did not last long and were often developed (and used) by a single developer. Apparently it was very hard to build a community around Classic ASP back then. I still blame MicroSoft. MicroSoft has given its own ASP/VBScript tandem very bad press back in those days. Nobody dared to stick his neck out by building a durable and community-driven ASP/VBScript framework back in 2003-10. I still regret that. We only needed 1 widely used Classic ASP (MVC) framework back in 2000. And we could and should have built it. But MicroSoft developers did not want us to have fun with that, they wanted to have fun themselves. So they created .NET.</p>
 
 <p><strong>No painless nor hassle-free upgrade-path to ASP.NET</strong></p>
 
@@ -240,21 +266,6 @@ Auto
 
 <p>Another pleasant evolution is that - over the years - MicroSoft embraced Open Source technology. At some point in time, it was easier to install both WordPress, Joomla and Drupal on any Windows host than it was to get ASP up and running. The wonderful Web Platform Installer however, was retired in 2022 - again - for inexplicable reasons.</p>
 
-<div class="mt-4 mb-4 p-4 text-bg-warning lead">
-
-<h4>Classic ASP end of life? Fake news.</h4>
-
-<p>Some sites report that Classic ASP is "end of life". The funny thing about this is, these are articles written between 5 and 10 years ago. Even <a href="https://en.wikipedia.org/wiki/Active_Server_Pages" target="_blank">Wikipedia</a> reports that "<em>ASP was supported until 14 January 2020 on Windows 7.</em>"</p>
-
-<p>This is fake news. There is no official EOL policy for Classic ASP. As from IIS7, Classic ASP is implemented as an ISAPI filter in IIS, configured to kick-in ASP.DLL as soon as an *.asp file is requested. It's therefore more accurate to say: Classic ASP will be supported as long as IIS supports ISAPI-filtering. Or even better: the end-of-life of Classic ASP is inseparable from the end-of-life of IIS itself. That will be the day MicroSoft pulls the plug on its Server-products.</p>
-
-<p>Same story for VBScript. VBScript is as dead as ASP, but it's actually a (default) part of <a href="https://en.wikipedia.org/wiki/Windows_Script_Host" target="_blank">Windows Script Host</a> (wscript.exe). Again, there is not a single reason to believe that VBScript will no longer be supported in WSH in the future. WSH is part of the Microsoft Windows Operating System ever since ... Windows 95.</p>
-
-<p>Both Classic ASP and VBScript are <em>underlying&nbsp;</em>technologies. ASP is a toolset for web developers. VBScript is a visual programming language. Other services and software depend on them (both MicroSoft and non-MicroSoft).&nbsp;They're not to be confused with end-user products that need security-fixing, updates, support, legal follow-up,&nbsp;etc. Classic ASP nor VBScript are even included&nbsp;in the "<a href="https://learn.microsoft.com/en-us/lifecycle/products/" target="_blank">Microsoft Products and Services</a>" lifecycle database. IIS is <a href="https://learn.microsoft.com/en-us/lifecycle/products/internet-information-services-iis" target="_blank">included</a> though. It follows the&nbsp;Component Lifecycle Policy, meaning that it's supported as long as the product where it's a component of is supported. That is the Windows Server family.</p>
-
-<p>Therefore, I truly believe that Classic ASP and VBScript will be available in Windows OS for at least another 10-15 years, probably longer. Nobody knows what happens next. This is also true for any other technology you'd use today. So there is not a single reason to not consider Classic ASP/VBScript to develop web applications. I can tell. I'm still doing so. And I love it. As long as someone is coding ASP/VBScript, it's alive. I must admit however that I'm more and more feeling lonely. It appears that most web developers don't even know what Classic ASP exactly is/was. I'm trying to turn the tide. But that will never work on my own...</p>
-
-</div>
 <div class="pagebreak"></div>
 <h2>Story behind aspLite</h2>
 
@@ -318,13 +329,7 @@ Auto
 </div>
 
 <h4>Some final notes before diving into the code</h4>
-<!--
-<p><strong>Access databases?</strong></p>
 
-<p>A lot has been said about using Access databases in web applications (whether or not developed in Classic ASP). Bottom line, most experts say: <em>don't</em>! However, I say: Access is the easiest, fastest, most server-friendly (uses <strong>no RAM</strong>!) and an extremely reliable database to use with Classic ASP. Period. I'm using them for 20 years now. Never ran into a single problem. And today - with these fast SSD drives and powerful CPU's - you're not going to crash an ASP page that's using an Access database. I have gone through all the available stress-tests over the years. I was even getting frustrated at some point, as I have invested a lot of time and money in migrating to SQL Server in the past. All in vain. Waste of time and money. I went back to Access for all my hosted websites in 2018. No regrets.</p>
-
-<p>That said, there are some guidelines and things to keep in mind when using Access in Classic ASP:<ul><li><u>Do not store</u> <strong>binary files</strong> (images, pdf, documents) in Access databases. Store them as regular files. If you're concerned about security, give your files a secure (not downloadable) extension (like .resx) and stream them to users with <em>adodb.stream</em>. aspLite facilitates this with its <em>dumpBinary </em>(see <a href="api.html">API</a>) function.</li><li><u>Do not store</u> <strong>visitor data</strong> (logfiles) in a database. Again, use the file system. There is no point in storing bulk data that you're probably never going to look into afterwards anyway. Also, visitor data are typically stored in the IIS logfiles already. No need to duplicate them.</li><li><u>Do not store</u> <strong>data-backups</strong> in the database itself. Some developers log each and every change to database-records in yet another (copy-)table in order to keep track of changes. In some cases that could be useful. But when using Access, it's very easy to keep a couple of backups to revert to or look into in case data may have been lost or corrupted. Again. Do not store bulk data in an Access database if you're not gonna need it. Make backups... I have a customer on a 250MB Access database. Manually making a copy of that file takes... <em>half a second</em> on a fast SSD drive. So there is no reason to not make Access backups every day, or even every couple of hours.&nbsp;</li><li>Summarizing: <em><strong>only store text and numeric data</strong></em> in Access databases that you're actually going to <em><strong>use</strong> </em>in your application: read, update, delete and search for.</li><li>Make <strong>backups</strong> of your Access mdb files. Do it. Every day, or even every couple of hours for business critical applications. You really don't want to lose data.</li><li>Have a look at the <strong>database-plugin</strong>&nbsp;: /aspLite/plugins/database/database.asp. Ideally, an ASP page opens a connection to a database only ONCE through its lifespan. Opening (and closing) database connections are probably the most time-consuming operations in ASP pages. Doing this only once drastically speeds up your ASP pages. </li><li>There is a limit of <strong>255 concurrent users</strong> for Access databases. However, when using Access in a web application, the "user" (IUSR in most cases) is only connected for a few milliseconds. You wil not often face situations where 255 visitors simultaneously open an ASP page <em>(that is: on the very same millisecond)</em>. Unless you're Google or Facebook... I have never faced that situation in 20 years time.</li><li>There is a limit of <strong>2GB </strong>for Access databases. That's a lot of text and numeric data. Do not let Access databases grow <em>even close</em> to 2GB. I would personally decide to upsize to SQL Server as soon as an Access mdb file grows bigger than 500MB. But that's just me, given the hardware I use and trust (EC2 instance on AWS). I currently do not host a single Access database bigger than 250MB.</li></ul></p>
--->
 
 <p><strong>IDE</strong></p>
 
@@ -782,6 +787,9 @@ aspl.dumpBinary "html/sample.jpg", "Suzuki Samurai.jpg"
 <p>The aspLite demo site comes with some examples:<br><a href="https://demo.aspLite.com/about">https://demo.aspLite.com/about</a> points to a non-existing folder. <code>aspl.pathinfo</code> returns "about" in this case. From there one you can easily serve specific content for the "about" page.</p>
 
 <p>This technique of executing scripts in case of a 404 is available from Windows 2000 (IIS5) onwards. It still works on Windows 2022 servers. But it was never documented or approved by MicroSoft as a valid method. That's a shame, because all this time Classic ASP developers could have made use of this technique to offer user-friendly and SEO-optimized urls. I used this technique in QuickerSite from day one. This has meant a big deal and it has drastically improved SEO for all my hosted Classic ASP customers.</p>
+
+<div class="mt-4 mb-4 p-4  text-bg-dark lead">
+This technique of rewriting 404 urls to "default.asp" could have lead, back in 2000, to a true Classic ASP MVC framework. But that didn't happen. It's only after the release of ASP.NET MVC in 2007(!) that some Classic ASP developers came up with MVC-alike ideas for Classic ASP. But by then, Classic ASP developers were way too often ignored and ridiculized by MicroSoft developers. So nothing happened, again.</div>
 
 <h3>MSXML2.ServerXMLHTTP and MSXML2.DOMDocument</h3>
 
@@ -1475,7 +1483,6 @@ form.writejs "alert('Add JavaScripts');"
 
 <pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/cdo3.inc"))%></pre>
 
-
 <div class="mt-4 mb-4 p-4  text-bg-warning lead">
 <p><strong>Warning: Windows Servers 2025 do no longer come with an SMTP-server!</strong></p>
 <p>Windows Servers always shipped with a built-in SMTP server. When I recently gave Windows Server 2022 a try, it appeared to me that the built-in SMTP server was still there, but it got broken. It was no surprise to read that from Windows Server 2025 onwards, the built-in SMTP service will be removed, as it was part of IIS6. IIS6 will also no longer be available in Windows Server 2025.</p>
@@ -1485,20 +1492,257 @@ form.writejs "alert('Add JavaScripts');"
 </div>
 
 <h3>Database</h3>
-<h3>Access, SQL Server or MySQL?</h3>
-<h3>Encryption</h3>
+
+<p>The most important reason for using VBScript back in 1997-2002 was ADO. ADO is a programming interface to access data in a database. When combined with ODBC (Open DataBase Connectivity), Classic ASP/VBScript developers have always been able to connect to Oracle-databases, PostgreSQL, MySQL, Microsoft SQL Server, Access, Excel, DB2, etc. The sky is the limit.</p>
+
+<p>The only two ADO-objects I'ever used in each and every ASP application, are the <code>ADODB.Connection</code> and the <code>ADODB.Recordset</code>. I actually use 2 types of recordsets: read-only (adLockReadOnly - the default lock-type) and read/write (adLockOptimistic). They're all you'll ever need.</p>
+
+<p>aspLite comes with a plugin and wrapper-class for <code>ADODB.Connection</code> and <code>ADODB.Recordset</code>:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/db.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+<div class="asplForm alert alert-light" id="db"></div>
+
+<p>Every time this eBook is loaded, a "person" gets created in the database. It's an easy trick for me to see how often this book is read. I'm showing only 10 records though.</p>
+
+<p>This little script is doing a lot in the back:</p>
+
+<ul>
+<li><code>dim db : set db=aspL.plugin("database")</code> creates an instance of the database-plugin</li>
+<li><code>db.dbms=1</code> specifies we're dealing with an Access database</li>
+<li><code>db.path="ebook/access.mdb"</code> sets the path to the database</li>
+<li><code>dim rs : set rs=db.rs</code> creates a read/write recordset, next a record is added to the table "person"</li>
+<li><code>set rs=db.execute("select top 10 * from person")</code> creates a read-only recordset and next loops through the records and sends them to the browser.</li>
+</ul>
+
+<p>The database-plugin in aspLite is designed to open a connection to a database <i>only once</i> in the lifespan of an ASP script/page. Opening and closing a connection to a database is time-consuming. You can therefore better avoid to open and close database connections more than once in your ASP script.</p>
+
+<p>Please note that we're using an Access database here, like we do in the aspLite demosite. In case you mainly use read-only recordsets and you use read/write recordsets with care, Access databases are your best friend, even for large and heavily used datasets.</p>
+
+<div class="alert alert-info">
+
+	<p><strong>Access databases?</strong></p>
+
+	<p>A lot has been said about using Access databases in web applications (whether or not developed in Classic ASP). Bottom line, most experts say: <em>don't</em>! However, I say: Access is the easiest, fastest, most server-friendly (uses <strong>no RAM</strong>!) and an extremely reliable database to use with Classic ASP. Period. I'm using them for 20 years now. Never ran into a single problem. And today - with these fast SSD drives and powerful CPU's - you're not going to crash an ASP page that's using an Access database. I have gone through all the available stress-tests over the years. I was even getting frustrated at some point, as I have invested a lot of time and money in migrating to SQL Server in the past. All in vain. Waste of time and money. I went back to Access for all my hosted websites in 2018. No regrets.</p>
+
+	<p>That said, there are some guidelines and things to keep in mind when using Access in Classic ASP:</p>
+	
+	<ul><li><u>Always use <strong>read-only recordsets</strong></u> (they're read-only by default), unless you really need to update records.</li><li><u>Do not store</u> <strong>binary files</strong> (images, pdf, documents) in Access databases. Store them as regular files. If you're concerned about security, give your files a secure (not downloadable) extension (like .resx) and stream them to users with <em>adodb.stream</em>. aspLite facilitates this with its <em>dumpBinary </em></li><li><u>Do not store</u> <strong>visitor data</strong> (logfiles) in a database. Again, use the file system. There is no point in storing bulk data that you're probably never going to look into afterwards anyway. Also, visitor data are typically stored in the IIS logfiles already. No need to duplicate them.</li><li><u>Do not store</u> <strong>data-backups</strong> in the database itself. Some developers log each and every change to database-records in yet another (copy-)table in order to keep track of changes. In some cases that could be useful. But when using Access, it's very easy to keep a couple of backups to revert to or look into in case data may have been lost or corrupted. Again. Do not store bulk data in an Access database if you're not gonna need it. Make backups... I have a customer on a 250MB Access database. Manually making a copy of that file takes... <em>half a second</em> on a fast SSD drive. So there is no reason to not make Access backups every day, or even every couple of hours.&nbsp;</li><li>Summarizing: <em><strong>only store text and numeric data</strong></em> in Access databases that you're actually going to <em><strong>use</strong> </em>in your application: read, update, delete and search for.</li><li>Make <strong>backups</strong> of your Access mdb files. Do it. Every day, or even every couple of hours for business critical applications. You really don't want to lose data.</li><li>Have a look at the <strong>database-plugin</strong>&nbsp;: /aspLite/plugins/database/database.asp. Ideally, an ASP page opens a connection to a database only ONCE through its lifespan. Opening (and closing) database connections are probably the most time-consuming operations in ASP pages. Doing this only once drastically speeds up your ASP pages. </li><li>There is a limit of <strong>255 concurrent users</strong> for Access databases. However, when using Access in a web application, the "user" (IUSR in most cases) is only connected for a few milliseconds. You wil not often face situations where 255 visitors simultaneously open an ASP page <em>(that is: on the very same millisecond)</em>. Unless you're Google or Facebook... I have never faced that situation in 20 years time.</li><li>There is a limit of <strong>2GB </strong>for Access databases. That's a lot of text and numeric data. Do not let Access databases grow <em>even close</em> to 2GB. I would personally decide to upsize to SQL Server as soon as an Access mdb file grows bigger than 500MB. But that's just me, given the hardware I use and trust (EC2 instance on AWS). I currently do not host a single Access database bigger than 350MB.</li></ul>
+
+</div>
+
+<h3>Sha256 (Secure Hash Algorithm)</h3>
+
+<p>The sha256 ASP/VBScript code was originally written by Phil Fresle in 2001. It still works like a charm, after all these years.</p>
+
+<p>The sha256 plugin would typically be used to store user-passwords in a database. Passwords that are "hashed" with sha256 are one-way encrypted. There is no way to restore passwords once they are hashed with sha256.</p>
+
+<p>Example:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/sha256.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+<div class="asplForm alert alert-light" id="sha256"></div>
+
 <h3>Jpeg</h3>
+
+<div class="alert alert-warning">This plugin needs ASP.NET 2.0 (or higher) enabled in IIS. </div>
+
+<p>The Jpeg plugin can be used to resize, recolor an crop jpg/png-files. This is unobtrusive. The <a href="/default/html/smallfile.jpg" target="_blank">orginal jpg-file</a> is not being modified in the process. This plugin works fine for images up to 1MB. When the JPG files are (much) bigger, converting may take some (processing) time and hurts your server's processor.</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/jpeg.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+
+<div class="asplForm alert alert-light" id="jpeg"></div>
+
 <h3>Uploader</h3>
+
+<p>Before I started using Lewis Moten's pure ASP/VBScript upload-class, I used 3rd party Upload-COM components. Back then, the most known company (by far) for developing these components was Persits. They built (and still do) a variety of COM-products for both Classic ASP and ASP.NET.</p>
+
+<p>Uploading files in Classic ASP/VBScript applications has always been very challenging. That was because ASP's Request.form-method did not work when a form was submitted with binary data (enctype="multipart/form-data"). I have always looked at this as one a the most annoying bugs in Classic ASP. And it never got fixed.</p>
+
+<p>Over the years I learned to live with this limitation and I was able to build various fileupload-scripts, whether or not using AJAX to smoothen the user-experience. At some point I even started using a JavaScript function that resized JPG-files before they were uploaded. Very useful in case you needed customers to upload lots of photo's, but you wanted to speed-up the upload-process. The demo of aspLite ships with such an upload form. Check it out!</p>
+
+<p>I amended Lewis Moten's code so that only a limited number of filetypes can be uploaded. I didn't want users to upload ASP(x) or PHP scripts. The following file-types are allowed for upload: "jpg", "jpeg", "jpe", "jp2", "jfif", "gif", "bmp", "png", "psd", "eps", "ico", "tif", "tiff", "ai", "raw", "tga", "mng", "svg", "doc", "rtf", "txt", "wpd", "wps", "csv", "xml", "xsd", "sql", "pdf", "xls", "mdb", "ppt", "docx", "xlsx", "pptx", "ppsx", "artx", "mp3", "wma", "mid", "midi", "mp4", "mpg", "mpeg", "wav", "ram", "ra", "avi", "mov", "flv", "m4a", "m4v", "htm", "html", "css", "swf", "js", "rar", "zip", "ogv", "ogg", "webm", "tar", "gz", "eot", "ttf", "ics", "woff", "cod", "msg", "odt". I agree this is quite an arbitrary list, but so far it did the trick for me.</p>
+
+<p>The example for this ebook uploads one file at a time. That can easily be updated to "multiple" files, simply by adding the attribute <strong>"multiple"</strong> to the HTML-fileupload control in <strong>ebook/uploadhtml.inc</strong>. The upload process may seem a little complex, but it is an AJAX upload-facility after all, giving a nice user-experience without annoying page-reload during the entire process.</p>
+
+<p>Various files are used:</p>
+
+<p>First, the browser requests <strong>/ebook/upload.inc:</strong></p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/upload.inc"))%></pre>
+
+<p>As the actual upload will be performed by a custom JavaScript, I disable aspLite's default "onsubmit" by emptying <code>form.onSubmit=""</code></p>
+
+<p>That ASP script loads 2 files, one HTML snippet (holding the HTML fileupload-control) and one JavaScript file (dealing with the actual upload):</p>
+
+<p>The HTML snippet in <strong>ebook/uploadhtml.inc</strong>:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/uploadhtml.inc"))%></pre>
+
+<p><i>Tip: if you add the attribute "multiple" to the HTML-control above, you allow/enable to upload multiple files.</i></p>
+
+<p>The JavaScript in <strong>ebook/uploadjs.inc</strong>:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/uploadjs.inc"))%></pre>
+
+<p>The actual file-saving takes place in <strong>ebook/uploadfile.inc</strong> (note that the actual "save" is commented out, no files are saved for security reasons!). You would need to uncomment that line to enable the actual file-saving.</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/uploadfile.inc"))%></pre>
+
+<p>The JavaScript script itself loads a final file, <strong>ebook/uploadfb.inc</strong> after a successful upload:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/uploadfb.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+<div class="asplForm alert alert-light" id="upload"></div>
+
+<p>All in all, the upload-demo in <a href="https://demo.asplite.com" target="_blank">https://demo.asplite.com</a> is very similar, but adds sompe very useful feedback-messages for each uploaded file and also summarizes the final result.</p>
+
 <h3>Create your own</h3>
+
+<p>The obligate "helloworld/helloworld.asp" plugin demonstrates how to create your own . The most important rule to keep in mind: <strong>never response.write anything to the browser</strong> from within a plugin. aspLite and aspForm rely on JSON-streams that talk to aspLite.js so they can be converted to HTML. If you expect any output from a plugin, use public functions or variables to expose them to the calling script.</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("asplite/plugins/helloworld/helloworld.asp"))%></pre>
+
+<p>The plugin can be used like this:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/helloworld.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+<div class="asplForm alert alert-light" id="helloworld"></div>
+
+<p>Custom plugins are not limited to asplForms though. You can also directly use them in a more classic way:</p>
+
+<pre class="alert alert-light">&lt;%=aspl.plugin("helloworld").hw%&gt;</pre>
+
+<p><strong>Live example:</strong></p>
+<div class="alert alert-light"><%=aspl.plugin("helloworld").hw%></div>
+
+<div class="mt-4 mb-4 p-4  text-bg-success lead">
+
+<p><strong>Summarizing</strong></p>
+
+<p>aspLite comes with a couple of plugins (VBScript classes) to facilitate emailing, database, rss & atom, file-upload, encryption and picture-manipulation. Plugins can be compared to regular include-files in Classic ASP, except they are only loaded when you initialize them. As soon as a plugin is instantiated, the plugin's-code is available in the ASP page's namespace.</p>
+
+<p>It's possible to develop your own aspLite's plugins, by adding asp files (including a VBScript class) in the appropriate folder: asplite/plugins/myplugin/myplugin.asp. The most important rule is not to response.write anything to a browser from within a plugin. That would make your plugin useless when working with asplForms.</p>
+
+</div>
 
 <div class="pagebreak"></div>
 
 <h2>Excursions</h2>
+
+<p>To conclude this ebook, I want to discuss a couple of loose ends. Things I have been developing over the years, whether or not relying on JavaScript frameworks.</p>
+
 <h3>Disconnected recordsets</h3>
+
+<p>Disconnected recordsets are regular recordsets. But they have nothing to do with databases. They are full-blown datatables, stored in the computer's RAM. Disconnected recordsets are much smarter than VBScript's dictionaries and arrays. They include data of any given datatype.</p>
+
+<p>aspLite comes with a helper-function that returns a disconnected recordset:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/recordset.inc"))%></pre>
+
+<p>An example:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/drs.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+
+<div class="asplForm alert alert-light" id="drs"></div>
+
+<p>Disconnected recordsets are often used to convert large custom datasets for use in JavaScript frameworks, like could be the case in the example above.</p>
+
+<p>The possibilities are endless. And there are a <a href="https://windows.epfl.ch/devguru/ado/recordset_fieldscollection.html" target="_blank">lot of different datatypes</a> you can store in a recordset. You can also sort, filter and delete records in a recordset. In the above example, the recordset is sorted by lastname and firstname (both ascending).</p>
+
+<p>One usecase for disconnected recordsets could be to list the 100 most recently modified files in a folder. By default, files are sorted alphabetically when browsing them. Adding the <code>file.DateLastModified</code> to a recordset, allows to sort files by modification date, instead of filename.</p>
+
+<p>Also, sometimes you may want to create recordsets based on complex database queries, combined with other data from other datasources. The sky is the limit. Again, recordsets don't have anything to do with databases. You can use them to organize and export any data of any type.</p>
+
 <h3>Datatables</h3>
+
+<p><a href="https://datatables.net/" target="_blank">DataTables</a> sure is one of the most popular jQuery plugins. <i>"DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive enhancement, that adds all of these advanced features to any HTML table." (source: <a href="https://datatables.net/" target="_blank">https://datatables.net/</a>)</i></p>
+
+<p>These past few years, I have successfully used DataTables in various Classic ASP/VBScript applications, in various ways.</p>
+
+<p>Long story short: all you need to get started with DataTables, is include both the CSS and JS libraries in your HTML header (head-section):</p>
+
+<pre class="alert alert-light">&lt;!-- DataTables CSS &amp; JS --&gt;
+&lt;link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" /&gt;
+&lt;script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"&gt;&lt;/script&gt;</pre>
+
+<p>From there on, things get very exciting very quickly:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/datatables.inc"))%></pre>
+
+<p><strong>Live example:</strong></p>
+
+<div class="asplForm alert alert-light" id="datatables"></div>
+
+<p>This quick 'n dirty example demonstrates how a regular HTML table - filled with records from our person-table - miraculously turns into a searchable, sortable, pageable and striped DataTable. All it takes is the CDN-includes and:</p>
+
+<pre class="alert alert-light">$(document).ready(function() {$('#myTable').DataTable()});</pre>
+
+<p>Even though this technique is useful when you have few 100's of records, it will not work with large datasets as your ASP script would take too long to render the table-string. Therefore, DataTables also supports AJAX-calls to load limited numbers of records based on searches/paging. You can preview a working sample of DataTables with AJAX for Classic ASP/VBScript <a href="https://samples.asplite.com/datatables/" target="_blank">here</a> and <a href="https://github.com/aspLite/DataTables" target="_blank">download its code</a> on Github.</p>
+
 <h3>ChromeASP</h3>
+
+<p>I developed ChromeASP in 2023, as I needed a solid PDF creator for a customer. ChromeASP is a free ASP/VBScript libary that uses <strong>Headless Chrome</strong> (yes, Google's browser) to generate PDF and JPG files. The code and samples for ChromeASP can be <a href="https://github.com/PieterCooreman/ChromeASP" target="_blank">downloaded on Github</a>.</p>
+
+<p>Live example: <a href="http://pdf.asplite.com/" target="_blank">http://pdf.asplite.com/</a></p>
+
+<p>Classic ASP/VBScript developers never had an easy (and free) way to generate PDF and/or JPG/PNG files. This ASP script uses headless Chrome to get the job done. Chrome converts both websites (urls) and html-snippets to pdf and/or jpg (screenshots). As Chrome is creating the PDF files, there are absolutely no limits when it comes to HTML/CSS/JavaScript support. Chrome simply supports them ALL! Chrome even automatically fixes all sorts of errors and inconsistencies in your HTML. Even the most powerful and well known PHP PDF-libraries are looking at headless Chrome as their unbeatable successor. Check it out!</p> 
+
 <h3>SheetJS</h3>
+
+<p><a href="https://sheetjs.com/" target="_blank">SheetJS</a> is an Open Source JavaScript library that reads, edits and exports spreadsheets.</p>
+
+<p>The aspLite <a href="https://demo.asplite.com" target="_blank">demo site</a> includes a working example. First, <strong>/default/asp/sampleform30.resx</strong> is loaded:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("default/asp/sampleform30.resx"))%></pre>
+
+<p>When the Submit-button is clicked, the following JavaScript is loaded by the browser:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("default/html/sampleform30.resx"))%></pre>
+
+<p>Apart from manipulating the button-class and -html, this JavaScript loads <strong>/default/asp/sampleform30_data</strong> to get data:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("default/asp/sampleform30_data.resx"))%></pre>
+
+<p>The function <code>aspl.json.dump(rs)</code> in <a href="default.asp?asplevent=sampleform30_data" target="_blank">/default/asp/sampleform30_data</a> generates the <strong>JSON-data</strong> needed by SheetJS to generate an XLSX-file in <code>function createFile(data)</code>. Long story short: very few lines of Classic ASP/VBScript and JavaScript code generate a pretty nice 5000-records (Unicode-proof) XLSX-file.</p>
+
 <h3>Select2</h3>
+
+<p><a href="https://select2.org/" target="_blank">Select2</a> presents itself as <i>"The jQuery replacement for select boxes"</i>.</p>
+
+<p>Again, all it takes is to include the necessary CSS and JavaSript in head-section of your HTML page:</p>
+
+<pre class="alert alert-light">
+&lt;link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"&gt;&lt;/script&gt;
+</pre>
+
+<p>Basic example:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/select2basic.inc"))%></pre>
+
+<p>This line: <code>$('#js-data-example-basic').select2();</code> turns a regular HTML selectbox in a searchable control. This is extremely useful for larger option-sets, like lists of countries, cities, etc.</p>
+
+<p><strong>Live example:</strong></p>
+
+<div class="asplForm alert alert-light" id="select2basic"></div>
+
+<p>However, in some cases, it's impossible to pre-load all options in your selectbox. Imagine you want to be able to select a contact person out of a database with thousands of persons. You can't possibly preload such large option-sets in an HTML selectbox. Therefore, Select2 comes with an AJAX-solution:</p>
+
+<p>Advanced example using <strong>AJAX</strong>:</p>
+
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/select2.inc"))%></pre>
+
+<p>Apart from the select-control, the following JavaScript is loaded:</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/select2js.inc"))%></pre>
+
+<p>Select2 loads the following ASP script. It searches for matching results in our table "persons" (that we used in previous examples). It returns JSON at the very end of the script: <code>aspl.dumpJson</code>.</p>
+<pre class="alert alert-light"><%=server.htmlEncode(aspl.loadText("ebook/select2data.inc"))%></pre>
+
+<p><strong>Live example (start typing 1 or 2 characters):</strong></p>
+
+<div class="asplForm alert alert-light" id="select2"></div>
+
 <h3>Bootstrap Modal</h3>
 <h3>Ajax Autocomplete for jQuery</h3>
 <h3>PHP ZipArchive in Classic ASP</h3>
