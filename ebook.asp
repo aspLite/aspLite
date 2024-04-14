@@ -226,7 +226,7 @@ Auto
 
 <p>Be aware that this is about <i>Windows Clients OS (Windows 10, 11 and their successors)</i> and not about Windows Server OS. MicroSoft does not say that VBScript will be removed from Windows Servers in the future. The features that will be deprecated and are no longer developed from Windows Server 2022 onwards can be found <a style="color:#FFF" target="_blank" href="https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server-2022">here</a>. VBScript is not listed there. I wonder how it would work when locally developing Classic ASP/VBScript applications though. If there is no way to do that, it's obvious that this will very quickly lead to the end of Classic ASP.</p>
 
-<p>As Classic ASP relies on VBScript - and there are still millions of websites running on Classic ASP - I really wonder how exactly VBScript's future removal will affect our Classic ASP applications. Unfortunately MicroSoft is not very clear in it's communication about this. But we're used to that. I even wonder if there are still MicroSoft product managers and developers who know what Classic ASP even is and where it relies on. We need better communication from MicroSoft about the future of Classic ASP, that's for sure.</p>
+<p>As Classic ASP relies on VBScript - and there are still millions of websites running on Classic ASP - I really wonder how exactly VBScript's future removal will affect our Classic ASP applications. Unfortunately MicroSoft is not very clear in its communication about this. But we're somehow used to that. We need better communication from MicroSoft about the future of Classic ASP, that's the very least we can expect.</p>
 </div>
 
 <h2>Preface</h2>
@@ -1858,7 +1858,7 @@ form.writejs "alert('Add JavaScripts');"
 
 <p>aspLite comes way too late in the game, and it's not much more than a collection of fresh ideas on how to use Classic ASP in 2024. Despite the many kudos I receive, I am probably the only developer who actually uses aspLite and asplForms. I'm still building amazing web apps with it, yes in 2024. I recently even started offering good old Classic ASP applications as PWA's (Progressive Web Applications). There is no way you can tell the difference between a responsive PWA (using Bootstrap) and a native app on Windows PC's and/or Android devices. Apple is a different story though.</p>
 
-<p>The cover of my book shows a recent photo - taken by my wife - of my 15y old daughter, left alone in the woods. Just like we are. Lost but hopeful to find our way out one day, sooner or later.</p>
+<p>The cover of my book shows a recent photo - taken by my wife - of our 15y old daughter, left alone in the woods. Just like we are. Lost but hopeful to find our way out one day, sooner or later.</p>
 
 <p>I hope you liked reading this book. I put all my heart and brains in it.</p>
 
