@@ -1762,7 +1762,7 @@ form.writejs "alert('Add JavaScripts');"
 
 <h3>Select2</h3>
 
-<p><a href="https://select2.org/" target="_blank">Select2</a> presents itself as <i>"The jQuery replacement for select boxes"</i>.</p>
+<p><a href="https://select2.org/" target="_blank">Select2</a> presents itself as <i>"The jQuery replacement for select boxes"</i>. <i>Select2 gives you a customizable select box with support for searching, tagging, remote data sets, infinite scrolling, and many other highly used options.</i> (source: https://select2.org/) </p>
 
 <p>Again, all it takes is to include the necessary CSS and JavaSript in head-section of your HTML page:</p>
 
