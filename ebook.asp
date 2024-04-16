@@ -283,7 +283,7 @@ Auto
 
 <p>We also saw some interesting attempts to provide an IDE for Classic ASP developers. We had two flavors of "Webmatrix", an all-in-one IDE for both MicroSoft and Open Source technologies. I liked both versions of Webmatrix a lot. But they both suddenly disappeared at some point in time.</p>
 
-<p>So far, all Visual Studio editions supported intellisense and code-completion for Classic ASP. And IIS Express supports Classic ASP to the full 100%. Today, even the Windows 10 and 11 Home editions come with a full version of IIS. In a way, nowadays it's much easier to start developing in ASP/VBScript than it was back then. You needed Windows 2000 Professional or a Server back in 2000. Today you only need to know how to get Classic ASP up and running. Unfortunately, very few Windows users know how, and they couldn't care less. This illustrates how things turned out for MicroSoft. In 2000, companies spent quite some money on Windows 2000 Pro licenses. Today, MicroSoft ships its entire development framework and its dependencies for free. But even that never turned the tide.</p>
+<p>So far, all Visual Studio editions supported intellisense and code-completion for Classic ASP. And IIS Express supports Classic ASP/VBScript to the full 100%. Today, even the Windows 10 and 11 Home editions come with a <i>full version of IIS</i>. In a way, nowadays it's much easier to start developing in ASP/VBScript than it was back then. You needed Windows 2000 Professional or a Server back in 2000. Today you only need to know how to enable ASP to it up and running. Unfortunately, very few Windows users know how, and they couldn't care less. This illustrates how things turned out for MicroSoft. In 2000, companies spent quite some money on Windows 2000 Pro licenses. Today, MicroSoft ships its entire development framework and its dependencies for free. But even that never turned the tide.</p>
 
 <p>Another pleasant evolution is that - over the years - MicroSoft embraced Open Source technology. At some point in time, it was easier to install both WordPress, Joomla and Drupal on any Windows host than it was to get ASP up and running. The wonderful Web Platform Installer however, was retired in 2022 - again - for inexplicable reasons.</p>
 
@@ -329,10 +329,10 @@ Auto
 <p>As for the end-of-life policy of ASP, MicroSoft has published <a href="https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/general/asp-support-windows" target="_blank">this very short article</a> on the 25th of January 2022. In short: both ASP and IIS support lifetimes are tied to the support lifecycle of the host operating system, in most cases a Windows Server. The support lifecycle for Windows 2022 is Oct 14 2031. The support lifecycle for Windows 2025 will probably be 3 years later, somewhere the end of 2034. In all honesty, I believe we will be able to host Classic ASP/VBScript web applications for at least 10 more years in optimal conditions (somewhere until 2035). After that, things might become tricky. </p>
 
 <div class="mt-4 mb-4 p-4 text-bg-warning">
-<p><strong>VBScript is about to be removed from Windows clients</strong></p>
+<p><strong>VBScript is about to be removed from Windows OS</strong></p>
 <p>In Oct 2023, MicroSoft announced that <a href="https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features-resources" class="link" target="_blank" style="color:#000">VBScript will retire</a>. MicroSoft says: <i>"VBScript will be available as a feature on demand before being retired in future Windows releases. Initially, the VBScript feature on demand will be pre installed to allow for uninterrupted use while you prepare for the retirement of VBScript."</i> </p>
 
-<p>It's not very clear how this will have an impact on Classic ASP (often using VBScript as its default and preferred server-side language). My guess is that MicroSoft wants to remove client-side VBScript starting with Windows 11 and 12. This decision does not necessarily have an impact on server-side VBScript as it's still used by IIS and Classic ASP. VBScript is not listed amongst the <a href="https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server-2022" style="color:#000" class="link" target="_blank">features to be removed or no longer developed starting with Windows Server 2022</a>. But once again, Classic ASP gets bad press and there is - again - a lot of fake news going around due to MicroSoft's poor communication on this matter.</p>
+<p>This announcement is - again - very bad news for Classic ASP/VBScript developers. Even though VBScript will probably be available as an optional feature for Windows OS for quite some years (10-15?), Classic ASP gets bad press.</p>
 </div>
 
 <p><strong>Suggestion: turn ASP/VBScript into Open Source</strong></p>
@@ -363,7 +363,10 @@ Auto
 
 <p><strong>IDE</strong></p>
 
-<p>Classic ASP developers have been lacking a dedicated IDE (Integrated Development Environment) for some time now. I therefore prefer to use&nbsp;<a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to use. Notepad++ also comes with some basic code-completion and intellisense. Notepad++ can also be freely installed and used on any Windows Server. I often use it to search for specific texts and strings in over 1 million files. No problem at all. Others may want to use <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> instead.</p>
+<p>Classic ASP developers have been lacking a dedicated IDE (Integrated Development Environment) for some time now. I therefore prefer to use <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a>. It's free, lightning fast, reliable and it's very easy to use. Notepad++ also comes with some basic code-completion and intellisense for ASP. Notepad++ can also be freely installed and used on any Windows Server. I often use it to search for specific texts and strings in over 1 million files. No problem at all. Others may want to use <strong><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a></strong> instead.</p>
+
+<p><strong>Visual Studio Code</strong> is MicroSoft's Open Source and free code-editor. Its community is offering some very useful extensions for Classic ASP/VBScript developers. They usually include syntax highlighting, intellisense, and code navigation for VBScript inside Active Server Pages (ASP) files. When combined with one of the available IIS Express Extensions, Visual Studio Code can be considered a useful IDE (Integrated development environment) for Classic ASP development.</p>
+
 
 <p><strong>Where to host ASP sites today?</strong></p>
 
@@ -391,9 +394,9 @@ Furthermore, W3Schools.com (that website is developed in Classic ASP) is probabl
 
 <div class="mt-4 mb-4 p-4  text-bg-success">
 
-<p class="lead">24 years ago, Classic ASP was about Request() and Response(). Ins and outs. Simply put.</p>
-<p class="lead">Today, any server-side web framework is still about just that.</p>
-<p class="lead">For everything else you can - in 2024 - rely on JavaScript frameworks. No more need for spaghetti-ASP or HTML server-controls.</p>
+<p>24 years ago, Classic ASP was about Request() and Response(). Ins and outs. Simply put.</p>
+<p>Today, any server-side web framework is still about just that.</p>
+<p>For everything else you can - in 2024 - rely on JavaScript frameworks. No more need for spaghetti-ASP or HTML server-controls.</p>
 
 </div>
 
@@ -409,7 +412,7 @@ Furthermore, W3Schools.com (that website is developed in Classic ASP) is probabl
 
 <p>The <a href="https://demo.asplite.com" target="_blank">aspLite demo</a> puts the following front-end HTML/CSS/JS frameworks/plug-ins at work: Bootstrap, jQuery, jQuery UI Datepicker, JSZip, SheetJS, jsPDF, CkEditor, CodeMirror and DataTables. </p>
 
-<div class="alert alert-success"><p class="lead">aspLite does not rely on 3rd party COM components. It only relies on the built-in VBScript components. Therefore aspLite works on basically each and every shared hosting solution out there, but also on each and every Windows host with ASP installed.</p></div>
+<div class="alert alert-success"><p>aspLite does not rely on 3rd party COM components. It only relies on the built-in VBScript components. Therefore aspLite works on basically each and every shared hosting solution out there, but also on each and every Windows host with ASP installed.</p></div>
 
 <h4>Install aspLite as a virtual directory for code-reuse reasons?</h4>
 
@@ -1968,7 +1971,7 @@ form.writejs "alert('Add JavaScripts');"
 
 <div class="mt-4 mb-4 p-4  text-bg-secondary">
 <p><strong>About the author</strong></p>
-<p>Pieter Cooreman (born 1972) started his developer career in 1998. As a die-hard expert in Classic ASP/VBScript - the popular web development technology between 1997 and 2003 - Pieter developed his way through basically any type of web application. Between 2007 and 2014, Pieter developed QuickerSite webCMS, an ASP/VBScript CMS loved and still used by thousands. At its peak, worldwide more than 6000 QuickerSites were hosted on a variety of hosting solutions for a wide variety of customers and industries. As Classic ASP is still around and evolved in many directions, Pieter always loves to share ideas through ASP code and snippets. In 2020 the pieces of a complex puzzle started to fall in place with aspLite, an AJAX-first developer framework for Classic ASP/VBScript developers. Writing this book felt like a roller coaster and sure led to yet new ideas. Classic ASP/VBScript may be dead, but will be hostable for at least another decade. So we can better have fun with it. Because fun is key!</p>
+<p>Pieter Cooreman (born 1972) started his developer career in 1998. As a die-hard expert in Classic ASP/VBScript - the most popular web development technology between 1997 and 2003 - Pieter developed his way through basically any type of web application. Between 2007 and 2014, Pieter developed and supported QuickerSite webCMS, a free ASP/VBScript CMS loved and still used by thousands. At its peak, worldwide more than 6000 QuickerSites were hosted on a variety of hosting solutions for a wide variety of customers and industries. As Classic ASP is still around, Pieter always loves to share ideas through ASP code and snippets. In 2020 the pieces of a complex puzzle started to fall in place with aspLite, an AJAX-first developer framework for Classic ASP/VBScript developers. Writing this book felt like a roller coaster and sure led to new ideas. Classic ASP/VBScript may be dead, but will be hostable for at least another decade on Windows Servers. So we can better have fun with it. Because fun is key!</p>
 </div>
 
 </div>
