@@ -1970,6 +1970,9 @@ form.writejs "alert('Add JavaScripts');"
 <hr>
 
 <div class="mt-4 mb-4 p-4  text-bg-secondary">
+<img align="left" style="width:170px;margin-right:25px;margin-bottom:25px" class="img-thumbnail rounded" alt="Pieter Cooreman" src="ebook/pietercooreman.jpg" />
+
+
 <p><strong>About the author</strong></p>
 <p>Pieter Cooreman (born 1972) started his developer career in 1998. As a die-hard expert in Classic ASP/VBScript - the most popular web development technology between 1997 and 2003 - Pieter developed his way through basically any type of web application. Between 2007 and 2014, Pieter developed and supported QuickerSite webCMS, a free ASP/VBScript CMS loved and still used by thousands. At its peak, worldwide more than 6000 QuickerSites were hosted on a variety of hosting solutions for a wide variety of customers and industries. As Classic ASP is still around, Pieter always loves to share ideas through ASP code and snippets. In 2020 the pieces of a complex puzzle started to fall in place with aspLite, an AJAX-first developer framework for Classic ASP/VBScript developers. Writing this book felt like a roller coaster and sure led to new ideas. Classic ASP/VBScript may be dead, but will be hostable for at least another decade on Windows Servers. So we can better have fun with it. Because fun is key!</p>
 </div>
