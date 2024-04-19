@@ -22,7 +22,8 @@ for i=1 to 10
 	rs.Update
 next
 
-'always movefirst before exporting the recordset! by default, after a loop like the one we do, the recordset is EOF (end of file)!
+'always movefirst before exporting the recordset! 
+'by default, after a loop like the one we do, the recordset is EOF (end of file)!
 rs.movefirst 
 
 'apply sorting

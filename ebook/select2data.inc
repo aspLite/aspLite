@@ -19,7 +19,8 @@ if len(trim(aspl.getRequest("term")))>0 then
 	set rs=db.rsOpen(sql)
 	
 	while not rs.eof
-		suggestions=suggestions & "{ ""text"": """ & aspl.json.escape(rs("lastname")) & ", " & aspl.json.escape(rs("firstname")) & """, ""id"": """ & rs("id") & """ },"
+		suggestions=suggestions & "{ ""text"": """ & aspl.json.escape(rs("lastname")) & ", "
+		suggestions=suggestions & aspl.json.escape(rs("firstname")) & """, ""id"": """ & rs("id") & """ },"
 		rs.movenext
 	wend 
 	

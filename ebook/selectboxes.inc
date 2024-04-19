@@ -10,9 +10,12 @@ next
 if form.postback then
 
 	dim feedback : feedback="<div class=""alert alert-success"">"
-	feedback=feedback & "<p>Selectbox value: <strong>" & aspl.htmlencode(aspl.convertNmbr(aspl.getRequest("selectbox"))) & "</strong></p>"
-	feedback=feedback & "<p>Radio value: <strong>" & aspl.htmlencode(aspl.convertNmbr(aspl.getRequest("radio")))& "</strong></p>"
-	feedback=feedback & "<p>Checkbox values: <strong>" & aspl.htmlencode(aspl.getRequest("checkboxes"))& "</strong></p>"	
+	feedback=feedback & "<p>Selectbox value: <strong>"
+	feedback=feedback & aspl.htmlencode(aspl.convertNmbr(aspl.getRequest("selectbox"))) & "</strong></p>"
+	feedback=feedback & "<p>Radio value: <strong>"
+	feedback=feedback & aspl.htmlencode(aspl.convertNmbr(aspl.getRequest("radio")))& "</strong></p>"
+	feedback=feedback & "<p>Checkbox values: <strong>"
+	feedback=feedback & aspl.htmlencode(aspl.getRequest("checkboxes"))& "</strong></p>"	
 	form.write feedback & "</div>"
 
 end if

@@ -18,21 +18,26 @@
 
 <p><br></p>
 <center>
-<table class="container600" width="600" align="center" cellspacing="0" cellpadding="0" style="box-shadow: 10px 10px 5px #aaaaaa;font-family:Arial;font-size:16px;width:600px;background-color:#FFF;">
+<table class="container600" width="600" align="center" cellspacing="0" cellpadding="0" 
+style="box-shadow: 10px 10px 5px #aaaaaa;font-family:Arial;font-size:16px;width:600px;background-color:#FFF;">
 	<tr>
 		<td style="background-color:#444444;width:40px">
 		
 			<table style="color:#FFFFFF;" cellpadding="10">
 				<tr>
-					<td><a href="https://setlistplanner.com" target="_blank"><img border=0 alt="Setlist Planner Logo" src="https://secure.setlistplanner.com/apps/playthatgig/image/logo.png" /></a></td>
-					<td style="background-color:#444444;color:#FFFFFF;"> <strong>Setlist Planner</strong> - <a style="color:#FFFFFF" target="_blank" href="http://www.setlistplanner.com">www.setlistplanner.com</td>
+					<td><a href="https://setlistplanner.com" target="_blank">
+					<img border=0 alt="Setlist Planner Logo" src="https://secure.setlistplanner.com/apps/playthatgig/image/logo.png" /></a>
+					</td>
+					<td style="background-color:#444444;color:#FFFFFF;"> <strong>Setlist Planner</strong> - 
+					<a style="color:#FFFFFF" target="_blank" href="http://www.setlistplanner.com">www.setlistplanner.com</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<a href="https://setlistplanner.com" target="_blank"><img border=0 style="width:100%;border-style:none" alt="Setlist Planner Banner" src="https://secure.setlistplanner.com/apps/playthatgig/image/banner.jpg" /></a></td>
+			<a href="https://setlistplanner.com" target="_blank"><img border=0 style="width:100%;border-style:none" 
+			alt="Setlist Planner Banner" src="https://secure.setlistplanner.com/apps/playthatgig/image/banner.jpg" /></a></td>
 	</tr>
 	
 	<tr>
@@ -48,6 +53,7 @@
 			</table>
 		
 		</td>
+		</td>
 		
 	</tr>
 	
@@ -55,8 +61,8 @@
 		<td colspan=2 style="text-align:center;background-color:#209CEE;color:#FFFFFF;">
 
 			<table align="center" style="color:#FFFFFF;" cellpadding="20">
-				<tr><td><strong>Setlist Planner</strong> - <a style="color:#FFFFFF" target="_blank" href="http://www.setlistplanner.com">www.setlistplanner.com</td>
-				
+				<tr><td><strong>Setlist Planner</strong> - <a style="color:#FFFFFF" target="_blank" 
+				href="http://www.setlistplanner.com">www.setlistplanner.com</td>				
 				</tr>
 			</table>
 			

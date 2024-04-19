@@ -1,6 +1,6 @@
 class cls_asplite
 
-	'VERSION: 0.1.2
+	'VERSION: 1.0
 
 	private debug,startTime,stopTime,plugins,p_fso,cacheprefix,multipart,p_json,p_randomizer,p_formmessages,p_value
 
@@ -13,7 +13,7 @@ class cls_asplite
 
 		'-------------------------------------------
 		Response.Buffer				= true
-		Response.CharSet			= "utf-8" 'does not work on IIS5 (Windows 2000 Servers) - comment it out when IIS5 is used!
+		Response.CharSet			= "utf-8" 'does not work on IIS5 (Windows 2000), comment it out for IIS5
 		Response.ContentType		= "text/html"
 		Response.CacheControl		= "no-cache"
 		Response.AddHeader "pragma", "no-cache"

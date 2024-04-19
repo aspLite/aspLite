@@ -7,7 +7,10 @@ dim db : set db=aspl.plugin("database")
 db.path="ebook/access.mdb"
 
 dim rs : set rs=db.rs
-rs.open("select top 100, lastname from person where lastname like '%" & aspl.sqli(aspl.getRequest("query")) & "%' order by lastname asc")
+dim sql : sql="select top 100, lastname from person "
+sql=sql & " where lastname like '%" & aspl.sqli(aspl.getRequest("query")) & "%' order by lastname asc"
+
+rs.open(sql)
 
 if not rs.eof then
 	aspl.dumpJson(aspl.json.toJSON("suggestions",rs.getRows,false))
