@@ -2,7 +2,8 @@ createXLS()
 
 function createXLS () {
 	$('#generateExcel').html('Tabledata is requested')
-	$('#generateExcel').append(' <span class="spinner-border spinner-border-sm text-dark" role="status"><span class="visually-hidden"></span></span>')
+	$('#generateExcel').append(' <span class="spinner-border spinner-border-sm text-dark" role="status">');
+	$('#generateExcel').append('<span class="visually-hidden"></span></span>')
 	$('#generateExcel').removeClass('btn-success')
 	$('#generateExcel').addClass('btn-warning')
 	aspAjax ("get",aspLiteAjaxHandler,"asplEvent=sampleform30_data",createFile)	
