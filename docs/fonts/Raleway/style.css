@@ -1,0 +1,126 @@
+@font-face {
+   font-family: 'Raleway';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 100;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/100.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 200;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/200.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 300;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/300.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 500;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/500.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 600;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/600.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 700;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/700.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 800;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/800.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: normal;
+   font-display: swap;
+   font-weight: 900;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/900.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: regular;
+   font-display: swap;
+   font-weight: 400;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/regular.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 100;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/100italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 200;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/200italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 300;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/300italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 400;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 500;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/500italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 600;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/600italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 700;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/700italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 800;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/800italic.ttf') format('truetype');
+}
+@font-face {
+   font-family: 'Raleway';
+   font-style: italic;
+   font-display: swap;
+   font-weight: 900;
+   src: url('file:///D:/inetpub/wwwroot/demo.asplite.com/docs/fonts/Raleway/900italic.ttf') format('truetype');
+}
