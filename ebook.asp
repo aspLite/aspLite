@@ -149,6 +149,11 @@ end function
 		.autocomplete-group { padding: 2px 5px; }
 		.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
 	</style>
+	
+	<meta name="twitter:card" content="summary_large_image"/>
+	<meta name="twitter:image:src" content="ebook/cover.jpg">
+	<meta property="og:image" content="ebook/cover.jpg">
+	<meta name="twitter:title" content="aspLite - a future for Classic ASP development">
 
 </head>
 
@@ -244,7 +249,7 @@ Auto
 
 <div class="mt-4 mb-4 p-4 text-bg-dark">
 
-<p>Ever since 2002, Classic ASP/VBScript developers have lived in the Dark Middle Ages. We're being ignored, laughed at, made fun of and expelled from MicroSoft's Promised Land.NET. We're loose ends, lone wolves. We live in an endless and sad diASPora, cut off from the Mothership. This hurts. This has to stop. Rather sooner than later.</p>
+<p>Ever since 2002, Classic ASP/VBScript developers have lived in the Dark Middle Ages. We're being ignored, laughed at, made fun of and expelled from MicroSoft's Promised Land.NET. We're loose ends, lone wolves. This hurts. This has to stop. Rather sooner than later.</p>
 
 </div>
 
