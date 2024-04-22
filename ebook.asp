@@ -61,7 +61,7 @@ end function
 		}	
 		
 		code {font-size:1.05em}
-		pre {font-weight:700;padding:25px;}	 
+		pre {font-weight:700;padding:25px;overflow:auto}	 
 	
 		.bd-placeholder-img {
 		font-size: 1.125rem;
@@ -139,12 +139,10 @@ end function
 		.bd-mode-toggle .dropdown-menu .active .bi {
 		display: block !important;
 		}
-    </style>
-	
-	<style>
-		.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+   
+		.autocomplete-suggestions { border: 1px solid #999; background: #FFF; color:#000; overflow: auto; }
 		.autocomplete-suggestion { padding: 2px 5px; color:#000; white-space: nowrap; overflow: hidden; }
-		.autocomplete-selected { background: #F0F0F0; }
+		.autocomplete-selected { background: #F0F0F0; color:#000; }
 		.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
 		.autocomplete-group { padding: 2px 5px; }
 		.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
@@ -154,6 +152,10 @@ end function
 	<meta name="twitter:image:src" content="ebook/cover.jpg">
 	<meta property="og:image" content="ebook/cover.jpg">
 	<meta name="twitter:title" content="aspLite - a future for Classic ASP development">
+	
+	<script>
+		$(document).ready(function() { $('#popupModal').modal('show'); });		
+	</script>
 
 </head>
 
@@ -214,16 +216,8 @@ Auto
 
 <div class="container-fluid p-5">
 
-<img src="/ebook/cover.jpg" style="width:100%" alt="aspLite: a future for ASP/VBScript">
-
-<div class="mb-4 mt-4 lead">
-
-<p>This book is about Classic ASP and VBScript and how they changed my life in 1998. And how MicroSoft took it back in 2002.</p>
-
-<p>If you want to discuss the various topics covered in this book, do not hesitate to start a discussion on <a href="https://github.com/aspLite" target="_blank">https://github.com/aspLite</a>.</p>
-
-<p class="text-end">Pieter Cooreman, April 2024</p>
-
+<div class="mb-5">
+	<img src="/ebook/cover.jpg" style="border-radius:15px;width:100%" alt="aspLite: a future for ASP/VBScript">
 </div>
 
 <a name="chapter1"></a>
@@ -239,17 +233,19 @@ Auto
 	<li class="list-group-item"><a class="link" href="#chapter8">Final notes</a></li>
 </ol>
 
+<p></p>
+
 <div class="pagebreak"></div>
 <a name="chapter2"></a>
 <h2>Preface</h2>
 
 <p>Back in 2002, many thousands - difficult to say how many exactly - of ASP/VBScript developers were left alone in the woods by a very small team of MS developers who chose to build ASP.NET and throw ASP and VBScript in the bin. ASP got canceled, from one day to the other. That's how it felt back then, and that's what really happened looking back on it today.</p>
 
-<p>I sometimes try to picture it like this: In 2002, Microsoft had just had a great couple of years. Windows 95, 98, 98SE, 2000 Professional, NT Server, 2000 Advanced Server. Not to mention Windows Me and the various XP editions. MicroSoft also had Internet Explorer, Office, SQL Server and many other products. These were all great products that were loved by basically any gamer, student, school, non-for-profit and  all businesses. Between 1997 and 2002, MicroSoft was the leading software company worldwide, without any doubt. They sure could afford to make mistakes and make some wrong decisions. And so they did. That's how Classic ASP/VBScript ended up in the bin, without much ado. Just like that. But - as always - pride comes before a fall.</p>
+<p>I sometimes try to picture it like this: In 2002, Microsoft had just had a great couple of years. Windows 95, 98, 98SE, 2000 Professional, NT Server, 2000 Advanced Server. Not to mention Windows Me and the various XP editions. MicroSoft also had Internet Explorer, Office, SQL Server and many other products. These were all great products that were loved by basically any gamer, student, school, non-for-profit and  all businesses. Between 1997 and 2003, MicroSoft was the leading software company worldwide, without any doubt. They sure could afford to make mistakes and make some wrong decisions. And so they did. That's how Classic ASP/VBScript ended up in the bin, without much ado. Just like that. But - as always - pride comes before a fall.</p>
 
 <div class="mt-4 mb-4 p-4 text-bg-dark">
 
-<p>Ever since 2002, Classic ASP/VBScript developers have lived in the Dark Middle Ages. We're being ignored, laughed at, made fun of and expelled from MicroSoft's Promised Land.NET. We're loose ends, lone wolves. This hurts. This has to stop. Rather sooner than later.</p>
+Ever since 2002, Classic ASP/VBScript developers have lived in the Dark Middle Ages. We're being ignored, laughed at, made fun of and expelled from MicroSoft's Promised Land.NET. We're loose ends, lone wolves. This hurts. This has to stop. Rather sooner than later.
 
 </div>
 
@@ -257,7 +253,7 @@ Auto
 
 <div class="alert alert-success">As a 10 year old kid, I was a lucky owner of a <strong>Commodore 64</strong>. C64's had the programming language <strong>Basic</strong> on board. I remember how I spent evenings trying to code my way around very "basic" tasks and animations. VBScript did have a lot in common with that Basic on my Commodore 64. When I started my developer career in 1998, using VBScript felt like coming home after all these years.</div>
 
-<p>But I was not the only one. ASP/VBScript were very popular web development and scripting technologies between 1997 and 2002. They were MicroSoft's first answer to another rapidly growing web technology and competitor: PHP and Apache servers. We all know how that turned out. However, most businesses preferred ASP over PHP back then. ASP was running faster, integrated well with other MicroSoft products (Active Directory, SQL Server, Office, ...), had a rapidly growing community and supported (multi-threaded) COM-extensions. But above all, ASP/VBScript was very easy to learn, even for people like me, without a degree in computer science whatsoever. VBScript was a basic, visual, case insensitive and lousy typed scripting language. And I loved it.</p>
+<p>But I was not the only one. ASP/VBScript were very popular web development and scripting technologies between 1997 and 2003. They were MicroSoft's first answer to another rapidly growing web technology and competitor: PHP and Apache servers. We all know how that turned out. However, most businesses preferred ASP over PHP back then. ASP was running faster, integrated well with other MicroSoft products (Active Directory, SQL Server, Office, ...), had a rapidly growing community and supported (multi-threaded) COM-extensions. But above all, ASP/VBScript was very easy to learn, even for people like me, without a degree in computer science whatsoever. VBScript was a basic, visual, case insensitive and lousy typed scripting language. And I loved it.</p>
 
 <p>Even though ASP was a huge success, MicroSoft developers decided to pull the plug and amuse themselves with... how many ... well what the heck, 25 versions of ASP.NET. ASP.NET never was nowhere near a popular web development technology. ASP/VBScript was. In its early years, ASP.NET was left far behind by PHP frameworks. Today full stack JavaScript frameworks have taken over.</p>
 
@@ -277,13 +273,13 @@ Auto
 
 <p><strong>No painless nor hassle-free upgrade-path to ASP.NET</strong></p>
 
-<p>Back in those days, ASP/VBScript developers did not have a painless nor hassle-free upgrade path to ASP.NET. VBScript was not supported by ASP.NET. Oh yes, for small web applications, one or two ASP pages, it was doable. MicroSoft even provided some automated conversion tools. But they were very limited. In 2003, by the time ASP.NET 1.1 fixed some very annoying bugs in 1.0, I was dealing with 3 extremely large ASP/VBScript code bases. Tons of includes files, classes, functions and routines. It was impossible to refactor them to ASP.NET without spending at least a year. And for what reason? ASP.NET did not offer much extra compared to ASP/VBScript at that time. In 2002, ASP.NET was often considered <i>too little too late</i> by seasoned MicroSoft developers. But what the heck, I didn't have the time for all that. I was building a business around my developing, selling and communication skills. And I really didn't need ASP.NET for that.</p>
+<p>Back in those days, ASP/VBScript developers did not have a painless nor hassle-free upgrade path to ASP.NET. VBScript was not supported by ASP.NET. Oh yes, for small web applications, one or two ASP pages, it was doable. MicroSoft even provided some automated conversion tools. But they were very limited. In 2003, by the time ASP.NET 1.1 fixed some very annoying bugs in 1.0, I was dealing with 3 extremely large ASP/VBScript code bases. Tons of includes files, classes, functions and routines. It was impossible to refactor them to ASP.NET without spending at least a year. And for what reason? ASP.NET did not offer much extra compared to ASP/VBScript at that time. In 2002, ASP.NET was often considered <i>too little too late</i> by seasoned MicroSoft developers. But what the heck, I didn't have the time for all that. I was building a business around my developing, selling and communication skills. And I really didn't need ASP.NET for that. Classic ASP/VBScript did it for me. Always has.</p>
 
 <p>There was (and still is!) another very good reason to stay away from .NET back in 2002-2005! .NET web applications always needed much more RAM compared to Classic ASP apps. I mean: MUCH more RAM. An average Classic ASP application (still today) only needs a maximum of 30MB of RAM - that is - when done the aspLite-way (or MVC), using the one-entry-point method. Therefore it was perfectly possible to host between 50 and 100 Classic ASP applications on a single Windows Server with 4GB of RAM (a very common RAM-amount for production servers back in 2000). ASP.NET web applications easily need 10 times more. For a business owner this is a no-brainer. If you are/were into ASP.NET development, you need more and stronger hardware. The cost of building a SAAS hosting-business - like I have been doing all my life - is at least two/three times higher when using ASP.NET.</p>
 
 <p>As soon as a technology gets introduced and gains a large user base - as was the case for ASP/VBScript between 1997 and 2002 - it's impossible to stop it. People will always be prepared to live with its limitations, work their way around them or learn to live with them. That's exactly what I did back then, and I'm still doing now with aspLite. And I'm not alone. It's a human thing. And we're all humans after all. MicroSoft misjudged that.</p>
 
-<p>We're 25 years later now. There are still loads (millions) of Classic ASP/VBScript applications out there, most of them serving dynamic websites for more than 25 years now. Still MicroSoft refuses to clearly communicate about the EOL policy of Classic ASP. There IS no EOL policy for ASP/VBScript. So after all these years, we - ASP/VBScript developers - are STILL left in the woods. Alone. Without even the slightest clue on when exactly MicroSoft will pull the plug.</p>
+<p>We're 25 years later now. There are still loads (millions) of Classic ASP/VBScript applications out there, most of them serving dynamic websites for more than 25 years now. Still MicroSoft refuses to clearly communicate about the EOL policy of Classic ASP. There IS no EOL policy for ASP. So after all these years, we - Classic ASP developers - are STILL left in the woods. Alone. Without even the slightest clue on when exactly MicroSoft will pull the plug.</p>
 
 <p>I learned to live with that even though I still feel sad about it. In 2020 I decided to develop a new framework for ASP/VBScript developers: <a class="link" href="https://aspLite.com" target="_blank">aspLite</a>. I will be working on aspLite for the rest of my life. I somehow love this technology. And it just won't end. Classic ASP is fun! And fun is key.</p>
 
@@ -295,7 +291,7 @@ Auto
 
 <p>So far, all Visual Studio editions supported intellisense and code-completion for Classic ASP. And even all IIS Express-versions support Classic ASP/VBScript to the bone. Today, even the Windows 10 and 11 Home editions come with a <i>full version of IIS</i>. In a way, nowadays it's much easier to start developing in ASP/VBScript than it was back then. You needed Windows 2000 Professional or a Server back in 2000. Today you only need to know how to <i>enable</i> ASP to get it up and running. Unfortunately, very few Windows users still know how to do that, and they couldn't care less. This illustrates how things turned out for MicroSoft. In 2000, companies spent quite some money on Windows 2000 Pro licenses. Today, MicroSoft ships its entire development framework and its dependencies for free. But even that never turned the tide.</p>
 
-<p>Another pleasant evolution is that - over the years - MicroSoft embraced Open Source technology. At some point in time, it was easier to install both WordPress, Joomla and Drupal on any Windows host than it was to get ASP applications up and running. The wonderful Web Platform Installer however, was retired in 2022 - again - for inexplicable reasons. Probably because it didn't bring any money in and only pushed developers even more towards Open Source developer frameworks. I'm curious about how long <strong>Visual Studio Code</strong> will survive. The most popular plug-ins for VSC are about ... Python. Not quite a MicroSoft technology either.</p>
+<p>Another pleasant evolution is that - over the years - MicroSoft embraced Open Source technology. At some point in time, it was easier to install both WordPress, Joomla and Drupal on any Windows host than it was to get ASP applications up and running. The wonderful Web Platform Installer however, was retired in 2022 - again - for inexplicable reasons. Probably because it didn't bring any money in and only pushed developers towards Open Source developer frameworks even more. I'm curious about how long <strong>Visual Studio Code</strong> will survive. The most popular plug-ins for VSC are about ... Python. Not quite a MicroSoft technology either.</p>
 
 <div class="pagebreak"></div>
 <a name="chapter3"></a>
@@ -305,7 +301,7 @@ Auto
 
 <p>Rather than use the COM components made by that RnD team, I quickly realized that it was actually much easier (and much quicker) to develop custom classes in VBScript to fully meet the customer's requirements. Actually, using those COM components slowed down our applications and the development cycles. So in the end, we didn't use them. It somehow meant the end of that company. And I was in it for something... well, a lot actually. When I left that company in 2002, I took its biggest customer with me and started my own company. Shame on me. But hey... that's life. I was a 30 year old entrepreneur after all. I simply had to do it.</p>
 
-<p>VBScript was the first programming language I learned to use. Full stack developers will claim that VBScript is useless and cannot be called a serious programming language. I disagree. VBScript is <strong>visual </strong>(easy to read/write, case-insensitive coding, no nested curly braces {{{{{}}}}} - I mean...), <strong>basic</strong> (easy to understand, no complex statements) and <strong>scripted</strong> (just-in-time, no compilation). These 3 properties made a <em><strong>huge success</strong></em> of VBScript back in 1997-2002. VBScript can also be used together with ActiveX Data Objects (ADO) - a high-level, easy-to-use interface to OLE databases (Access, SQL Server, Oracle, etc). ADO is what made VBScript a success. And it still does.</p>
+<p>VBScript was the first programming language I learned to use. Full stack developers will claim that VBScript is useless and cannot be called a serious programming language. I disagree. VBScript is <strong>visual </strong>(easy to read/write, case-insensitive coding, no nested curly braces {{{{{}}}}} - I mean...), <strong>basic</strong> (easy to understand, no complex statements) and <strong>scripted</strong> (just-in-time, no compilation). These 3 properties made a <em><strong>huge success</strong></em> of VBScript back in 1997-2003. VBScript can also be used together with ActiveX Data Objects (ADO) - a high-level, easy-to-use interface to OLE databases (Access, SQL Server, Oracle, etc). ADO is what made VBScript a success. And it still does.</p>
 
 <p><strong>QuickerSite</strong></p>
 
@@ -341,7 +337,7 @@ Auto
 <p><strong>VBScript is about to be removed from Windows OS. Really?</strong></p>
 <p>In Oct 2023, MicroSoft announced that <a href="https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features-resources" class="link" target="_blank" style="color:#000">VBScript will retire</a>. MicroSoft says: <i>"VBScript will be available as a feature on demand before being retired in future Windows releases. Initially, the VBScript feature on demand will be pre installed to allow for uninterrupted use while you prepare for the retirement of VBScript."</i> </p>
 
-<p>This announcement is - again - very confusing. Will this also affect Classic ASP/VBScript web applications relying on server-side VBScript in IIS? Or will VBScript only be removed as a client-based scripting language in Windows Scripting Host? These are two completely different things. MicroSoft's communication is not very clear on this matter.</p>
+<p>This announcement is - again - very confusing. Will this also affect Classic ASP/VBScript web applications relying on server-side VBScript in IIS? Or will VBScript only be removed as a client-based scripting language in Windows Scripting Host? These are two completely different things. MicroSoft's communication is not very clear on this matter. First tests on early builds of Windows 11 however confirm that after VBScript's removal from Windows O/S, IIS no longer serves ASP pages using VBScript. A 500-error message is returned.</p>
 </div>
 
 <p><strong>Suggestion: turn ASP/VBScript into Open Source</strong></p>
@@ -390,11 +386,7 @@ Auto
 
 <p>Out of many online resources you find when searching for "learn Classic ASP", I personally liked '<a href="https://asplite.com/assets/files/A%20Practical%20Guide%20to%20ASP%203.0.pdf" target="_blank">A Practical Guide to Microsoft Active Server Pages 3.0</a>' by Manas Tungare a lot. He was so kind to allow me to redistribute this guide on this website. These 70 well written pages are about everything you need to get started using Classic ASP and VBScript.</p>
 
-Furthermore, W3Schools.com (that website is developed in Classic ASP) is probably the best online resource to start as a Classic ASP/VBScript web developer. Before you learn Classic ASP, you must learn HTML and CSS (and grab some basic JavaScript as well). Make sure to also check their very complete VBScript and ADO reference. ADO can be used to access databases from Classic ASP pages. </p>
-
-<p><strong>About this e-book</strong></p>
-
-<p>This book ain't really a book. It's an ASP script, using aspLite as its preferred framework. It appears that the easiest way to write a book about aspLite is using it while I'm trying to explain it. All the code that I include and comment, is also executed whenever there is a "live preview". This book uses an Access database, so you would have to enable 32bit applications for your IIS application pool.</p>
+Furthermore, <a href="https://www.w3schools.com/asp/asp_introduction.asp" target="_blank">W3Schools.com</a> (that website is developed in Classic ASP) is probably the best online resource to start as a Classic ASP/VBScript web developer. Before you learn Classic ASP, you must learn HTML and CSS (and grab some basic JavaScript as well). Make sure to also check their very complete VBScript and ADO reference. ADO can be used to access databases from Classic ASP pages. </p>
 
 <div class="pagebreak"></div>
 <a name="chapter4"></a>
@@ -593,7 +585,7 @@ aspl.executeASP(aspl.XMLhttp(hw,false))
 %&gt;
 </pre>
 
-<p>The file <a href="https://demo.aspLite.com/ebook/helloworld.txt" target="_blank">https://demo.aspLite.com/default/html/helloworld.txt</a> does actually exist and serves some valid ASP code. aspLite loads the file and executes it. I'm not sure MicroSoft ever intended to use executeGlobal this way. But it works. I'm sure you can see lots of great opportunities, but also lots of extremely dangerous scenarios.</p>
+<p>That <a href="https://demo.aspLite.com/ebook/helloworld.txt" target="_blank">file</a> does actually exist and serves some valid ASP code. aspLite loads the file and executes it. I'm not sure MicroSoft ever intended to use executeGlobal this way. But it works. I'm sure you can see lots of great opportunities, but also lots of extremely dangerous scenarios.</p>
 
 <p><strong>Live example:</strong></p>
 
@@ -770,7 +762,7 @@ aspl.exec("scripts/" &amp; aspl.getRequest("script") &amp; ".inc")
 
 <div class="mt-4 mb-4 p-4  text-bg-info">
 <h4>FileSystemObject vs ADODB.Stream</h4>
-<p>While the VBScript FileSystemObject is needed to browse files and folders, aspLite uses <strong>ADODB.Stream</strong> to read, write and save files, both binaries and texts. The FileSystemObject does not support binary files and has major issues with dealing with the UTF-8 (Unicode) charset. ADODB.Stream however, perfectly handles binaries and Unicode characters.</p>
+<p>While the VBScript FileSystemObject is needed to browse files and folders, aspLite uses <strong>ADODB.Stream</strong> to read, write and save files, both binaries and texts. The FileSystemObject does not support binary files and shows major issues when dealing with the UTF-8 (Unicode) charset. ADODB.Stream however, perfectly handles binaries and Unicode characters.</p>
 </div>
 
 <h4>aspl.loadText(path)</h4>
@@ -838,7 +830,7 @@ aspl.saveBinaryData server.mappath("html/copy.jpg"), file
 %&gt;
 </pre>
 
-<p>Another use I can think of is to copy a file from anywhere to your local drive. The example below downloads (GET) the JPG file on <a href="https://demo.aspLite.com/default/html/smallfile.jpg" target="_blank">https://demo.aspLite.com/default/html/smallfile.jpg</a> and saves it to your local html folder.</p>
+<p>Another use I can think of is to copy a file from anywhere to your local drive. The example below downloads (GET) the <a href="https://demo.aspLite.com/default/html/smallfile.jpg" target="_blank">JPG file</a> and saves it to your local html folder.</p>
 
 <pre class="alert alert-light">
 &lt;!-- #include file="aspLite/aspLite.asp"--&gt;
@@ -1297,7 +1289,7 @@ hidden("value")="12345"
 <div class="mt-4 mb-4 p-4  text-bg-primary">
 <p>This JSON-stream is generated by the JSON class in asplite/asplite.asp. It's a 100% copy of the JSON class I found in ASP-Ajaxed on <a target="_blank" style="color:#FFF" class="link" href="https://github.com/ASP-Ajaxed/asp-ajaxed">https://github.com/ASP-Ajaxed/asp-ajaxed</a>. It was originally developed by Michal Gabrukiewicz. His passing in 2009 was surely one of the reasons for this framework not to become what it could have been. With aspLite, I want to honour Michal for his great work on ASP-Ajaxed. He was one of the best ASP developers ever. I consider aspLite at least 50% Michal's work.</p>
 
-<p>JSON parsers are amongst the most popular Classic ASP repositories on GitHub.</p>
+<p>Nowadays JSON parsers are amongst the most popular Classic ASP repositories on GitHub.</p>
 
 <ul>
 	<li><a class="link" style="color:#FFF" target="_blank" href="https://github.com/rcdmk/aspJSON">aspJSON</a> by Ricardo Souza</li>
@@ -1585,7 +1577,7 @@ form.writejs "alert('Add JavaScripts');"
 
 <h3>Database</h3>
 
-<p>The most important reason for using VBScript back in 1997-2002 was ADO (ActiveX Data Objects). ADO is a programming interface to access data in a database. When combined with ODBC (Open DataBase Connectivity), Classic ASP/VBScript developers have always been able to connect to Oracle-databases, PostgreSQL, MySQL, Microsoft SQL Server, Access, Excel, DB2, etc. The sky's the limit.</p>
+<p>The most important reason for using VBScript back in 1997-2003 was ADO (ActiveX Data Objects). ADO is a programming interface to access data in a database. When combined with ODBC (Open DataBase Connectivity), Classic ASP/VBScript developers have always been able to connect to Oracle-databases, PostgreSQL, MySQL, Microsoft SQL Server, Access, Excel, DB2, etc. The sky's the limit.</p>
 
 <p>The only two ADO-objects I'ever used in each and every ASP application, are the <code>ADODB.Connection</code> and the <code>ADODB.Recordset</code>. I actually use 2 types of recordsets: read-only (adLockReadOnly - the default lock-type) and read/write (adLockOptimistic). They're all you'll ever need.</p>
 
@@ -1798,10 +1790,10 @@ form.writejs "alert('Add JavaScripts');"
 <p>When the Submit-button is clicked, the following JavaScript is loaded by the browser:</p>
 <pre class="alert alert-light"><%=pre(server.htmlEncode(aspl.loadText("default/html/sampleform30.resx")))%></pre>
 
-<p>Apart from manipulating the button-class and -html, this JavaScript loads <strong>/default/asp/sampleform30_data</strong> to get data:</p>
+<p>Apart from manipulating the button-class and -html, this JavaScript loads <strong>/default/asp/sampleform30_data.resx</strong> to get its data:</p>
 <pre class="alert alert-light"><%=pre(server.htmlEncode(aspl.loadText("default/asp/sampleform30_data.resx")))%></pre>
 
-<p>The function <code>aspl.json.dump(rs)</code> in <a href="default.asp?asplevent=sampleform30_data" target="_blank">/default/asp/sampleform30_data</a> generates the <strong>JSON-data</strong> needed by SheetJS to generate an XLSX-file in <code>function createFile(data)</code>. Long story short: very few lines of Classic ASP/VBScript and JavaScript code generate a pretty nice 5000-records (Unicode-proof) XLSX-file.</p>
+<p>The function <code>aspl.json.dump(rs)</code> in <a href="default.asp?asplevent=sampleform30_data" target="_blank">/default/asp/sampleform30_data.resx</a> generates the <strong>JSON-data</strong> needed by SheetJS to generate an XLSX-file in <code>function createFile(data)</code>. Long story short: very few lines of Classic ASP/VBScript and JavaScript code generate a pretty nice 5000-records (Unicode-proof) XLSX-file.</p>
 
 <h3>Select2</h3>
 
@@ -1869,7 +1861,7 @@ form.writejs "alert('Add JavaScripts');"
 
 <p><%=aspl.loadText("ebook/modalbutton.inc")%></p>
 
-<p>The advantage of a <strong>static backdrop modal</strong> is that the user cannot close the modal by accident (by accidentally clicking it away). I always use static backdrop modals for interactive modals, where user-input is expected/required.</p>
+<p>The advantage of a <strong>static backdrop modal</strong> is that the user cannot close the modal by accident (by accidentally clicking it away). I always use static backdrop modals whenever user-input is expected/required.</p>
 
 <p>I slightly amended the HTML-code for this default modal. I added 3 id's for the 3 div's that matter:</p>
 
@@ -1975,8 +1967,6 @@ integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="ano
 
 <p>I recently even started offering good old Classic ASP applications as PWA's (Progressive Web Applications). There is no way you can tell the difference between a responsive PWA (using Bootstrap) and a native app on Windows PC's and/or Android devices. Apple is a different story though.</p>
 
-<p>The cover of my book shows a recent photo - taken by my wife - of our 15y old daughter, left alone in the woods. Just like we are. Lost but hopeful to find our way out one day, sooner or later.</p>
-
 <p>I hope you liked reading this book. I put all my heart and brains in it.</p>
 
 <p>Pieter Cooreman, April 2024.</p>
@@ -1993,7 +1983,41 @@ integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="ano
 
 </div>
 
-
 <%=aspl.loadText("ebook/modal.inc")%>
+
+<div class="modal fade" id="popupModal" data-bs-backdrop="static" data-bs-keyboard="false" 
+tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">aspLite, a future for Classic ASP development</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		
+		<p>This ebook is about Classic ASP and VBScript and how they changed my life in 1998. And how MicroSoft took it back in 2002. Ever since MicroSoft's <a href="https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features-resources" target="_blank">recent announcement</a> (October 2023) to retire and eventually remove VBScript from Windows O/S, Classic ASP/VBScript is in palliative care. Clock is ticking. But Classic ASP/VBScript can survive for many years to come. We can better make the best of it.</p>
+		
+		<p><strong>About this e-book</strong></p>
+
+		<p>This book ain't really a book. It's an ASP script, using <a href="https://asplite.com" target="_blank">aspLite</a> as its preferred framework. It appears that the easiest way to write a book about aspLite is using it while I'm trying to explain it. All the code that I include and comment, is also executed whenever there is a "live preview". This book uses an Access database, so you would have to enable 32bit applications for your IIS application pool.</p>
+
+		<p><strong>Discuss</strong></p>
+
+		<p>If you want to discuss the topics covered in this book, do not hesitate to start a discussion on our <a href="https://github.com/orgs/aspLite/discussions" target="_blank">GitHub</a>.</p>
+	  
+		<p><strong>Cover</strong></p>
+		
+        <p>The cover of my book shows a recent photo - taken by my wife - of our 15y old daughter, left alone in the woods. Just like we are. Lost but hopeful to find our way out one day, sooner or later.</p>
+		
+		<p><i>Pieter Cooreman, April 2024</i></p>
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Continue reading</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
