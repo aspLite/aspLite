@@ -5,7 +5,7 @@ db.path="ebook/access.mdb"
 
 dim i,table
 
-table="<table class=""table table-striped"" id=""myTable"">"
+table="<table class=""table table-striped"" id=""myTable"" style=""width:100%"">"
 table=table & "<thead>"
 table=table & "<tr>"
 table=table & "<th>ID</th>"
