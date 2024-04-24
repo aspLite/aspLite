@@ -1,0 +1,46 @@
+<!-- #include file="aspLite/aspLite.asp"-->
+<%
+dim file, message, uploader : set uploader=aspl.plugin("uploader")
+
+uploader.save server.mappath("upload")
+
+if uploader.UploadedFiles.count>0 then
+
+	message="<p>These " & uploader.UploadedFiles.count & " files were uploaded:</p><ul>"
+
+	for each file in  uploader.UploadedFiles
+
+		set file=uploader.UploadedFiles(file)
+
+		message=message & "<li>"
+		message=message & "Filename: " & file.filename & " / "
+		message=message & "Filetype: " & file.filetype & " / "
+		message=message & "Filesize: " & round(file.length/1024,0) & " kB"
+		message=message & "</li>"
+
+	next
+
+	message=message & "</ul>"
+
+end if
+%>
+
+<!doctype html>
+<html lang="en">  
+
+	<head>	
+		<title>Basic upload in aspLite</title>   
+		<meta charset="utf-8">
+	</head>
+
+	<body>
+
+		<%=message%>
+
+		<form action="default.asp" method="post" enctype="multipart/form-data">	
+			<input multiple type="file" name="file" required><br><br>
+			<input type="submit" value="Upload">
+		</form>
+
+	</body>
+</html>

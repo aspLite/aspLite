@@ -1643,15 +1643,27 @@ form.writejs "alert('Add JavaScripts');"
 
 <h3>Uploader</h3>
 
-<p>Before I started using Lewis Moten's pure ASP/VBScript upload-class, I had used 3rd party Upload-COM components. Back then, the most known company (by far) for developing these components was Persits. They built (and still do) a variety of COM-products for both Classic ASP and ASP.NET.</p>
+<p>Before I started using Lewis Moten's pure ASP/VBScript upload-class (he developed it in 2002), I had used various 3rd party COM components to upload files in Classic ASP. Back then, the most known company (by far) for developing these components was Persits. They built (and still do) a variety of COM-products for both Classic ASP and ASP.NET.</p>
 
-<p>Uploading files in Classic ASP/VBScript applications has always been very challenging. That was because ASP's Request.form-method did not work when a form was submitted with binary data (enctype="multipart/form-data"). I have always looked at this as one a the most annoying bugs in Classic ASP. And it never got fixed.</p>
-
-<p>Over the years I learned to live with this limitation and I was able to build various fileupload-scripts, whether or not using AJAX to smoothen the user-experience. At some point I even started using a JavaScript function that resized JPG-files before they were uploaded. Very useful in case you needed customers to upload lots of photos, but you wanted to speed-up the upload-process. The demo of aspLite ships with such an upload form. Check it out!</p>
+<p>Uploading files in Classic ASP/VBScript applications has always been very challenging. After some time though, I was able to build various fileupload-scripts, whether or not using AJAX to smoothen the user-experience. At some point I even started using a JavaScript function that resized JPG-files before they were uploaded. Very useful in case you needed customers to upload lots of photos, but you wanted to speed-up the upload-process. The demo of aspLite ships with such an upload form. Check it out!</p>
 
 <p>I amended Lewis Moten's code so that only a limited number of filetypes can be uploaded. I didn't want users to upload ASP(x) or PHP scripts. The following file-types are allowed for upload: "jpg", "jpeg", "jpe", "jp2", "jfif", "gif", "bmp", "png", "psd", "eps", "ico", "tif", "tiff", "ai", "raw", "tga", "mng", "svg", "doc", "rtf", "txt", "wpd", "wps", "csv", "xml", "xsd", "sql", "pdf", "xls", "mdb", "ppt", "docx", "xlsx", "pptx", "ppsx", "artx", "mp3", "wma", "mid", "midi", "mp4", "mpg", "mpeg", "wav", "ram", "ra", "avi", "mov", "flv", "m4a", "m4v", "htm", "html", "css", "swf", "js", "rar", "zip", "ogv", "ogg", "webm", "tar", "gz", "eot", "ttf", "ics", "woff", "cod", "msg", "odt". I agree this is quite an arbitrary list, but so far it did the trick for me.</p>
 
-<p>The example for this ebook uploads one file at a time. That can easily be updated to "multiple" files, simply by adding the attribute <strong>"multiple"</strong> to the HTML-fileupload control in <strong>ebook/uploadhtml.inc</strong>. The upload process may seem a little complex, but it is an AJAX upload-facility after all, giving a nice user-experience without annoying page-reloads during the entire process.</p>
+<p>In its most basic mode, a (multiple) file-upload form using the Uploader-class in aspLite could look like this:</p>
+<pre class="alert alert-light"><%=pre(server.htmlEncode(aspl.loadText("ebook/basicupload.txt")))%></pre>
+
+<p>The actual upload takes place in:</p>
+<pre class="alert alert-light">
+uploader : set uploader=aspl.plugin("uploader")
+
+uploader.save server.mappath("upload")
+</pre>
+
+<p>This assumes you have a folder "upload" relative to where you run the script. This sample also lists all uploaded files, their names, types and sizes. This is where you could rename them, copy them, process them further, etc. I am often asked what it takes to store files in a database. I strongly recommend to never store files in a database. Use the filesystem! You can store 4,294,967,295 files into a single folder on a Windows NTFS filesystem. If you need more... use 2 folders.</p>
+
+<p><strong>Advanced AJAX uploading in aspLite</strong></p>
+
+<p>The more advanced AJAX-driven example for this ebook uploads one file at a time. That can easily be updated to "multiple" files, simply by adding the attribute <strong>"multiple"</strong> to the HTML-fileupload control in <strong>ebook/uploadhtml.inc</strong>. The upload process may seem a little complex, but it is an AJAX upload-facility after all, giving a nice user-experience without annoying page-reloads during the entire process.</p>
 
 <p>Various files are used:</p>
 
