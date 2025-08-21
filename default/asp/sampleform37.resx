@@ -1,0 +1,47 @@
+<%
+dim form : set form=aspl.form
+
+dim defaultValue : defaultValue="<p><strong>Quill Editor: Smart WYSIWYG HTML editor</strong></p>"
+	
+'form-submitted
+if form.postback then
+
+	defaultValue=aspl.getRequest("editor_content")
+	
+	'feedback
+	dim feedback : set feedback=form.field("element")
+	feedback.add "html","Saved!"
+	feedback.add "tag","div"
+	feedback.add "class","alert alert-info"		
+	
+	'you can build it here already. This will stop further exection		
+	'defaultValue now holds the content!
+	'form.build()
+
+end if	
+
+'##########################################################################################
+
+dim editor_container : set editor_container=form.field("plain")
+editor_container.add "html","<div id=""editor-container"">" & defaultValue & "</div>"
+
+dim editor_content : set editor_content=form.field("hidden")
+editor_content.add "name","editor_content"
+editor_content.add "id","editor_content"
+
+form.write aspl.loadText("default/html/sampleform37.resx")
+
+'##########################################################################################
+
+dim submit : set submit=form.field("submit")
+submit.add "style","margin-top:10px"
+submit.add "name","btnAction"
+submit.add "html","Save"
+submit.add "class","btn btn-primary"
+submit.add "onclick","return copyContent();"
+
+'##########################################################################################
+
+form.build()
+
+%>
