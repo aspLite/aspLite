@@ -17,6 +17,18 @@
 	<!-- Font for Canvas experiment -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 	
+	
+	<!-- Quill JS -->
+	<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+	
+	
+	<!-- Quill CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+	
+	<style>		 
+    #editor-container { height: 250px;font-family: sans-serif; }
+	</style>
+	
 	<title>aspLite demo</title>
 	
 	<style>
@@ -303,17 +315,17 @@
 							<hr>
 							<p class="card-text"><small class="text-muted">/default/asp/sampleform24.resx</small></p>	
 						</div>							
-					</div>						
-
+					</div>					
+					
 					<div class="card">
 						<div class="card-header">
-							CKEditor 4
+							Quill Editor - Your powerful rich text editor.
 						 </div>
 						<div class="card-body">	
-							<p class="card-text"><a target="_blank" href="https://ckeditor.com/ckeditor-4/">https://ckeditor.com/ckeditor-4/</a></p>							
-							<div class="asplForm card-text" id="sampleform4"></div>	
+							<p class="card-text"><a target="_blank" href="https://quilljs.com/">https://quilljs.com/</a></p>							
+							 <div class="asplForm card-text" id="sampleform37"></div>
 							<hr>
-							<p class="card-text"><small class="text-muted">/default/asp/sampleform4.resx</small></p>	
+							<p class="card-text"><small class="text-muted">/default/asp/sampleform37.resx</small></p>	
 						</div>
 					</div>
 					
@@ -616,8 +628,7 @@
 			.CodeMirror { border: 1px solid #eee;height:auto}
 		</style>
 		
-	<!-- CKEditor 4 -->
-	<script src="//cdn.ckeditor.com/4.14.0/basic/ckeditor.js"></script>
+	
 	
 	<!-- jQuery Autocomplete-->	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.min.js"></script>
@@ -625,6 +636,8 @@
 	<!-- Bootstrap JS -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	
+
 
 
   </body>
