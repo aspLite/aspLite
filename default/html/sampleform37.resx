@@ -1,0 +1,27 @@
+<script>
+  // Initialiseer de Quill-editor op het div-element '#editor-container'
+  var quill = new Quill('#editor-container', {
+    theme: 'snow', // 'snow' is het standaard thema met de werkbalk
+    modules: {
+      toolbar: [
+        [{ 'header': [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        ['link', 'image'],
+        ['clean']
+      ]
+    }
+  });
+
+  // Functie die wordt aangeroepen vlak voor het verzenden van het formulier
+  function copyContent() {
+    // Haal de HTML-content op uit de editor
+    const htmlContent = quill.root.innerHTML;
+    
+    // Wijs de HTML-content toe aan het verborgen inputveld
+    document.getElementById('editor_content').value = htmlContent;
+    
+    // Zorg ervoor dat het formulier verzonden wordt
+    return true; 
+  }
+</script>
