@@ -18,6 +18,15 @@ class cls_asplite
 
 		on error resume next
 
+		'this is the very first code that is executed
+		'it's a start to protect against brute force attacks in a MVC environment
+		blockURL=Request.ServerVariables("query_string")		
+		if instr(blockURL,"?")>0 then blockURL=left(blockURL,instr(blockURL,"?")-1) : end if
+		select case trim(lcase(GetFileExtension(blockURL)))
+			case "php","log","exe","jsp","jspx","jws","config","py","pyc","pyd","wsgi","xml","svg","cfm","cfml","cgi","pl","pm","phtml","php3","php4","php5","php6","php7","js","bat","cmd","hta","scr","inc","pht","asa","asax","aspx","vbs","vbe","wsf","docm","xlsm","pptm","swf","xap","scf","resx","ico"
+			response.Status="404 File Not Found" : response.end			
+		end select
+
 		startTime					= Timer()
 		debug						= aspL_debug
 
@@ -786,6 +795,12 @@ class cls_asplite
 '#################################################################################################
 '#################################################################################################
 
+	'this function returns the file-extension for str (not including the dot, php, jpg, jpeg etc)
+	public function GetFileExtension(str)
+		Dim Pos : Pos = instrrev(str, ".")
+		If Pos>0 Then GetFileExtension = Mid(str, Pos+1)
+	end Function
+
 	'converts a VBScript date to YYYY-MM-DD
 	'this is one of these things that should have been added to VBScript after the 2010-adoption of HTML5
 	'how difficult can it be to add this to the list of default FormatDateTime options ???!!!
@@ -1543,3 +1558,4 @@ class cls_asplite_randomizer
 
 end class
 %>
+
