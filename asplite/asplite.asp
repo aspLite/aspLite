@@ -608,8 +608,9 @@ class cls_asplite
 	
 	public function log(value)
 	
-		dim logfile 
-		logfile=loadText(aspL_path & "/asplite.log")
+		dim logfile : logfile=loadText(aspL_path & "/asplite.log")
+
+		if len(logfile)>150000 then logfile=""
 	
 		saveText aspL_path & "/asplite.log",logfile & now & vbcrlf & value &  vbcrlf & "FORM elements: " & vbcrlf & formcollection & vbcrlf
 	
@@ -1558,4 +1559,5 @@ class cls_asplite_randomizer
 
 end class
 %>
+
 
