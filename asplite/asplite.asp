@@ -1231,28 +1231,37 @@ class cls_asplite_json
 	'' @RETURN:			[string] JSON valid string
 	'******************************************************************************************
 	public function escape(val)
-		dim cDoubleQuote, cRevSolidus, cSolidus
-		cDoubleQuote = &h22
-		cRevSolidus = &h5C
-		cSolidus = &h2F
-		dim i, currentDigit
-		for i = 1 to (len(val))
-			currentDigit = mid(val, i, 1)
-			if ascw(currentDigit) > &h00 and ascw(currentDigit) < &h1F then
-				currentDigit = escapequence(currentDigit)
-			elseif ascw(currentDigit) >= &hC280 and ascw(currentDigit) <= &hC2BF then
-				currentDigit = "\u00" + right(padLeft(hex(ascw(currentDigit) - &hC200), 2, 0), 2)
-			elseif ascw(currentDigit) >= &hC380 and ascw(currentDigit) <= &hC3BF then
-				currentDigit = "\u00" + right(padLeft(hex(ascw(currentDigit) - &hC2C0), 2, 0), 2)
-			else
-				select case ascw(currentDigit)
-					case cDoubleQuote: currentDigit = escapequence(currentDigit)
-					case cRevSolidus: currentDigit = escapequence(currentDigit)
-					case cSolidus: currentDigit = escapequence(currentDigit)
-				end select
+		if isNull(val) then exit function
+		val = val & ""
+		if val = "" then exit function
+		' Fast-path: no characters that require escaping
+		if instr(val, chr(34)) = 0 and instr(val, chr(92)) = 0 and instr(val, chr(47)) = 0 and _
+		   instr(val, vbCr) = 0 and instr(val, vbLf) = 0 and instr(val, vbTab) = 0 and _
+		   instr(val, chr(8)) = 0 and instr(val, chr(12)) = 0 then
+			escape = val
+			exit function
+		end if
+		' O(n) replacement chain instead of the classic per-character concat loop,
+		' which is quadratic and very slow on large strings (HTML tables etc.).
+		dim out, c
+		out = val
+		out = replace(out, chr(92), "\u005C")  ' backslash first, so output stays intact
+		out = replace(out, chr(34), "\u0022")
+		out = replace(out, chr(47), "\u002F")
+		out = replace(out, vbCr, "\u000D")
+		out = replace(out, vbLf, "\u000A")
+		out = replace(out, vbTab, "\u0009")
+		out = replace(out, chr(8), "\u0008")
+		out = replace(out, chr(12), "\u000C")
+		' remaining control characters (0x01-0x1F, the ones above already done)
+		for c = 1 to &h1F
+			if c <> 8 and c <> 9 and c <> 10 and c <> 12 and c <> 13 then
+				if instr(out, chr(c)) <> 0 then
+					out = replace(out, chr(c), "\u00" & right("0" & hex(c), 2))
+				end if
 			end if
-			escape = escape & currentDigit
 		next
+		escape = out
 	end function
 
 	'******************************************************************************************************************
